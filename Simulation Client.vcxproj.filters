@@ -54,9 +54,6 @@
     <ClCompile Include="src\graphics\models\blood_cells_model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Użytkownicy\filip\Documents\Studia\sem5\Grafika komputerowa\FilipSkrzeczkowski_Projekt_GK\OpenGL Demo\Sources\glad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Libraries\include\glm\detail\glm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -85,6 +82,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\graphics\models\vein_model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
