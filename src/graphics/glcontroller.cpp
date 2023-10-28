@@ -1,17 +1,14 @@
 #include <glad/glad.h>
 
-#include "glcontroller.cuh"
+#include "glcontroller.hpp"
+
+#include "../defines.hpp"
 
 #ifdef _WIN32
 #include <windows.h>
 #endif
 
 #include <iostream>
-
-#include "cuda_runtime.h"
-#include "device_launch_parameters.h"
-#include "cudaGL.h"
-#include "cuda_gl_interop.h"
 
 
 namespace graphics
@@ -54,8 +51,7 @@ namespace graphics
 	//	devVeinVBOBuffer[8 * id + 7] = 0;
 	//}
 
-	graphics::GLController::GLController(GLFWwindow* window, Mesh veinMesh) :
-		veinModel(veinMesh), springLines(particleModel.getCudaOffsetBuffer())
+	GLController::GLController(GLFWwindow* window)
 	{
 		// Set up GLFW to work with inputController
 		glfwSetWindowUserPointer(window, &inputController);
@@ -155,17 +151,34 @@ namespace graphics
 
 	//}
 
-	void graphics::GLController::draw()
+	void GLController::beginSimulation(const serializable::ConfigData& configData)
+	{
+		simulationInstance = sim::SimulationInstance(configData);
+		mode = Mode::Simulation;
+	}
+
+	void GLController::endSimulation()
+	{
+		simulationInstance = {};
+		mode = Mode::None;
+	}
+
+	void GLController::drawNothing()
+	{
+		
+	}
+
+	void GLController::drawSimulation()
 	{
 		// Draw particles
 
-		if constexpr (!useLighting) // solidcolor
+		if (!useLighting) // solidcolor
 		{
 			solidColorShader->use();
 			solidColorShader->setMatrix("model", model);
 			solidColorShader->setMatrix("view", camera.getView());
 			solidColorShader->setMatrix("projection", projection);
-			particleModel.draw(solidColorShader.get());
+			simulationInstance.value().drawParticles(solidColorShader.get());
 		}
 		else
 		{
@@ -181,14 +194,14 @@ namespace graphics
 
 			phongForwardShader->setLighting(directionalLight);
 
-			particleModel.draw(phongForwardShader.get());
+			simulationInstance.value().drawParticles(phongForwardShader.get());
 		}
 
 		// Draw lines
 
 		springShader->use();
 		springShader->setMatrix("projection_view_model", projection * camera.getView());
-		springLines.draw(springShader.get());
+		simulationInstance.value().drawSpringLines(springShader.get());
 
 		// Draw vein
 
@@ -197,7 +210,7 @@ namespace graphics
 		cylinderSolidColorShader->setMatrix("projection", projection);
 
 		glCullFace(GL_FRONT);
-		veinModel.draw(cylinderSolidColorShader.get(), false);
+		simulationInstance.value().drawVein(cylinderSolidColorShader.get());
 		glCullFace(GL_BACK);
 
 		/////////////////////////////////////////////////////////////////////////////////////////////
@@ -263,5 +276,26 @@ namespace graphics
 		//glBindVertexArray(0);
 		//glEnable(GL_DEPTH_TEST);
 		/////////////////////////////////////////////////////////////////////////////////////////////
+	}
+
+	void GLController::drawVeinEditor() 
+	{
+		// TODO
+	}
+
+	void GLController::draw()
+	{
+		switch (mode)
+		{
+		case Mode::None:
+			drawNothing();
+			break;
+		case Mode::Simulation:
+			drawSimulation();
+			break;
+		case Mode::VeinEdition:
+			drawVeinEditor();
+			break;
+		}
 	}
 }

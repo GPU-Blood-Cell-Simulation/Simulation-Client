@@ -3,32 +3,42 @@
 #include "camera.hpp"
 #include "inputcontroller.hpp"
 #include "light.hpp"
-#include "model.hpp"
-#include "spring_lines.hpp"
+#include "models/model.hpp"
+#include "../serializable/blood_cells_definition.hpp"
+#include "../serializable/vein_definition.hpp"
+#include "../simulation/simulation_instance.hpp"
 
 #include <glm/mat4x4.hpp>
 #include <glm/vec3.hpp>
 #include <memory>
+#include <optional>
 
 
 namespace graphics
 {
+	enum class Mode
+	{
+		None,
+		Simulation,
+		VeinEdition
+	};
+
 	// Controls rendering of the particles
 	class GLController {
 	public:
-
-		GLController(GLFWwindow* window, Mesh veinMesh);
-		void calculateTriangles(VeinTriangles triangles);
+		GLController(GLFWwindow* window);
+		void drawNothing();
+		void drawSimulation();
+		void drawVeinEditor();
 		void draw();
+		void beginSimulation(const serializable::ConfigData& configData);
+		void endSimulation();
 		inline void handleInput()
 		{
 			inputController.adjustParametersUsingInput(camera);
 		}
 
-		Mesh getGridMesh()
-		{
-			return veinModel.getTopMesh();
-		}
+		Mode mode = Mode::None;
 
 	private:
 
@@ -40,16 +50,13 @@ namespace graphics
 		glm::mat4 model = glm::scale(glm::mat4(1.0f), glm::vec3(0.5f, 0.5f, 0.5f));
 		glm::mat4 projection = glm::perspective(glm::radians<float>(45.0f), static_cast<float>(windowWidth) / windowHeight, 0.1f, depth * 10);
 
-		Model particleModel = Model("Models/Earth/low_poly_earth.fbx");
-
-		Model veinModel;
+		InputController inputController;
+		std::optional<sim::SimulationInstance> simulationInstance;
 
 		Camera camera;
-		InputController inputController;
 
+		bool useLighting = true;
 		DirLight directionalLight;
-
-		const SpringLines springLines;
 
 		std::unique_ptr<Shader> solidColorShader;
 		std::unique_ptr<Shader> geometryPassShader;

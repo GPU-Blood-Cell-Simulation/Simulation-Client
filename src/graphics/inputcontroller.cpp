@@ -1,6 +1,6 @@
 #include "inputcontroller.hpp"
 
-#include "../config/graphics.hpp"
+#include "../defines.hpp"
 
 namespace graphics
 {
@@ -33,7 +33,7 @@ namespace graphics
 			case GLFW_KEY_LEFT_SHIFT:
 				controller->pressedKeys.SHIFT = true;
 				break;
-			// Rotation
+				// Rotation
 			case GLFW_KEY_UP:
 				controller->pressedKeys.UP = true;
 				break;
@@ -46,7 +46,7 @@ namespace graphics
 			case GLFW_KEY_RIGHT:
 				controller->pressedKeys.RIGHT = true;
 				break;
-			// Change view mode
+				// Change view mode
 			case GLFW_KEY_V:
 				glPolygonMode(GL_FRONT_AND_BACK, (VEIN_POLYGON_MODE = (VEIN_POLYGON_MODE == GL_LINE ? GL_FILL : GL_LINE)));
 				break;
@@ -57,7 +57,7 @@ namespace graphics
 		{
 			switch (key)
 			{
-			// Movement
+				// Movement
 			case GLFW_KEY_W:
 				controller->pressedKeys.W = false;
 				break;
@@ -76,7 +76,7 @@ namespace graphics
 			case GLFW_KEY_LEFT_SHIFT:
 				controller->pressedKeys.SHIFT = false;
 				break;
-			// Rotation
+				// Rotation
 			case GLFW_KEY_UP:
 				controller->pressedKeys.UP = false;
 				break;

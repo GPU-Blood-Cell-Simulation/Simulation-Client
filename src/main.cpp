@@ -1,12 +1,15 @@
 #include <glad/glad.h>
 
-#include "config/defines.hpp"
+#include "defines.hpp"
 #include "graphics/glcontroller.hpp"
+#include "gui/GUIController.hpp"
+#include "serializable/config_manager.hpp"
 
 #include <GLFW/glfw3.h>
-#include <iostream> 
+#include <iostream>
+#include <imgui/backend/imgui_impl_glfw.h>
+#include <imgui/backend/imgui_impl_opengl3.h>
 #include <sstream>
-
 
 
 //#pragma float_control( except, on )
@@ -71,8 +74,14 @@ void programLoop(GLFWwindow* window)
     double lastTime = glfwGetTime();
     int frameCount = 0;
 
+    // Create a configuration manager
+    serializable::ConfigManager configManager;
+
     // Create a graphics controller
-    graphics::GLController glController(window, veinMesh);
+    graphics::GLController glController(window);
+
+    // Create a GUI controller
+    gui::GUIController guiController(window, glController, configManager);
 
     // MAIN LOOP HERE - dictated by glfw
 
@@ -86,9 +95,14 @@ void programLoop(GLFWwindow* window)
             // TODO
 
         // OpenGL render
-#pragma region rendering
+        #pragma region rendering
 
+        // simulation / vein editor rendering
         glController.draw();
+
+        // gui rendering
+        guiController.renderUI();
+
         glfwSwapBuffers(window);
 
         // Show FPS in the title bar
@@ -108,7 +122,7 @@ void programLoop(GLFWwindow* window)
         {
             frameCount++;
         }
-#pragma endregion
+        #pragma endregion
 
         // Handle user input
         glfwPollEvents();
