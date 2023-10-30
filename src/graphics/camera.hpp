@@ -8,6 +8,9 @@
 
 namespace graphics
 {
+	/// <summary>
+	/// A Camera object in 3D space affecting what the user sees. Can move.
+	/// </summary>
 	class Camera
 	{
 	public:

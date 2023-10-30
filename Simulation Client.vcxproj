@@ -147,7 +147,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Użytkownicy\filip\Documents\Studia\sem5\Grafika komputerowa\FilipSkrzeczkowski_Projekt_GK\OpenGL Demo\Sources\glad.c" />
     <ClCompile Include="Libraries\include\glm\detail\glm.cpp" />
     <ClCompile Include="Libraries\include\imgui\backend\imgui_impl_glfw.cpp" />
     <ClCompile Include="Libraries\include\imgui\backend\imgui_impl_opengl3.cpp" />
@@ -156,6 +155,7 @@
     <ClCompile Include="Libraries\include\imgui\imgui\imgui_draw.cpp" />
     <ClCompile Include="Libraries\include\imgui\imgui\imgui_tables.cpp" />
     <ClCompile Include="Libraries\include\imgui\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\graphics\camera.cpp" />
     <ClCompile Include="src\graphics\glcontroller.cpp" />
     <ClCompile Include="src\graphics\inputcontroller.cpp" />
@@ -568,7 +568,6 @@
     <ClInclude Include="src\graphics\models\vein_model.hpp" />
     <ClInclude Include="src\graphics\shader.hpp" />
     <ClInclude Include="src\graphics\models\spring_lines.hpp" />
-    <ClInclude Include="src\graphics_mode.hpp" />
     <ClInclude Include="src\gui\GUIController.hpp" />
     <ClInclude Include="src\serializable\blood_cells_definition.hpp" />
     <ClInclude Include="src\serializable\blood_cell_type.hpp" />

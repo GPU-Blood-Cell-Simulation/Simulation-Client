@@ -9,6 +9,9 @@
 
 namespace sim
 {
+	/// <summary>
+	/// Carries all the models that represent a particular user-defined configuration. It contains all the model data necessary to render a frame.
+	/// </summary>
 	class SimulationInstance
 	{
 	public:

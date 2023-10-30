@@ -7,6 +7,9 @@
 
 namespace serializable
 {
+	/// <summary>
+	/// A class responsible for serialization/deserialization of configuration files and providing the data necessary to create a Simulation Instance
+	/// </summary>
 	class ConfigManager
 	{
 	public:

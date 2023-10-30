@@ -7,6 +7,9 @@
 
 namespace gui
 {
+	/// <summary>
+	/// A class responsible for rendering the UI and processing user input
+	/// </summary>
 	class GUIController
 	{
 	public:

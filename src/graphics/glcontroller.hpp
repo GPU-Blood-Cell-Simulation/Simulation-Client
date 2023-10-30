@@ -16,6 +16,9 @@
 
 namespace graphics
 {
+	/// <summary>
+	/// Mode that the GLController operates in - what is currently displayed is dependent on this enum
+	/// </summary>
 	enum class Mode
 	{
 		None,
@@ -23,7 +26,9 @@ namespace graphics
 		VeinEdition
 	};
 
-	// Controls rendering of the particles
+	/// <summary>
+	/// Controls rendering of blood cellls and the vein
+	/// </summary>
 	class GLController {
 	public:
 		GLController(GLFWwindow* window);
