@@ -13,11 +13,11 @@
 
 
 //#pragma float_control( except, on )
-//// NVIDIA GPU selector for devices with multiple GPUs (e.g. laptops)
-//extern "C"
-//{
-//    __declspec(dllexport) unsigned long NvOptimusEnablement = 0x00000001;
-//}
+// NVIDIA GPU selector for devices with multiple GPUs (e.g. laptops)
+extern "C"
+{
+    __declspec(dllexport) unsigned long NvOptimusEnablement = 0x00000001;
+}
 
 void programLoop(GLFWwindow* window);
 
@@ -77,8 +77,11 @@ void programLoop(GLFWwindow* window)
     // Create a configuration manager
     serializable::ConfigManager configManager;
 
+    // Create the vein root
+    std::unique_ptr<vein::Node> veinRoot = std::make_unique<vein::BifurcationNode>();
+
     // Create a graphics controller
-    graphics::GLController glController(window);
+    graphics::GLController glController(window, veinRoot.get());
 
     // Create a GUI controller
     gui::GUIController guiController(window, glController, configManager);
