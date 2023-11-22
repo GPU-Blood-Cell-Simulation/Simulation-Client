@@ -153,7 +153,7 @@ namespace vein
 		{
 			domainPoints.emplace_back(toDP(bifurcationBase.positions[i + 2 * bif::segmentVertexCount - bif::hLayers]));
 
-			glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), glm::pi<float>() - angleLeft, glm::vec3(0, 0, 1));
+			glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), glm::pi<float>() + angleLeft, glm::vec3(0, 0, 1));
 
 			rangePoints.emplace_back(toRP(rotation * glm::vec4(baseRangePoints.positions[i], 1.0f) + glm::vec4(0, 0, 0, 0)));
 		}

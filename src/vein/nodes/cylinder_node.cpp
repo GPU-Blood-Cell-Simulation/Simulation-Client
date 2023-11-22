@@ -24,7 +24,7 @@ namespace vein
 		leftBranchAngle = rightBranchAngle = angle;
 
 		auto translation = isLeft ? parent->leftEndCenter : parent->rightEndCenter;
-		mesh.tranfsorm(translation, isLeft? - angle : angle);
+		mesh.tranfsorm(translation, angle);
 
 
 		auto dist = mesh.positions[mesh.positions.size() - 1] - mesh.positions[mesh.positions.size() - 1 - cyl::hLayers/2];

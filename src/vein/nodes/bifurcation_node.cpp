@@ -21,8 +21,8 @@ namespace vein
 
 		glm::vec3 bifurcationHeightOffset = { 0, - mesh.positions[bif::vLayers * bif::hLayers - 1].y, 0 };
 		auto translation = isLeft ? parent->leftEndCenter : parent->rightEndCenter;
-		translation += bifurcationHeightOffset;
-		float angle = isLeft ? - parent->leftBranchAngle : parent->rightBranchAngle;
+		float angle = isLeft ? parent->leftBranchAngle : parent->rightBranchAngle;
+		translation += glm::vec3(glm::rotate(glm::mat4(1.0f), angle, glm::vec3(0, 0, 1)) * glm::vec4(bifurcationHeightOffset, 1.0f));
 
 		mesh.tranfsorm(translation, angle);
 

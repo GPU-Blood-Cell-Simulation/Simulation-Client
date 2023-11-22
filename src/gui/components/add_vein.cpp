@@ -52,11 +52,11 @@ namespace gui
 
 				if (selectedLeft)
 				{
-					selectedNode->left = std::make_unique<vein::BifurcationNode>(vein::BifurcationNode(selectedNode, angleLeftRad, angleRightRad, true));
+					selectedNode->left = std::make_unique<vein::BifurcationNode>(vein::BifurcationNode(selectedNode, - angleLeftRad, angleRightRad, true));
 				}
 				else
 				{
-					selectedNode->right = std::make_unique<vein::BifurcationNode>(vein::BifurcationNode(selectedNode, angleLeftRad, angleRightRad, false));
+					selectedNode->right = std::make_unique<vein::BifurcationNode>(vein::BifurcationNode(selectedNode, - angleLeftRad, angleRightRad, false));
 				}
 			}
 			
