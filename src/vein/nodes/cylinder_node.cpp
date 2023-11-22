@@ -14,7 +14,7 @@ namespace vein
 		if (!parent)
 		{
 			leftBranchAngle = rightBranchAngle = 0;
-			leftEndCenter = rightEndCenter = {0, -cyl::veinHeight, 0};
+			leftEndCenter = rightEndCenter = {0, -cyl::veinHeight + cyl::veinHeight / cyl::vLayers , 0};
 			mesh.setupMesh();
 			return;
 		}
