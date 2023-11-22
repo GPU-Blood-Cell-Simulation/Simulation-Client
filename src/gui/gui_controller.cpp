@@ -1,13 +1,26 @@
-#include "GUIController.hpp"
+#include "gui_controller.hpp"
 
-#include<GLFW/glfw3.h>
+#include "../vein/nodes/node.hpp"
 
+#include <GLFW/glfw3.h>
 #include <imgui/backend/imgui_impl_glfw.h>
 #include <imgui/backend/imgui_impl_opengl3.h>
 
 
 namespace gui
 {
+
+    void GUIController::setMode(Mode mode)
+    {
+        this->mode = mode;
+    }
+
+    void GUIController::selectNode(vein::Node* node, bool selectedLeft)
+    {
+        selectedNode = node;
+        this->selectedLeft = selectedLeft;
+    }
+
     static ImGuiIO& createImguiContext()
     {
         IMGUI_CHECKVERSION();
@@ -15,8 +28,8 @@ namespace gui
         return ImGui::GetIO();
     }
 
-	GUIController::GUIController(GLFWwindow* window, graphics::GLController& glController, serializable::ConfigManager& configManager) :
-        io(createImguiContext()), glController(glController), configManager(configManager)
+	GUIController::GUIController(GLFWwindow* window, graphics::GLController& glController, serializable::ConfigManager& configManager, vein::Node* rootNode) :
+        io(createImguiContext()), glController(glController), configManager(configManager), rootNode(rootNode)
 	{
         // Setup Dear ImGui context
         io = ImGui::GetIO(); (void)io;
@@ -46,6 +59,9 @@ namespace gui
 
 	void GUIController::renderUI()
 	{
+        // Delete child nodes that were marked "to be deleted" in the previous frame
+        rootNode->deleteMarkedChildren();
+
         static int previousButtonClicked = 0;
         static int buttonClicked = 0;
 
@@ -53,70 +69,39 @@ namespace gui
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
+
+        // imgui debug
+        bool show = false;
+        if (show)
+        {
+            ImGui::ShowDemoWindow(&show);
+            ImGui::Render();
+            finalDraw();
+            return;
+        }
+        
+
         ImGui::Begin("Configuration window"); // Create a window and append into it.        
 
-        if (glController.mode == graphics::Mode::Simulation)
+        switch (mode)
         {
-            ImGui::Text("Simulation in progress...");
-        }
-        else
-        {
-            ImGui::Text("Mode");
-            ImGui::RadioButton("general config", &buttonClicked, 0); ImGui::SameLine();
-            ImGui::RadioButton("Simulation", &buttonClicked, 1); ImGui::SameLine();
-            ImGui::RadioButton("Vein edition", &buttonClicked, 2);
-        }
-
-        if (buttonClicked != previousButtonClicked) // button selection changed
-        {
-            switch (buttonClicked)
-            {
-            case 0:
-                glController.mode = graphics::Mode::None;
-                break;
-            case 1:
-                glController.mode = graphics::Mode::None;
-                break;
-            case 2:
-                glController.mode = graphics::Mode::VeinEdition;
-                break;
-            }
-            previousButtonClicked = buttonClicked;
-        }
-
-        switch (buttonClicked)
-        {
-        case 0:
-            ImGui::Text("General configuration screen");
-            if (ImGui::Button("Load configuration"))
-            {
-                configManager.loadConfiguration("Config/config.json");
-            }
-            if (ImGui::Button("Save configuration"))
-            {
-                configManager.saveConfiguration("Config/config.json");
-            }
+        case Mode::mainScreen:
+            renderMainScreen();
             break;
-        case 1:
-            ImGui::Text("Simulation screen");
-            if (glController.mode == graphics::Mode::Simulation)
-            {
-                if (ImGui::Button("Cancel"))
-                {
-                    glController.endSimulation();
-                }
-            }
-            else
-            {
-                if (ImGui::Button("Compile and run (placeholder)"))
-                {
-                    glController.beginSimulation(configManager.getData());
-                }
-            }
-
+        case Mode::generalEdit:
+            renderGeneralEditor();
             break;
-        case 2:
-            ImGui::Text("Vein editor screen");
+        case Mode::bloodEdit:
+            renderBloodEditor();
+            break;
+        case Mode::veinEdit:
+            renderVeinEditor();
+            break;
+        case Mode::addVein:
+            renderAddVein();
+            break;
+        case Mode::simulation:
+            renderSimulation();
             break;
         }
 

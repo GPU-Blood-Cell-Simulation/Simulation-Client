@@ -8,20 +8,23 @@ namespace vein
 	class VeinGenerator
 	{
 	public:
-		VeinMesh createBifurcation(float angleLeft, float angleRight);
-		VeinMesh createCylinder();
+		static VeinGenerator& getInstance();
+
+		VeinMesh createBifurcation(float angleLeft, float angleRight) const;
+		VeinMesh createCylinder() const;
 
 	private:
-		TempMesh createFlatBifurcationSegment();
-		TempMesh createRotatedMesh(const TempMesh& mesh, float angle);
-		void removeDuplicatedVertices(TempMesh& mesh);
-		void fillControlPoints(const TempMesh& mesh, float angleLeft, float angleRight, std::vector<Domain_Point>& domainPoints, std::vector<Range_Point>& rangePoints);
-		TempMesh createCombinedFlatBifurcation();
+		VeinGenerator() {}
+		TempMesh createFlatBifurcationSegment() const;
+		TempMesh createRotatedMesh(const TempMesh& mesh, float angle) const;
+		void removeDuplicatedVertices(TempMesh& mesh) const;
+		void fillControlPoints(float angleLeft, float angleRight, std::vector<Domain_Point>& domainPoints, std::vector<Range_Point>& rangePoints) const;
+		TempMesh createCombinedBaseBifurcation();
 		TempMesh createBaseRangePoints();
 
-		TempMesh bifurcationBase = createCombinedFlatBifurcation();
+		TempMesh bifurcationBase = createCombinedBaseBifurcation();
 		TempMesh baseRangePoints = createBaseRangePoints();
 		TempMesh leftBranchRangePoints = createRotatedMesh(baseRangePoints, glm::pi<float>() * 2.0f / 3.0f);
-		TempMesh rightBranchRangePoints = createRotatedMesh(baseRangePoints, glm::pi<float>() * 4.0f / 3.0f);;
+		TempMesh rightBranchRangePoints = createRotatedMesh(baseRangePoints, glm::pi<float>() * 4.0f / 3.0f);
 	};
 }

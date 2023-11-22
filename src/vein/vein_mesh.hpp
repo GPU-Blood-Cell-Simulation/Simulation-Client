@@ -13,13 +13,14 @@ namespace vein
 {
     struct TempMesh
     {
-        TempMesh(std::vector<glm::vec3>&& positions, std::vector<unsigned int>&& indices) : positions(positions), indices(indices)
-        {
-            std::cout << "move\n";
-        }
+        TempMesh(std::vector<glm::vec3>&& positions, std::vector<unsigned int>&& indices);
+
+        TempMesh(std::vector<glm::vec3>&& positions, const std::vector<unsigned int>& indices);
 
         std::vector<glm::vec3> positions;
         std::vector<unsigned int> indices;
+
+        void tranfsorm(glm::vec3 translation, float angle);
     };
 
 
@@ -27,12 +28,15 @@ namespace vein
     public:
 
         VeinMesh(std::vector<glm::vec3>&& positions, std::vector<unsigned int>&& indices);
+        VeinMesh(std::vector<glm::vec3>&& positions, const std::vector<unsigned int>& indices);
+        ~VeinMesh();
+
+        void setupMesh();
         void draw(const Shader* shader) const;
 
     private:
         //  render data
-        unsigned int VAO, VBO, EBO;
-
-        void setupMesh();
+        unsigned int VAO = 0, VBO = 0, EBO = 0;
+        
     };
 }

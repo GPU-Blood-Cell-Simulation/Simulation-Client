@@ -5,10 +5,10 @@
 
 namespace vein
 {
-	class BifurcationNode : public Node
+	class CylinderNode : public Node
 	{
 	public:
-		BifurcationNode(Node* parent, float leftRotation, float rightRotation, bool isLeft = true);
+		CylinderNode(Node* parent, bool isLeft = true);
 
 		virtual void renderGUI(gui::GUIController& guiController) override;
 

@@ -18,7 +18,7 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\gui\GUIController.cpp">
+    <ClCompile Include="src\gui\gui_controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\vein\vein_mesh.cpp">
@@ -37,9 +37,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\serializable\config_manager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Użytkownicy\filip\Documents\Studia\sem5\Grafika komputerowa\FilipSkrzeczkowski_Projekt_GK\OpenGL Demo\Sources\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Libraries\include\glm\detail\glm.cpp">
@@ -72,6 +69,36 @@
     <ClCompile Include="src\vein\nodes\bifurcation_node.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\gui\components\main_screen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gui\components\vein_editor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\glad.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vein\nodes\root_node.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gui\components\general_editor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gui\components\blood_editor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gui\components\add_vein.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gui\components\simulation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vein\nodes\cylinder_node.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vein\nodes\node.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\defines.hpp">
@@ -89,7 +116,7 @@
     <ClInclude Include="src\serializable\spring.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\gui\GUIController.hpp">
+    <ClInclude Include="src\gui\gui_controller.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\vein\vein_mesh.hpp">
@@ -1041,6 +1068,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\vein\nodes\bifurcation_node.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vein\nodes\root_node.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vein\nodes\cylinder_node.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

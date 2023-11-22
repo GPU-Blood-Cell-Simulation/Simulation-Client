@@ -64,6 +64,16 @@ namespace graphics
 		mode = Mode::None;
 	}
 
+	void GLController::handleInput()
+	{
+		inputController.adjustParametersUsingInput(camera);
+	}
+
+	void GLController::setMode(Mode mode)
+	{
+		this->mode = mode;
+	}
+
 	void GLController::drawNothing()
 	{
 		
@@ -95,7 +105,7 @@ namespace graphics
 		case Mode::Simulation:
 			drawSimulation();
 			break;
-		case Mode::VeinEdition:
+		case Mode::VeinEdit:
 			drawVeinEditor();
 			break;
 		}

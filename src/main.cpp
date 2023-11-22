@@ -2,8 +2,9 @@
 
 #include "defines.hpp"
 #include "graphics/glcontroller.hpp"
-#include "gui/GUIController.hpp"
+#include "gui/gui_controller.hpp"
 #include "serializable/config_manager.hpp"
+#include "vein/nodes/root_node.hpp"
 
 #include <GLFW/glfw3.h>
 #include <iostream>
@@ -78,13 +79,14 @@ void programLoop(GLFWwindow* window)
     serializable::ConfigManager configManager;
 
     // Create the vein root
-    std::unique_ptr<vein::Node> veinRoot = std::make_unique<vein::BifurcationNode>();
+    //std::unique_ptr<vein::Node> veinRoot = std::make_unique<vein::BifurcationNode>(glm::vec3{0,0,0}, 0, glm::pi<float>() * 1/6, glm::pi<float>() * 1 / 6);
+    std::unique_ptr<vein::Node> veinRoot = std::make_unique<vein::RootNode>();
 
     // Create a graphics controller
     graphics::GLController glController(window, veinRoot.get());
 
     // Create a GUI controller
-    gui::GUIController guiController(window, glController, configManager);
+    gui::GUIController guiController(window, glController, configManager, veinRoot.get());
 
     // MAIN LOOP HERE - dictated by glfw
 

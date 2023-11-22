@@ -25,16 +25,16 @@ inline constexpr float depth = 300.0f;
 namespace vein
 {
 	// bifurcation segment (1/3)
-	namespace base
+	namespace bif
 	{
-		inline constexpr float veinHeight = 200;
+		inline constexpr float veinHeight = 100;
 		inline constexpr float veinRadius = 50;
 		inline constexpr int vLayers = 50;
-		inline constexpr int hLayers = 100;
+		inline constexpr int hLayers = 50;
 		inline constexpr int segmentVertexCount = vLayers * hLayers;
 	}
 
-	namespace cylinder
+	namespace cyl
 	{
 		inline constexpr float veinHeight = 300;
 		inline constexpr float veinRadius = 50;

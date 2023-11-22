@@ -20,7 +20,7 @@ namespace graphics
 	{
 		None,
 		Simulation,
-		VeinEdition
+		VeinEdit
 	};
 
 	// Controls rendering of the particles
@@ -33,18 +33,17 @@ namespace graphics
 		void draw();
 		void beginSimulation(const serializable::ConfigData& configData);
 		void endSimulation();
-		inline void handleInput()
-		{
-			inputController.adjustParametersUsingInput(camera);
-		}
+		void handleInput();
+		void setMode(Mode mode);
 
-		Mode mode = Mode::None;
 
 	private:
 
+		Mode mode = Mode::None;
+
 		// Uniform matrices
 		glm::mat4 model = glm::scale(glm::mat4(1.0f), glm::vec3(0.5f, 0.5f, 0.5f));
-		glm::mat4 projection = glm::perspective(glm::radians<float>(45.0f), static_cast<float>(windowWidth) / windowHeight, 0.1f, depth * 10);
+		glm::mat4 projection = glm::perspective(glm::radians<float>(45.0f), static_cast<float>(windowWidth) / windowHeight, 0.1f, depth * 100);
 
 		InputController inputController;
 		vein::Node* veinRoot;
