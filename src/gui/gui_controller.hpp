@@ -35,10 +35,12 @@ namespace gui
 		serializable::ConfigManager& configManager;
 		vein::Node* rootNode;
 
-		bool selectedLeft;
+		bool selectedLeft = true;
+		bool firstRender = true;
 		vein::Node* selectedNode = rootNode;
 
 		void finalDraw();
+		void createComponent();
 
 		// Components
 		void renderMainScreen();

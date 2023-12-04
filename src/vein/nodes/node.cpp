@@ -70,6 +70,7 @@ namespace vein
 
 	void Node::draw(Shader* shader) const
 	{
+		shader->setMatrix("model", model);
 		mesh.draw(shader);
 
 		if (left)

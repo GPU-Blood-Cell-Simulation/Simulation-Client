@@ -11,16 +11,15 @@
 
 namespace vein
 {
-    struct TempMesh
+    class TempMesh
     {
+    public:
         TempMesh(std::vector<glm::vec3>&& positions, std::vector<unsigned int>&& indices);
 
         TempMesh(std::vector<glm::vec3>&& positions, const std::vector<unsigned int>& indices);
 
         std::vector<glm::vec3> positions;
         std::vector<unsigned int> indices;
-
-        void tranfsorm(glm::vec3 translation, float angle);
     };
 
 
@@ -37,6 +36,5 @@ namespace vein
     private:
         //  render data
         unsigned int VAO = 0, VBO = 0, EBO = 0;
-        
     };
 }

@@ -12,21 +12,13 @@ namespace vein
 	TempMesh::TempMesh(std::vector<glm::vec3>&& positions, const std::vector<unsigned int>& indices) : positions(positions), indices(indices)
 	{}
 
-	void TempMesh::tranfsorm(glm::vec3 translation, float angle)
-	{
-		glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(0, 0, 1));
-		for (auto&& position : positions)
-		{
-			position = rotation * glm::vec4(position, 1.0f);
-			position += translation;
-		}
-	}
-
 	VeinMesh::VeinMesh(std::vector<glm::vec3>&& positions, std::vector<unsigned int>&& indices) :
-		TempMesh(std::move(positions), std::move(indices)) {}
+		TempMesh(std::move(positions), std::move(indices))
+	{}
 
 	VeinMesh::VeinMesh(std::vector<glm::vec3>&& positions, const std::vector<unsigned int>& indices) :
-		TempMesh(std::move(positions), indices) {}
+		TempMesh(std::move(positions), indices)
+	{}
 
 	VeinMesh::~VeinMesh()
 	{

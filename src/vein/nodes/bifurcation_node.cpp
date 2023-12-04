@@ -23,15 +23,17 @@ namespace vein
 		auto translation = isLeft ? parent->leftEndCenter : parent->rightEndCenter;
 		float angle = isLeft ? parent->leftBranchAngle : parent->rightBranchAngle;
 		translation += glm::vec3(glm::rotate(glm::mat4(1.0f), angle, glm::vec3(0, 0, 1)) * glm::vec4(bifurcationHeightOffset, 1.0f));
+		model = glm::rotate(glm::translate(glm::mat4(1.0f), translation), angle, glm::vec3(0, 0, 1));
 
-		mesh.tranfsorm(translation, angle);
-
-		// TODO : remember to change this when removing duplicated vertices is implemented
 		auto distLeftBranch = mesh.positions[2 * bif::segmentVertexCount - 1] - mesh.positions[2 * bif::segmentVertexCount - 1 - bif::hLayers / 2];
-		leftEndCenter = mesh.positions[2 * bif::segmentVertexCount - 1 - bif::hLayers / 2] + distLeftBranch * 0.5f;
+		leftEndCenter = model * glm::vec4(
+			mesh.positions[2 * bif::segmentVertexCount - 1 - bif::hLayers / 2] + distLeftBranch * 0.5f,
+			1.0f);
 
 		auto distRightBranch = mesh.positions[mesh.positions.size() - 1] - mesh.positions[mesh.positions.size() - 1 - bif::hLayers / 2];
-		rightEndCenter = mesh.positions[mesh.positions.size() - 1 - bif::hLayers / 2] + distRightBranch * 0.5f;
+		rightEndCenter = model * glm::vec4(
+			mesh.positions[mesh.positions.size() - 1 - bif::hLayers / 2] + distRightBranch * 0.5f,
+			1.0f);
 
 		mesh.setupMesh();
 	}

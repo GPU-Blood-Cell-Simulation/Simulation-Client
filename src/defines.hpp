@@ -29,8 +29,8 @@ namespace vein
 	{
 		inline constexpr float veinHeight = 100;
 		inline constexpr float veinRadius = 50;
-		inline constexpr int vLayers = 50;
-		inline constexpr int hLayers = 50;
+		inline constexpr int vLayers = 20;
+		inline constexpr int hLayers = 100;
 		inline constexpr int segmentVertexCount = vLayers * hLayers;
 	}
 

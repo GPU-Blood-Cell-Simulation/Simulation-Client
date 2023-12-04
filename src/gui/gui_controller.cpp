@@ -9,6 +9,10 @@
 
 namespace gui
 {
+    void GUIController::createComponent()
+    {
+        
+    }
 
     void GUIController::setMode(Mode mode)
     {
@@ -19,6 +23,7 @@ namespace gui
     {
         selectedNode = node;
         this->selectedLeft = selectedLeft;
+        firstRender = true;
     }
 
     static ImGuiIO& createImguiContext()

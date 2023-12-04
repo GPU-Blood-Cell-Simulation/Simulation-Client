@@ -15,6 +15,7 @@ namespace vein
 		{
 			leftBranchAngle = rightBranchAngle = 0;
 			leftEndCenter = rightEndCenter = {0, -cyl::veinHeight + cyl::veinHeight / cyl::vLayers , 0};
+			model = glm::identity<glm::mat4>();
 			mesh.setupMesh();
 			return;
 		}
@@ -22,13 +23,13 @@ namespace vein
 		// Calculate vein segment rotation and translation
 		float angle = isLeft ? parent->leftBranchAngle : parent->rightBranchAngle;
 		leftBranchAngle = rightBranchAngle = angle;
-
 		auto translation = isLeft ? parent->leftEndCenter : parent->rightEndCenter;
-		mesh.tranfsorm(translation, angle);
-
+		model = glm::rotate(glm::translate(glm::mat4(1.0f), translation), angle, glm::vec3(0, 0, 1));
 
 		auto dist = mesh.positions[mesh.positions.size() - 1] - mesh.positions[mesh.positions.size() - 1 - cyl::hLayers/2];
-		leftEndCenter = rightEndCenter = mesh.positions[mesh.positions.size() - 1 - cyl::hLayers/2] + dist * 0.5f;
+		leftEndCenter = rightEndCenter = model * glm::vec4(
+			mesh.positions[mesh.positions.size() - 1 - cyl::hLayers/2] + dist * 0.5f,
+			1.0f);
 
 		mesh.setupMesh();
 	}

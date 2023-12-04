@@ -111,6 +111,21 @@ namespace vein
 
 	void VeinGenerator::removeDuplicatedVertices(TempMesh& mesh) const
 	{
+		//// Erase first row
+		//mesh.positions.erase(mesh.positions.begin(), mesh.positions.begin() + bif::hLayers);
+		//mesh.indices.erase(mesh.indices.begin(), mesh.indices.begin() + bif::hLayers * 6);
+		//leftBranchStart = (bif::vLayers - 1) * bif::hLayers;
+		//// Adjust following indices
+		//std::for_each(mesh.indices.begin() + 6 * leftBranchStart, mesh.indices.end(), [&](auto& index)
+		//	{
+		//		index -= bif::hLayers;
+		//	});
+
+		//vertexCount = mesh.positions.size();
+		//rightBranchStart = vertexCount - bif::vLayers * bif::hLayers;
+
+
+
 		//// Remove half of the first row from the left branch - the one that collides with base
 		//mesh.positions.erase(mesh.positions.begin() + bif::segmentVertexCount, mesh.positions.begin() + bif::segmentVertexCount + bif::hLayers);
 
@@ -203,10 +218,13 @@ namespace vein
 		Transformation tps(domainPoints.begin(), domainPoints.end(), rangePoints.begin(), rangePoints.end());
 
 		// Transform vertices
-		std::vector<glm::vec3> transfromedPositions;
-		for (auto&& position : bifurcationBase.positions)
+		std::vector<glm::vec3> transfromedPositions(bifurcationBase.positions.size());
+
+		#pragma omp parallel for
+		for (int i = 0; i < bifurcationBase.positions.size(); i++)
 		{
-			transfromedPositions.emplace_back(toGLM(tps.transform(toDP(position))));
+			auto result = toGLM(tps.transform(toDP(bifurcationBase.positions[i])));
+			transfromedPositions[i] = result;
 		}
 		return VeinMesh(std::move(transfromedPositions), bifurcationBase.indices);
 	}
