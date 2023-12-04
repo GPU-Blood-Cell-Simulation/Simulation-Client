@@ -21,11 +21,24 @@ inline constexpr float depth = 300.0f;
 
 
 // cylinder model data:
-inline constexpr float cylinderHeight = 0.8 * height;
-inline constexpr float cylinderRadius = 0.2 * width;
-inline glm::vec3 cylinderBaseCenter = glm::vec3(width / 2.0f, 0.1f * height, depth / 2.0f);
-inline constexpr int cylinderVerticalLayers = 100;
-inline constexpr int cylinderHorizontalLayers = 30;
 
-inline constexpr int veinHeight = static_cast<int>(cylinderHeight);
-inline constexpr int veinRadius = static_cast<int>(cylinderRadius);
+namespace vein
+{
+	// bifurcation segment (1/3)
+	namespace bif
+	{
+		inline constexpr float veinHeight = 100;
+		inline constexpr float veinRadius = 50;
+		inline constexpr int vLayers = 20;
+		inline constexpr int hLayers = 100;
+		inline constexpr int segmentVertexCount = vLayers * hLayers;
+	}
+
+	namespace cyl
+	{
+		inline constexpr float veinHeight = 300;
+		inline constexpr float veinRadius = 50;
+		inline constexpr int vLayers = 50;
+		inline constexpr int hLayers = 100;
+	}
+}

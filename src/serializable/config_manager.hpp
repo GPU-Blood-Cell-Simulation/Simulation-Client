@@ -1,7 +1,6 @@
 #pragma once
 
 #include "config_data.hpp"
-#include "../simulation/simulation_instance.hpp"
 
 #include <string>
 

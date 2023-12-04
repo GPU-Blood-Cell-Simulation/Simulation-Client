@@ -27,45 +27,8 @@ protected:
     Shader(const char* vertexPath, const char* fragmentPath);
 };
 
-class SolidColorShader : public Shader
-{
-public:
-    SolidColorShader();
-};
-
-class PhongForwardShader : public Shader
-{
-public:
-    PhongForwardShader();
-};
-
-class GeometryPassShader : public Shader
-{
-public:
-    GeometryPassShader(unsigned int gBuffer);
-    void use() override;
-private:
-    unsigned int gBuffer;
-};
-
-class PhongDeferredShader : public Shader
-{
-public:
-    PhongDeferredShader(unsigned int gPosition, unsigned int gNormal);
-    void use() override;
-private:
-    unsigned int gPosition;
-    unsigned int gNormal;
-};
-
 class CylinderSolidColorShader : public Shader
 {
 public:
     CylinderSolidColorShader();
-};
-
-class SpringShader : public Shader
-{
-public:
-    SpringShader();
 };
