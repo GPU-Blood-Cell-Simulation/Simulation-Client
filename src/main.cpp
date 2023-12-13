@@ -11,6 +11,8 @@
 #include <imgui/backend/imgui_impl_opengl3.h>
 #include <sstream>
 
+#include "communication/CommunicationController.hpp"
+
 
 //#pragma float_control( except, on )
 //// NVIDIA GPU selector for devices with multiple GPUs (e.g. laptops)
@@ -56,6 +58,13 @@ int main()
     glEnable(GL_DEBUG_OUTPUT);
 
 #pragma endregion
+
+    CommunicationController controller(
+        "niecieckip",
+        "tohl0Cha",
+        "pnieciecki",
+        "zEj5XeNX"
+    );
 
     // Main simulation loop
 
