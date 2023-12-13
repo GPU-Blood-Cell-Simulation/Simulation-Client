@@ -1,7 +1,7 @@
 #include "gui_controller.hpp"
 
 #include "../vein/nodes/node.hpp"
-
+#include "../objects/bloodcellmodel.hpp"
 #include <GLFW/glfw3.h>
 #include <imgui/backend/imgui_impl_glfw.h>
 #include <imgui/backend/imgui_impl_opengl3.h>
@@ -60,6 +60,10 @@ namespace gui
         // Setup Platform/Renderer backends
         ImGui_ImplGlfw_InitForOpenGL(window, true);
         ImGui_ImplOpenGL3_Init("#version 330");
+
+        for (int i = 0; i < bloodcell::bloodCellModel::predefinedModels.size(); ++i) {
+            editors.push_back(new bloodEditor(&bloodcell::bloodCellModel::predefinedModels[i]));
+        }
 	}
 
 	void GUIController::renderUI()
@@ -97,7 +101,7 @@ namespace gui
             renderGeneralEditor();
             break;
         case Mode::bloodEdit:
-            renderBloodEditor();
+            renderBloodList();
             break;
         case Mode::veinEdit:
             renderVeinEditor();
@@ -107,6 +111,12 @@ namespace gui
             break;
         case Mode::simulation:
             renderSimulation();
+            break;
+        case Mode::configureBloodCellSprings:
+            renderBloodCellSpringsDetails();
+            break;
+        case Mode::configureBloodCellVertices:
+            renderBloodCellVerticesDetails();
             break;
         }
 

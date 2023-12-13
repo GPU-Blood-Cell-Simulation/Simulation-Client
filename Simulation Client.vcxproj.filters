@@ -84,9 +84,6 @@
     <ClCompile Include="src\gui\components\general_editor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\gui\components\blood_editor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\gui\components\add_vein.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -97,6 +94,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\vein\nodes\node.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gui\components\blood_details.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gui\components\blood_list.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bloodcell\blood_editor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\bloodcellmodel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1074,6 +1083,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\vein\nodes\cylinder_node.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\bloodcellmodel.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\bloodcell\blood_editor.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

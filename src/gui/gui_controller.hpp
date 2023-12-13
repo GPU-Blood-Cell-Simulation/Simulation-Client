@@ -3,8 +3,9 @@
 #include "../graphics/glcontroller.hpp"
 #include "../serializable/config_manager.hpp"
 #include "../vein/nodes/node.hpp"
-
+#include "../bloodcell/blood_editor.hpp"
 #include <imgui/imgui/imgui.h>
+#include <vector>
 
 namespace gui
 {
@@ -15,7 +16,9 @@ namespace gui
 		bloodEdit,
 		veinEdit,
 		addVein,
-		simulation
+		simulation,
+		configureBloodCellSprings, 
+		configureBloodCellVertices
 	};
 
 	class GUIController
@@ -26,18 +29,23 @@ namespace gui
 
 		void setMode(Mode mode);
 		void selectNode(vein::Node* node, bool selectedLeft = true);
-
+		void releaseEditor() { selectedEditor = nullptr; }
 	private:
 		ImGuiIO& io;
-
+		
 		Mode mode = Mode::mainScreen;
 		graphics::GLController& glController;
 		serializable::ConfigManager& configManager;
-		vein::Node* rootNode;
 
+		// vein
+		vein::Node* rootNode;
 		bool selectedLeft = true;
 		bool firstRender = true;
 		vein::Node* selectedNode = rootNode;
+
+		// blood cells
+		std::vector<bloodEditor*> editors;
+		bloodEditor* selectedEditor = nullptr;
 
 		void finalDraw();
 		void createComponent();
@@ -45,9 +53,11 @@ namespace gui
 		// Components
 		void renderMainScreen();
 		void renderGeneralEditor();
-		void renderBloodEditor();
+		void renderBloodList();
 		void renderVeinEditor();
 		void renderAddVein();
 		void renderSimulation();
+		void renderBloodCellSpringsDetails();
+		void renderBloodCellVerticesDetails();
 	};
 }
