@@ -19,6 +19,8 @@ namespace gui
 				ImGui::OpenPopup("BloodListPopup");
 			}
 			ImGui::SameLine();
+
+			ImGui::PushItemWidth(100);
 			ImGui::InputInt("quantity", &editor->modelQuantity);
 		}
 		if (ImGui::BeginPopup("BloodListPopup"))

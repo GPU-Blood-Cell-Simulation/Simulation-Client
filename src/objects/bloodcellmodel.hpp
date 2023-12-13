@@ -21,7 +21,7 @@ namespace bloodcell
 		bloodCellModel_data(std::vector<glm::vec3> _vertices, std::vector<unsigned int> _indices,
 			std::vector<glm::vec3> _normals, std::vector<std::pair<int, int>> _springs, unsigned int _modelSize, std::string _name, int _quantity) :
 			modelSize(_modelSize), indices(_indices), vertices(_vertices), normals(normals),
-			springs(_springs), name(_name) {}
+			springs(_springs), name(_name), quantity(_quantity) {}
 
 	};
 
