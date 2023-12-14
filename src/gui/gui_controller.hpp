@@ -46,6 +46,7 @@ namespace gui
 		// blood cells
 		std::vector<bloodEditor*> editors;
 		bloodEditor* selectedEditor = nullptr;
+		int decimalPrecision = 5;
 
 		void finalDraw();
 		void createComponent();

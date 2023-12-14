@@ -19,7 +19,9 @@ namespace gui
 		int modelQuantity;
 		bloodEditor(bloodcell::bloodCellModel_data* dataReference);
 
+		void updateQuantity() { modelData->quantity = modelQuantity; }
 		std::string GetModelName() { return modelData->name; }
+		
 		void renderGUISprings(gui::GUIController& guiController);
 		void renderGUIVertices(gui::GUIController& guiController);
 

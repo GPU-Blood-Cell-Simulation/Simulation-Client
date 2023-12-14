@@ -11,10 +11,10 @@ namespace
 	using namespace boost::mp11;
 
 	using UserDefinedBloodCellList = mp_list<
-	BloodCellDef<500, 20, 108,
-		presets::RedBloodCell_OneSprings
-		presets::RedBloodCell_OneVertices
-		presets::RedBloodCell_OneIndices
-		presets::RedBloodCell_OneNormals
+	BloodCellDef<15000, 20, 108,
+		preset::RedBloodCell_One_Springs,
+		preset::RedBloodCell_One_Vertices,
+		preset::RedBloodCell_One_Indices,
+		preset::RedBloodCell_One_Normals>
 	> ;
 }

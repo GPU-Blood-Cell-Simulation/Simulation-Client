@@ -24,8 +24,6 @@ void programLoop(GLFWwindow* window);
 
 int main()
 {
-
-    bloodcell::bloodCellModel::createHeaderFromData();
     // OpenGL setup
 #pragma region OpenGLsetup
     GLFWwindow* window;
