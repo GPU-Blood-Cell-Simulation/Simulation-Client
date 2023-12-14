@@ -6,11 +6,11 @@
 #include <glm/gtc/type_ptr.hpp>.
 
 
-int gui::bloodEditor::modelsCount = 0;
+//int gui::bloodEditor::modelsCount = 0;
 
 void gui::bloodEditor::renderGUISprings(gui::GUIController& guiController)
 {
-	modelNumber = modelsCount++;
+	//modelNumber = modelsCount++;
 	
 	ImGui::Text(std::format("Vertices are numbered [0..{}]\n\tAdd new spring: ", modelData->vertices.size() - 1).c_str());
 

@@ -27,7 +27,11 @@ namespace bloodcell
 
 	class bloodCellModel
 	{
+
 	public:
+		
+		static void createHeaderFromData();
+
 
 		inline static std::vector<bloodCellModel_data> predefinedModels = std::vector<bloodCellModel_data>({
 			bloodCellModel_data(

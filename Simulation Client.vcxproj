@@ -487,6 +487,7 @@
     <ClInclude Include="Libraries\include\nlohmann\json.hpp" />
     <ClInclude Include="Libraries\include\nlohmann\json_fwd.hpp" />
     <ClInclude Include="Libraries\include\tps\tps.hpp" />
+    <ClInclude Include="SimulationConfigData\template_bloodcells_definition.hpp" />
     <ClInclude Include="src\bloodcell\blood_editor.hpp" />
     <ClInclude Include="src\defines.hpp" />
     <ClInclude Include="src\graphics\camera.hpp" />

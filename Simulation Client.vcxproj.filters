@@ -1091,6 +1091,9 @@
     <ClInclude Include="src\bloodcell\blood_editor.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SimulationConfigData\template_bloodcells_definition.hpp">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Libraries\include\glm\detail\func_common.inl">

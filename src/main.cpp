@@ -11,7 +11,7 @@
 #include <imgui/backend/imgui_impl_glfw.h>
 #include <imgui/backend/imgui_impl_opengl3.h>
 #include <sstream>
-
+#include "objects/bloodcellmodel.hpp"
 
 //#pragma float_control( except, on )
 // NVIDIA GPU selector for devices with multiple GPUs (e.g. laptops)
@@ -24,6 +24,8 @@ void programLoop(GLFWwindow* window);
 
 int main()
 {
+
+    bloodcell::bloodCellModel::createHeaderFromData();
     // OpenGL setup
 #pragma region OpenGLsetup
     GLFWwindow* window;
