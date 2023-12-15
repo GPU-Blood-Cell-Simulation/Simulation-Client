@@ -11,11 +11,9 @@ endif(NOT CMAKE_BUILD_TYPE)
 
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall")
 
-find_package(OpenMP)
-
-if (NOT OpenMP_CXX_FOUND)
-  error("Cannot find OpenMP")
-endif()
+find_package(OpenMP REQUIRED)
+find_package(PkgConfig REQUIRED)
+pkg_search_module(gstreamer REQUIRED IMPORTED_TARGET gstreamer-1.0>=1.4)
 
 #
 # Program sources
@@ -47,6 +45,7 @@ target_link_libraries(Simulation_client PUBLIC
   OpenMP::OpenMP_CXX
   ${CMAKE_SOURCE_DIR}/Libraries/lib/libglfw3.a
   imgui
+  PkgConfig::gstreamer
 )
 
 #
