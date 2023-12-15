@@ -52,15 +52,15 @@ namespace gui
 		{
 			json jout;
 			serializable::to_json(jout);
-			std::ofstream outjson("Config\\bloodCellConfig.json");
+			std::ofstream outjson("Config\\bloodCellConfig_saved.json");
 			outjson << std::setw(3) << jout << std::endl;
 		}
-		if (ImGui::Button("Read config"))
+		/*if (ImGui::Button("Read config"))
 		{
 			std::ifstream injson("Config\\bloodCellConfig.json");
 			json jin = json::parse(injson);
 			serializable::from_json(jin);
-		}
+		}*/
 		if (ImGui::Button("Done"))
 		{
 			setMode(Mode::mainScreen);

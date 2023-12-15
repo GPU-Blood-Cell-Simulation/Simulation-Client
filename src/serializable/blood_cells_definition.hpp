@@ -84,7 +84,7 @@ namespace serializable
                 data.normals.push_back(glm::vec3(std::stof(normal[0].dump()),
                     std::stof(normal[1].dump()), std::stof(normal[2].dump())));
             }
-            bloodcell::bloodCellModel::predefinedModels[0] = data;
+            bloodcell::bloodCellModel::predefinedModels.push_back(data);
         }
     }
 

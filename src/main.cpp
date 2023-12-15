@@ -11,6 +11,7 @@
 #include <imgui/backend/imgui_impl_glfw.h>
 #include <imgui/backend/imgui_impl_opengl3.h>
 #include <sstream>
+#include <fstream>
 #include "objects/bloodcellmodel.hpp"
 
 //#pragma float_control( except, on )
@@ -57,6 +58,12 @@ int main()
     glEnable(GL_DEBUG_OUTPUT);
 
 #pragma endregion
+
+    // read config
+
+    std::ifstream injson("Config\\bloodCellConfig.json");
+    nlohmann::json jin = nlohmann::json::parse(injson);
+    serializable::from_json(jin);
 
     // Main simulation loop
 
