@@ -3,6 +3,7 @@
 #include "../graphics/glcontroller.hpp"
 #include "../serializable/config_manager.hpp"
 #include "../vein/nodes/node.hpp"
+#include "../streaming/stream_receiver.hpp"
 
 #include <imgui/imgui/imgui.h>
 
@@ -33,6 +34,7 @@ namespace gui
 		Mode mode = Mode::mainScreen;
 		graphics::GLController& glController;
 		serializable::ConfigManager& configManager;
+		StreamReceiver streamReceiver;
 		vein::Node* rootNode;
 
 		bool selectedLeft = true;
