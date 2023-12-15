@@ -1,7 +1,6 @@
 #include "gui_controller.hpp"
 
 #include "../vein/nodes/node.hpp"
-#include "../objects/bloodcellmodel.hpp"
 #include <GLFW/glfw3.h>
 #include <imgui/backend/imgui_impl_glfw.h>
 #include <imgui/backend/imgui_impl_opengl3.h>
@@ -33,8 +32,8 @@ namespace gui
         return ImGui::GetIO();
     }
 
-	GUIController::GUIController(GLFWwindow* window, graphics::GLController& glController, serializable::ConfigManager& configManager, vein::Node* rootNode) :
-        io(createImguiContext()), glController(glController), configManager(configManager), rootNode(rootNode)
+	GUIController::GUIController(GLFWwindow* window, graphics::GLController& glController, serializable::ConfigManager& configManager, vein::Node* rootNode, serializable::BloodCellsDefinition& cellDefinition) :
+        io(createImguiContext()), glController(glController), configManager(configManager), rootNode(rootNode), cellDefinition(cellDefinition)
 	{
         // Setup Dear ImGui context
         io = ImGui::GetIO(); (void)io;
@@ -61,8 +60,8 @@ namespace gui
         ImGui_ImplGlfw_InitForOpenGL(window, true);
         ImGui_ImplOpenGL3_Init("#version 330");
 
-        for (int i = 0; i < bloodcell::bloodCellModel::predefinedModels.size(); ++i) {
-            editors.push_back(new bloodEditor(&bloodcell::bloodCellModel::predefinedModels[i]));
+        for(auto& type : cellDefinition.bloodCellTypes) {
+            editors.push_back(bloodEditor(type));
         }
 	}
 

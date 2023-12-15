@@ -2,6 +2,7 @@
 
 #include "../graphics/glcontroller.hpp"
 #include "../serializable/config_manager.hpp"
+#include "../serializable/blood_cells_definition.hpp"
 #include "../vein/nodes/node.hpp"
 #include "../bloodcell/blood_editor.hpp"
 #include <imgui/imgui/imgui.h>
@@ -24,7 +25,7 @@ namespace gui
 	class GUIController
 	{
 	public:
-		GUIController(GLFWwindow* window, graphics::GLController& glController, serializable::ConfigManager& configManager, vein::Node* rootNode);
+		GUIController(GLFWwindow* window, graphics::GLController& glController, serializable::ConfigManager& configManager, vein::Node* rootNode, serializable::BloodCellsDefinition& cellDefinition);
 		void renderUI();
 
 		void setMode(Mode mode);
@@ -36,6 +37,7 @@ namespace gui
 		Mode mode = Mode::mainScreen;
 		graphics::GLController& glController;
 		serializable::ConfigManager& configManager;
+		serializable::BloodCellsDefinition& cellDefinition;
 
 		// vein
 		vein::Node* rootNode;
@@ -44,7 +46,7 @@ namespace gui
 		vein::Node* selectedNode = rootNode;
 
 		// blood cells
-		std::vector<bloodEditor*> editors;
+		std::vector<bloodEditor> editors;
 		bloodEditor* selectedEditor = nullptr;
 		int decimalPrecision = 5;
 

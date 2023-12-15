@@ -12,7 +12,6 @@
 #include <imgui/backend/imgui_impl_opengl3.h>
 #include <sstream>
 #include <fstream>
-#include "objects/bloodcellmodel.hpp"
 
 //#pragma float_control( except, on )
 // NVIDIA GPU selector for devices with multiple GPUs (e.g. laptops)
@@ -61,9 +60,6 @@ int main()
 
     // read config
 
-    std::ifstream injson("Config\\bloodCellConfig.json");
-    nlohmann::json jin = nlohmann::json::parse(injson);
-    serializable::from_json(jin);
 
     // Main simulation loop
 
@@ -92,8 +88,14 @@ void programLoop(GLFWwindow* window)
     // Create a graphics controller
     graphics::GLController glController(window, veinRoot.get());
 
+    // load data from config
+    serializable::BloodCellsDefinition definition;
+    std::ifstream injson("Config\\bloodCellConfig.json");
+    nlohmann::json jin = nlohmann::json::parse(injson);
+    serializable::from_json(jin, definition);
+
     // Create a GUI controller
-    gui::GUIController guiController(window, glController, configManager, veinRoot.get());
+    gui::GUIController guiController(window, glController, configManager, veinRoot.get(), definition);
 
     // MAIN LOOP HERE - dictated by glfw
 

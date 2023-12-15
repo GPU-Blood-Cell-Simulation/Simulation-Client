@@ -1,6 +1,4 @@
 #include "../gui_controller.hpp"
-#include "../../serializable/blood_cells_definition.hpp"
-#include "../../objects/bloodcellmodel.hpp"
 #include "../../bloodcell/blood_editor.hpp"
 #include <nlohmann/json.hpp>
 #include <fstream>
@@ -20,18 +18,18 @@ namespace gui
 			decimalPrecision = 7;
 
 		ImGui::NewLine();
-		for(auto editor : editors)
+		for(auto& editor : editors)
 		{
-			if (ImGui::Button(editor->GetModelName().c_str())) {
-				selectedEditor = editor;
+			if (ImGui::Button(editor.GetModelName().c_str())) {
+				selectedEditor = &editor;
 				ImGui::OpenPopup("BloodListPopup");
 			}
 			ImGui::SameLine();
 
 			ImGui::PushItemWidth(100);
-			if (ImGui::InputInt("quantity", &editor->modelQuantity))
+			if (ImGui::InputInt("quantity", &editor.modelQuantity))
 			{
-				editor->updateQuantity();
+				editor.updateQuantity();
 			}
 		}
 		if (ImGui::BeginPopup("BloodListPopup"))
@@ -46,12 +44,12 @@ namespace gui
 		ImGui::NewLine();
 		if (ImGui::Button("Generate headers"))
 		{
-			bloodcell::bloodCellModel::createHeaderFromData(decimalPrecision);
+			serializable::generate_headers(decimalPrecision, cellDefinition);
 		}
 		if (ImGui::Button("Save config"))
 		{
 			json jout;
-			serializable::to_json(jout);
+			serializable::to_json(jout, cellDefinition);
 			std::ofstream outjson("Config\\bloodCellConfig_saved.json");
 			outjson << std::setw(3) << jout << std::endl;
 		}

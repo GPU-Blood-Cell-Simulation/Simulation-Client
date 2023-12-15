@@ -105,9 +105,6 @@
     <ClCompile Include="src\bloodcell\blood_editor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\objects\bloodcellmodel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\defines.hpp">
@@ -1085,13 +1082,13 @@
     <ClInclude Include="src\vein\nodes\cylinder_node.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\objects\bloodcellmodel.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\bloodcell\blood_editor.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SimulationConfigData\template_bloodcells_definition.hpp">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SimulationConfigData\template_blood_cell_presets.hpp">
       <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>
