@@ -99,6 +99,12 @@
     <ClCompile Include="src\vein\nodes\node.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\serializable\util\vec_to_string.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vein\nodes\bifurcation_final_mesh_generation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\defines.hpp">
@@ -1074,6 +1080,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\vein\nodes\cylinder_node.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\serializable\cpp_serializable.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\serializable\util\vec_to_string.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

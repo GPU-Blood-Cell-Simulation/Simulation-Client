@@ -12,5 +12,7 @@ namespace vein
 		RootNode();
 
 		virtual void renderGUI(gui::GUIController& guiController) override;
+		virtual void addToMesh(TempMesh& finalMesh, unsigned int parentLeftBranchLastRowStart, unsigned int parentRightBranchLastRowStart,
+			bool parentIsBifurcation) const override;
 	};
 }

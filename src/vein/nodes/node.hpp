@@ -23,6 +23,8 @@ namespace vein
 
 		void draw(Shader* shader) const;
 		virtual void renderGUI(gui::GUIController& guiController) = 0;
+		virtual void addToMesh(TempMesh& finalMesh, unsigned int parentLeftBranchLastRowStart, unsigned int parentRightBranchLastRowStart, 
+			bool parentIsBifurcation = false) const = 0;
 
 		Node* parent;
 		std::unique_ptr<Node> left;
@@ -46,7 +48,7 @@ namespace vein
 		VeinMesh mesh;
 
 		const bool isLeft = true;
-		const unsigned int id;
+		const unsigned int id = 0;
 		const std::string popupName = std::format("popup{}", std::to_string(id));
 		glm::mat4 model;
 	};

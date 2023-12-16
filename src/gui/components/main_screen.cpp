@@ -29,6 +29,13 @@ namespace gui
 
         if (ImGui::Button("Compile and run"))
         {
+            // Write data to C++ files
+            configManager.serializeAllToCpp(rootNode, glController);
+
+            // Send data to server
+            //      TODO
+
+            // Navigate to simulation screen
             setMode(Mode::simulation);
             glController.setMode(graphics::Mode::Simulation);
         }

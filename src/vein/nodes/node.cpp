@@ -5,7 +5,7 @@
 
 namespace vein
 {
-	Node::Node(Node* parent, VeinMesh&& mesh, bool isLeft) : parent(parent), mesh(mesh), isLeft(isLeft), id(objectCount++) {};
+	Node::Node(Node* parent, VeinMesh&& mesh, bool isLeft) : parent(parent), mesh(mesh), isLeft(isLeft), id(objectCount++) {}
 
 	void Node::renderAll(gui::GUIController& guiController, Node* root)
 	{

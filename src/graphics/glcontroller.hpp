@@ -12,6 +12,7 @@
 #include <glm/vec3.hpp>
 #include <memory>
 #include <optional>
+#include "../vein/vein_mesh.hpp"
 
 
 namespace graphics
@@ -20,7 +21,7 @@ namespace graphics
 	{
 		None,
 		Simulation,
-		VeinEdit
+		VeinEdit,
 	};
 
 	// Controls rendering of the particles
@@ -35,7 +36,7 @@ namespace graphics
 		void endSimulation();
 		void handleInput();
 		void setMode(Mode mode);
-
+		void setFinalMesh(vein::SerializableMesh& calculatedMesh);
 
 	private:
 
@@ -47,6 +48,7 @@ namespace graphics
 
 		InputController inputController;
 		vein::Node* veinRoot;
+		std::unique_ptr<vein::VeinMesh> finalMesh;
 
 		Camera camera;
 

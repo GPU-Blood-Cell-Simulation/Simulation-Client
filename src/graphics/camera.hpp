@@ -30,7 +30,7 @@ namespace graphics
 	private:
 		glm::mat4 view;
 
-		glm::vec3 position = glm::vec3(width / 2, height / 2, depth * 3);
+		glm::vec3 position = glm::vec3(0, 0, depth * 3);
 		glm::vec3 front = glm::vec3(0, 0, -1);
 		glm::vec3 up = glm::vec3(0, 1, 0);
 		glm::vec3 right = glm::cross(front, up);
