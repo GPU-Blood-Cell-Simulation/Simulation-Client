@@ -16,6 +16,10 @@ public:
 
     void renderFrame();
 
+    bool streamEnded();
+
+    void handleEvents();
+
 private:
     GstElement *pipeline;
     GstElement *udpsrc;
@@ -28,5 +32,5 @@ private:
 
     GstBus *bus;
 
-    GstCaps *capsfilter_format(int width, int height);
+    bool streamEnd;
 };

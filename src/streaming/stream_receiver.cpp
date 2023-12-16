@@ -1,9 +1,11 @@
 #include "stream_receiver.hpp"
 
 #include <stdexcept>
+#include <iostream>
 
 
-StreamReceiver::StreamReceiver()
+StreamReceiver::StreamReceiver():
+	streamEnd(false)
 {
     /* init GStreamer */
 	gst_init (NULL, NULL);
@@ -35,12 +37,6 @@ StreamReceiver::StreamReceiver()
         gst_object_unref(pipeline);
 		throw std::runtime_error("Cannot get a pipeline bus");
     }
-}
-
-
-GstCaps *StreamReceiver::capsfilter_format(int width, int height)
-{
-    return NULL;
 }
 
 
@@ -83,4 +79,56 @@ void StreamReceiver::pause()
 void StreamReceiver::renderFrame()
 {
 	g_main_context_iteration(g_main_context_default(),FALSE);
+}
+
+bool StreamReceiver::streamEnded()
+{
+    return streamEnd;
+}
+
+
+static void pipelineError(GstMessage* msg)
+{
+	GError *err;
+	gchar *debugTmp;
+
+	gst_message_parse_error(msg, &err, &debugTmp);
+
+	std::string errorSrc(GST_OBJECT_NAME(msg->src));
+	std::string debugInfo(debugTmp);
+	std::string errorMsg(err->message);
+
+	g_error_free (err);
+	g_free (debugTmp);
+
+	throw std::runtime_error(
+		"Stream receiver pipeline error."
+		" Source: " + errorSrc +
+		" Error message: " + errorSrc + 
+		" Debug info: " + debugInfo
+	);
+}
+
+
+void StreamReceiver::handleEvents()
+{
+	GstMessage *msg = gst_bus_pop_filtered(bus, static_cast<GstMessageType>(GST_MESSAGE_ERROR | GST_MESSAGE_EOS));
+
+	if (msg == NULL) {
+		return;
+	}
+
+	switch (GST_MESSAGE_TYPE(msg))
+	{
+	case GST_MESSAGE_ERROR:
+		pipelineError(msg);
+		break;
+
+	case GST_MESSAGE_EOS:
+		streamEnd = true;
+		break;
+
+	default:
+		throw std::runtime_error("Unexpected message");
+	}
 }
