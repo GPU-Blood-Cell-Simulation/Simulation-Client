@@ -4,7 +4,6 @@
 #include "../vein_mesh.hpp"
 
 #include <memory>
-#include <format>
 
 namespace gui
 {
@@ -47,7 +46,7 @@ namespace vein
 
 		const bool isLeft = true;
 		const unsigned int id;
-		const std::string popupName = std::format("popup{}", std::to_string(id));
+		const std::string popupName = "popup{}" + std::to_string(id);
 		glm::mat4 model;
 	};
 }

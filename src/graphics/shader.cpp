@@ -25,7 +25,7 @@ std::string getShaderCode(const char* filePath)
         // convert stream into string
         shaderCode = vShaderStream.str();
     }
-    catch (std::ifstream::failure e)
+    catch (std::ifstream::failure const& e)
     {
         std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ, path: " << filePath << std::endl;
         exit(1);
@@ -121,5 +121,5 @@ void Shader::setLighting(DirLight dirLight) const
     setVector("dirLight.specular", dirLight.specular);
 }
 
-CylinderSolidColorShader::CylinderSolidColorShader() : Shader("Shaders\\cylindersolidcolor.vert", "Shaders\\cylindersolidcolor.frag")
+CylinderSolidColorShader::CylinderSolidColorShader() : Shader("Shaders/cylindersolidcolor.vert", "Shaders/cylindersolidcolor.frag")
 {}
