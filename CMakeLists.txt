@@ -14,6 +14,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall")
 find_package(OpenMP REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_search_module(gstreamer REQUIRED IMPORTED_TARGET gstreamer-1.0>=1.4)
+pkg_search_module(gstreamer-app REQUIRED IMPORTED_TARGET gstreamer-app-1.0>=1.4)
 
 #
 # Program sources
@@ -31,7 +32,7 @@ add_library(imgui ${IMGUI_SOURCES})
 #
 # Define executable
 #
-add_executable(Simulation_client ${CPP_SOURCES} ${C_SOURCES} ${CPP_HEADERS} ${IMGUI_SOURCES})
+add_executable(Simulation_client ${CPP_SOURCES} ${C_SOURCES} ${CPP_HEADERS})
 
 #
 # Add header files
@@ -46,6 +47,7 @@ target_link_libraries(Simulation_client PUBLIC
   ${CMAKE_SOURCE_DIR}/Libraries/lib/libglfw3.a
   imgui
   PkgConfig::gstreamer
+  PkgConfig::gstreamer-app
 )
 
 #
