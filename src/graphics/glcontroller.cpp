@@ -74,6 +74,12 @@ namespace graphics
 		this->mode = mode;
 	}
 
+	void GLController::setFinalMesh(vein::SerializableMesh& calculatedMesh)
+	{
+		finalMesh = std::make_unique<vein::VeinMesh>(std::move(calculatedMesh.positions), std::move(calculatedMesh.indices));
+		finalMesh->setupMesh();
+	}
+
 	void GLController::drawNothing()
 	{
 		
@@ -82,6 +88,17 @@ namespace graphics
 	void GLController::drawSimulation()
 	{
 		// TODO: render data from server
+		if (finalMesh)
+		{
+			cylinderSolidColorShader->use();
+			cylinderSolidColorShader->setMatrix("view", camera.getView());
+			cylinderSolidColorShader->setMatrix("projection", projection);
+			cylinderSolidColorShader->setMatrix("model", glm::mat4(1.0f));
+
+			glDisable(GL_CULL_FACE);
+			finalMesh->draw(cylinderSolidColorShader.get());
+			glEnable(GL_CULL_FACE);
+		}
 	}
 
 	void GLController::drawVeinEditor() 

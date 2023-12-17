@@ -72,6 +72,7 @@ namespace vein
 			ImGui::EndPopup();
 		}
 	}
+
 	const std::string BifurcationNode::getFullName() const
 	{
 		return "Bifurcation node\nid: " + id;

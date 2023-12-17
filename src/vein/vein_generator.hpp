@@ -17,7 +17,6 @@ namespace vein
 		VeinGenerator() {}
 		TempMesh createFlatBifurcationSegment() const;
 		TempMesh createRotatedMesh(const TempMesh& mesh, float angle) const;
-		void removeDuplicatedVertices(TempMesh& mesh) const;
 		void fillControlPoints(float angleLeft, float angleRight, std::vector<Domain_Point>& domainPoints, std::vector<Range_Point>& rangePoints) const;
 		TempMesh createCombinedBaseBifurcation();
 		TempMesh createBaseRangePoints();

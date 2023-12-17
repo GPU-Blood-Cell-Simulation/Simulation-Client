@@ -169,6 +169,8 @@
     <ClCompile Include="src\gui\components\main_screen.cpp" />
     <ClCompile Include="src\gui\components\simulation.cpp" />
     <ClCompile Include="src\gui\components\vein_editor.cpp" />
+    <ClCompile Include="src\serializable\util\vec_to_string.cpp" />
+    <ClCompile Include="src\vein\nodes\bifurcation_final_mesh_generation.cpp" />
     <ClCompile Include="src\vein\nodes\cylinder_node.cpp" />
     <ClCompile Include="src\vein\nodes\node.cpp" />
     <ClCompile Include="src\vein\nodes\root_node.cpp" />
@@ -489,6 +491,8 @@
     <ClInclude Include="src\graphics\glcontroller.hpp" />
     <ClInclude Include="src\graphics\inputcontroller.hpp" />
     <ClInclude Include="src\graphics\light.hpp" />
+    <ClInclude Include="src\serializable\cpp_serializable.hpp" />
+    <ClInclude Include="src\serializable\util\vec_to_string.hpp" />
     <ClInclude Include="src\vein\nodes\cylinder_node.hpp" />
     <ClInclude Include="src\vein\nodes\root_node.hpp" />
     <ClInclude Include="src\vein\vein_mesh.hpp" />

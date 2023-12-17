@@ -1,8 +1,10 @@
 #include "vein_mesh.hpp"
 
-#include <glad/glad.h>
-#include <memory>
+#include "../serializable/util/vec_to_string.hpp"
 
+#include <glad/glad.h>
+#include <fstream>
+#include <memory>
 
 namespace vein
 {
@@ -53,5 +55,47 @@ namespace vein
 		glBindVertexArray(VAO);
 		glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(indices.size()), GL_UNSIGNED_INT, 0);
 		glBindVertexArray(0);
+	}
+
+	void SerializableMesh::serializeToCpp() const
+	{	
+		std::cout << "Serializing vein \n";	
+		std::ofstream os("GeneratedConfig/vein_definition.hpp");
+
+		int veinPositionCount = positions.size();
+		// serialize positions
+		os << "#pragma once\n#include <array>\n#include \"../utilities/constexpr_vec.hpp\"\n\n" << "//Vein positions\n\n";
+		os << "inline constexpr std::array<cvec, " << veinPositionCount << "> veinPositions {\n";
+		for (int i = 0; i < veinPositionCount - 1; i++)
+		{
+			os << positions[i] << ",\n";
+		}
+		if (veinPositionCount > 0)
+		{
+			os << positions[veinPositionCount - 1] << "\n";
+		}
+		os << "};\n\n";
+
+		// serialize indices
+		int indexCount = indices.size();
+		os << "inline constexpr std::array<unsigned int, " << indexCount << "> veinIndices {\n";
+		for (int i = 0; i < indexCount - 6; i+= 6)
+		{
+			for (int j = 0; j < 5; j++)
+			{
+				os << indices[i + j] << ", ";
+			}
+			os << indices[i + 5] << ",\n";
+		}
+		if (veinPositionCount > 0)
+		{
+			for (int j = 0; j < 5; j++)
+			{
+				os << indices[indexCount - 6 + j] << ", ";
+			}
+			os << indices[indexCount - 1] << "\n";
+		}
+		os << "};\n\n";
+
 	}
 }
