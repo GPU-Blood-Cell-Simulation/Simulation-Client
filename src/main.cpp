@@ -15,10 +15,12 @@
 
 //#pragma float_control( except, on )
 // NVIDIA GPU selector for devices with multiple GPUs (e.g. laptops)
+#ifdef _WIN32
 extern "C"
 {
     __declspec(dllexport) unsigned long NvOptimusEnablement = 0x00000001;
 }
+#endif
 
 void programLoop(GLFWwindow* window);
 

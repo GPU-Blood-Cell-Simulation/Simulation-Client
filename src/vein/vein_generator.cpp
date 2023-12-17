@@ -146,7 +146,6 @@ namespace vein
 		std::vector<glm::vec3> positions;
 		static constexpr float triangleH = bif::veinHeight / bif::vLayers;
 		static constexpr float radianBatch = 2 * glm::pi<float>() / bif::hLayers;
-		static float triangleBase = radianBatch * bif::veinRadius;
 		static constexpr float hPrev = (bif::vLayers - 2) * triangleH;
 		static constexpr float hLast = (bif::vLayers - 1) * triangleH;
 

@@ -130,6 +130,6 @@ namespace vein
 
 	const std::string CylinderNode::getFullName() const
 	{
-		return std::format("Cylinder node\nid: {}", id);
+		return "Cylinder node\nid: " + id;
 	}
 }
