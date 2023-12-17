@@ -10,8 +10,6 @@ namespace gui
 
 		if (ImGui::Button("Done") || streamReceiver.streamEnded())
 		{
-			streamReceiver.pause();
-
 			setMode(Mode::mainScreen);
 			glController.setMode(graphics::Mode::None);
 		}

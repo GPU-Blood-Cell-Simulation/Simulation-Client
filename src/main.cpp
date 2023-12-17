@@ -94,10 +94,6 @@ void programLoop(GLFWwindow* window)
 
     while (!glfwWindowShouldClose(window))
     {
-        // Clear 
-        glClearColor(1.00f, 0.75f, 0.80f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
         // Receive positions from the server
             // TODO
 

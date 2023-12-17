@@ -17,13 +17,6 @@ namespace gui
     void GUIController::setMode(Mode mode)
     {
         this->mode = mode;
-
-        /* TODO: refactor */
-        if (mode == Mode::simulation) {
-            std::cout << "Start listening\n";
-            streamReceiver.portSet(4321);
-            streamReceiver.startListening();
-        }
     }
 
     void GUIController::selectNode(vein::Node* node, bool selectedLeft)

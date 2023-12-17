@@ -7,6 +7,7 @@
 #include "../serializable/vein_definition.hpp"
 #include "../serializable/config_data.hpp"
 #include "../vein/nodes/bifurcation_node.hpp"
+#include "../streaming/stream_receiver.hpp"
 
 #include <glm/mat4x4.hpp>
 #include <glm/vec3.hpp>
@@ -32,7 +33,7 @@ namespace graphics
 		void drawSimulation();
 		void drawVeinEditor();
 		void draw();
-		void beginSimulation(const serializable::ConfigData& configData);
+		void beginSimulation(/*const serializable::ConfigData& configData*/);
 		void endSimulation();
 		void handleInput();
 		void setMode(Mode mode);
@@ -47,6 +48,10 @@ namespace graphics
 		glm::mat4 projection = glm::perspective(glm::radians<float>(45.0f), static_cast<float>(windowWidth) / windowHeight, 0.1f, depth * 100);
 
 		InputController inputController;
+		
+		StreamReceiver streamReceiver;
+		GLuint streamTex, streamFBO;
+
 		vein::Node* veinRoot;
 		std::unique_ptr<vein::VeinMesh> finalMesh;
 
@@ -58,5 +63,7 @@ namespace graphics
 		std::unique_ptr<Shader> cylinderSolidColorShader;
 
 		unsigned int gBuffer;
+
+		void clearScreen();
 	};
 }
