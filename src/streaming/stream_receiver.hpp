@@ -2,11 +2,13 @@
 
 #include <gst/gst.h>
 
+#include "stream_frame.hpp"
+
 
 class StreamReceiver
 {
 public:
-    StreamReceiver();
+    StreamReceiver(int frameWidth, int frameHeight);
     ~StreamReceiver();
 
     void portSet(int port);
@@ -14,9 +16,9 @@ public:
     void startListening();
     void pause();
 
-    void renderFrame();
+    StreamFrame nextFrame();
 
-    bool streamEnded();
+    inline bool streamEnded() const { return streamEnd; }
 
     void handleEvents();
 
@@ -28,7 +30,7 @@ private:
     GstElement *rtph264depay;
     GstElement *h264decoder;
     GstElement *converter;
-    GstElement *videosink;
+    GstElement *appsink;
 
     GstBus *bus;
 

@@ -1,10 +1,12 @@
 #include "stream_receiver.hpp"
 
+#include <gst/app/app.h>
+
 #include <stdexcept>
 #include <iostream>
 
 
-StreamReceiver::StreamReceiver():
+StreamReceiver::StreamReceiver(int frameWidth, int frameHeight):
 	streamEnd(false)
 {
     /* init GStreamer */
@@ -14,23 +16,38 @@ StreamReceiver::StreamReceiver():
 	udpsrc = gst_element_factory_make("udpsrc", "udpsrc");
 	capsfilter = gst_element_factory_make("capsfilter", "capsfilter");
 	rtpjitterbuffer = gst_element_factory_make("rtpjitterbuffer", "rtpjitterbuffer");
-	rtph264depay = gst_element_factory_make("rtph264depay", NULL);
-	h264decoder = gst_element_factory_make("avdec_h264", NULL);
+	rtph264depay = gst_element_factory_make("rtph264depay", "rtph264depay");
+	h264decoder = gst_element_factory_make("avdec_h264", "avdec_h264");
 	converter = gst_element_factory_make("videoconvert", "converter");
-	videosink = gst_element_factory_make("autovideosink", "autovideosink");
+	appsink = gst_element_factory_make("appsink", "appsink");
 
-	if (!pipeline || !udpsrc || !capsfilter || !rtpjitterbuffer || !rtph264depay || !h264decoder || !converter || !videosink) {
+	if (!pipeline || !udpsrc || !capsfilter || !rtpjitterbuffer ||
+		!rtph264depay || !h264decoder || !converter || !appsink) {
 		throw std::runtime_error("Error while creating pipeline object");
 	}
 
-	gst_bin_add_many(GST_BIN(pipeline), udpsrc, capsfilter, rtpjitterbuffer, rtph264depay, h264decoder, converter, videosink, NULL);
+	gst_bin_add_many(GST_BIN(pipeline), udpsrc, capsfilter, rtpjitterbuffer,
+		rtph264depay, h264decoder, converter, appsink, NULL);
 
-	if ( !gst_element_link_many(udpsrc, capsfilter, rtpjitterbuffer, rtph264depay, h264decoder, converter, videosink, NULL)) {
+	if ( !gst_element_link_many(udpsrc, capsfilter, rtpjitterbuffer, rtph264depay,
+		h264decoder, converter, appsink, NULL)) {
 		throw std::runtime_error("Cannot link objects to pipeline");
 	}
 
-    GstCaps *caps = gst_caps_from_string("application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264, payload=(int)96");
+    GstCaps *caps = gst_caps_from_string("application/x-rtp, media=(string)video, "
+		"clock-rate=(int)90000, encoding-name=(string)H264, payload=(int)96");
 	g_object_set(capsfilter, "caps", caps, NULL);
+	gst_caps_unref(caps);
+
+	caps = gst_caps_new_simple("video/x-raw",
+								"format", G_TYPE_STRING, "RGBA",
+								"width", G_TYPE_INT, frameWidth,
+								"height", G_TYPE_INT, frameHeight,
+								// "framerate", GST_TYPE_FRACTION, 10, 1,
+								NULL);
+	
+	g_object_set(appsink, "caps", caps, NULL);
+	gst_caps_unref(caps);
 
     bus = gst_element_get_bus(pipeline);
     if (!bus) {
@@ -76,14 +93,12 @@ void StreamReceiver::pause()
     }
 }
 
-void StreamReceiver::renderFrame()
+StreamFrame StreamReceiver::nextFrame()
 {
-	g_main_context_iteration(g_main_context_default(),FALSE);
-}
-
-bool StreamReceiver::streamEnded()
-{
-    return streamEnd;
+	GstSample *videosample =
+            gst_app_sink_try_pull_sample(GST_APP_SINK(appsink), 10 * GST_MSECOND);
+	
+	return StreamFrame(videosample);
 }
 
 
