@@ -4,11 +4,13 @@
 
 #include "stream_frame.hpp"
 
+#include <memory>
+
 
 class StreamReceiver
 {
 public:
-    StreamReceiver(int frameWidth, int frameHeight);
+    StreamReceiver();
     ~StreamReceiver();
 
     void portSet(int port);
@@ -16,7 +18,7 @@ public:
     void startListening();
     void pause();
 
-    StreamFrame nextFrame();
+    std::shared_ptr<StreamFrame> getFrame();
 
     inline bool streamEnded() const { return streamEnd; }
 
@@ -35,4 +37,6 @@ private:
     GstBus *bus;
 
     bool streamEnd;
+
+    std::shared_ptr<StreamFrame> actFrame;
 };

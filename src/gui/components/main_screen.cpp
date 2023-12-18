@@ -37,7 +37,7 @@ namespace gui
 
             // Navigate to simulation screen
             setMode(Mode::simulation);
-            glController.setMode(graphics::Mode::Simulation);
+            glController.beginSimulation(configManager.getData());
         }
 	}
 }

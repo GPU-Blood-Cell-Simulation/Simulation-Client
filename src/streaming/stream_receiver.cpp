@@ -6,7 +6,7 @@
 #include <iostream>
 
 
-StreamReceiver::StreamReceiver(int frameWidth, int frameHeight):
+StreamReceiver::StreamReceiver():
 	streamEnd(false)
 {
     /* init GStreamer */
@@ -41,9 +41,6 @@ StreamReceiver::StreamReceiver(int frameWidth, int frameHeight):
 
 	caps = gst_caps_new_simple("video/x-raw",
 								"format", G_TYPE_STRING, "RGBA",
-								"width", G_TYPE_INT, frameWidth,
-								"height", G_TYPE_INT, frameHeight,
-								// "framerate", GST_TYPE_FRACTION, 10, 1,
 								NULL);
 	
 	g_object_set(appsink, "caps", caps, NULL);
@@ -54,6 +51,8 @@ StreamReceiver::StreamReceiver(int frameWidth, int frameHeight):
         gst_object_unref(pipeline);
 		throw std::runtime_error("Cannot get a pipeline bus");
     }
+
+	actFrame = std::make_shared<StreamFrame>(nullptr);
 }
 
 
@@ -93,12 +92,16 @@ void StreamReceiver::pause()
     }
 }
 
-StreamFrame StreamReceiver::nextFrame()
+std::shared_ptr<StreamFrame> StreamReceiver::getFrame()
 {
 	GstSample *videosample =
             gst_app_sink_try_pull_sample(GST_APP_SINK(appsink), 10 * GST_MSECOND);
-	
-	return StreamFrame(videosample);
+
+	if (videosample != NULL) {
+		actFrame.reset(new StreamFrame(videosample));
+	}
+
+	return actFrame;
 }
 
 

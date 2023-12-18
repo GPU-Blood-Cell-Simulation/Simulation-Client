@@ -10,15 +10,14 @@
 #endif
 
 #include <iostream>
+#include <memory>
 
 
 namespace graphics
 {
 
-	GLController::GLController(GLFWwindow* window, vein::Node* veinRoot) : streamReceiver(800, 800), veinRoot(veinRoot)
+	GLController::GLController(GLFWwindow* window, vein::Node* veinRoot) : window(window), veinRoot(veinRoot)
 	{
-		clearScreen();
-
 		// Set up GLFW to work with inputController
 		glfwSetWindowUserPointer(window, &inputController);
 		glfwSetKeyCallback(window, InputController::handleUserInput);
@@ -56,7 +55,7 @@ namespace graphics
 	}
 
 
-	void GLController::beginSimulation(/*const serializable::ConfigData& configData*/)
+	void GLController::beginSimulation(const serializable::ConfigData& configData)
 	{
 		mode = Mode::Simulation;
 
@@ -70,15 +69,19 @@ namespace graphics
 
 		glGenFramebuffers(1, &streamFBO);
         glBindFramebuffer(GL_READ_FRAMEBUFFER, streamFBO);
-
-		std::cout << "Simulation begun\n";
 	}
 
 	void GLController::endSimulation()
 	{
 		mode = Mode::None;
 
-		std::cout << "Simulation ended\n";
+		glBindTexture(GL_TEXTURE_2D, 0);
+		glDeleteTextures(1, &streamTex);
+
+		glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
+		glDeleteFramebuffers(1, &streamFBO);
+
+		streamReceiver.pause();
 	}
 
 
@@ -91,10 +94,6 @@ namespace graphics
 	void GLController::setMode(Mode mode)
 	{
 		this->mode = mode;
-
-		if (mode == Mode::Simulation) {
-			beginSimulation();
-		}
 	}
 
 	void GLController::setFinalMesh(vein::SerializableMesh& calculatedMesh)
@@ -102,17 +101,11 @@ namespace graphics
 		finalMesh = std::make_unique<vein::VeinMesh>(std::move(calculatedMesh.positions), std::move(calculatedMesh.indices));
 		finalMesh->setupMesh();
 	}
-
-    void GLController::clearScreen()
-    {
-		// Clear 
-        glClearColor(1.00f, 0.75f, 0.80f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    }
+	
 
     void GLController::drawNothing()
 	{
-		clearScreen();
+
 	}
 
 
@@ -121,31 +114,34 @@ namespace graphics
 		streamReceiver.handleEvents();
 		
 		if (streamReceiver.streamEnded()) {
-			streamReceiver.pause();
 			endSimulation();
 			return;
 		}
 
-		StreamFrame frame = streamReceiver.nextFrame();
+		std::shared_ptr<StreamFrame> frame(streamReceiver.getFrame());
 
-		if (!frame.haveData()) {
+		if (!frame->haveData()) {
 			return;
 		}
 
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 800, 800, 0, GL_RGBA, GL_UNSIGNED_BYTE, frame.getData());
+		int windowWidth;
+		int windowHeight;
+		glfwGetWindowSize(window, &windowWidth, &windowHeight);
+
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, frame->getWidth(), frame->getHeight(),
+						0, GL_RGBA, GL_UNSIGNED_BYTE, frame->getData());
 
 		glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-                            GL_TEXTURE_2D, streamTex, 0);
-        glBlitFramebuffer(0, 0, 800, 800,
-                        0, 0, 800, 800,
+                        GL_TEXTURE_2D, streamTex, 0);
+
+        glBlitFramebuffer(0, 0, frame->getWidth(), frame->getHeight(),
+                        0, 0, windowWidth, windowHeight,
                         GL_COLOR_BUFFER_BIT, GL_LINEAR);
 	}
 
 
 	void GLController::drawVeinEditor() 
 	{
-		clearScreen();
-
 		cylinderSolidColorShader->use();
 		cylinderSolidColorShader->setMatrix("view", camera.getView());
 		cylinderSolidColorShader->setMatrix("projection", projection);

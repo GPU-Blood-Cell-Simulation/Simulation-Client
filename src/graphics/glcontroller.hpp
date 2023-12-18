@@ -33,7 +33,7 @@ namespace graphics
 		void drawSimulation();
 		void drawVeinEditor();
 		void draw();
-		void beginSimulation(/*const serializable::ConfigData& configData*/);
+		void beginSimulation(const serializable::ConfigData& configData);
 		void endSimulation();
 		void handleInput();
 		void setMode(Mode mode);
@@ -42,6 +42,8 @@ namespace graphics
 	private:
 
 		Mode mode = Mode::None;
+
+		GLFWwindow* window;
 
 		// Uniform matrices
 		glm::mat4 model = glm::scale(glm::mat4(1.0f), glm::vec3(0.5f, 0.5f, 0.5f));
@@ -63,7 +65,5 @@ namespace graphics
 		std::unique_ptr<Shader> cylinderSolidColorShader;
 
 		unsigned int gBuffer;
-
-		void clearScreen();
 	};
 }

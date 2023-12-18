@@ -5,13 +5,11 @@ namespace gui
 	void GUIController::renderSimulation()
 	{
 		ImGui::Text("Simulation in progress");
-		streamReceiver.handleEvents();
-		streamReceiver.renderFrame();
 
-		if (ImGui::Button("Done") || streamReceiver.streamEnded())
+		if (ImGui::Button("Done"))
 		{
 			setMode(Mode::mainScreen);
-			glController.setMode(graphics::Mode::None);
+			glController.endSimulation();
 		}
 	}
 }

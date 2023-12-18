@@ -15,8 +15,13 @@ public:
 
     inline uint8_t* getData() const { return map.data; }
 
+    int getWidth();
+    int getHeight();
+
 private:
     GstSample *sample;
     GstBuffer *buffer;
     GstMapInfo map;
+    GstCaps* cap;
+    const GstStructure* structure;
 };
