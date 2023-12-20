@@ -32,6 +32,7 @@ bld/
 [Oo]ut/
 [Ll]og/
 [Ll]ogs/
+[Bb]uild/
 
 # generated headers
 Config/blood_cells_definition.hpp
@@ -364,3 +365,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Visual Studio Code dir
+.vscode/

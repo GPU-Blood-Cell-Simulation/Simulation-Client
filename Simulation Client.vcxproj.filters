@@ -104,6 +104,12 @@
     </ClCompile>
     <ClCompile Include="src\bloodcell\blood_editor.cpp">
       <Filter>Source Files</Filter>
+     </ClCompile> 
+    <ClCompile Include="src\serializable\util\vec_to_string.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vein\nodes\bifurcation_final_mesh_generation.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1090,6 +1096,11 @@
     </ClInclude>
     <ClInclude Include="SimulationConfigData\template_blood_cell_presets.hpp">
       <Filter>Resource Files</Filter>
+    <ClInclude Include="src\serializable\cpp_serializable.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\serializable\util\vec_to_string.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

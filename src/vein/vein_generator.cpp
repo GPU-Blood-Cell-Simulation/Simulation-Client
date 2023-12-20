@@ -84,7 +84,9 @@ namespace vein
 
 		int indicesSize = base.indices.size();
 		std::vector<glm::vec3> positions;
-		std::vector<unsigned int> indices(indicesSize * 3);
+		positions.reserve(3 * base.positions.size());
+		std::vector<unsigned int> indices;
+		indices.reserve(indicesSize * 3);
 
 		positions.insert(positions.end(), base.positions.begin(), base.positions.end());
 		positions.insert(positions.end(), left.positions.begin(), left.positions.end());
@@ -94,88 +96,44 @@ namespace vein
 
 		for (int i = 0; i < indicesSize; i++)
 		{
-			indices.push_back(left.indices[i] + bif::segmentVertexCount);
+			indices.push_back(left.indices[i] + bif::vLayers  * bif::hLayers);
 		}
 
 		for (int i = 0; i < indicesSize; i++)
 		{
-			indices.push_back(right.indices[i] + 2 * bif::segmentVertexCount);
+			indices.push_back(right.indices[i] + 2 * bif::vLayers * bif::hLayers);
 		}
 
 		// remove repeating vertices 
 		TempMesh bifuraction(std::move(positions), std::move(indices));
-		removeDuplicatedVertices(bifuraction);
 
 		return bifuraction;
-	}
-
-	void VeinGenerator::removeDuplicatedVertices(TempMesh& mesh) const
-	{
-		//// Erase first row
-		//mesh.positions.erase(mesh.positions.begin(), mesh.positions.begin() + bif::hLayers);
-		//mesh.indices.erase(mesh.indices.begin(), mesh.indices.begin() + bif::hLayers * 6);
-		//leftBranchStart = (bif::vLayers - 1) * bif::hLayers;
-		//// Adjust following indices
-		//std::for_each(mesh.indices.begin() + 6 * leftBranchStart, mesh.indices.end(), [&](auto& index)
-		//	{
-		//		index -= bif::hLayers;
-		//	});
-
-		//vertexCount = mesh.positions.size();
-		//rightBranchStart = vertexCount - bif::vLayers * bif::hLayers;
-
-
-
-		//// Remove half of the first row from the left branch - the one that collides with base
-		//mesh.positions.erase(mesh.positions.begin() + bif::segmentVertexCount, mesh.positions.begin() + bif::segmentVertexCount + bif::hLayers);
-
-		//int leftBranchIndicesStart = (bif::segmentVertexCount - bif::hLayers) * 6;
-		//mesh.indices.erase(mesh.indices.begin() + leftBranchIndicesStart, mesh.indices.begin() + leftBranchIndicesStart + bif::hLayers * 6);
-
-		//// Adjust all the following indices
-		//std::for_each(mesh.indices.begin() + leftBranchIndicesStart, mesh.indices.end(), [&](auto& index)
-		//	{
-		//		index -= bif::hLayers;
-		//	});
-
-		//// Remove the whole first row from the right branch
-		//mesh.positions.erase(mesh.positions.begin() + 2 * bif::segmentVertexCount - bif::hLayers, mesh.positions.begin() + 2 * bif::segmentVertexCount);
-
-		//int rightBranchIndicesStart = (bif::segmentVertexCount - bif::hLayers) * 6;
-		//mesh.indices.erase(mesh.indices.begin() + rightBranchIndicesStart, mesh.indices.begin() + rightBranchIndicesStart + bif::hLayers * 6);
-
-		//// Adjust all the following indices
-		//std::for_each(mesh.indices.begin() + rightBranchIndicesStart, mesh.indices.end(), [&](auto& index)
-		//	{
-		//		index -= bif::hLayers;
-		//	});
-
 	}
 
 	void VeinGenerator::fillControlPoints(float angleLeft, float angleRight,
 		std::vector<Domain_Point>& domainPoints, std::vector<Range_Point>& rangePoints) const
 	{
 		// base - last ring of base mesh
-		for (int i =0; i < bif::hLayers; i += 2)
+		for (int i =0; i < 2 * bif::hLayers; i += 2)
 		{
 			// TODO : larger/smaller radius
-			domainPoints.emplace_back(toDP(bifurcationBase.positions[i + bif::segmentVertexCount - bif::hLayers]));
+			domainPoints.emplace_back(toDP(bifurcationBase.positions[i + bif::segmentVertexCount - 2 *bif::hLayers]));
 
 			rangePoints.emplace_back(toRP(baseRangePoints.positions[i]));
 		}
 		// left
-		for (int i = 0; i < bif::hLayers; i += 2)
+		for (int i = 0; i < 2 * bif::hLayers; i += 2)
 		{
-			domainPoints.emplace_back(toDP(bifurcationBase.positions[i + 2 * bif::segmentVertexCount - bif::hLayers]));
+			domainPoints.emplace_back(toDP(bifurcationBase.positions[i + 2 * bif::segmentVertexCount - 2 * bif::hLayers]));
 
 			glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), glm::pi<float>() + angleLeft, glm::vec3(0, 0, 1));
 
 			rangePoints.emplace_back(toRP(rotation * glm::vec4(baseRangePoints.positions[i], 1.0f) + glm::vec4(0, 0, 0, 0)));
 		}
 		// right
-		for (int i = 0; i < bif::hLayers; i += 2)
+		for (int i = 0; i < 2 * bif::hLayers; i += 2)
 		{
-			domainPoints.emplace_back(toDP(bifurcationBase.positions[i + 3 * bif::segmentVertexCount - bif::hLayers]));
+			domainPoints.emplace_back(toDP(bifurcationBase.positions[i + 3 * bif::segmentVertexCount - 2 * bif::hLayers]));
 
 			glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), glm::pi<float>() + angleRight, glm::vec3(0, 0, 1));
 
@@ -188,20 +146,25 @@ namespace vein
 		std::vector<glm::vec3> positions;
 		static constexpr float triangleH = bif::veinHeight / bif::vLayers;
 		static constexpr float radianBatch = 2 * glm::pi<float>() / bif::hLayers;
-		static float triangleBase = radianBatch * bif::veinRadius;
-		static constexpr float h = (bif::vLayers - 1) * triangleH;
+		static constexpr float hPrev = (bif::vLayers - 2) * triangleH;
+		static constexpr float hLast = (bif::vLayers - 1) * triangleH;
 
-		for (int i = 0; i < bif::hLayers; ++i)
-		{
-			float angle = i * radianBatch;
+		auto fill = [&](float h)
+			{
+				for (int i = 0; i < bif::hLayers; ++i)
+				{
+					float angle = i * radianBatch;
 
-			// normal vein
-			positions.emplace_back(
-				bif::veinRadius * cos(angle),
-				h,
-				bif::veinRadius * sin(angle)
-			);
-		}
+					// normal vein
+					positions.emplace_back(
+						bif::veinRadius * cos(angle),
+						h,
+						bif::veinRadius * sin(angle)
+					);
+				}
+			};
+		fill(hPrev);
+		fill(hLast);
 
 		return TempMesh(std::move(positions), std::vector<unsigned int>());
 	}
@@ -223,8 +186,7 @@ namespace vein
 		#pragma omp parallel for
 		for (int i = 0; i < bifurcationBase.positions.size(); i++)
 		{
-			auto result = toGLM(tps.transform(toDP(bifurcationBase.positions[i])));
-			transfromedPositions[i] = result;
+			transfromedPositions[i] = toGLM(tps.transform(toDP(bifurcationBase.positions[i])));
 		}
 		return VeinMesh(std::move(transfromedPositions), bifurcationBase.indices);
 	}
@@ -233,7 +195,9 @@ namespace vein
 	VeinMesh VeinGenerator::createCylinder() const
 	{
 		std::vector<glm::vec3> positions;
+		positions.reserve(cyl::vLayers * cyl::hLayers);
 		std::vector<unsigned int> indices;
+		indices.reserve(6 * (cyl::vLayers - 1) * cyl::hLayers);
 
 		float triangleH = cyl::veinHeight / cyl::vLayers;
 		constexpr float radianBatch = 2 * glm::pi<float>() / cyl::hLayers;

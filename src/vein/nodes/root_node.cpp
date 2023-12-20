@@ -28,4 +28,18 @@ namespace vein
 		}
 
 	}
+
+	void RootNode::addToMesh(TempMesh& finalMesh, unsigned int parentLeftBranchLastRowStart, unsigned int parentRightBranchLastRowStart,
+		bool parentIsBifurcation) const
+	{
+		finalMesh.positions = mesh.positions;
+		finalMesh.indices = mesh.indices;
+
+		// Recurse
+		if (left)
+		{
+			unsigned int thisSegmentLastRowStart = finalMesh.positions.size() - cyl::hLayers;
+			left->addToMesh(finalMesh, thisSegmentLastRowStart, thisSegmentLastRowStart);
+		}
+	}
 }

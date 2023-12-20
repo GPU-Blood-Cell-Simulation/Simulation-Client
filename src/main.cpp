@@ -15,10 +15,12 @@
 
 //#pragma float_control( except, on )
 // NVIDIA GPU selector for devices with multiple GPUs (e.g. laptops)
+#ifdef _WIN32
 extern "C"
 {
     __declspec(dllexport) unsigned long NvOptimusEnablement = 0x00000001;
 }
+#endif
 
 void programLoop(GLFWwindow* window);
 
@@ -104,9 +106,6 @@ void programLoop(GLFWwindow* window)
         // Clear 
         glClearColor(1.00f, 0.75f, 0.80f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-        // Receive positions from the server
-            // TODO
 
         // OpenGL render
         #pragma region rendering
