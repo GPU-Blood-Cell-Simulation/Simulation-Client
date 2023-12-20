@@ -9,7 +9,7 @@ namespace gui
 		if (ImGui::Button("Done"))
 		{
 			setMode(Mode::mainScreen);
-			glController.setMode(graphics::Mode::None);
+			glController.endSimulation();
 		}
 	}
 }

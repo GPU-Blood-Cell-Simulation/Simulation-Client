@@ -7,6 +7,7 @@
 #include "../serializable/vein_definition.hpp"
 #include "../serializable/config_data.hpp"
 #include "../vein/nodes/bifurcation_node.hpp"
+#include "../streaming/stream_receiver.hpp"
 
 #include <glm/mat4x4.hpp>
 #include <glm/vec3.hpp>
@@ -42,11 +43,17 @@ namespace graphics
 
 		Mode mode = Mode::None;
 
+		GLFWwindow* window;
+
 		// Uniform matrices
 		glm::mat4 model = glm::scale(glm::mat4(1.0f), glm::vec3(0.5f, 0.5f, 0.5f));
 		glm::mat4 projection = glm::perspective(glm::radians<float>(45.0f), static_cast<float>(windowWidth) / windowHeight, 0.1f, depth * 100);
 
 		InputController inputController;
+		
+		StreamReceiver streamReceiver;
+		GLuint streamTex, streamFBO;
+
 		vein::Node* veinRoot;
 		std::unique_ptr<vein::VeinMesh> finalMesh;
 
