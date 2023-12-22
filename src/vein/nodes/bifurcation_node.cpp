@@ -75,6 +75,6 @@ namespace vein
 
 	const std::string BifurcationNode::getFullName() const
 	{
-		return "Bifurcation node\nid: " + id;
+		return "Bifurcation node\nid: " + std::to_string(id);
 	}
 }

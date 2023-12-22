@@ -113,6 +113,19 @@ namespace vein
 			finalMesh.indices.push_back(previousMeshLastRowStart);
 			finalMesh.indices.push_back(positionsInitialSize + bif::hLayers / 2 + 1);
 		}
+		else
+		{
+			for (int j = 0; j < bif::hLayers; j++)
+			{
+				int nextj = (j + 1) % bif::hLayers;
+				finalMesh.indices.push_back(positionsInitialSize + j);
+				finalMesh.indices.push_back(previousMeshLastRowStart + j);
+				finalMesh.indices.push_back(previousMeshLastRowStart + nextj);
+				finalMesh.indices.push_back(positionsInitialSize + j);
+				finalMesh.indices.push_back(previousMeshLastRowStart + nextj);
+				finalMesh.indices.push_back(positionsInitialSize + nextj);
+			}
+		}
 
 		// Copy next rows of indices
 		std::transform(mesh.indices.cbegin() + 6 * cyl::hLayers, mesh.indices.cend(), std::back_inserter(finalMesh.indices), [&](auto&& index)
@@ -130,6 +143,6 @@ namespace vein
 
 	const std::string CylinderNode::getFullName() const
 	{
-		return "Cylinder node\nid: " + id;
+		return "Cylinder node\nid: " + std::to_string(id);
 	}
 }

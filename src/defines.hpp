@@ -18,7 +18,12 @@ inline constexpr float width = 300.0f;
 inline constexpr float height = 500.0f;
 inline constexpr float depth = 300.0f;
 
-
+// Serialization
+#ifdef _WIN32
+inline const char* cppSerializationPath = "GeneratedConfig/vein_definition.hpp";
+#else
+inline const char* cppSerializationPath = "../GeneratedConfig/vein_definition.hpp";
+#endif
 
 // cylinder model data:
 
