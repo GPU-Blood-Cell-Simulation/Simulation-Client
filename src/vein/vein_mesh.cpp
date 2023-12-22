@@ -1,5 +1,6 @@
 #include "vein_mesh.hpp"
 
+#include "../defines.hpp"
 #include "../serializable/util/vec_to_string.hpp"
 
 #include <glad/glad.h>
@@ -60,7 +61,7 @@ namespace vein
 	void SerializableMesh::serializeToCpp() const
 	{	
 		std::cout << "Serializing vein \n";	
-		std::ofstream os("GeneratedConfig/vein_definition.hpp");
+		std::ofstream os(cppSerializationPath);
 
 		int veinPositionCount = positions.size();
 		// serialize positions

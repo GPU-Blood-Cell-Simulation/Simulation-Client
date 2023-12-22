@@ -93,12 +93,12 @@ namespace vein
 				finalMesh.indices.push_back(positionsInitialSize + modifiedOffset - nextj);
 			}
 
-			finalMesh.indices.push_back(positionsInitialSize + offsetFromPreviousMesh + bif::hLayers / 2);
+			finalMesh.indices.push_back(positionsInitialSize + offsetFromPreviousMesh + bif::hLayers / 2 + 1);
 			finalMesh.indices.push_back(previousMeshLastRowStart + bif::hLayers - 1);
 			finalMesh.indices.push_back(previousMeshLastRowStart);
-			finalMesh.indices.push_back(positionsInitialSize + offsetFromPreviousMesh + bif::hLayers / 2);
-			finalMesh.indices.push_back(previousMeshLastRowStart);
 			finalMesh.indices.push_back(positionsInitialSize + offsetFromPreviousMesh + bif::hLayers / 2 + 1);
+			finalMesh.indices.push_back(previousMeshLastRowStart);
+			finalMesh.indices.push_back(positionsInitialSize + offsetFromPreviousMesh + bif::hLayers / 2);
 		}
 		else
 		{
@@ -120,60 +120,62 @@ namespace vein
 		for (int j = 1; j < bif::hLayers / 4; j++)
 		{
 			int nextj = j + 1;
-			finalMesh.indices.push_back(leftBranchFirstRowStart + bif::hLayers / 4 - j);
+			
+			
+			finalMesh.indices.push_back(positionsInitialSize + bif::hLayers / 4 + nextj);
 			finalMesh.indices.push_back(positionsInitialSize + bif::hLayers / 4 + j);
+			finalMesh.indices.push_back(leftBranchFirstRowStart + bif::hLayers / 4 - j);
+			finalMesh.indices.push_back(leftBranchFirstRowStart + bif::hLayers / 4 - nextj);
 			finalMesh.indices.push_back(positionsInitialSize + bif::hLayers / 4 + nextj);
 			finalMesh.indices.push_back(leftBranchFirstRowStart + bif::hLayers / 4 - j);
-			finalMesh.indices.push_back(positionsInitialSize + bif::hLayers / 4 + nextj);
-			finalMesh.indices.push_back(leftBranchFirstRowStart + bif::hLayers / 4 - nextj);
 		}
 
-		finalMesh.indices.push_back(leftBranchFirstRowStart);
+		finalMesh.indices.push_back(positionsInitialSize + bif::hLayers / 2 + 1);
 		finalMesh.indices.push_back(positionsInitialSize + bif::hLayers / 2);
+		finalMesh.indices.push_back(leftBranchFirstRowStart);	
+		finalMesh.indices.push_back(leftBranchFirstRowStart + bif::hLayers / 2 - 1);
 		finalMesh.indices.push_back(positionsInitialSize + bif::hLayers / 2 + 1);
 		finalMesh.indices.push_back(leftBranchFirstRowStart);
-		finalMesh.indices.push_back(positionsInitialSize + bif::hLayers / 2 + 1);
-		finalMesh.indices.push_back(leftBranchFirstRowStart + bif::hLayers / 2 - 1);
 
 		for (int j = 1; j < bif::hLayers / 4; j++)
 		{
 			int nextj = j + 1;
-			finalMesh.indices.push_back(leftBranchFirstRowStart + bif::hLayers / 2 - j);
+			finalMesh.indices.push_back(positionsInitialSize + bif::hLayers / 2 + nextj);
 			finalMesh.indices.push_back(positionsInitialSize + bif::hLayers / 2 + j);
+			finalMesh.indices.push_back(leftBranchFirstRowStart + bif::hLayers / 2 - j);
+			finalMesh.indices.push_back(leftBranchFirstRowStart + bif::hLayers / 2 - nextj);
 			finalMesh.indices.push_back(positionsInitialSize + bif::hLayers / 2 + nextj);
 			finalMesh.indices.push_back(leftBranchFirstRowStart + bif::hLayers / 2 - j);
-			finalMesh.indices.push_back(positionsInitialSize + bif::hLayers / 2 + nextj);
-			finalMesh.indices.push_back(leftBranchFirstRowStart + bif::hLayers / 2 - nextj);
 		}
 
 		// Glue the right part of the first segment's last row the the right branch segment's left side
 		for (int j = 0; j < bif::hLayers / 4; j++)
 		{
 			int nextj = j + 1;
-			finalMesh.indices.push_back(positionsInitialSize + bif::hLayers / 4 - j);
+			finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers / 4 + nextj);
 			finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers / 4 + j);
-			finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers / 4 + nextj);
 			finalMesh.indices.push_back(positionsInitialSize + bif::hLayers / 4 - j);
-			finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers / 4 + nextj);
 			finalMesh.indices.push_back(positionsInitialSize + bif::hLayers / 4 - nextj);
+			finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers / 4 + nextj);		
+			finalMesh.indices.push_back(positionsInitialSize + bif::hLayers / 4 - j);
 		}
 
-		finalMesh.indices.push_back(positionsInitialSize);
+		finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers / 2 + 1);
 		finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers / 2);
+		finalMesh.indices.push_back(positionsInitialSize);
+		finalMesh.indices.push_back(positionsInitialSize + bif::hLayers - 1);
 		finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers / 2 + 1);
 		finalMesh.indices.push_back(positionsInitialSize);
-		finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers / 2 + 1);
-		finalMesh.indices.push_back(positionsInitialSize + bif::hLayers - 1);
 
 		for (int j = 1; j < bif::hLayers / 4; j++)
 		{
 			int nextj = j + 1;
-			finalMesh.indices.push_back(positionsInitialSize + bif::hLayers - j);
-			finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers / 2 + j);
 			finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers / 2 + nextj);
+			finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers / 2 + j);
 			finalMesh.indices.push_back(positionsInitialSize + bif::hLayers - j);
-			finalMesh.indices.push_back(rightBranchFirstRowStart +  bif::hLayers / 2 + nextj);
 			finalMesh.indices.push_back(positionsInitialSize + bif::hLayers - nextj);
+			finalMesh.indices.push_back(rightBranchFirstRowStart +  bif::hLayers / 2 + nextj);
+			finalMesh.indices.push_back(positionsInitialSize + bif::hLayers - j);
 		}
 
 		// Add second segment except for the left half of its first row
@@ -188,9 +190,9 @@ namespace vein
 			});
 
 		// special case for last vertex in the first quarter of the left branch's first row
-		finalMesh.indices.push_back(leftBranchFirstRowStart + bif::hLayers / 4 - 1);
+		finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers / 4);		
 		finalMesh.indices.push_back(leftBranchFirstRowStart + 3 * bif::hLayers / 4 - 1);
-		finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers / 4);
+		finalMesh.indices.push_back(leftBranchFirstRowStart + bif::hLayers / 4 - 1);
 		finalMesh.indices.push_back(leftBranchFirstRowStart + 3 * bif::hLayers / 4);
 		finalMesh.indices.push_back(leftBranchFirstRowStart + 3 * bif::hLayers / 4 - 1);
 		finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers / 4);
@@ -220,47 +222,47 @@ namespace vein
 		for (int j = 0; j < bif::hLayers / 4; j++)
 		{
 			int nextj = j + 1;
-			finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers / 4 - j);
+			finalMesh.indices.push_back(leftBranchGlueStart + bif::hLayers / 4 + nextj);			
 			finalMesh.indices.push_back(leftBranchGlueStart + bif::hLayers / 4 + j);
+			finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers / 4 - j);
+			finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers / 4 - nextj);
 			finalMesh.indices.push_back(leftBranchGlueStart + bif::hLayers / 4 + nextj);
 			finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers / 4 - j);
-			finalMesh.indices.push_back(leftBranchGlueStart + bif::hLayers / 4 + nextj);
-			finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers / 4 - nextj);
 		}
 
-		finalMesh.indices.push_back(rightBranchFirstRowStart);
+		finalMesh.indices.push_back(leftBranchGlueStart + bif::hLayers / 2 + 1);
 		finalMesh.indices.push_back(leftBranchGlueStart + bif::hLayers / 2);
+		finalMesh.indices.push_back(rightBranchFirstRowStart);
+		finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers - 1);
 		finalMesh.indices.push_back(leftBranchGlueStart + bif::hLayers / 2 + 1);
 		finalMesh.indices.push_back(rightBranchFirstRowStart);
-		finalMesh.indices.push_back(leftBranchGlueStart + bif::hLayers / 2 + 1);
-		finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers - 1);
 
 		for (int j = 1; j < bif::hLayers / 4 - 1; j++)
 		{
 			int nextj = j + 1;
-			finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers - j);
+			finalMesh.indices.push_back(leftBranchGlueStart + bif::hLayers / 2 + nextj);
 			finalMesh.indices.push_back(leftBranchGlueStart + bif::hLayers / 2 + j);
+			finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers - j);
+			finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers - nextj);
 			finalMesh.indices.push_back(leftBranchGlueStart + bif::hLayers / 2 + nextj);
 			finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers - j);
-			finalMesh.indices.push_back(leftBranchGlueStart + bif::hLayers / 2 + nextj);
-			finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers - nextj);
 		}
 
 		// special case - glueing front
 		finalMesh.indices.push_back(leftBranchFirstRowStart + bif::hLayers / 4 - 1);
 		finalMesh.indices.push_back(positionsInitialSize + bif::hLayers / 4);
 		finalMesh.indices.push_back(rightBranchFirstRowStart + bif::hLayers / 4);
-		finalMesh.indices.push_back(positionsInitialSize + bif::hLayers / 4);
-		finalMesh.indices.push_back(positionsInitialSize + bif::hLayers / 4 + 1);
 		finalMesh.indices.push_back(leftBranchFirstRowStart + bif::hLayers / 4 - 1);
+		finalMesh.indices.push_back(positionsInitialSize + bif::hLayers / 4 + 1);
+		finalMesh.indices.push_back(positionsInitialSize + bif::hLayers / 4);
 
 		// special case - glueing back
-		finalMesh.indices.push_back(leftBranchFirstRowStart + 5 * bif::hLayers / 4 - 1);
+		finalMesh.indices.push_back(rightBranchFirstRowStart + 3 * bif::hLayers / 4);
 		finalMesh.indices.push_back(leftBranchFirstRowStart + 5 * bif::hLayers / 4);
+		finalMesh.indices.push_back(leftBranchFirstRowStart + 5 * bif::hLayers / 4 - 1);
+		finalMesh.indices.push_back(rightBranchFirstRowStart + 3 * bif::hLayers / 4 + 1);
 		finalMesh.indices.push_back(rightBranchFirstRowStart + 3 * bif::hLayers / 4);
 		finalMesh.indices.push_back(leftBranchFirstRowStart + 5 * bif::hLayers / 4 - 1);
-		finalMesh.indices.push_back(rightBranchFirstRowStart + 3 * bif::hLayers / 4);
-		finalMesh.indices.push_back(rightBranchFirstRowStart + 3 * bif::hLayers / 4 + 1);
 
 		// Add third segment
 		std::transform(mesh.indices.cbegin() + 2 * 6 * (bif::vLayers - 1) * bif::hLayers, mesh.indices.end(),
