@@ -1,19 +1,20 @@
 #include "../gui_controller.hpp"
 
+#include "../../defines.hpp"
 #include "../../vein/nodes/bifurcation_node.hpp"
 #include "../../vein/nodes/cylinder_node.hpp"
 
 namespace gui
 {
-	static void recalculateCylinder(vein::Node* selectedNode, bool selectedLeft)
+	static void recalculateCylinder(vein::Node* selectedNode, bool selectedLeft, int length)
 	{
 		if (selectedLeft)
 		{
-			selectedNode->left = std::make_unique<vein::CylinderNode>(vein::CylinderNode(selectedNode, true));
+			selectedNode->left = std::make_unique<vein::CylinderNode>(vein::CylinderNode(selectedNode, length, true));
 		}
 		else
 		{
-			selectedNode->right = std::make_unique<vein::CylinderNode>(vein::CylinderNode(selectedNode, false));
+			selectedNode->right = std::make_unique<vein::CylinderNode>(vein::CylinderNode(selectedNode, length, false));
 		}
 	}
 
@@ -33,18 +34,23 @@ namespace gui
 
 	void GUIController::renderAddVein()
 	{
-		static int segmentType = 0;
-		static float angleLeftDeg = 45;
-		static float angleRightDeg = 45;
 		bool cylinderChanged = false;
 		bool bifurcationChanged = false;
+		static int segmentType = 0;
+
+		// Cylinder
+		static int length = vein::cyl::vLayers;
+
+		// Bifurcation
+		static float angleLeftDeg = 45;
+		static float angleRightDeg = 45;
 
 		// First time mesh creation
 		if (firstRender)
 		{
 			if (segmentType == 0)
 			{
-				recalculateCylinder(selectedNode, selectedLeft);
+				recalculateCylinder(selectedNode, selectedLeft, length);
 			}
 			else
 			{		
@@ -67,7 +73,11 @@ namespace gui
 		
 		if (segmentType == 0) // cylinder segment
 		{
-			// TODO: cylinder height etc.
+			if (ImGui::InputInt(" Segment length ", &length))
+			{
+				cylinderChanged = true;
+			}
+
 		}
 		else // bifurcation segment
 		{
@@ -84,6 +94,7 @@ namespace gui
 				selectedNode->left.reset(nullptr);
 			else
 				selectedNode->right.reset(nullptr);
+				
 			setMode(Mode::veinEdit);
 		} 
 		ImGui::SameLine();
@@ -95,7 +106,7 @@ namespace gui
 		// Recalculate nodes based on changes
 		if (cylinderChanged)
 		{
-			recalculateCylinder(selectedNode, selectedLeft);
+			recalculateCylinder(selectedNode, selectedLeft, length);
 			return;
 		}
 

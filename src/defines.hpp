@@ -70,7 +70,7 @@ namespace vein
 
 	namespace cyl
 	{
-		inline constexpr float veinHeight = 300;
+		inline constexpr float triangleHeight = 5;
 		inline constexpr float veinRadius = 50;
 		inline constexpr int vLayers = 50;
 		inline constexpr int hLayers = 100;

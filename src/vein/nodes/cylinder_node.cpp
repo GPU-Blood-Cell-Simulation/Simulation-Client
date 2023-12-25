@@ -8,14 +8,14 @@
 
 namespace vein
 {
-	CylinderNode::CylinderNode(Node* parent, bool isLeft, int vLayers) :
-		Node(parent, std::move(VeinGenerator::getInstance().createCylinder()), isLeft), vLayers(vLayers)
+	CylinderNode::CylinderNode(Node* parent, int vLayers, bool isLeft) :
+		Node(parent, std::move(VeinGenerator::getInstance().createCylinder(vLayers)), isLeft), vLayers(vLayers)
 	{
 		// Root node
 		if (!parent)
 		{
 			leftBranchAngle = rightBranchAngle = 0;
-			leftEndCenter = rightEndCenter = {0, -cyl::veinHeight + cyl::veinHeight / cyl::vLayers , 0};
+			leftEndCenter = rightEndCenter = {0, -cyl::vLayers * cyl::triangleHeight + cyl::triangleHeight , 0};
 			model = glm::identity<glm::mat4>();
 			mesh.setupMesh();
 			return;
