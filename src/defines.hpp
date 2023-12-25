@@ -1,6 +1,7 @@
 #pragma once
 
 #include <glm/vec3.hpp>
+#include <string>
 
 inline int VEIN_POLYGON_MODE = 0;
 
@@ -19,11 +20,39 @@ inline constexpr float height = 500.0f;
 inline constexpr float depth = 300.0f;
 
 // Serialization
+inline const std::string configPath =
 #ifdef _WIN32
-inline const char* cppSerializationPath = "GeneratedConfig/vein_definition.hpp";
+ 	"Config/";
 #else
-inline const char* cppSerializationPath = "../GeneratedConfig/vein_definition.hpp";
+	"../Config/";
 #endif
+inline const std::string veinConfigPath = configPath + "vein_config.json";
+inline const std::string bloodCellConfigPath = configPath + "blood_cell_config.json";
+inline const std::string generalConfigPath = configPath + "general_config.json";
+
+inline const std::string cppSerializationPath =
+#ifdef _WIN32
+ 	"SimulationGeneratedConfig/";
+#else
+	"../SimulationGeneratedConfig/";
+#endif
+
+inline const std::string veinCppSerializationPath = cppSerializationPath + "vein_definition.hpp";
+inline const std::string bloodCellsDefinitionCppSerializationPath = cppSerializationPath + "blood_cells_definition.hpp";
+inline const std::string bloodCellPresetsCppSerializationPath = cppSerializationPath + "blood_cell_presets.hpp";
+inline const std::string graphicsCppSerializationPath = cppSerializationPath + "graphics.hpp";
+inline const std::string physicsCppSerializationPath = cppSerializationPath + "physics.hpp";
+inline const std::string simulationCppSerializationPath = cppSerializationPath + "simulation.hpp";
+
+inline const std::string cppConfigDataPath =
+#ifdef _WIN32
+ 	"SimulationConfigData/";
+#else
+	"../SimulationConfigData/";
+#endif
+
+inline const std::string bloodCellsDefinitionConfigDataPath = cppConfigDataPath + "template_blood_cells_definition.hpp";
+inline const std::string bloodCellPresetsConfigDataPath = cppConfigDataPath + "template_blood_cell_presets.hpp";
 
 // cylinder model data:
 

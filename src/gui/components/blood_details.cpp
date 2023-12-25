@@ -1,6 +1,5 @@
 #include "../gui_controller.hpp"
 #include <string>
-#include <format>
 
 namespace gui
 {

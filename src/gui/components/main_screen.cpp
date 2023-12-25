@@ -4,14 +4,33 @@ namespace gui
 {
 	void GUIController::renderMainScreen()
 	{
-        if (ImGui::Button("Load configuration"))
+        // TODO: change save/load into a top bar menu
+        if (ImGui::Button("Load blood cell configuration"))
         {
-            configManager.loadConfiguration("Config/config.json");
+            configManager.loadBloodCellConfig();
+            loadEditors();
         }
-        if (ImGui::Button("Save configuration"))
+        if (ImGui::Button("Save blood cell configuration"))
         {
-            configManager.saveConfiguration("Config/config.json");
+            configManager.saveBloodCellConfig();
         }
+        if (ImGui::Button("Load vein configuration"))
+        {
+            
+        }
+        if (ImGui::Button("Save vein configuration"))
+        {
+            
+        }
+        if (ImGui::Button("Load general configuration"))
+        {
+            
+        }
+        if (ImGui::Button("Save general configuration"))
+        {
+            
+        }
+        ImGui::NewLine();
 
         if (ImGui::Button("Edit general configuration"))
         {
@@ -30,14 +49,14 @@ namespace gui
         if (ImGui::Button("Compile and run"))
         {
             // Write data to C++ files
-            configManager.serializeAllToCpp(rootNode, glController);
+            configManager.serializeAllToCpp();
 
             // Send data to server
             //      TODO
 
             // Navigate to simulation screen
             setMode(Mode::simulation);
-            glController.beginSimulation(configManager.getData());
+            glController.beginSimulation();
         }
 	}
 }

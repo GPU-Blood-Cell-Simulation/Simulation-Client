@@ -8,20 +8,20 @@ namespace serializable
 
 	struct Spring
 	{
-		int start = -1;
-		int end = -1;
-		int length = 1;
+		int from = -1;
+		int to = -1;
+
+		bool operator==(const Spring&) const = default;
 	};
 
 	inline void to_json(json& j, const Spring& o)
 	{
-		j = json{ {"start", o.start}, {"end", o.end}, {"length", o.length} };
+		j = json{ {"from", o.from}, {"to", o.to} };
 	}
 
 	inline void from_json(const json& j, Spring& o)
 	{
-		j.at("start").get_to(o.start);
-		j.at("end").get_to(o.end);
-		j.at("length").get_to(o.length);
+		j.at("from").get_to(o.from);
+		j.at("to").get_to(o.to);
 	}
 }

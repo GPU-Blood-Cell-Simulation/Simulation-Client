@@ -5,7 +5,7 @@
 #include "light.hpp"
 #include "../serializable/blood_cells_definition.hpp"
 #include "../serializable/vein_definition.hpp"
-#include "../serializable/config_data.hpp"
+#include "../serializable/config_manager.hpp"
 #include "../vein/nodes/bifurcation_node.hpp"
 #include "../streaming/stream_receiver.hpp"
 
@@ -28,12 +28,12 @@ namespace graphics
 	// Controls rendering of the particles
 	class GLController {
 	public:
-		GLController(GLFWwindow* window, vein::Node* veinRoot);
+		GLController(GLFWwindow* window, serializable::ConfigManager& configManager);
 		void drawNothing();
 		void drawSimulation();
 		void drawVeinEditor();
 		void draw();
-		void beginSimulation(const serializable::ConfigData& configData);
+		void beginSimulation();
 		void endSimulation();
 		void handleInput();
 		void setMode(Mode mode);
@@ -54,14 +54,13 @@ namespace graphics
 		StreamReceiver streamReceiver;
 		GLuint streamTex, streamFBO;
 
-		vein::Node* veinRoot;
+		serializable::ConfigManager& configManager;
+
 		std::unique_ptr<vein::VeinMesh> finalMesh;
 
 		Camera camera;
-
 		bool useLighting = true;
 		DirLight directionalLight;
-
 		std::unique_ptr<Shader> cylinderSolidColorShader;
 
 		unsigned int gBuffer;

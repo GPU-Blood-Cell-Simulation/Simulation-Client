@@ -1,11 +1,12 @@
 #pragma once
+
 #include "../serializable/blood_cells_definition.hpp"
 
 namespace gui
 {
 	class GUIController;
 
-	class bloodEditor
+	class BloodEditor
 	{
 		serializable::BloodCellType& modelData;
 		int selectedSpringIndex = -1;
@@ -13,12 +14,11 @@ namespace gui
 		int from = 0, to = 0;
 
 	public:
-
 		int modelQuantity;
-		bloodEditor(serializable::BloodCellType& data);
+		BloodEditor(serializable::BloodCellType& data);
 
 		void updateQuantity() { modelData.quantity = modelQuantity; }
-		std::string GetModelName() { return modelData.name; }
+		std::string GetModelName() const { return modelData.name; }
 		
 		void renderGUISprings(gui::GUIController& guiController);
 		void renderGUIVertices(gui::GUIController& guiController);

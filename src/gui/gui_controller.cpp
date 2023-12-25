@@ -8,11 +8,6 @@
 
 namespace gui
 {
-    void GUIController::createComponent()
-    {
-        
-    }
-
     void GUIController::setMode(Mode mode)
     {
         this->mode = mode;
@@ -32,8 +27,8 @@ namespace gui
         return ImGui::GetIO();
     }
 
-	GUIController::GUIController(GLFWwindow* window, graphics::GLController& glController, serializable::ConfigManager& configManager, vein::Node* rootNode, serializable::BloodCellsDefinition& cellDefinition) :
-        io(createImguiContext()), glController(glController), configManager(configManager), rootNode(rootNode), cellDefinition(cellDefinition)
+	GUIController::GUIController(GLFWwindow* window, serializable::ConfigManager& configManager, graphics::GLController& glController) :
+        io(createImguiContext()), configManager(configManager), glController(glController)
 	{
         // Setup Dear ImGui context
         io = ImGui::GetIO(); (void)io;
@@ -59,19 +54,12 @@ namespace gui
         // Setup Platform/Renderer backends
         ImGui_ImplGlfw_InitForOpenGL(window, true);
         ImGui_ImplOpenGL3_Init("#version 330");
-
-        for(auto& type : cellDefinition.bloodCellTypes) {
-            editors.push_back(bloodEditor(type));
-        }
 	}
 
 	void GUIController::renderUI()
 	{
         // Delete child nodes that were marked "to be deleted" in the previous frame
-        rootNode->deleteMarkedChildren();
-
-        static int previousButtonClicked = 0;
-        static int buttonClicked = 0;
+        configManager.getData().veinDefinition.rootNode->deleteMarkedChildren();
 
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
@@ -139,6 +127,17 @@ namespace gui
             ImGui::RenderPlatformWindowsDefault();
             glfwMakeContextCurrent(backup_current_context);
         }
+    }
+
+    void GUIController::loadEditors()
+    {
+        editors.clear();
+        for (auto&& type : configManager.getData().bloodCellsDefinition.bloodCellTypes)
+        {
+            editors.push_back(BloodEditor(type));
+        }
+
+        releaseEditor();
     }
 }
 

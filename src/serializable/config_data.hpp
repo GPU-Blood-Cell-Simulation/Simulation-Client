@@ -7,8 +7,6 @@
 
 namespace serializable
 {
-	using json = nlohmann::json;
-
 	struct ConfigData
 	{
 		BloodCellsDefinition bloodCellsDefinition;
@@ -16,17 +14,4 @@ namespace serializable
 		SimulationConfig simulationConfig;
 		VeinDefinition veinDefinition;
 	};
-
-	inline void to_json(json& j, const ConfigData& o)
-	{
-		//j = json{ {"bloodCells", o.bloodCellsDefinition}, {"physics", o.physicsConfig}, {"simulation", o.simulationConfig}, {"vein", o.veinDefinition} };
-	}
-
-	inline void from_json(const json& j, ConfigData& o)
-	{
-		/*j.at("bloodCells").get_to(o.bloodCellsDefinition);
-		j.at("physics").get_to(o.physicsConfig);
-		j.at("simulation").get_to(o.simulationConfig);
-		j.at("vein").get_to(o.veinDefinition);*/
-	}
 }

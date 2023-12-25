@@ -4,7 +4,7 @@ namespace gui
 {
 	void GUIController::renderVeinEditor()
 	{
-		vein::Node::renderAll(*this, rootNode);
+		vein::Node::renderAll(*this, configManager.getData().veinDefinition.rootNode.get());
 
 		if (ImGui::Button("Done"))
 		{

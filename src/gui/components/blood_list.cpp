@@ -9,6 +9,7 @@ namespace gui
 
 	void GUIController::renderBloodList()
 	{
+		static int decimalPrecision = 7;
 		ImGui::Text("Defined blood cell models:");
 		ImGui::PushItemWidth(100);
 		ImGui::InputInt("Decimal precision", &decimalPrecision);
@@ -16,6 +17,8 @@ namespace gui
 			decimalPrecision = 1;
 		if (decimalPrecision > 7)
 			decimalPrecision = 7;
+
+		// TODO: save decimalPrecision to config data (do we really need it?)
 
 		ImGui::NewLine();
 		for(auto& editor : editors)
@@ -42,23 +45,7 @@ namespace gui
 		}
 		ImGui::NewLine();
 		ImGui::NewLine();
-		if (ImGui::Button("Generate headers"))
-		{
-			serializable::generate_headers(decimalPrecision, cellDefinition);
-		}
-		if (ImGui::Button("Save config"))
-		{
-			json jout;
-			serializable::to_json(jout, cellDefinition);
-			std::ofstream outjson("Config\\bloodCellConfig_saved.json");
-			outjson << std::setw(3) << jout << std::endl;
-		}
-		/*if (ImGui::Button("Read config"))
-		{
-			std::ifstream injson("Config\\bloodCellConfig.json");
-			json jin = json::parse(injson);
-			serializable::from_json(jin);
-		}*/
+
 		if (ImGui::Button("Done"))
 		{
 			setMode(Mode::mainScreen);

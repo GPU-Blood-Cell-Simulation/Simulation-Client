@@ -16,7 +16,7 @@
 namespace graphics
 {
 
-	GLController::GLController(GLFWwindow* window, vein::Node* veinRoot) : window(window), veinRoot(veinRoot)
+	GLController::GLController(GLFWwindow* window, serializable::ConfigManager& configManager) : window(window), configManager(configManager)
 	{
 		// Set up GLFW to work with inputController
 		glfwSetWindowUserPointer(window, &inputController);
@@ -55,7 +55,7 @@ namespace graphics
 	}
 
 
-	void GLController::beginSimulation(const serializable::ConfigData& configData)
+	void GLController::beginSimulation()
 	{
 		mode = Mode::Simulation;
 
@@ -147,7 +147,7 @@ namespace graphics
 		cylinderSolidColorShader->setMatrix("projection", projection);
 
 		glDisable(GL_CULL_FACE);
-		veinRoot->draw(cylinderSolidColorShader.get());
+		configManager.getData().veinDefinition.rootNode->draw(cylinderSolidColorShader.get());
 		glEnable(GL_CULL_FACE);
 	}
 

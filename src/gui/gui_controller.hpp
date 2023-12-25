@@ -25,33 +25,31 @@ namespace gui
 	class GUIController
 	{
 	public:
-		GUIController(GLFWwindow* window, graphics::GLController& glController, serializable::ConfigManager& configManager, vein::Node* rootNode, serializable::BloodCellsDefinition& cellDefinition);
+		GUIController(GLFWwindow* window, serializable::ConfigManager& configManager, graphics::GLController& glController);
 		void renderUI();
 
 		void setMode(Mode mode);
 		void selectNode(vein::Node* node, bool selectedLeft = true);
-		void releaseEditor() { selectedEditor = nullptr; }
+		inline void releaseEditor() { selectedEditor = nullptr; }
 	private:
 		ImGuiIO& io;
 		
 		Mode mode = Mode::mainScreen;
-		graphics::GLController& glController;
 		serializable::ConfigManager& configManager;
-		serializable::BloodCellsDefinition& cellDefinition;
+		graphics::GLController& glController;	
 
 		// vein
-		vein::Node* rootNode;
 		bool selectedLeft = true;
 		bool firstRender = true;
-		vein::Node* selectedNode = rootNode;
+		vein::Node* selectedNode = configManager.getData().veinDefinition.rootNode.get();
 
 		// blood cells
-		std::vector<bloodEditor> editors;
-		bloodEditor* selectedEditor = nullptr;
+		std::vector<BloodEditor> editors;
+		BloodEditor* selectedEditor = nullptr;
 		int decimalPrecision = 5;
 
 		void finalDraw();
-		void createComponent();
+		void loadEditors();
 
 		// Components
 		void renderMainScreen();

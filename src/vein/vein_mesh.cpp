@@ -61,7 +61,7 @@ namespace vein
 	void SerializableMesh::serializeToCpp() const
 	{	
 		std::cout << "Serializing vein \n";	
-		std::ofstream os(cppSerializationPath);
+		std::ofstream os(veinCppSerializationPath);
 
 		int veinPositionCount = positions.size();
 		// serialize positions

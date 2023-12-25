@@ -40,11 +40,11 @@ namespace serializable
 
 	inline void to_json(json& j, const PhysicsConfig& o)
 	{
-		j = json{};
+		// TODO
 	}
 
 	inline void from_json(const json& j, PhysicsConfig& o)
 	{
-
+		// TODO
 	}
 }
