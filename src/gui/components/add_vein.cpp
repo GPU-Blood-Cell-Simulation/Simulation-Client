@@ -75,9 +75,13 @@ namespace gui
 		{
 			if (ImGui::InputInt(" Segment length ", &length))
 			{
+				if (length < 5)
+					length = 5;
+				if (length > 10000)
+					length = 10000;
+
 				cylinderChanged = true;
 			}
-
 		}
 		else // bifurcation segment
 		{
