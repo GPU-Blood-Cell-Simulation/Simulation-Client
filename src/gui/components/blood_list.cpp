@@ -9,17 +9,10 @@ namespace gui
 
 	void GUIController::renderBloodList()
 	{
-		static int decimalPrecision = 7;
-		ImGui::Text("Defined blood cell models:");
-		ImGui::PushItemWidth(100);
-		ImGui::InputInt("Decimal precision", &decimalPrecision);
-		if (decimalPrecision < 1)
-			decimalPrecision = 1;
-		if (decimalPrecision > 7)
-			decimalPrecision = 7;
-
-		// TODO: save decimalPrecision to config data (do we really need it?)
-
+		if (editors.size() == 0)
+			ImGui::Text("No blood cells defined yet");
+		else
+			ImGui::Text("Defined blood cell models:");
 		ImGui::NewLine();
 		for(auto& editor : editors)
 		{

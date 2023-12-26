@@ -13,7 +13,6 @@ namespace serializable
 
 	struct BloodCellsDefinition : public ICppSerializable
 	{
-		int decimalPrecision = 5;
         std::vector<BloodCellType> bloodCellTypes;
 
         int getBloodCellCount() const
@@ -31,14 +30,12 @@ namespace serializable
 
     inline void to_json(json& j, const BloodCellsDefinition& o)
     {
-        j = json{ {"decimalPrecision", o.decimalPrecision}, {"models", o.bloodCellTypes} };
+        j = json{ {"models", o.bloodCellTypes} };
     }
 
     inline void from_json(const json& j, BloodCellsDefinition& o)
     {
-        j.at("decimalPrecision").get_to(o.decimalPrecision);
 		j.at("models").get_to(o.bloodCellTypes);
-
     }
 }
 

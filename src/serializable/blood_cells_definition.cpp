@@ -31,7 +31,7 @@ namespace serializable
 
 				bloodcell_preset << "\n\nusing " << definition->name << "_Springs = mp_list<\n";
 
-				int precision = decimalPrecision;
+				static constexpr int precision = 7;
 				for (auto spring = definition->springs.cbegin(); spring != definition->springs.cend(); ++spring)
 				{
 					glm::vec3 left = definition->vertices[spring->from], right = definition->vertices[spring->to];
