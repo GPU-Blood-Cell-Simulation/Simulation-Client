@@ -1,8 +1,6 @@
 #include "stream_frame.hpp"
 
 
-#include <iostream>
-
 StreamFrame::StreamFrame(GstSample *sample):
     sample(sample)
 {
@@ -37,8 +35,6 @@ int StreamFrame::getWidth()
 
     int result;
     gst_structure_get_int(structure, "width", &result);
-
-    std::cout << "Width: " << result << std::endl;
 
     return result;
 }
