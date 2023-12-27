@@ -86,10 +86,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(GSTREAMER_1_0_ROOT_MSVC_X86_64)include\glib-2.0\glib;$(GSTREAMER_1_0_ROOT_MSVC_X86_64)include\glib-2.0\;$(GSTREAMER_1_0_ROOT_MSVC_X86_64)include\gstreamer-1.0;$(GSTREAMER_1_0_ROOT_MSVC_X86_64)lib\glib-2.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(GSTREAMER_1_0_ROOT_MSVC_X86_64)lib;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>gobject-2.0.lib;glib-2.0.lib;gstreamer-1.0.lib;gstapp-1.0.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -100,12 +103,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(GSTREAMER_1_0_ROOT_MSVC_X86_64)include\glib-2.0\glib;$(GSTREAMER_1_0_ROOT_MSVC_X86_64)include\glib-2.0\;$(GSTREAMER_1_0_ROOT_MSVC_X86_64)include\gstreamer-1.0;$(GSTREAMER_1_0_ROOT_MSVC_X86_64)lib\glib-2.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(GSTREAMER_1_0_ROOT_MSVC_X86_64)lib;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>gobject-2.0.lib;glib-2.0.lib;gstreamer-1.0.lib;gstapp-1.0.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -120,12 +126,13 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OpenMPSupport>true</OpenMPSupport>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <AdditionalIncludeDirectories>$(GSTREAMER_1_0_ROOT_MSVC_X86_64)include\glib-2.0\glib;$(GSTREAMER_1_0_ROOT_MSVC_X86_64)include\glib-2.0\;$(GSTREAMER_1_0_ROOT_MSVC_X86_64)include\gstreamer-1.0;$(GSTREAMER_1_0_ROOT_MSVC_X86_64)lib\glib-2.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\lib;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(GSTREAMER_1_0_ROOT_MSVC_X86_64)lib;$(SolutionDir)Libraries\lib;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>gobject-2.0.lib;glib-2.0.lib;gstreamer-1.0.lib;gstapp-1.0.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -140,14 +147,15 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OpenMPSupport>true</OpenMPSupport>
+      <AdditionalIncludeDirectories>$(GSTREAMER_1_0_ROOT_MSVC_X86_64)include\glib-2.0\glib;$(GSTREAMER_1_0_ROOT_MSVC_X86_64)include\glib-2.0\;$(GSTREAMER_1_0_ROOT_MSVC_X86_64)include\gstreamer-1.0;$(GSTREAMER_1_0_ROOT_MSVC_X86_64)lib\glib-2.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\lib;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(GSTREAMER_1_0_ROOT_MSVC_X86_64)lib;$(SolutionDir)Libraries\lib;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>gobject-2.0.lib;glib-2.0.lib;gstreamer-1.0.lib;gstapp-1.0.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -170,6 +178,8 @@
     <ClCompile Include="src\gui\components\simulation.cpp" />
     <ClCompile Include="src\gui\components\vein_editor.cpp" />
     <ClCompile Include="src\serializable\util\vec_to_string.cpp" />
+    <ClCompile Include="src\streaming\stream_frame.cpp" />
+    <ClCompile Include="src\streaming\stream_receiver.cpp" />
     <ClCompile Include="src\vein\nodes\bifurcation_final_mesh_generation.cpp" />
     <ClCompile Include="src\vein\nodes\cylinder_node.cpp" />
     <ClCompile Include="src\vein\nodes\node.cpp" />
@@ -493,6 +503,8 @@
     <ClInclude Include="src\graphics\light.hpp" />
     <ClInclude Include="src\serializable\cpp_serializable.hpp" />
     <ClInclude Include="src\serializable\util\vec_to_string.hpp" />
+    <ClInclude Include="src\streaming\stream_frame.hpp" />
+    <ClInclude Include="src\streaming\stream_receiver.hpp" />
     <ClInclude Include="src\vein\nodes\cylinder_node.hpp" />
     <ClInclude Include="src\vein\nodes\root_node.hpp" />
     <ClInclude Include="src\vein\vein_mesh.hpp" />
