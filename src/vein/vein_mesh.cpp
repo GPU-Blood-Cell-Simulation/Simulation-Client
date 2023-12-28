@@ -7,8 +7,6 @@
 #include <fstream>
 #include <memory>
 
-#include <iostream>
-
 namespace vein
 {
 	TempMesh::TempMesh(std::vector<glm::vec3>&& positions, std::vector<unsigned int>&& indices) : positions(positions), indices(indices)
@@ -59,8 +57,6 @@ namespace vein
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), (void*)0);
 
 		glBindVertexArray(0);
-
-		std::cout << "VAO: " << VAO << ", VBO: " << VBO << ", EBO: " << EBO << "\n";
 	}
 
 	void VeinMesh::draw(const Shader* shader) const

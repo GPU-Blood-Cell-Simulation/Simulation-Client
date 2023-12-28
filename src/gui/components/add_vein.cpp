@@ -6,17 +6,19 @@
 
 namespace gui
 {
-	static void recalculateCylinder(vein::Node* selectedNode, bool selectedLeft, float radius, int length)
+	static void recalculateCylinder(vein::Node* selectedNode, bool selectedLeft, float radius, int length, float skewDeg)
 	{
+		float skewRad = glm::pi<float>() * skewDeg / 180.0f;
+
 		if (selectedLeft)
 		{
 			selectedNode->left.reset();
-			selectedNode->left = std::make_unique<vein::CylinderNode>(selectedNode, radius, length, true);
+			selectedNode->left = std::make_unique<vein::CylinderNode>(selectedNode, radius, length, skewRad, true);
 		}
 		else
 		{
 			selectedNode->right.reset();
-			selectedNode->right = std::make_unique<vein::CylinderNode>(selectedNode, radius, length, false);
+			selectedNode->right = std::make_unique<vein::CylinderNode>(selectedNode, radius, length, skewRad, false);
 		}
 	}
 
@@ -46,6 +48,7 @@ namespace gui
 		// Cylinder
 		static int length = vein::cyl::vLayers;
 		static float cylRadius = vein::cyl::veinRadius; 
+		static float cylSkewDeg = 0;
 
 		// Bifurcation
 		static float angleLeftDeg = 45;
@@ -58,7 +61,7 @@ namespace gui
 		{
 			if (segmentType == 0)
 			{
-				recalculateCylinder(selectedNode, selectedLeft, cylRadius, length);
+				recalculateCylinder(selectedNode, selectedLeft, cylRadius, length, cylSkewDeg);
 			}
 			else
 			{		
@@ -90,15 +93,16 @@ namespace gui
 
 				cylinderChanged = true;
 			}
-			if (ImGui::SliderFloat("Segment end radius", &cylRadius, vein::cyl::veinRadius / 3, vein::cyl::veinRadius * 3))
+			if (ImGui::SliderFloat("Segment end radius", &cylRadius, vein::cyl::veinRadius / 3, vein::cyl::veinRadius * 3) ||
+				ImGui::SliderFloat("Skew [deg]", &cylSkewDeg, -90.0f, 90.0f))
 			{
 				cylinderChanged = true;
 			}
 		}
 		else // bifurcation segment
 		{
-			if (ImGui::SliderFloat("left branch angle", &angleLeftDeg, 0.0f, 90.0f) ||
-				ImGui::SliderFloat("right branch angle", &angleRightDeg, 0.0f, 90.0f) ||
+			if (ImGui::SliderFloat("left branch angle [deg]", &angleLeftDeg, 0.0f, 90.0f) ||
+				ImGui::SliderFloat("right branch angle [deg]", &angleRightDeg, 0.0f, 90.0f) ||
 				ImGui::SliderFloat("left branch radius", &bifRadiusLeft, vein::bif::veinRadius / 3, vein::bif::veinRadius * 3) ||
 				ImGui::SliderFloat("right branch radius", &bifRadiusRight, vein::bif::veinRadius / 3, vein::bif::veinRadius * 3))
 			{
@@ -124,7 +128,7 @@ namespace gui
 		// Recalculate nodes based on changes
 		if (cylinderChanged)
 		{
-			recalculateCylinder(selectedNode, selectedLeft, cylRadius, length);
+			recalculateCylinder(selectedNode, selectedLeft, cylRadius, length, cylSkewDeg);
 			return;
 		}
 

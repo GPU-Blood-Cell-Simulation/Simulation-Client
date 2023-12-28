@@ -118,7 +118,10 @@ namespace vein
 			domainPoints[i/2] = toDP(scaledMesh.positions[i + bif::segmentVertexCount - 2 * bif::hLayers]);
 			rangePoints[i/2] = toRP(scaledBaseRangePoints.positions[i]);
 		}
+
 		// left
+		glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), glm::pi<float>() + angleLeft, glm::vec3(0, 0, 1));
+
 		#pragma omp parallel for
 		for (int i = 0; i < 2 * bif::hLayers; i += 2)
 		{
@@ -127,10 +130,12 @@ namespace vein
 			auto rangePos = scaledBaseRangePoints.positions[i];
 			rangePos.x *= radiusLeft / radiusTop;
 			rangePos.z *= radiusLeft / radiusTop;
-			glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), glm::pi<float>() + angleLeft, glm::vec3(0, 0, 1));
 			rangePoints[i/2 + bif::hLayers] = toRP(rotation * glm::vec4(rangePos, 1.0f));
 		}
+
 		// right
+		rotation = glm::rotate(glm::mat4(1.0f), glm::pi<float>() + angleRight, glm::vec3(0, 0, 1));
+
 		#pragma omp parallel for
 		for (int i = 0; i < 2 * bif::hLayers; i += 2)
 		{
@@ -139,7 +144,6 @@ namespace vein
 			auto rangePos = scaledBaseRangePoints.positions[i];
 			rangePos.x *= radiusRight / radiusTop;
 			rangePos.z *= radiusRight / radiusTop;
-			glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), glm::pi<float>() + angleRight, glm::vec3(0, 0, 1));
 			rangePoints[i/2 + 2 * bif::hLayers] = toRP(rotation * glm::vec4(rangePos, 1.0f));
 		}
 	}
@@ -209,25 +213,28 @@ namespace vein
 
 
 	void VeinGenerator::fillCylinderControlPoints(std::array<Domain_Point, 2 * bif::hLayers>& domainPoints, std::array<Range_Point, 2 * bif::hLayers>& rangePoints,
-			const TempMesh& baseMesh, float radiusTop, float radius, int vLayers) const
+			const TempMesh& baseMesh, float radiusTop, float radius, int vLayers, float skew) const
 	{
 		// start - last two rings of base mesh
 		#pragma omp parallel for
 		for (int i = 0; i < 2 * bif::hLayers; i += 2)
 		{
-			auto& basePoint = baseMesh.positions[i];
-			domainPoints[i/2] = toDP(basePoint);
-			rangePoints[i/2] = toRP(basePoint);
+			auto& rangePos = baseMesh.positions[i];
+			domainPoints[i/2] = toDP(rangePos);
+			rangePoints[i/2] = toRP(rangePos);
 		}
+
 		// end
+		glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), skew, glm::vec3(0, 0, 1));
+
 		#pragma omp parallel for
 		for (int i = 0; i < 2 * bif::hLayers; i += 2)
 		{
-			auto basePoint = baseMesh.positions[i + (vLayers - 2) * cyl::hLayers];
-			domainPoints[i/2 + bif::hLayers] = toDP(basePoint);
-			basePoint.x *= radius / radiusTop;
-			basePoint.z *= radius / radiusTop;
-			rangePoints[i/2 + bif::hLayers] = toRP(basePoint);
+			auto rangePos = baseMesh.positions[i + (vLayers - 2) * cyl::hLayers];
+			domainPoints[i/2 + bif::hLayers] = toDP(rangePos);
+			rangePos.x *= radius / radiusTop;
+			rangePos.z *= radius / radiusTop;
+			rangePoints[i/2 + bif::hLayers] = toRP(rotation * glm::vec4(rangePos, 1.0f));
 		}
 	}
 
@@ -270,14 +277,14 @@ namespace vein
 		return TempMesh(std::move(positions), std::move(indices));
 	}
 
-	VeinMesh VeinGenerator::createCylinder(float radiusTop, float radius, int vLayers) const
+	VeinMesh VeinGenerator::createCylinder(float radiusTop, float radius, int vLayers, float skew) const
 	{
 		std::array<Domain_Point, 2 * bif::hLayers> domainPoints;
 		std::array<Range_Point, 2 * bif::hLayers> rangePoints;
 
 		TempMesh baseMesh = createBaseCylinder(radiusTop, vLayers);
 
-		fillCylinderControlPoints(domainPoints, rangePoints, baseMesh, radiusTop, radius, vLayers);
+		fillCylinderControlPoints(domainPoints, rangePoints, baseMesh, radiusTop, radius, vLayers, skew);
 
 		// Calculate the thin plate spline transformation from control points
 		Transformation tps(domainPoints.begin(), domainPoints.end(), rangePoints.begin(), rangePoints.end());

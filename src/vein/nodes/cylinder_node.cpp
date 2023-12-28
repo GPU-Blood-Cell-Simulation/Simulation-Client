@@ -8,11 +8,11 @@
 
 namespace vein
 {
-	CylinderNode::CylinderNode(Node* parent, float radius, int vLayers, bool isLeft) :
+	CylinderNode::CylinderNode(Node* parent, float radius, int vLayers, float skew, bool isLeft) :
 		Node(parent, std::move(VeinGenerator::getInstance().createCylinder
 			(
 			parent == nullptr ? cyl::veinRadius : (isLeft ? parent->leftBranchRadius : parent->rightBranchRadius),
-			radius, vLayers
+			radius, vLayers, skew
 			)
 		), radius, radius, isLeft), vLayers(vLayers)
 	{
@@ -28,7 +28,7 @@ namespace vein
 
 		// Calculate vein segment rotation and translation
 		float angle = isLeft ? parent->leftBranchAngle : parent->rightBranchAngle;
-		leftBranchAngle = rightBranchAngle = angle;
+		leftBranchAngle = rightBranchAngle = angle + skew;
 		auto translation = isLeft ? parent->leftEndCenter : parent->rightEndCenter;
 		model = glm::rotate(glm::translate(glm::mat4(1.0f), translation), angle, glm::vec3(0, 0, 1));
 

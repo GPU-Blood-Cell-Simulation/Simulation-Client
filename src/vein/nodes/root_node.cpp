@@ -6,7 +6,7 @@
 namespace vein
 {
 	RootNode::RootNode() :
-		CylinderNode(nullptr, cyl::veinRadius, cyl::vLayers)
+		CylinderNode(nullptr, cyl::veinRadius, cyl::vLayers, 0)
 	{}
 
 	void RootNode::renderGUI(gui::GUIController& guiController)

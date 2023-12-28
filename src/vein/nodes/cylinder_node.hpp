@@ -9,7 +9,7 @@ namespace vein
 	class CylinderNode : public Node
 	{
 	public:
-		CylinderNode(Node* parent, float radius, int vLayers, bool isLeft = true);
+		CylinderNode(Node* parent, float radius, int vLayers, float skew, bool isLeft = true);
 
 		virtual void renderGUI(gui::GUIController& guiController) override;
 		virtual void addToMesh(TempMesh& finalMesh, unsigned int parentLeftBranchIndicesEnd, unsigned int parentRightBranchIndicesEnd,
