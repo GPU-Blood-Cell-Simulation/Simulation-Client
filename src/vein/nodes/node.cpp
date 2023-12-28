@@ -3,9 +3,18 @@
 
 #include <queue>
 
+#include <iostream>
+
 namespace vein
 {
-	Node::Node(Node* parent, VeinMesh&& mesh, bool isLeft) : parent(parent), mesh(mesh), isLeft(isLeft), id(objectCount++) {}
+	Node::Node(Node* parent, VeinMesh&& mesh, float leftBranchRadius, float rightBranchRadius, bool isLeft) :
+		parent(parent), mesh(mesh), leftBranchRadius(leftBranchRadius), rightBranchRadius(rightBranchRadius), isLeft(isLeft),
+		id(objectCount++) {}
+
+	Node::~Node()
+	{
+		objectCount--;
+	}
 
 	void Node::renderAll(gui::GUIController& guiController, Node* root)
 	{
@@ -81,5 +90,10 @@ namespace vein
 		{
 			right->draw(shader);
 		}
+	}
+
+	std::string Node::getPopupName() const
+	{
+		return "popup{}" + std::to_string(id);
 	}
 }

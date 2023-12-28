@@ -6,7 +6,7 @@
 namespace vein
 {
 	RootNode::RootNode() :
-		CylinderNode(nullptr)
+		CylinderNode(nullptr, cyl::veinRadius, cyl::vLayers)
 	{}
 
 	void RootNode::renderGUI(gui::GUIController& guiController)
@@ -14,10 +14,10 @@ namespace vein
 		if (ImGui::Button(getFullName().c_str()))
 		{
 			if (!left)
-				ImGui::OpenPopup(popupName.c_str());
+				ImGui::OpenPopup(getPopupName().c_str());
 		}
 
-		if (ImGui::BeginPopup(popupName.c_str()))
+		if (ImGui::BeginPopup(getPopupName().c_str()))
 		{
 			if (ImGui::Selectable("Add segment"))
 			{

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../defines.hpp"
 #include "glm_to_tps.hpp"
 #include "vein_mesh.hpp"
 
@@ -10,20 +11,20 @@ namespace vein
 	public:
 		static VeinGenerator& getInstance();
 
-		VeinMesh createBifurcation(float angleLeft, float angleRight) const;
-		VeinMesh createCylinder(int vLayers) const;
+		VeinMesh createBifurcation(float radiusTop, float radiusLeft, float radiusRight, float angleLeft, float angleRight) const;
+		VeinMesh createCylinder(float radiusTop, float radius, int vLayers) const;
 
 	private:
 		VeinGenerator() {}
-		TempMesh createFlatBifurcationSegment() const;
+		TempMesh createFlatBifurcationSegment(float radius) const;
 		TempMesh createRotatedMesh(const TempMesh& mesh, float angle) const;
-		void fillControlPoints(float angleLeft, float angleRight, std::vector<Domain_Point>& domainPoints, std::vector<Range_Point>& rangePoints) const;
-		TempMesh createCombinedBaseBifurcation();
-		TempMesh createBaseRangePoints();
-
-		TempMesh bifurcationBase = createCombinedBaseBifurcation();
-		TempMesh baseRangePoints = createBaseRangePoints();
-		TempMesh leftBranchRangePoints = createRotatedMesh(baseRangePoints, glm::pi<float>() * 2.0f / 3.0f);
-		TempMesh rightBranchRangePoints = createRotatedMesh(baseRangePoints, glm::pi<float>() * 4.0f / 3.0f);
+		void fillBifurcationControlPoints(std::array<Domain_Point, 3 * bif::hLayers>& domainPoints, std::array<Range_Point, 3 * bif::hLayers>& rangePoints,
+			const TempMesh& scaledMesh, const TempMesh& scaledBaseRangePoints, float radiusTop, 
+			float radiusLeft, float radiusRight, float angleLeft, float angleRight) const;
+		TempMesh createCombinedBaseBifurcation(float radius) const;
+		TempMesh createBaseRangePoints(float radius) const;
+		void fillCylinderControlPoints(std::array<Domain_Point, 2 * bif::hLayers>& domainPoints, std::array<Range_Point, 2 * bif::hLayers>& rangePoints,
+			const TempMesh& baseMesh, float radiusTop, float radius, int vLayers) const;
+		TempMesh createBaseCylinder(float radiusTop, int vLayers) const;
 	};
 }

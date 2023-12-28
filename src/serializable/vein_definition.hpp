@@ -10,7 +10,7 @@ namespace serializable
 
 	struct VeinDefinition
 	{
-		std::unique_ptr<vein::Node> rootNode = std::make_unique<vein::RootNode>();
+		std::unique_ptr<vein::Node> rootNode{ new vein::RootNode() };
 	};
 
 	inline void to_json(json& j, const VeinDefinition& o)

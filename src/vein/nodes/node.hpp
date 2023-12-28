@@ -15,6 +15,8 @@ namespace vein
 	class Node
 	{
 	public:
+		virtual ~Node();
+
 		static void renderAll(gui::GUIController& guiController, Node* root);
 
 		void markChildrenToBeDeleted(bool leftChild = true);
@@ -29,10 +31,12 @@ namespace vein
 		std::unique_ptr<Node> left;
 		std::unique_ptr<Node> right;
 
-		float leftBranchAngle;
-		float rightBranchAngle;
+		float leftBranchAngle = 0;
+		float rightBranchAngle = 0;
 		glm::vec3 leftEndCenter;
 		glm::vec3 rightEndCenter;
+		float leftBranchRadius = 0;
+		float rightBranchRadius = 0;
 
 	private:
 		inline static unsigned int objectCount = 0;
@@ -40,16 +44,15 @@ namespace vein
 		bool rightToBeDeleted = false;
 
 	protected:
-		Node(Node* parent, VeinMesh&& mesh, bool isLeft);
+		Node(Node* parent, VeinMesh&& mesh, float leftBranchRadius, float rightBranchRadius, bool isLeft = true);
 
-		virtual const std::string getFullName() const = 0;
+		virtual std::string getFullName() const = 0;
+		std::string getPopupName() const;
 
 		VeinMesh mesh;
 
-		const bool isLeft = true;
-
-		const unsigned int id;
-		const std::string popupName = "popup{}" + std::to_string(id);
+		const bool isLeft;
+		unsigned int id = 0;
     
 		glm::mat4 model;
 	};

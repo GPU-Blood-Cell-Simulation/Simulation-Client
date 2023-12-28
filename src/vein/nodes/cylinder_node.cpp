@@ -8,8 +8,13 @@
 
 namespace vein
 {
-	CylinderNode::CylinderNode(Node* parent, int vLayers, bool isLeft) :
-		Node(parent, std::move(VeinGenerator::getInstance().createCylinder(vLayers)), isLeft), vLayers(vLayers)
+	CylinderNode::CylinderNode(Node* parent, float radius, int vLayers, bool isLeft) :
+		Node(parent, std::move(VeinGenerator::getInstance().createCylinder
+			(
+			parent == nullptr ? cyl::veinRadius : (isLeft ? parent->leftBranchRadius : parent->rightBranchRadius),
+			radius, vLayers
+			)
+		), radius, radius, isLeft), vLayers(vLayers)
 	{
 		// Root node
 		if (!parent)
@@ -39,10 +44,10 @@ namespace vein
 	{
 		if (ImGui::Button(getFullName().c_str()))
 		{
-			ImGui::OpenPopup(popupName.c_str());
+			ImGui::OpenPopup(getPopupName().c_str());
 		}
 
-		if (ImGui::BeginPopup(popupName.c_str()))
+		if (ImGui::BeginPopup(getPopupName().c_str()))
 		{
 			if (!left)
 			{
@@ -141,7 +146,7 @@ namespace vein
 		}
 	}
 
-	const std::string CylinderNode::getFullName() const
+	std::string CylinderNode::getFullName() const
 	{
 		return "Cylinder node\nid: " + std::to_string(id);
 	}
