@@ -1,5 +1,6 @@
 #include "config_manager.hpp"
-#include "blood_cells_definition.hpp"
+#include "blood_cell_json_conversion/blood_cells_definition.hpp"
+#include "vein_node_json_conversion.hpp"
 
 #include "../defines.hpp"
 
@@ -24,12 +25,16 @@ namespace serializable
 
 	void ConfigManager::loadVeinConfig()
 	{
-		// TODO
+		std::ifstream is(veinConfigPath);
+		json jsonData = json::parse(is);
+		data.veinRootNode = std::make_unique<vein::RootNode>(jsonData);
 	}
 
 	void ConfigManager::saveVeinConfig() const
 	{
-		// TODO
+		std::ofstream os(veinConfigPath);
+		json jsonData = data.veinRootNode->generateJson();
+		os << jsonData;
 	}
 
 	void ConfigManager::loadGeneralConfig()
@@ -51,7 +56,7 @@ namespace serializable
 	{
 		// Calculate final vein mesh
 		vein::SerializableMesh finalMesh;
-		data.veinDefinition.rootNode->addToMesh(finalMesh, 0, 0);
+		data.veinRootNode->addToMesh(finalMesh, 0, 0);
 
 		// Serialize vein
 		try

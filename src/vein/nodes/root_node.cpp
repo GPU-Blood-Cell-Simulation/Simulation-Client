@@ -42,4 +42,10 @@ namespace vein
 			left->addToMesh(finalMesh, thisSegmentLastRowStart, thisSegmentLastRowStart);
 		}
 	}
+
+	json RootNode::generateJson() const
+	{
+		auto&& [leftJson, rightJson] = generateLeftAndRightJson();
+		return json{ {nameof(type), type}, leftJson, rightJson};
+	}
 }

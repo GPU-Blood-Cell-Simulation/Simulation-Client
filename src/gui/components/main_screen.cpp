@@ -16,11 +16,11 @@ namespace gui
         }
         if (ImGui::Button("Load vein configuration"))
         {
-            
+            configManager.loadVeinConfig();
         }
         if (ImGui::Button("Save vein configuration"))
         {
-            
+            configManager.saveVeinConfig();
         }
         if (ImGui::Button("Load general configuration"))
         {

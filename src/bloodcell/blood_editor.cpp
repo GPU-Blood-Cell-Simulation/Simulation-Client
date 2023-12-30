@@ -1,7 +1,7 @@
 #include "blood_editor.hpp"
 
 #include "../gui/gui_controller.hpp"
-#include "../serializable/spring.hpp"
+#include "../serializable/blood_cell_json_conversion/spring.hpp"
 
 #include <cstdio>
 #include <utility>

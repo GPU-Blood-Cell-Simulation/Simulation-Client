@@ -96,4 +96,11 @@ namespace vein
 	{
 		return "popup{}" + std::to_string(id);
 	}
+
+	std::tuple<json, json> Node::generateLeftAndRightJson() const
+	{
+		json leftJson = left ? json{ nameof(left), left->generateJson()} : json{ nameof(left), nullptr};
+		json rightJson = right ? json{ nameof(right), right->generateJson() } : json{ nameof(right), nullptr };
+		return std::tuple(std::move(leftJson), std::move(rightJson));
+	}
 }

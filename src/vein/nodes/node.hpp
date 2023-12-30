@@ -1,9 +1,12 @@
 #pragma once
 
 #include "../../graphics/shader.hpp"
+#include "../../serializable/util/nameof.hpp"
 #include "../vein_mesh.hpp"
 
 #include <memory>
+#include <nlohmann/json.hpp>
+#include <tuple>
 
 namespace gui
 {
@@ -12,6 +15,8 @@ namespace gui
 
 namespace vein
 {
+	using json = nlohmann::json;
+
 	class Node
 	{
 	public:
@@ -26,6 +31,7 @@ namespace vein
 		virtual void renderGUI(gui::GUIController& guiController) = 0;
 		virtual void addToMesh(TempMesh& finalMesh, unsigned int parentLeftBranchLastRowStart, unsigned int parentRightBranchLastRowStart, 
 			bool parentIsBifurcation = false) const = 0;
+		virtual json generateJson() const = 0;
 
 		Node* parent;
 		std::unique_ptr<Node> left;
@@ -46,12 +52,21 @@ namespace vein
 	protected:
 		Node(Node* parent, VeinMesh&& mesh, float leftBranchRadius, float rightBranchRadius, bool isLeft = true);
 
+		// constructors needed for json serialization
+		Node() = default;
+		Node(const Node&) = delete;
+		Node(Node&&) = default;
+		Node& operator=(const Node&) = delete;
+		Node& operator=(Node&&) = default;
+
 		virtual std::string getFullName() const = 0;
 		std::string getPopupName() const;
+		std::tuple<json, json> generateLeftAndRightJson() const;
+		void fillLeftAndRightFromJson(const json& j);
 
 		VeinMesh mesh;
 
-		const bool isLeft;
+		const bool isLeft = true;
 		unsigned int id = 0;
     
 		glm::mat4 model;

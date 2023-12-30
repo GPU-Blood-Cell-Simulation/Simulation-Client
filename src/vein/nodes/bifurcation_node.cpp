@@ -12,7 +12,8 @@ namespace vein
 			parent == nullptr ? bif::veinRadius : (isLeft ? parent->leftBranchRadius : parent->rightBranchRadius),
 			radiusLeft, radiusRight, leftRotation, rightRotation
 		)
-		), radiusLeft, radiusRight, isLeft)
+		), radiusLeft, radiusRight, isLeft),
+		radiusLeft(radiusLeft), radiusRight(radiusRight), leftRotation(leftRotation), rightRotation(rightRotation)
 	{
 		if (isLeft)
 		{
@@ -79,8 +80,16 @@ namespace vein
 		}
 	}
 
+
 	std::string BifurcationNode::getFullName() const
 	{
 		return "Bifurcation node\nid: " + std::to_string(id);
+	}
+
+	json BifurcationNode::generateJson() const
+	{
+		auto&& [leftJson, rightJson] = generateLeftAndRightJson();
+		return json{ {nameof(type), type}, {nameof(radiusLeft), radiusLeft}, {nameof(radiusRight), radiusRight},
+			{nameof(leftRotation), leftRotation}, {nameof(rightRotation), rightRotation}, leftJson, rightJson };
 	}
 }

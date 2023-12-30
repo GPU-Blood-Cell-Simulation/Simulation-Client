@@ -14,7 +14,8 @@ namespace vein
 			parent == nullptr ? cyl::veinRadius : (isLeft ? parent->leftBranchRadius : parent->rightBranchRadius),
 			radius, vLayers, skew
 			)
-		), radius, radius, isLeft), vLayers(vLayers)
+		), radius, radius, isLeft),
+		radius(radius), vLayers(vLayers), skew(skew)
 	{
 		// Root node
 		if (!parent)
@@ -149,5 +150,11 @@ namespace vein
 	std::string CylinderNode::getFullName() const
 	{
 		return "Cylinder node\nid: " + std::to_string(id);
+	}
+
+	json CylinderNode::generateJson() const
+	{
+		auto&& [leftJson, rightJson] = generateLeftAndRightJson();
+		return json{ {nameof(type),type}, {nameof(radius), radius}, {nameof(vLayers), vLayers}, {nameof(skew), skew}, leftJson, rightJson };
 	}
 }

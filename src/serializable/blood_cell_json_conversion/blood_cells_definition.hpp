@@ -1,7 +1,7 @@
 #pragma once
 
 #include "blood_cell_type.hpp"
-#include "cpp_serializable.hpp"
+#include "../cpp_serializable.hpp"
 
 #include <algorithm>
 #include <nlohmann/json.hpp>

@@ -59,7 +59,7 @@ namespace gui
 	void GUIController::renderUI()
 	{
         // Delete child nodes that were marked "to be deleted" in the previous frame
-        configManager.getData().veinDefinition.rootNode->deleteMarkedChildren();
+        configManager.getData().veinRootNode->deleteMarkedChildren();
 
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();

@@ -111,7 +111,7 @@
     <ClCompile Include="src\vein\nodes\bifurcation_final_mesh_generation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\serializable\blood_cells_definition.cpp">
+    <ClCompile Include="src\serializable\blood_cell_json_conversion\blood_cells_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\streaming\stream_receiver.cpp">
@@ -120,21 +120,21 @@
     <ClCompile Include="src\streaming\stream_frame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\vein\nodes\json_constructors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\defines.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\serializable\vein_definition.hpp">
+    <ClInclude Include="src\serializable\blood_cell_json_conversion\blood_cells_definition.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\serializable\blood_cells_definition.hpp">
+    <ClInclude Include="src\serializable\blood_cell_json_conversion\blood_cell_type.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\serializable\blood_cell_type.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\serializable\spring.hpp">
+    <ClInclude Include="src\serializable\blood_cell_json_conversion\spring.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\gui\gui_controller.hpp">
@@ -1116,6 +1116,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\streaming\stream_frame.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\serializable\util\vec3_json_conversion.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\serializable\vein_node_json_conversion.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\serializable\util\nameof.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -147,7 +147,7 @@ namespace graphics
 		cylinderSolidColorShader->setMatrix("projection", projection);
 
 		glDisable(GL_CULL_FACE);
-		configManager.getData().veinDefinition.rootNode->draw(cylinderSolidColorShader.get());
+		configManager.getData().veinRootNode->draw(cylinderSolidColorShader.get());
 		glEnable(GL_CULL_FACE);
 	}
 
