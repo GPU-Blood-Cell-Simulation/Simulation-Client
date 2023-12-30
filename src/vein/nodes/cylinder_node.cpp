@@ -9,7 +9,7 @@
 namespace vein
 {
 	CylinderNode::CylinderNode(Node* parent, float radius, int vLayers, float skewYaw, float skewPitch, bool isLeft) :
-		Node(parent, std::move(VeinGenerator::getInstance().createCylinder
+		Node(parent, std::move(VeinGenerator::createCylinder
 			(
 			parent == nullptr ? cyl::veinRadius : (isLeft ? parent->leftBranchRadius : parent->rightBranchRadius),
 			radius, vLayers, skewYaw, skewPitch

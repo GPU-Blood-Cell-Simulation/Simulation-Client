@@ -7,7 +7,7 @@
 namespace vein
 {
 	BifurcationNode::BifurcationNode(Node* parent, float radiusLeft, float radiusRight, float leftYaw, float rightYaw, bool isLeft) :
-		Node(parent, std::move(VeinGenerator::getInstance().createBifurcation
+		Node(parent, std::move(VeinGenerator::createBifurcation
 		(
 			parent == nullptr ? bif::veinRadius : (isLeft ? parent->leftBranchRadius : parent->rightBranchRadius),
 			radiusLeft, radiusRight, leftYaw, rightYaw

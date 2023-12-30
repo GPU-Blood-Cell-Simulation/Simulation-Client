@@ -5,14 +5,7 @@
 
 namespace vein
 {
-	VeinGenerator& VeinGenerator::getInstance()
-	{
-		static VeinGenerator instance;
-		return instance;
-	}
-
-
-	TempMesh VeinGenerator::createFlatBifurcationSegment(float radius) const
+	static TempMesh createFlatBifurcationSegment(float radius)
 	{
 		std::vector<glm::vec3> positions;
 		std::vector<unsigned int> indices;
@@ -60,7 +53,7 @@ namespace vein
 	}
 
 
-	TempMesh VeinGenerator::createRotatedMesh(const TempMesh& mesh, float angle) const
+	static TempMesh createRotatedMesh(const TempMesh& mesh, float angle)
 	{
 		std::vector<glm::vec3> positions(mesh.positions.size());
 		std::vector<unsigned int> indices = mesh.indices;
@@ -77,7 +70,7 @@ namespace vein
 	}
 
 
-	TempMesh VeinGenerator::createCombinedBaseBifurcation(float radius) const
+	static TempMesh createCombinedBaseBifurcation(float radius)
 	{
 		TempMesh base = createFlatBifurcationSegment(radius);
 		TempMesh left = createRotatedMesh(base, glm::pi<float>() * 2 / 3);
@@ -108,8 +101,8 @@ namespace vein
 		return TempMesh(std::move(positions), std::move(indices));
 	}
 
-	void VeinGenerator::fillBifurcationControlPoints(std::array<Domain_Point, 3 * bif::hLayers>& domainPoints, std::array<Range_Point, 3 * bif::hLayers>& rangePoints,
-		const TempMesh& scaledMesh, const TempMesh& scaledBaseRangePoints, float radiusTop, float radiusLeft, float radiusRight,float angleLeft, float angleRight) const
+	static void fillBifurcationControlPoints(std::array<Domain_Point, 3 * bif::hLayers>& domainPoints, std::array<Range_Point, 3 * bif::hLayers>& rangePoints,
+		const TempMesh& scaledMesh, const TempMesh& scaledBaseRangePoints, float radiusTop, float radiusLeft, float radiusRight,float angleLeft, float angleRight)
 	{
 		// base - last two rings of base mesh
 		#pragma omp parallel for
@@ -148,7 +141,7 @@ namespace vein
 		}
 	}
 
-	TempMesh VeinGenerator::createBaseRangePoints(float radius) const
+	static TempMesh createBaseRangePoints(float radius)
 	{
 		std::vector<glm::vec3> positions(2 * bif::hLayers);
 		static constexpr float radianBatch = 2 * glm::pi<float>() / bif::hLayers;
@@ -187,7 +180,7 @@ namespace vein
 	}
 
 
-	VeinMesh VeinGenerator::createBifurcation(float radiusTop, float radiusLeft, float radiusRight, float angleLeft, float angleRight) const
+	VeinMesh VeinGenerator::createBifurcation(float radiusTop, float radiusLeft, float radiusRight, float angleLeft, float angleRight)
 	{
 		std::array<Domain_Point, 3 * bif::hLayers> domainPoints;
 		std::array<Range_Point, 3 * bif::hLayers> rangePoints;
@@ -212,8 +205,8 @@ namespace vein
 	}
 
 
-	void VeinGenerator::fillCylinderControlPoints(std::array<Domain_Point, 2 * bif::hLayers>& domainPoints, std::array<Range_Point, 2 * bif::hLayers>& rangePoints,
-			const TempMesh& baseMesh, float radiusTop, float radius, int vLayers, float skewYaw, float skewPitch) const
+	static void fillCylinderControlPoints(std::array<Domain_Point, 2 * bif::hLayers>& domainPoints, std::array<Range_Point, 2 * bif::hLayers>& rangePoints,
+			const TempMesh& baseMesh, float radiusTop, float radius, int vLayers, float skewYaw, float skewPitch)
 	{
 		// start - last two rings of base mesh
 		#pragma omp parallel for
@@ -238,7 +231,7 @@ namespace vein
 		}
 	}
 
-	TempMesh VeinGenerator::createBaseCylinder(float radiusTop, int vLayers) const
+	static TempMesh createBaseCylinder(float radiusTop, int vLayers)
 	{
 		std::vector<glm::vec3> positions;
 		positions.reserve(vLayers * cyl::hLayers);
@@ -277,7 +270,7 @@ namespace vein
 		return TempMesh(std::move(positions), std::move(indices));
 	}
 
-	VeinMesh VeinGenerator::createCylinder(float radiusTop, float radius, int vLayers, float skewYaw, float skewPitch) const
+	VeinMesh VeinGenerator::createCylinder(float radiusTop, float radius, int vLayers, float skewYaw, float skewPitch)
 	{
 		std::array<Domain_Point, 2 * bif::hLayers> domainPoints;
 		std::array<Range_Point, 2 * bif::hLayers> rangePoints;
