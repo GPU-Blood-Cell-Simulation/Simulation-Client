@@ -7,14 +7,14 @@
 namespace vein
 {
 	BifurcationNode::BifurcationNode(Node* parent, float radiusLeft, float radiusRight,
-		float leftYaw, float rightYaw, float leftPitch, float rightPitch, bool isLeft) :
+		float leftYaw, float rightYaw, bool isLeft) :
 		Node(parent, std::move(VeinGenerator::createBifurcation
 		(
 			parent == nullptr ? bif::veinRadius : (isLeft ? parent->leftBranchRadius : parent->rightBranchRadius),
-			radiusLeft, radiusRight, leftYaw, rightYaw, leftPitch, rightPitch
+			radiusLeft, radiusRight, leftYaw, rightYaw
 		)
 		), radiusLeft, radiusRight, isLeft),
-		radiusLeft(radiusLeft), radiusRight(radiusRight), leftYaw(leftYaw), rightYaw(rightYaw), leftPitch(leftPitch), rightPitch(rightPitch)
+		radiusLeft(radiusLeft), radiusRight(radiusRight), leftYaw(leftYaw), rightYaw(rightYaw)
 	{
 		if (isLeft)
 		{
@@ -100,7 +100,6 @@ namespace vein
 	{
 		auto&& [leftJson, rightJson] = generateLeftAndRightJson();
 		return json{ {nameof(type), type}, {nameof(radiusLeft), radiusLeft}, {nameof(radiusRight), radiusRight},
-			{nameof(leftYaw), leftYaw}, {nameof(rightYaw), rightYaw}, {nameof(leftPitch), leftPitch}, {nameof(rightPitch), rightPitch},
-			leftJson, rightJson };
+			{nameof(leftYaw), leftYaw}, {nameof(rightYaw), rightYaw}, leftJson, rightJson };
 	}
 }

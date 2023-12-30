@@ -55,8 +55,6 @@ namespace vein
 		j.at(nameof(radiusRight)).template get<float>(),
 		j.at(nameof(leftYaw)).template get<float>(),
 		j.at(nameof(rightYaw)).template get<float>(),
-		j.at(nameof(leftPitch)).template get<float>(),
-		j.at(nameof(rightPitch)).template get<float>(),
 		isLeft)
 	{
 		fillLeftAndRightFromJson(j);

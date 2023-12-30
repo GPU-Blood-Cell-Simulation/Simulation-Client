@@ -102,8 +102,7 @@ namespace vein
 	}
 
 	static void fillBifurcationControlPoints(std::array<Domain_Point, 3 * bif::hLayers>& domainPoints, std::array<Range_Point, 3 * bif::hLayers>& rangePoints,
-		const TempMesh& scaledMesh, const TempMesh& scaledBaseRangePoints, float radiusTop, float radiusLeft, float radiusRight,
-		float yawLeft, float yawRight, float pitchLeft, float pitchRight)
+		const TempMesh& scaledMesh, const TempMesh& scaledBaseRangePoints, float radiusTop, float radiusLeft, float radiusRight, float yawLeft, float yawRight)
 	{
 		// base - last two rings of base mesh
 		#pragma omp parallel for
@@ -114,8 +113,7 @@ namespace vein
 		}
 
 		// left
-		glm::mat4 yawRotation = glm::rotate(glm::mat4(1.0f), glm::pi<float>() + yawLeft, glm::vec3(0, 0, 1));
-		glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), pitchLeft, glm::vec3(yawRotation * glm::vec4(1, 0, 0, 1))) * yawRotation;
+		glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), glm::pi<float>() + yawLeft, glm::vec3(0, 0, 1));
 
 		#pragma omp parallel for
 		for (int i = 0; i < 2 * bif::hLayers; i += 2)
@@ -129,8 +127,7 @@ namespace vein
 		}
 
 		// right
-		yawRotation = glm::rotate(glm::mat4(1.0f), glm::pi<float>() + yawRight, glm::vec3(0, 0, 1));
-		rotation = glm::rotate(glm::mat4(1.0f), pitchRight, glm::vec3(yawRotation * glm::vec4(1, 0, 0, 1))) * yawRotation;
+		rotation = glm::rotate(glm::mat4(1.0f), glm::pi<float>() + yawRight, glm::vec3(0, 0, 1));
 
 		#pragma omp parallel for
 		for (int i = 0; i < 2 * bif::hLayers; i += 2)
@@ -183,8 +180,7 @@ namespace vein
 	}
 
 
-	VeinMesh VeinGenerator::createBifurcation(float radiusTop, float radiusLeft, float radiusRight,
-		float yawLeft, float yawRight, float pitchLeft, float pitchRight)
+	VeinMesh VeinGenerator::createBifurcation(float radiusTop, float radiusLeft, float radiusRight, float yawLeft, float yawRight)
 	{
 		std::array<Domain_Point, 3 * bif::hLayers> domainPoints;
 		std::array<Range_Point, 3 * bif::hLayers> rangePoints;
@@ -192,8 +188,7 @@ namespace vein
 		TempMesh scaledMesh = createCombinedBaseBifurcation(radiusTop);
 		TempMesh scaledBasePoints = createBaseRangePoints(radiusTop);
 
-		fillBifurcationControlPoints(domainPoints, rangePoints, scaledMesh, scaledBasePoints, radiusTop, radiusLeft, radiusRight,
-			yawLeft, yawRight, pitchLeft, pitchRight);
+		fillBifurcationControlPoints(domainPoints, rangePoints, scaledMesh, scaledBasePoints, radiusTop, radiusLeft, radiusRight, yawLeft, yawRight);
 
 		// Calculate the thin plate spline transformation from control points
 		Transformation tps(domainPoints.begin(), domainPoints.end(), rangePoints.begin(), rangePoints.end());

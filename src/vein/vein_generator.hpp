@@ -8,7 +8,7 @@ namespace vein
 {
 	namespace VeinGenerator
 	{
-		VeinMesh createBifurcation(float radiusTop, float radiusLeft, float radiusRight, float yawLeft, float yawRight, float pitchLeft, float pitchRight);
+		VeinMesh createBifurcation(float radiusTop, float radiusLeft, float radiusRight, float yawLeft, float yawRight);
 		VeinMesh createCylinder(float radiusTop, float radius, int vLayers, float skewYaw, float skewPitch);
 	}
 }
