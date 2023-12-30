@@ -8,7 +8,8 @@ namespace vein
 	class BifurcationNode : public Node
 	{
 	public:
-		BifurcationNode(Node* parent, float radiusLeft, float radiusRight, float leftYaw, float rightYaw, bool isLeft = true);
+		BifurcationNode(Node* parent, float radiusLeft, float radiusRight,
+			float leftYaw, float rightYaw, float leftPitch, float rightPitch, bool isLeft = true);
 		BifurcationNode(Node* parent, const json& j, bool isLeft = true);
 
 		BifurcationNode() = default;
@@ -28,6 +29,6 @@ namespace vein
 		virtual std::string getFullName() const override;
 
 	private:
-		float radiusLeft, radiusRight, leftYaw, rightYaw;
+		float radiusLeft, radiusRight, leftYaw, rightYaw, leftPitch, rightPitch;
 	};
 }

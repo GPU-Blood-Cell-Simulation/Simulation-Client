@@ -38,7 +38,8 @@ namespace vein
 		fillLeftAndRightFromJson(j);
 	}
 
-	CylinderNode::CylinderNode(Node* parent, const json& j, bool isLeft) : CylinderNode(parent,
+	CylinderNode::CylinderNode(Node* parent, const json& j, bool isLeft) : CylinderNode(
+		parent,
 		j.at(nameof(radius)).template get<float>(),
 		j.at(nameof(vLayers)).template get<int>(),
 		j.at(nameof(skewYaw)).template get<float>(),
@@ -48,11 +49,14 @@ namespace vein
 		fillLeftAndRightFromJson(j);
 	}
 
-	BifurcationNode::BifurcationNode(Node* parent, const json& j, bool isLeft) : BifurcationNode(parent,
+	BifurcationNode::BifurcationNode(Node* parent, const json& j, bool isLeft) : BifurcationNode(
+		parent,
 		j.at(nameof(radiusLeft)).template get<float>(),
 		j.at(nameof(radiusRight)).template get<float>(),
 		j.at(nameof(leftYaw)).template get<float>(),
 		j.at(nameof(rightYaw)).template get<float>(),
+		j.at(nameof(leftPitch)).template get<float>(),
+		j.at(nameof(rightPitch)).template get<float>(),
 		isLeft)
 	{
 		fillLeftAndRightFromJson(j);

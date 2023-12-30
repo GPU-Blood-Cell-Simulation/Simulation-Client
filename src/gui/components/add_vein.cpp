@@ -23,20 +23,25 @@ namespace gui
 		}
 	}
 
-	static void recalculateBifurcation(vein::Node* selectedNode, bool selectedLeft, float radiusLeft, float radiusRight, float angleLeftDeg, float angleRightDeg)
+	static void recalculateBifurcation(vein::Node* selectedNode, bool selectedLeft, float radiusLeft, float radiusRight,
+		float yawLeftDeg, float yawRightDeg, float pitchLeftDeg, float pitchRightDeg)
 	{
-		float angleLeftRad = glm::pi<float>() * angleLeftDeg / 180.0f;
-		float angleRightRad = glm::pi<float>() * angleRightDeg / 180.0f;
+		float yawLeftRad = glm::pi<float>() * yawLeftDeg / 180.0f;
+		float yawRightRad = glm::pi<float>() * yawRightDeg / 180.0f;
+		float pitchLeftRad = glm::pi<float>() * pitchLeftDeg / 180.0f;
+		float pitchRightRad = glm::pi<float>() * pitchRightDeg / 180.0f;
 
 		if (selectedLeft)
 		{
 			selectedNode->left.reset();
-			selectedNode->left = std::make_unique<vein::BifurcationNode>(selectedNode, radiusLeft, radiusRight, -angleLeftRad, angleRightRad, true);
+			selectedNode->left = std::make_unique<vein::BifurcationNode>(selectedNode, radiusLeft, radiusRight,
+				yawLeftRad, yawRightRad, pitchLeftRad, pitchRightRad, true);
 		}
 		else
 		{
 			selectedNode->right.reset();
-			selectedNode->right = std::make_unique<vein::BifurcationNode>(selectedNode, radiusLeft, radiusRight, -angleLeftRad, angleRightRad, false);
+			selectedNode->right = std::make_unique<vein::BifurcationNode>(selectedNode, radiusLeft, radiusRight,
+				yawLeftRad, yawRightRad, pitchLeftRad, pitchRightRad, false);
 		}
 	}
 
@@ -53,8 +58,10 @@ namespace gui
 		static float cylSkewPitchDeg = 0;
 
 		// Bifurcation
-		static float angleLeftDeg = 45;
-		static float angleRightDeg = 45;
+		static float yawLeftDeg = -45;
+		static float yawRightDeg = 45;
+		static float pitchLeftDeg = 0;
+		static float pitchRightDeg = 0;
 		static float bifRadiusLeft = vein::bif::veinRadius;
 		static float bifRadiusRight = vein::bif::veinRadius; 
 
@@ -67,22 +74,17 @@ namespace gui
 			}
 			else
 			{		
-				recalculateBifurcation(selectedNode, selectedLeft, bifRadiusLeft, bifRadiusRight, angleLeftDeg, angleRightDeg);
+				recalculateBifurcation(selectedNode, selectedLeft, bifRadiusLeft, bifRadiusRight,
+					yawLeftDeg, yawRightDeg, pitchLeftDeg, pitchRightDeg);
 			}
 			firstRender = false;
 		}
 
 		ImGui::Text("Vein parameter selection");
 
-		if (ImGui::RadioButton("Cylinder segment", &segmentType, 0))
-		{
-			cylinderChanged = true;
-		}
+		cylinderChanged |= ImGui::RadioButton("Cylinder segment", &segmentType, 0);
 		ImGui::SameLine();
-		if (ImGui::RadioButton("Bifurcation segment", &segmentType, 1))
-		{
-			bifurcationChanged = true;
-		}
+		bifurcationChanged |= ImGui::RadioButton("Bifurcation segment", &segmentType, 1);
 		
 		if (segmentType == 0) // cylinder segment
 		{
@@ -95,22 +97,20 @@ namespace gui
 
 				cylinderChanged = true;
 			}
-			if (ImGui::SliderFloat("Segment end radius", &cylRadius, vein::cyl::veinRadius / 3, vein::cyl::veinRadius * 3) ||
-				ImGui::SliderFloat("Skew - Yaw [deg]", &cylSkewYawDeg, -90.0f, 90.0f) ||
-				ImGui::SliderFloat("Skew - Pitch [deg]", &cylSkewPitchDeg, -90.0f, 90.0f))
-			{
-				cylinderChanged = true;
-			}
+			cylinderChanged |= ImGui::SliderFloat("Segment end radius", &cylRadius, vein::cyl::veinRadius / 3, vein::cyl::veinRadius * 3);
+			cylinderChanged |= ImGui::SliderFloat("Skew - Yaw [deg]", &cylSkewYawDeg, -90.0f, 90.0f);
+			cylinderChanged |= ImGui::SliderFloat("Skew - Pitch [deg]", &cylSkewPitchDeg, -90.0f, 90.0f);
 		}
 		else // bifurcation segment
 		{
-			if (ImGui::SliderFloat("Left branch angle [deg]", &angleLeftDeg, 0.0f, 90.0f) ||
-				ImGui::SliderFloat("Right branch angle [deg]", &angleRightDeg, 0.0f, 90.0f) ||
-				ImGui::SliderFloat("Left branch radius", &bifRadiusLeft, vein::bif::veinRadius / 3, vein::bif::veinRadius * 3) ||
-				ImGui::SliderFloat("Right branch radius", &bifRadiusRight, vein::bif::veinRadius / 3, vein::bif::veinRadius * 3))
-			{
-				bifurcationChanged = true;
-			}
+			bifurcationChanged |= ImGui::SliderFloat("Left branch yaw angle [deg]", &yawLeftDeg, -90.0f, 0.0f);
+			bifurcationChanged |= ImGui::SliderFloat("Left branch pitch angle [deg]", &pitchLeftDeg, -45.0f, 45.0f);
+			ImGui::NewLine();
+			bifurcationChanged |= ImGui::SliderFloat("Right branch yaw angle [deg]", &yawRightDeg, 0.0f, 90.0f);
+			bifurcationChanged |= ImGui::SliderFloat("Right branch pitch angle [deg]", &pitchRightDeg, -45.0f, 45.0f);
+			ImGui::NewLine();
+			bifurcationChanged |= ImGui::SliderFloat("Left branch radius", &bifRadiusLeft, vein::bif::veinRadius / 3, vein::bif::veinRadius * 3);
+			bifurcationChanged |= ImGui::SliderFloat("Right branch radius", &bifRadiusRight, vein::bif::veinRadius / 3, vein::bif::veinRadius * 3);
 		}
 
 		if (ImGui::Button("Cancel"))
@@ -137,7 +137,7 @@ namespace gui
 
 		if (bifurcationChanged)
 		{
-			recalculateBifurcation(selectedNode, selectedLeft, bifRadiusLeft, bifRadiusRight, angleLeftDeg, angleRightDeg);
+			recalculateBifurcation(selectedNode, selectedLeft, bifRadiusLeft, bifRadiusRight, yawLeftDeg, yawRightDeg, pitchLeftDeg, pitchRightDeg);
 			return;
 		}
 	}

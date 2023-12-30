@@ -27,6 +27,7 @@ namespace serializable
 	{
 		std::ifstream is(veinConfigPath);
 		json jsonData = json::parse(is);
+		data.veinRootNode.reset();
 		data.veinRootNode = std::make_unique<vein::RootNode>(jsonData);
 	}
 
