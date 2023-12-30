@@ -11,7 +11,7 @@ namespace vein
 		static VeinGenerator& getInstance();
 
 		VeinMesh createBifurcation(float angleLeft, float angleRight) const;
-		VeinMesh createCylinder() const;
+		VeinMesh createCylinder(int vLayers) const;
 
 	private:
 		VeinGenerator() {}

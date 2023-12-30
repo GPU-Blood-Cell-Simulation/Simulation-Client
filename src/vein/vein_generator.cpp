@@ -192,19 +192,18 @@ namespace vein
 	}
 
 
-	VeinMesh VeinGenerator::createCylinder() const
+	VeinMesh VeinGenerator::createCylinder(int vLayers) const
 	{
 		std::vector<glm::vec3> positions;
-		positions.reserve(cyl::vLayers * cyl::hLayers);
+		positions.reserve(vLayers * cyl::hLayers);
 		std::vector<unsigned int> indices;
-		indices.reserve(6 * (cyl::vLayers - 1) * cyl::hLayers);
+		indices.reserve(6 * (vLayers - 1) * cyl::hLayers);
 
-		float triangleH = cyl::veinHeight / cyl::vLayers;
 		constexpr float radianBatch = 2 * glm::pi<float>() / cyl::hLayers;
 		float triangleBase = radianBatch * cyl::veinRadius;
-		for (int i = 0; i < cyl::vLayers; ++i)
+		for (int i = 0; i < vLayers; ++i)
 		{
-			float h = -i * triangleH;
+			float h = -i * cyl::triangleHeight;
 			for (int j = 0; j < cyl::hLayers; ++j)
 			{
 				float angle = j * radianBatch;
@@ -216,7 +215,7 @@ namespace vein
 					cyl::veinRadius * sin(angle)
 				);
 
-				if (i < cyl::vLayers - 1)
+				if (i < vLayers - 1)
 				{
 					int nextj = (j + 1) % cyl::hLayers;
 					indices.emplace_back((i + 1) * cyl::hLayers + j);

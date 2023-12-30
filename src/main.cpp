@@ -11,7 +11,7 @@
 #include <imgui/backend/imgui_impl_glfw.h>
 #include <imgui/backend/imgui_impl_opengl3.h>
 #include <sstream>
-
+#include <fstream>
 
 //#pragma float_control( except, on )
 // NVIDIA GPU selector for devices with multiple GPUs (e.g. laptops)
@@ -27,7 +27,6 @@ void programLoop(GLFWwindow* window);
 int main()
 {
     // OpenGL setup
-#pragma region OpenGLsetup
     GLFWwindow* window;
 
     if (!glfwInit())
@@ -58,10 +57,7 @@ int main()
     // debug
     glEnable(GL_DEBUG_OUTPUT);
 
-#pragma endregion
-
     // Main simulation loop
-
     programLoop(window);
 
     // Cleanup
@@ -80,15 +76,11 @@ void programLoop(GLFWwindow* window)
     // Create a configuration manager
     serializable::ConfigManager configManager;
 
-    // Create the vein root
-    //std::unique_ptr<vein::Node> veinRoot = std::make_unique<vein::BifurcationNode>(glm::vec3{0,0,0}, 0, glm::pi<float>() * 1/6, glm::pi<float>() * 1 / 6);
-    std::unique_ptr<vein::Node> veinRoot = std::make_unique<vein::RootNode>();
-
     // Create a graphics controller
-    graphics::GLController glController(window, veinRoot.get());
+    graphics::GLController glController(window, configManager);
 
     // Create a GUI controller
-    gui::GUIController guiController(window, glController, configManager, veinRoot.get());
+    gui::GUIController guiController(window, configManager, glController);
 
     // MAIN LOOP HERE - dictated by glfw
 
@@ -99,7 +91,6 @@ void programLoop(GLFWwindow* window)
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         // OpenGL render
-        #pragma region rendering
 
         // simulation / vein editor rendering
         glController.draw();
@@ -126,7 +117,6 @@ void programLoop(GLFWwindow* window)
         {
             frameCount++;
         }
-        #pragma endregion
 
         // Handle user input
         glfwPollEvents();

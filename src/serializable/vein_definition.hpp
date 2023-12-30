@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../vein/nodes/root_node.hpp"
+
 #include <nlohmann/json.hpp>
 
 namespace serializable
@@ -8,7 +10,7 @@ namespace serializable
 
 	struct VeinDefinition
 	{
-
+		std::unique_ptr<vein::Node> rootNode = std::make_unique<vein::RootNode>();
 	};
 
 	inline void to_json(json& j, const VeinDefinition& o)

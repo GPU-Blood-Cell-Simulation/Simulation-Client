@@ -1,7 +1,6 @@
 #include "gui_controller.hpp"
 
 #include "../vein/nodes/node.hpp"
-
 #include <GLFW/glfw3.h>
 #include <imgui/backend/imgui_impl_glfw.h>
 #include <imgui/backend/imgui_impl_opengl3.h>
@@ -9,11 +8,6 @@
 
 namespace gui
 {
-    void GUIController::createComponent()
-    {
-        
-    }
-
     void GUIController::setMode(Mode mode)
     {
         this->mode = mode;
@@ -33,8 +27,8 @@ namespace gui
         return ImGui::GetIO();
     }
 
-	GUIController::GUIController(GLFWwindow* window, graphics::GLController& glController, serializable::ConfigManager& configManager, vein::Node* rootNode) :
-        io(createImguiContext()), glController(glController), configManager(configManager), rootNode(rootNode)
+	GUIController::GUIController(GLFWwindow* window, serializable::ConfigManager& configManager, graphics::GLController& glController) :
+        io(createImguiContext()), configManager(configManager), glController(glController)
 	{
         // Setup Dear ImGui context
         io = ImGui::GetIO(); (void)io;
@@ -65,10 +59,7 @@ namespace gui
 	void GUIController::renderUI()
 	{
         // Delete child nodes that were marked "to be deleted" in the previous frame
-        rootNode->deleteMarkedChildren();
-
-        static int previousButtonClicked = 0;
-        static int buttonClicked = 0;
+        configManager.getData().veinDefinition.rootNode->deleteMarkedChildren();
 
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
@@ -97,7 +88,7 @@ namespace gui
             renderGeneralEditor();
             break;
         case Mode::bloodEdit:
-            renderBloodEditor();
+            renderBloodList();
             break;
         case Mode::veinEdit:
             renderVeinEditor();
@@ -107,6 +98,12 @@ namespace gui
             break;
         case Mode::simulation:
             renderSimulation();
+            break;
+        case Mode::configureBloodCellSprings:
+            renderBloodCellSpringsDetails();
+            break;
+        case Mode::configureBloodCellVertices:
+            renderBloodCellVerticesDetails();
             break;
         }
 
@@ -130,6 +127,17 @@ namespace gui
             ImGui::RenderPlatformWindowsDefault();
             glfwMakeContextCurrent(backup_current_context);
         }
+    }
+
+    void GUIController::loadEditors()
+    {
+        editors.clear();
+        for (auto&& type : configManager.getData().bloodCellsDefinition.bloodCellTypes)
+        {
+            editors.push_back(BloodEditor(type));
+        }
+
+        releaseEditor();
     }
 }
 

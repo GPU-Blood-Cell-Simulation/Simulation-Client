@@ -2,9 +2,11 @@
 
 #include "../graphics/glcontroller.hpp"
 #include "../serializable/config_manager.hpp"
+#include "../serializable/blood_cells_definition.hpp"
 #include "../vein/nodes/node.hpp"
-
+#include "../bloodcell/blood_editor.hpp"
 #include <imgui/imgui/imgui.h>
+#include <vector>
 
 namespace gui
 {
@@ -15,39 +17,47 @@ namespace gui
 		bloodEdit,
 		veinEdit,
 		addVein,
-		simulation
+		simulation,
+		configureBloodCellSprings, 
+		configureBloodCellVertices
 	};
 
 	class GUIController
 	{
 	public:
-		GUIController(GLFWwindow* window, graphics::GLController& glController, serializable::ConfigManager& configManager, vein::Node* rootNode);
+		GUIController(GLFWwindow* window, serializable::ConfigManager& configManager, graphics::GLController& glController);
 		void renderUI();
 
 		void setMode(Mode mode);
 		void selectNode(vein::Node* node, bool selectedLeft = true);
-
+		inline void releaseEditor() { selectedEditor = nullptr; }
 	private:
 		ImGuiIO& io;
-
+		
 		Mode mode = Mode::mainScreen;
-		graphics::GLController& glController;
 		serializable::ConfigManager& configManager;
-		vein::Node* rootNode;
+		graphics::GLController& glController;	
 
+		// vein
 		bool selectedLeft = true;
 		bool firstRender = true;
-		vein::Node* selectedNode = rootNode;
+		vein::Node* selectedNode = configManager.getData().veinDefinition.rootNode.get();
+
+		// blood cells
+		std::vector<BloodEditor> editors;
+		BloodEditor* selectedEditor = nullptr;
 
 		void finalDraw();
-		void createComponent();
+		void loadEditors();
 
 		// Components
 		void renderMainScreen();
 		void renderGeneralEditor();
-		void renderBloodEditor();
+		void renderBloodList();
 		void renderVeinEditor();
 		void renderAddVein();
 		void renderSimulation();
+		void renderBloodCellSpringsDetails();
+		void renderBloodCellVerticesDetails();
 	};
 }
