@@ -12,7 +12,7 @@ namespace vein
 		static VeinGenerator& getInstance();
 
 		VeinMesh createBifurcation(float radiusTop, float radiusLeft, float radiusRight, float angleLeft, float angleRight) const;
-		VeinMesh createCylinder(float radiusTop, float radius, int vLayers, float skew) const;
+		VeinMesh createCylinder(float radiusTop, float radius, int vLayers, float skewYaw, float skewPitch) const;
 
 	private:
 		VeinGenerator() {}
@@ -24,7 +24,7 @@ namespace vein
 		TempMesh createCombinedBaseBifurcation(float radius) const;
 		TempMesh createBaseRangePoints(float radius) const;
 		void fillCylinderControlPoints(std::array<Domain_Point, 2 * bif::hLayers>& domainPoints, std::array<Range_Point, 2 * bif::hLayers>& rangePoints,
-			const TempMesh& baseMesh, float radiusTop, float radius, int vLayers, float skew) const;
+			const TempMesh& baseMesh, float radiusTop, float radius, int vLayers, float skewYaw, float skewPitch) const;
 		TempMesh createBaseCylinder(float radiusTop, int vLayers) const;
 	};
 }

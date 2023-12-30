@@ -37,8 +37,10 @@ namespace vein
 		std::unique_ptr<Node> left;
 		std::unique_ptr<Node> right;
 
-		float leftBranchAngle = 0;
-		float rightBranchAngle = 0;
+		float leftBranchYaw = 0;
+		float rightBranchYaw = 0;
+		float leftBranchPitch = 0;
+		float rightBranchPitch = 0;
 		glm::vec3 leftEndCenter;
 		glm::vec3 rightEndCenter;
 		float leftBranchRadius = 0;
@@ -63,6 +65,7 @@ namespace vein
 		std::string getPopupName() const;
 		std::tuple<json, json> generateLeftAndRightJson() const;
 		void fillLeftAndRightFromJson(const json& j);
+		void setupModelMatrix(const glm::vec3& translation, float yawAngle, float pitchAngle);
 
 		VeinMesh mesh;
 

@@ -29,7 +29,7 @@ namespace detail
 	// Decomposes the mode matrix to translations,rotation scale components
 
 	template<typename T, qualifier Q>
-	GLM_FUNC_QUALIFIER bool decompose(mat<4, 4, T, Q> const& ModelMatrix, vec<3, T, Q> & Scale, qua<T, Q> & Orientation, vec<3, T, Q> & Translation, vec<3, T, Q> & Skew, vec<4, T, Q> & Perspective)
+	GLM_FUNC_QUALIFIER bool decompose(mat<4, 4, T, Q> const& ModelMatrix, vec<3, T, Q> & Scale, qua<T, Q> & Orientation, vec<3, T, Q> & Translation, vec<3, T, Q> & skewYaw, vec<4, T, Q> & Perspective)
 	{
 		mat<4, 4, T, Q> LocalMatrix(ModelMatrix);
 
@@ -102,25 +102,25 @@ namespace detail
 		Row[0] = detail::scale(Row[0], static_cast<T>(1));
 
 		// Compute XY shear factor and make 2nd row orthogonal to 1st.
-		Skew.z = dot(Row[0], Row[1]);
-		Row[1] = detail::combine(Row[1], Row[0], static_cast<T>(1), -Skew.z);
+		skewYaw.z = dot(Row[0], Row[1]);
+		Row[1] = detail::combine(Row[1], Row[0], static_cast<T>(1), -skewYaw.z);
 
 		// Now, compute Y scale and normalize 2nd row.
 		Scale.y = length(Row[1]);
 		Row[1] = detail::scale(Row[1], static_cast<T>(1));
-		Skew.z /= Scale.y;
+		skewYaw.z /= Scale.y;
 
 		// Compute XZ and YZ shears, orthogonalize 3rd row.
-		Skew.y = glm::dot(Row[0], Row[2]);
-		Row[2] = detail::combine(Row[2], Row[0], static_cast<T>(1), -Skew.y);
-		Skew.x = glm::dot(Row[1], Row[2]);
-		Row[2] = detail::combine(Row[2], Row[1], static_cast<T>(1), -Skew.x);
+		skewYaw.y = glm::dot(Row[0], Row[2]);
+		Row[2] = detail::combine(Row[2], Row[0], static_cast<T>(1), -skewYaw.y);
+		skewYaw.x = glm::dot(Row[1], Row[2]);
+		Row[2] = detail::combine(Row[2], Row[1], static_cast<T>(1), -skewYaw.x);
 
 		// Next, get Z scale and normalize 3rd row.
 		Scale.z = length(Row[2]);
 		Row[2] = detail::scale(Row[2], static_cast<T>(1));
-		Skew.y /= Scale.z;
-		Skew.x /= Scale.z;
+		skewYaw.y /= Scale.z;
+		skewYaw.x /= Scale.z;
 
 		// At this point, the matrix (in rows[]) is orthonormal.
 		// Check for a coordinate system flip.  If the determinant

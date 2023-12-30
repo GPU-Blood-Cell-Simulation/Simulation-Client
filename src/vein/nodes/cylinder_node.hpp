@@ -9,7 +9,7 @@ namespace vein
 	class CylinderNode : public Node
 	{
 	public:
-		CylinderNode(Node* parent, float radius, int vLayers, float skew, bool isLeft = true);
+		CylinderNode(Node* parent, float radius, int vLayers, float skewYaw, float skewPitch, bool isLeft = true);
 		CylinderNode(Node* parent, const json& j, bool isLeft = true);
 
 		CylinderNode() = default;
@@ -30,6 +30,7 @@ namespace vein
 
 		float radius;
 		int vLayers;
-		float skew;
+		float skewYaw;
+		float skewPitch;
 	};
 }

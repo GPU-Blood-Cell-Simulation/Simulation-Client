@@ -6,31 +6,40 @@
 
 namespace vein
 {
-	BifurcationNode::BifurcationNode(Node* parent, float radiusLeft, float radiusRight, float leftRotation, float rightRotation, bool isLeft) :
+	BifurcationNode::BifurcationNode(Node* parent, float radiusLeft, float radiusRight, float leftYaw, float rightYaw, bool isLeft) :
 		Node(parent, std::move(VeinGenerator::getInstance().createBifurcation
 		(
 			parent == nullptr ? bif::veinRadius : (isLeft ? parent->leftBranchRadius : parent->rightBranchRadius),
-			radiusLeft, radiusRight, leftRotation, rightRotation
+			radiusLeft, radiusRight, leftYaw, rightYaw
 		)
 		), radiusLeft, radiusRight, isLeft),
-		radiusLeft(radiusLeft), radiusRight(radiusRight), leftRotation(leftRotation), rightRotation(rightRotation)
+		radiusLeft(radiusLeft), radiusRight(radiusRight), leftYaw(leftYaw), rightYaw(rightYaw)
 	{
 		if (isLeft)
 		{
-			leftBranchAngle = parent->leftBranchAngle + leftRotation;
-			rightBranchAngle = parent->leftBranchAngle + rightRotation;
+			leftBranchYaw = parent->leftBranchYaw + leftYaw;
+			rightBranchYaw = parent->leftBranchYaw + rightYaw;
+			leftBranchPitch = parent->leftBranchPitch;
+			rightBranchPitch = parent->leftBranchPitch;
 		}
 		else
 		{
-			leftBranchAngle = parent->rightBranchAngle + leftRotation;
-			rightBranchAngle = parent->rightBranchAngle + rightRotation;
+			leftBranchYaw = parent->rightBranchYaw + leftYaw;
+			rightBranchYaw = parent->rightBranchYaw + rightYaw;
+			leftBranchPitch = parent->rightBranchPitch;
+			rightBranchPitch = parent->rightBranchPitch;
 		}
 
 		glm::vec3 bifurcationHeightOffset = { 0, - mesh.positions[bif::vLayers * bif::hLayers - 1].y, 0 };
 		auto translation = isLeft ? parent->leftEndCenter : parent->rightEndCenter;
-		float angle = isLeft ? parent->leftBranchAngle : parent->rightBranchAngle;
-		translation += glm::vec3(glm::rotate(glm::mat4(1.0f), angle, glm::vec3(0, 0, 1)) * glm::vec4(bifurcationHeightOffset, 1.0f));
-		model = glm::rotate(glm::translate(glm::mat4(1.0f), translation), angle, glm::vec3(0, 0, 1));
+		float yawAngle = isLeft ? parent->leftBranchYaw : parent->rightBranchYaw;
+		float pitchAngle = isLeft ? parent->leftBranchPitch : parent->rightBranchPitch;
+		translation += glm::vec3(
+			glm::rotate(glm::mat4(1.0f), pitchAngle, glm::vec3(1, 0, 0)) *
+			glm::rotate(glm::mat4(1.0f), yawAngle, glm::vec3(0, 0, 1)) *
+			glm::vec4(bifurcationHeightOffset, 1.0f)
+		);
+		setupModelMatrix(translation, yawAngle, pitchAngle);
 
 		auto distLeftBranch = mesh.positions[2 * bif::segmentVertexCount - 1] - mesh.positions[2 * bif::segmentVertexCount - 1 - bif::hLayers / 2];
 		leftEndCenter = model * glm::vec4(
@@ -90,6 +99,6 @@ namespace vein
 	{
 		auto&& [leftJson, rightJson] = generateLeftAndRightJson();
 		return json{ {nameof(type), type}, {nameof(radiusLeft), radiusLeft}, {nameof(radiusRight), radiusRight},
-			{nameof(leftRotation), leftRotation}, {nameof(rightRotation), rightRotation}, leftJson, rightJson };
+			{nameof(leftYaw), leftYaw}, {nameof(rightYaw), rightYaw}, leftJson, rightJson };
 	}
 }
