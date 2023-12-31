@@ -46,6 +46,7 @@ include_directories(${CMAKE_SOURCE_DIR}/Libraries/include/)
 target_link_libraries(Simulation_client PUBLIC
   OpenMP::OpenMP_CXX
   ${CMAKE_SOURCE_DIR}/Libraries/lib/libglfw3.a
+  ${CMAKE_SOURCE_DIR}/Libraries/lib/libenet.a
   imgui
   PkgConfig::gstreamer
   PkgConfig::gstreamer-app
