@@ -42,7 +42,7 @@ namespace vein
 		parent,
 		j.at(nameof(radius)).template get<float>(),
 		j.at(nameof(vLayers)).template get<int>(),
-		j.at(nameof(skewYaw)).template get<float>(),
+		j.at(nameof(skewRoll)).template get<float>(),
 		j.at(nameof(skewPitch)).template get<float>(),
 		isLeft)
 	{
@@ -53,8 +53,10 @@ namespace vein
 		parent,
 		j.at(nameof(radiusLeft)).template get<float>(),
 		j.at(nameof(radiusRight)).template get<float>(),
-		j.at(nameof(leftYaw)).template get<float>(),
-		j.at(nameof(rightYaw)).template get<float>(),
+		j.at(nameof(leftRoll)).template get<float>(),
+		j.at(nameof(rightRoll)).template get<float>(),
+		j.at(nameof(leftPitch)).template get<float>(),
+		j.at(nameof(rightPitch)).template get<float>(),
 		isLeft)
 	{
 		fillLeftAndRightFromJson(j);

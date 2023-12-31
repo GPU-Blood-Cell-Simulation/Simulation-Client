@@ -104,10 +104,10 @@ namespace vein
 		return std::tuple(std::move(leftJson), std::move(rightJson));
 	}
 
-	void Node::setupModelMatrix(const glm::vec3& translation, float yawAngle, float pitchAngle)
+	void Node::setupModelMatrix(const glm::vec3& translation, float rollAngle, float pitchAngle)
 	{
 		model = glm::translate(glm::mat4(1.0f), translation) *
 			glm::rotate(glm::mat4(1.0f), pitchAngle, glm::vec3(1, 0, 0)) *
-			glm::rotate(glm::mat4(1.0f), yawAngle, glm::vec3(0, 0, 1));
+			glm::rotate(glm::mat4(1.0f), rollAngle, glm::vec3(0, 0, 1));
 	}
 }

@@ -4,6 +4,8 @@
 #include "../../serializable/util/nameof.hpp"
 #include "../vein_mesh.hpp"
 
+#include <glm/gtc/quaternion.hpp>
+#include <glm/gtx/quaternion.hpp>
 #include <memory>
 #include <nlohmann/json.hpp>
 #include <tuple>
@@ -37,10 +39,9 @@ namespace vein
 		std::unique_ptr<Node> left;
 		std::unique_ptr<Node> right;
 
-		float leftBranchYaw = 0;
-		float rightBranchYaw = 0;
-		float leftBranchPitch = 0;
-		float rightBranchPitch = 0;
+		glm::quat leftQuat;
+		glm::quat rightQuat;
+
 		glm::vec3 leftEndCenter;
 		glm::vec3 rightEndCenter;
 		float leftBranchRadius = 0;
@@ -65,13 +66,13 @@ namespace vein
 		std::string getPopupName() const;
 		std::tuple<json, json> generateLeftAndRightJson() const;
 		void fillLeftAndRightFromJson(const json& j);
-		void setupModelMatrix(const glm::vec3& translation, float yawAngle, float pitchAngle);
+		void setupModelMatrix(const glm::vec3& translation, float rollAngle, float pitchAngle);
 
 		VeinMesh mesh;
 
 		const bool isLeft = true;
 		unsigned int id = 0;
     
-		glm::mat4 model;
+		glm::mat4 model{1.0f};
 	};
 }

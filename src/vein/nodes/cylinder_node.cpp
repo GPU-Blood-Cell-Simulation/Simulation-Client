@@ -8,32 +8,30 @@
 
 namespace vein
 {
-	CylinderNode::CylinderNode(Node* parent, float radius, int vLayers, float skewYaw, float skewPitch, bool isLeft) :
+	CylinderNode::CylinderNode(Node* parent, float radius, int vLayers, float skewRoll, float skewPitch, bool isLeft) :
 		Node(parent, std::move(VeinGenerator::createCylinder
 			(
 			parent == nullptr ? cyl::veinRadius : (isLeft ? parent->leftBranchRadius : parent->rightBranchRadius),
-			radius, vLayers, skewYaw, skewPitch
+			radius, vLayers, skewRoll, skewPitch
 			)
 		), radius, radius, isLeft),
-		radius(radius), vLayers(vLayers), skewYaw(skewYaw), skewPitch(skewPitch)
+		radius(radius), vLayers(vLayers), skewRoll(skewRoll), skewPitch(skewPitch)
 	{
 		// Root node
 		if (!parent)
 		{
 			leftEndCenter = rightEndCenter = {0, -cyl::vLayers * cyl::triangleHeight + cyl::triangleHeight , 0};
-			model = glm::identity<glm::mat4>();
 			mesh.setupMesh();
 			return;
 		}
 
 		// Calculate vein segment rotation and translation
-		float yawAngle = isLeft ? parent->leftBranchYaw : parent->rightBranchYaw;
-		leftBranchYaw = rightBranchYaw = yawAngle + skewYaw;
-		float pitchAngle = isLeft ? parent->leftBranchPitch : parent->rightBranchPitch;
-		leftBranchPitch = rightBranchPitch = pitchAngle + skewPitch;
+		auto& parentQuat = isLeft ? parent->leftQuat : parent->rightQuat;
+		auto rotation = glm::toMat4(parentQuat) * glm::toMat4(quat(glm::vec3(skewPitch, 0, skewRoll)));
+		leftQuat = rightQuat = glm::toQuat(rotation);
 
 		auto translation = isLeft ? parent->leftEndCenter : parent->rightEndCenter;
-		setupModelMatrix(translation, yawAngle, pitchAngle);
+		model = glm::translate(glm::mat4(1.0f), translation) * glm::toMat4(parentQuat);
 
 		auto dist = mesh.positions[mesh.positions.size() - 1] - mesh.positions[mesh.positions.size() - 1 - cyl::hLayers/2];
 		leftEndCenter = rightEndCenter = model * glm::vec4(
@@ -158,6 +156,6 @@ namespace vein
 	{
 		auto&& [leftJson, rightJson] = generateLeftAndRightJson();
 		return json{ {nameof(type),type}, {nameof(radius), radius}, {nameof(vLayers), vLayers},
-			{nameof(skewYaw), skewYaw}, {nameof(skewPitch), skewPitch}, leftJson, rightJson };
+			{nameof(skewRoll), skewRoll}, {nameof(skewPitch), skewPitch}, leftJson, rightJson };
 	}
 }

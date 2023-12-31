@@ -9,7 +9,7 @@ namespace vein
 	{
 	public:
 		BifurcationNode(Node* parent, float radiusLeft, float radiusRight,
-			float leftYaw, float rightYaw, bool isLeft = true);
+			float leftRoll, float rightRoll, float leftPitch, float rightPitch, bool isLeft = true);
 		BifurcationNode(Node* parent, const json& j, bool isLeft = true);
 
 		BifurcationNode() = default;
@@ -29,6 +29,6 @@ namespace vein
 		virtual std::string getFullName() const override;
 
 	private:
-		float radiusLeft, radiusRight, leftYaw, rightYaw;
+		float radiusLeft, radiusRight, leftRoll, rightRoll, leftPitch, rightPitch;
 	};
 }
