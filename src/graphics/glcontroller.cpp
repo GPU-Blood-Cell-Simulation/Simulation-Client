@@ -4,6 +4,7 @@
 
 #include "../serializable/config_data.hpp"
 #include "../defines.hpp"
+#include "stream_input_controller.hpp"
 
 #ifdef _WIN32
 #include <windows.h>
@@ -69,6 +70,11 @@ namespace graphics
 
 		glGenFramebuffers(1, &streamFBO);
         glBindFramebuffer(GL_READ_FRAMEBUFFER, streamFBO);
+
+		serverCommunication.connectToServer(4322);
+
+		SimulationInputController controller;
+		controller.setInputCallback(window, &serverCommunication);
 	}
 
 	void GLController::endSimulation()
@@ -82,12 +88,22 @@ namespace graphics
 		glDeleteFramebuffers(1, &streamFBO);
 
 		streamReceiver.pause();
+
+		serverCommunication.disconnect();
+
+		glfwSetWindowUserPointer(window, &inputController);
+		glfwSetKeyCallback(window, InputController::handleUserInput);
 	}
 
 
 	void GLController::handleInput()
 	{
-		inputController.adjustParametersUsingInput(camera);
+		if (mode == Mode::Simulation) {
+			serverCommunication.pollMessages();
+		}
+		else {
+			inputController.adjustParametersUsingInput(camera);
+		}		
 	}
 
 

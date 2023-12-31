@@ -8,6 +8,7 @@
 #include "../serializable/config_manager.hpp"
 #include "../vein/nodes/bifurcation_node.hpp"
 #include "../streaming/stream_receiver.hpp"
+#include "../communication/server_communication_controller.hpp"
 
 #include <glm/mat4x4.hpp>
 #include <glm/vec3.hpp>
@@ -56,6 +57,9 @@ namespace graphics
 
 		serializable::ConfigManager& configManager;
 
+		ServerCommunicationController serverCommunication;
+
+		vein::Node* veinRoot;
 		std::unique_ptr<vein::VeinMesh> finalMesh;
 
 		Camera camera;
