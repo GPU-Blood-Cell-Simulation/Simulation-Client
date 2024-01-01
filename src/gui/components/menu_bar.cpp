@@ -1,5 +1,7 @@
 #include "../gui_controller.hpp"
 
+#include "../themes/themes.hpp"
+
 #include <imgui_file_dialog/ImGuiFileDialog.h>
 
 namespace gui
@@ -43,6 +45,26 @@ namespace gui
                     selectSaveFileDialog(IoOperation::bloodCellSave);
                 if (ImGui::MenuItem("Vein"))
                     selectSaveFileDialog(IoOperation::veinSave);
+                ImGui::EndMenu();
+            }
+            if (ImGui::BeginMenu("Themes"))
+            {
+                static int selectedTheme = 0;
+                if (ImGui::MenuItem("Default dark", nullptr, selectedTheme == 0))
+                {
+                    selectedTheme = 0;
+                    styles::dark::setTheme();
+                }
+                if (ImGui::MenuItem("Default light", nullptr, selectedTheme == 1))
+                {
+                    selectedTheme = 1;
+                    styles::light::setTheme();
+                }
+                if (ImGui::MenuItem("Cinder", nullptr, selectedTheme == 2))
+                {
+                    selectedTheme = 2;
+                    styles::cinder::setTheme();
+                }
                 ImGui::EndMenu();
             }
             ImGui::EndMenuBar();

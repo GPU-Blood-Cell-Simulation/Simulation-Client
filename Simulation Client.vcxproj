@@ -185,6 +185,7 @@
     <ClCompile Include="src\gui\components\vein_editor.cpp" />
     <ClCompile Include="src\gui\components\dialog_window.cpp" />
     <ClCompile Include="src\gui\extensions.cpp" />
+    <ClCompile Include="src\gui\themes\cinder.cpp" />
     <ClCompile Include="src\serializable\blood_cell_json_conversion\blood_cells_definition.cpp" />
     <ClCompile Include="src\serializable\util\vec_to_string.cpp" />
     <ClCompile Include="src\streaming\stream_frame.cpp" />
@@ -520,6 +521,7 @@
     <ClInclude Include="src\graphics\inputcontroller.hpp" />
     <ClInclude Include="src\graphics\light.hpp" />
     <ClInclude Include="src\gui\extensions.hpp" />
+    <ClInclude Include="src\gui\themes\themes.hpp" />
     <ClInclude Include="src\serializable\cpp_serializable.hpp" />
     <ClInclude Include="src\serializable\exceptions.hpp" />
     <ClInclude Include="src\serializable\util\nameof.hpp" />
