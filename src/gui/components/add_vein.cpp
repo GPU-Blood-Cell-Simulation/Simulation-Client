@@ -6,29 +6,42 @@
 
 namespace gui
 {
-	static void recalculateCylinder(vein::Node* selectedNode, bool selectedLeft, int length)
+	static void recalculateCylinder(vein::Node* selectedNode, bool selectedLeft, float radius, int length, float skewRollDeg, float skewPitchDeg)
 	{
+		float skewRollRad = glm::pi<float>() * skewRollDeg / 180.0f;
+		float skewPitchRad = glm::pi<float>() * skewPitchDeg / 180.0f;
+
 		if (selectedLeft)
 		{
-			selectedNode->left = std::make_unique<vein::CylinderNode>(vein::CylinderNode(selectedNode, length, true));
+			selectedNode->left.reset();
+			selectedNode->left = std::make_unique<vein::CylinderNode>(selectedNode, radius, length, skewRollRad, skewPitchRad, true);
 		}
 		else
 		{
-			selectedNode->right = std::make_unique<vein::CylinderNode>(vein::CylinderNode(selectedNode, length, false));
+			selectedNode->right.reset();
+			selectedNode->right = std::make_unique<vein::CylinderNode>(selectedNode, radius, length, skewRollRad, skewPitchRad, false);
 		}
 	}
 
-	static void recalculateBifurcation(vein::Node* selectedNode, bool selectedLeft, float angleLeftDeg, float angleRightDeg)
+	static void recalculateBifurcation(vein::Node* selectedNode, bool selectedLeft, float radiusLeft, float radiusRight,
+		float rollLeftDeg, float rollRightDeg, float pitchLeftDeg, float pitchRightDeg)
 	{
-		float angleLeftRad = glm::pi<float>() * angleLeftDeg / 180.0f;
-		float angleRightRad = glm::pi<float>() * angleRightDeg / 180.0f;
+		float rollLeftRad = glm::pi<float>() * rollLeftDeg / 180.0f;
+		float rollRightRad = glm::pi<float>() * rollRightDeg / 180.0f;
+		float pitchLeftRad = glm::pi<float>() * pitchLeftDeg / 180.0f;
+		float pitchRightRad = glm::pi<float>() * pitchRightDeg / 180.0f;
+
 		if (selectedLeft)
 		{
-			selectedNode->left = std::make_unique<vein::BifurcationNode>(vein::BifurcationNode(selectedNode, -angleLeftRad, angleRightRad, true));
+			selectedNode->left.reset();
+			selectedNode->left = std::make_unique<vein::BifurcationNode>(selectedNode, radiusLeft, radiusRight,
+				rollLeftRad, rollRightRad, pitchLeftRad, pitchRightRad,  true);
 		}
 		else
 		{
-			selectedNode->right = std::make_unique<vein::BifurcationNode>(vein::BifurcationNode(selectedNode, -angleLeftRad, angleRightRad, false));
+			selectedNode->right.reset();
+			selectedNode->right = std::make_unique<vein::BifurcationNode>(selectedNode, radiusLeft, radiusRight,
+				rollLeftRad, rollRightRad, pitchLeftRad, pitchRightRad, false);
 		}
 	}
 
@@ -40,36 +53,38 @@ namespace gui
 
 		// Cylinder
 		static int length = vein::cyl::vLayers;
+		static float cylRadius = vein::cyl::veinRadius; 
+		static float cylSkewRollDeg = 0;
+		static float cylSkewPitchDeg = 0;
 
 		// Bifurcation
-		static float angleLeftDeg = 45;
-		static float angleRightDeg = 45;
+		static float rollLeftDeg = -45;
+		static float rollRightDeg = 45;
+		static float pitchLeftDeg = 0;
+		static float pitchRightDeg = 0;
+		static float bifRadiusLeft = vein::bif::veinRadius;
+		static float bifRadiusRight = vein::bif::veinRadius; 
 
 		// First time mesh creation
 		if (firstRender)
 		{
 			if (segmentType == 0)
 			{
-				recalculateCylinder(selectedNode, selectedLeft, length);
+				recalculateCylinder(selectedNode, selectedLeft, cylRadius, length, cylSkewRollDeg, cylSkewPitchDeg);
 			}
 			else
 			{		
-				recalculateBifurcation(selectedNode, selectedLeft, angleLeftDeg, angleRightDeg);
+				recalculateBifurcation(selectedNode, selectedLeft, bifRadiusLeft, bifRadiusRight,
+					rollLeftDeg, rollRightDeg, pitchLeftDeg, pitchRightDeg);
 			}
 			firstRender = false;
 		}
 
 		ImGui::Text("Vein parameter selection");
 
-		if (ImGui::RadioButton("Cylinder segment", &segmentType, 0))
-		{
-			cylinderChanged = true;
-		}
+		cylinderChanged |= ImGui::RadioButton("Cylinder segment", &segmentType, 0);
 		ImGui::SameLine();
-		if (ImGui::RadioButton("Bifurcation segment", &segmentType, 1))
-		{
-			bifurcationChanged = true;
-		}
+		bifurcationChanged |= ImGui::RadioButton("Bifurcation segment", &segmentType, 1);
 		
 		if (segmentType == 0) // cylinder segment
 		{
@@ -82,22 +97,27 @@ namespace gui
 
 				cylinderChanged = true;
 			}
+			cylinderChanged |= ImGui::SliderFloat("Skew - Roll [deg]", &cylSkewRollDeg, -90.0f, 90.0f);
+			cylinderChanged |= ImGui::SliderFloat("Skew - Pitch [deg]", &cylSkewPitchDeg, -90.0f, 90.0f);
+			cylinderChanged |= ImGui::SliderFloat("Segment end radius", &cylRadius, vein::cyl::veinRadius / 3, vein::cyl::veinRadius * 3);
 		}
 		else // bifurcation segment
 		{
-			if (ImGui::SliderFloat("left branch angle", &angleLeftDeg, 0.0f, 90.0f) ||
-				ImGui::SliderFloat("right branch angle", &angleRightDeg, 0.0f, 90.0f))
-			{
-				bifurcationChanged = true;
-			}
+			bifurcationChanged |= ImGui::SliderFloat("Left branch roll angle [deg]", &rollLeftDeg, -90.0f, 0.0f);
+			bifurcationChanged |= ImGui::SliderFloat("Left branch pitch angle [deg]", &pitchLeftDeg, -45.0f, 45.0f);
+			bifurcationChanged |= ImGui::SliderFloat("Left branch radius", &bifRadiusLeft, vein::bif::veinRadius / 3, vein::bif::veinRadius * 3);
+			ImGui::NewLine();
+			bifurcationChanged |= ImGui::SliderFloat("Right branch roll angle [deg]", &rollRightDeg, 0.0f, 90.0f);
+			bifurcationChanged |= ImGui::SliderFloat("Right branch pitch angle [deg]", &pitchRightDeg, -45.0f, 45.0f);
+			bifurcationChanged |= ImGui::SliderFloat("Right branch radius", &bifRadiusRight, vein::bif::veinRadius / 3, vein::bif::veinRadius * 3);
 		}
 
 		if (ImGui::Button("Cancel"))
 		{
 			if (selectedLeft)
-				selectedNode->left.reset(nullptr);
+				selectedNode->left.reset();
 			else
-				selectedNode->right.reset(nullptr);
+				selectedNode->right.reset();
 				
 			setMode(Mode::veinEdit);
 		} 
@@ -110,13 +130,14 @@ namespace gui
 		// Recalculate nodes based on changes
 		if (cylinderChanged)
 		{
-			recalculateCylinder(selectedNode, selectedLeft, length);
+			recalculateCylinder(selectedNode, selectedLeft, cylRadius, length, cylSkewRollDeg, cylSkewPitchDeg);
 			return;
 		}
 
 		if (bifurcationChanged)
 		{
-			recalculateBifurcation(selectedNode, selectedLeft, angleLeftDeg, angleRightDeg);
+			recalculateBifurcation(selectedNode, selectedLeft, bifRadiusLeft, bifRadiusRight,
+				rollLeftDeg, rollRightDeg, pitchLeftDeg, pitchRightDeg);
 			return;
 		}
 	}

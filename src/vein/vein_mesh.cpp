@@ -25,7 +25,16 @@ namespace vein
 
 	VeinMesh::~VeinMesh()
 	{
-		// TODO: clean up openGL memory
+		glBindVertexArray(VAO);
+
+		glBindBuffer(GL_ARRAY_BUFFER, VBO);
+		glDeleteBuffers(1, &VBO);
+
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+		glDeleteBuffers(1, &EBO);
+
+		glDeleteVertexArrays(1, &VAO);
+		glBindVertexArray(0);
 	}
 
 	void VeinMesh::setupMesh()

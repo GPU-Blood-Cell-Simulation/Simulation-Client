@@ -1,7 +1,7 @@
 #pragma once
 
 #include "spring.hpp"
-#include "util/vec3_json_conversion.hpp"
+#include "../util/vec3_json_conversion.hpp"
 
 #include <glm/mat4x4.hpp>
 #include <glm/vec3.hpp>

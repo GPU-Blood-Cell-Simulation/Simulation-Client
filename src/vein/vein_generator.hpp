@@ -1,29 +1,15 @@
 #pragma once
 
+#include "../defines.hpp"
 #include "glm_to_tps.hpp"
 #include "vein_mesh.hpp"
 
 namespace vein
 {
-	class VeinGenerator
+	namespace VeinGenerator
 	{
-	public:
-		static VeinGenerator& getInstance();
-
-		VeinMesh createBifurcation(float angleLeft, float angleRight) const;
-		VeinMesh createCylinder(int vLayers) const;
-
-	private:
-		VeinGenerator() {}
-		TempMesh createFlatBifurcationSegment() const;
-		TempMesh createRotatedMesh(const TempMesh& mesh, float angle) const;
-		void fillControlPoints(float angleLeft, float angleRight, std::vector<Domain_Point>& domainPoints, std::vector<Range_Point>& rangePoints) const;
-		TempMesh createCombinedBaseBifurcation();
-		TempMesh createBaseRangePoints();
-
-		TempMesh bifurcationBase = createCombinedBaseBifurcation();
-		TempMesh baseRangePoints = createBaseRangePoints();
-		TempMesh leftBranchRangePoints = createRotatedMesh(baseRangePoints, glm::pi<float>() * 2.0f / 3.0f);
-		TempMesh rightBranchRangePoints = createRotatedMesh(baseRangePoints, glm::pi<float>() * 4.0f / 3.0f);
-	};
+		VeinMesh createBifurcation(float radiusTop, float radiusLeft, float radiusRight,
+			float rollLeft, float rollRight, float pitchLeft, float pitchRight);
+		VeinMesh createCylinder(float radiusTop, float radius, int vLayers, float skewRoll, float skewPitch);
+	}
 }

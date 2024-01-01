@@ -11,8 +11,7 @@ namespace vein
 
 	// Conversions between glm and tps data structures
 
-	template<typename T>
-	inline glm::vec3 toGLM(T p)
+	inline glm::vec3 toGLM(const auto& p)
 	{
 		return glm::vec3(p(0), p(1), p(2));
 	}

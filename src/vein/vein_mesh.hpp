@@ -27,10 +27,16 @@ namespace vein
 
     class VeinMesh : public TempMesh {
     public:
-
         VeinMesh(std::vector<glm::vec3>&& positions, std::vector<unsigned int>&& indices);
         VeinMesh(std::vector<glm::vec3>&& positions, const std::vector<unsigned int>& indices);
         virtual ~VeinMesh() override;
+
+        // constructors needed for json serialization
+        VeinMesh() = default;
+        VeinMesh(const VeinMesh&) = default;
+        VeinMesh(VeinMesh&&) = default;
+        VeinMesh& operator=(const VeinMesh&) = default;
+        VeinMesh& operator=(VeinMesh&&) = default;
 
         void setupMesh();
         void draw(const Shader* shader) const;

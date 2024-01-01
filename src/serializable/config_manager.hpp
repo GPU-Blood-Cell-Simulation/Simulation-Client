@@ -1,7 +1,6 @@
 #pragma once
 
 #include "config_data.hpp"
-#include "../vein/nodes/node.hpp"
 
 #include <string>
 

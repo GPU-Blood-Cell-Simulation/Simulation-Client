@@ -2,7 +2,7 @@
 
 #include "../graphics/glcontroller.hpp"
 #include "../serializable/config_manager.hpp"
-#include "../serializable/blood_cells_definition.hpp"
+#include "../serializable/blood_cell_json_conversion/blood_cells_definition.hpp"
 #include "../vein/nodes/node.hpp"
 #include "../bloodcell/blood_editor.hpp"
 #include <imgui/imgui/imgui.h>
@@ -41,7 +41,7 @@ namespace gui
 		// vein
 		bool selectedLeft = true;
 		bool firstRender = true;
-		vein::Node* selectedNode = configManager.getData().veinDefinition.rootNode.get();
+		vein::Node* selectedNode = configManager.getData().veinRootNode.get();
 
 		// blood cells
 		std::vector<BloodEditor> editors;
