@@ -1,6 +1,8 @@
 #include "gui_controller.hpp"
 
+#include "extensions.hpp"
 #include "../vein/nodes/node.hpp"
+
 #include <GLFW/glfw3.h>
 #include <imgui/backend/imgui_impl_glfw.h>
 #include <imgui/backend/imgui_impl_opengl3.h>
@@ -76,8 +78,21 @@ namespace gui
             return;
         }
         
+        ImGuiWindowFlags windowFlags = 0;
+        windowFlags |= ImGuiWindowFlags_MenuBar;
 
-        ImGui::Begin("Configuration window"); // Create a window and append into it.        
+        ImGui::Begin("Configuration window", nullptr, windowFlags); // Create a window and append into it.        
+
+        // Render error if occured
+        if (ImGui::BeginPopupModal("Error"))
+        {
+            ImGui::Text(error.c_str());
+            if (ext::CenteredButton("OK"))
+                ImGui::CloseCurrentPopup();
+            ImGui::EndPopup();
+        }
+
+        renderMenuBar();
 
         switch (mode)
         {
@@ -138,6 +153,12 @@ namespace gui
         }
 
         releaseEditor();
+    }
+
+    void GUIController::setError(const std::string& msg)
+    {
+        ImGui::OpenPopup("Error");
+        error = msg;
     }
 }
 

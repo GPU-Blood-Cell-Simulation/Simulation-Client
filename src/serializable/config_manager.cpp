@@ -10,40 +10,40 @@ using json = nlohmann::json;
 
 namespace serializable
 {
-	void ConfigManager::loadBloodCellConfig()
+	void ConfigManager::loadBloodCellConfig(const std::string& filePath)
 	{
-		std::ifstream is(bloodCellConfigPath);
+		std::ifstream is(filePath);
 		json jsonData = json::parse(is);
 		data.bloodCellsDefinition = jsonData.template get<BloodCellsDefinition>();
 	}
-	void ConfigManager::saveBloodCellConfig() const
+	void ConfigManager::saveBloodCellConfig(const std::string& filePath) const
 	{
-		std::ofstream os(bloodCellConfigPath);
+		std::ofstream os(filePath);
 		json jsonData = data.bloodCellsDefinition;
 		os << std::setw(3) << jsonData;
 	}
 
-	void ConfigManager::loadVeinConfig()
+	void ConfigManager::loadVeinConfig(const std::string& filePath)
 	{
-		std::ifstream is(veinConfigPath);
+		std::ifstream is(filePath);
 		json jsonData = json::parse(is);
 		data.veinRootNode.reset();
 		data.veinRootNode = std::make_unique<vein::RootNode>(jsonData);
 	}
 
-	void ConfigManager::saveVeinConfig() const
+	void ConfigManager::saveVeinConfig(const std::string& filePath) const
 	{
-		std::ofstream os(veinConfigPath);
+		std::ofstream os(filePath);
 		json jsonData = data.veinRootNode->generateJson();
 		os << jsonData;
 	}
 
-	void ConfigManager::loadGeneralConfig()
+	void ConfigManager::loadGeneralConfig(const std::string& filePath)
 	{
 		// TODO
 	}
 
-	void ConfigManager::saveGeneralConfig() const
+	void ConfigManager::saveGeneralConfig(const std::string& filePath) const
 	{
 		// TODO
 	}

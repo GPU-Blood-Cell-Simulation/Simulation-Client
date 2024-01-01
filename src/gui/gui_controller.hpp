@@ -22,6 +22,17 @@ namespace gui
 		configureBloodCellVertices
 	};
 
+	enum class IoOperation
+	{
+		none,
+		generalLoad,
+		bloodCellLoad,
+		veinLoad,
+		generalSave,
+		bloodCellSave,
+		veinSave
+	};
+
 	class GUIController
 	{
 	public:
@@ -47,10 +58,16 @@ namespace gui
 		std::vector<BloodEditor> editors;
 		BloodEditor* selectedEditor = nullptr;
 
+		std::string error;
+		void setError(const std::string& msg);
+
 		void finalDraw();
 		void loadEditors();
 
 		// Components
+		void renderMenuBar();
+		void renderDialogWindow(IoOperation& operation);
+
 		void renderMainScreen();
 		void renderGeneralEditor();
 		void renderBloodList();

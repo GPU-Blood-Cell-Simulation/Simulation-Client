@@ -87,6 +87,8 @@ namespace vein
 	{
 		auto&& [leftJson, rightJson] = generateLeftAndRightJson();
 		return json{ {nameof(type), type}, {nameof(radiusLeft), radiusLeft}, {nameof(radiusRight), radiusRight},
-			{nameof(leftRoll), leftRoll}, {nameof(rightRoll), rightRoll}, leftJson, rightJson };
+			{nameof(leftRoll), leftRoll}, {nameof(rightRoll), rightRoll},
+			{nameof(leftPitch), leftPitch}, {nameof(rightPitch), rightPitch},
+			leftJson, rightJson };
 	}
 }

@@ -1,52 +1,35 @@
+
 #include "../gui_controller.hpp"
+
+#include "../extensions.hpp"
 
 namespace gui
 {
 	void GUIController::renderMainScreen()
 	{
-        // TODO: change save/load into a top bar menu
-        if (ImGui::Button("Load blood cell configuration"))
-        {
-            configManager.loadBloodCellConfig();
-            loadEditors();
-        }
-        if (ImGui::Button("Save blood cell configuration"))
-        {
-            configManager.saveBloodCellConfig();
-        }
-        if (ImGui::Button("Load vein configuration"))
-        {
-            configManager.loadVeinConfig();
-        }
-        if (ImGui::Button("Save vein configuration"))
-        {
-            configManager.saveVeinConfig();
-        }
-        if (ImGui::Button("Load general configuration"))
-        {
-            
-        }
-        if (ImGui::Button("Save general configuration"))
-        {
-            
-        }
-        ImGui::NewLine();
+        static const float textWidth = ImGui::CalcTextSize("Edit blood cell definitions").x;
 
-        if (ImGui::Button("Edit general configuration"))
+        if (ext::CenteredButton("Edit general configuration", textWidth))
         {
             setMode(Mode::generalEdit);
         }
-        if (ImGui::Button("Edit blood cell definitions"))
+        ImGui::NewLine();
+
+        if (ext::CenteredButton("Edit blood cell definitions", textWidth))
         {
             setMode(Mode::bloodEdit);
         }
-        if (ImGui::Button("Edit vein mesh"))
+        ImGui::NewLine();
+
+        if (ext::CenteredButton("Edit vein mesh", textWidth))
         {
             setMode(Mode::veinEdit);
             glController.setMode(graphics::Mode::VeinEdit);
         }
+        ImGui::NewLine();
+        ImGui::Dummy(ImVec2(0.0f, 30.0f));
 
-        if (ImGui::Button("Compile and run"))
+        if (ext::CenteredButton("Compile and run", textWidth))
         {
             // Write data to C++ files
             configManager.serializeAllToCpp();
