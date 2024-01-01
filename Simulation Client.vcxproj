@@ -521,6 +521,7 @@
     <ClInclude Include="src\graphics\light.hpp" />
     <ClInclude Include="src\gui\extensions.hpp" />
     <ClInclude Include="src\serializable\cpp_serializable.hpp" />
+    <ClInclude Include="src\serializable\exceptions.hpp" />
     <ClInclude Include="src\serializable\util\nameof.hpp" />
     <ClInclude Include="src\serializable\util\vec3_json_conversion.hpp" />
     <ClInclude Include="src\serializable\util\vec_to_string.hpp" />

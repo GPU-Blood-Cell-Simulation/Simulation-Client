@@ -3,6 +3,7 @@
 #include "vein_node_json_conversion.hpp"
 
 #include "../defines.hpp"
+#include "exceptions.hpp"
 
 #include <fstream>
 
@@ -10,23 +11,36 @@ using json = nlohmann::json;
 
 namespace serializable
 {
-	void ConfigManager::loadBloodCellConfig(const std::string& filePath)
+	static json parseJson(const std::string& filePath)
 	{
 		std::ifstream is(filePath);
-		json jsonData = json::parse(is);
+		if (!is)
+			throw FileOpenException();
+		return json::parse(is);
+	}
+
+	static void writeToJson(std::ofstream& os, const json& jsonData)
+	{
+		os << std::setw(3) << jsonData;
+		if (!os)
+			throw FileWriteException();
+	}
+
+	void ConfigManager::loadBloodCellConfig(const std::string& filePath)
+	{
+		json jsonData = parseJson(filePath);
 		data.bloodCellsDefinition = jsonData.template get<BloodCellsDefinition>();
 	}
 	void ConfigManager::saveBloodCellConfig(const std::string& filePath) const
 	{
 		std::ofstream os(filePath);
 		json jsonData = data.bloodCellsDefinition;
-		os << std::setw(3) << jsonData;
+		writeToJson(os, jsonData);
 	}
 
 	void ConfigManager::loadVeinConfig(const std::string& filePath)
 	{
-		std::ifstream is(filePath);
-		json jsonData = json::parse(is);
+		json jsonData = parseJson(filePath);
 		data.veinRootNode.reset();
 		data.veinRootNode = std::make_unique<vein::RootNode>(jsonData);
 	}
@@ -35,7 +49,7 @@ namespace serializable
 	{
 		std::ofstream os(filePath);
 		json jsonData = data.veinRootNode->generateJson();
-		os << jsonData;
+		writeToJson(os, jsonData);
 	}
 
 	void ConfigManager::loadGeneralConfig(const std::string& filePath)
@@ -60,18 +74,7 @@ namespace serializable
 		data.veinRootNode->addToMesh(finalMesh, 0, 0);
 
 		// Serialize vein
-		try
-		{
-			finalMesh.serializeToCpp();
-		}
-		catch (std::ofstream::failure& e)
-		{
-			std::cout << "ostream error : " << e.what() << "\n";
-		}
-		catch (...)
-		{
-			std::cout << "other error during mesh generation\n";
-		}
+		finalMesh.serializeToCpp();
 
 		// Serialize BloodCells
 		data.bloodCellsDefinition.serializeToCpp();

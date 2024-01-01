@@ -32,7 +32,15 @@ namespace gui
         if (ext::CenteredButton("Compile and run", textWidth))
         {
             // Write data to C++ files
-            configManager.serializeAllToCpp();
+            try
+            {
+                configManager.serializeAllToCpp();
+            }
+            catch (const std::exception& e)
+            {
+                setError("Error while creating config C++ headers for the server: \n" + std::string(e.what()));
+                return;
+            }
 
             // Send data to server
             //      TODO

@@ -1157,6 +1157,9 @@
     <ClInclude Include="src\gui\extensions.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\serializable\exceptions.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Libraries\include\glm\detail\func_common.inl">

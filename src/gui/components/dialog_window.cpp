@@ -1,11 +1,14 @@
 #include "../gui_controller.hpp"
 
+#include "../../serializable/exceptions.hpp"
+
 #include <imgui/imgui/imgui.h>
 #include <imgui_file_dialog/ImGuiFileDialog.h>
-#include <iostream>
+#include <nlohmann/json.hpp>
 
 namespace gui
 {
+	using json = nlohmann::json;
 
 	void GUIController::renderDialogWindow(IoOperation& operation)
 	{
@@ -41,9 +44,21 @@ namespace gui
 						break;
 					}
 				}
+				catch (const serializable::FileOpenException& e)
+				{
+					setError("Error while opening the file.\nMake it exists and has correct permissions set.");
+				}
+				catch (const serializable::FileWriteException& e)
+				{
+					setError("Error while saving data.");
+				}
+				catch (const json::exception& e)
+				{
+					setError("Error while parsing the json.\nMake sure its format is correct and it's not corrupted.");
+				}
 				catch (...)
 				{	
-					setError("An unknown error occured");
+					setError("An unknown error occured.");
 				}
 
 				operation = IoOperation::none;

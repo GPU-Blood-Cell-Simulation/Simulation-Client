@@ -1,6 +1,7 @@
 #include "vein_mesh.hpp"
 
 #include "../defines.hpp"
+#include "../serializable/exceptions.hpp"
 #include "../serializable/util/vec_to_string.hpp"
 
 #include <glad/glad.h>
@@ -71,6 +72,8 @@ namespace vein
 	{	
 		std::cout << "Serializing vein \n";	
 		std::ofstream os(veinCppSerializationPath);
+		if (!os)
+			throw serializable::FileOpenException();
 
 		int veinPositionCount = positions.size();
 		// serialize positions
@@ -107,5 +110,7 @@ namespace vein
 		}
 		os << "};\n\n";
 
+		if (!os)
+			throw serializable::FileWriteException();
 	}
 }

@@ -6,6 +6,7 @@
 
 namespace serializable
 {
+
 	class ConfigManager
 	{
 	public:
