@@ -1,5 +1,8 @@
 #include "../gui_controller.hpp"
+
+#include "../extensions.hpp"
 #include "../../bloodcell/blood_editor.hpp"
+
 #include <nlohmann/json.hpp>
 #include <fstream>
 
@@ -39,7 +42,7 @@ namespace gui
 		ImGui::NewLine();
 		ImGui::NewLine();
 
-		if (ImGui::Button("Done"))
+		if (ext::CenteredButton("Done"))
 		{
 			setMode(Mode::mainScreen);
 			glController.setMode(graphics::Mode::None);

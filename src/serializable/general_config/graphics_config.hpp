@@ -12,10 +12,10 @@ namespace serializable
 	struct GraphicsConfig : public ICppSerializable
 	{
 		bool useLighting;
-		float cameraMovementSpeedCoefficient = 0.01;
+		float cameraMovementSpeedCoefficient = 0.01f;
 		float cameraRotationSpeed = 0.02f;
 
-		virtual void serializeToCpp() const override {}
+		virtual void serializeToCpp() const override;
 	};
 
 	inline void to_json(json& j, const GraphicsConfig& o)

@@ -2,7 +2,9 @@
 
 #include "../cpp_serializable.hpp"
 #include "../util/nameof.hpp"
+#include "../util/vec3_json_conversion.hpp"
 
+#include <glm/vec3.hpp>
 #include <nlohmann/json.hpp>
 
 namespace serializable
@@ -49,7 +51,7 @@ namespace serializable
 		// gravity power
 		glm::vec3 gravity{ 0.0f, -25.0f, 0.0f };
 
-		virtual void serializeToCpp() const override {}
+		virtual void serializeToCpp() const override;
 	};
 
 	inline void to_json(json& j, const PhysicsConfig& o)

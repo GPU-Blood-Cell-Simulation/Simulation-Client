@@ -70,7 +70,6 @@ namespace vein
 
 	void SerializableMesh::serializeToCpp() const
 	{	
-		std::cout << "Serializing vein \n";	
 		std::ofstream os(veinCppSerializationPath);
 		if (!os)
 			throw serializable::FileOpenException();

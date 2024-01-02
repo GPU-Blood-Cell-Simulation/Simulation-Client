@@ -6,7 +6,7 @@
    },
    "o.physics": {
       "o.collisionDampingCoeff": 6.0,
-      "o.collisionSpringCoeff": 7.0,
+      "o.collisionSpringCoeff": 6.0,
       "o.collistionShearCoeff": 4.0,
       "o.gravity": {
          "x": 0.0,
@@ -14,15 +14,15 @@
          "z": 0.0
       },
       "o.initVelocity": {
-         "x": 1.0,
+         "x": 0.0,
          "y": -80.0,
-         "z": 1.0
+         "z": 0.0
       },
       "o.particle_d_fact": 9.0,
-      "o.particle_k_sniff": 21.0,
+      "o.particle_k_sniff": 20.0,
       "o.randomVelocityModifier": 0.8939999938011169,
       "o.veinImpactDistance": 6.0,
-      "o.veinImpactMinimalForceDistance": 2.0,
+      "o.veinImpactMinimalForceDistance": 9.999999747378752e-05,
       "o.vein_boundaries_velocity_damping": 0.6499999761581421,
       "o.vein_collision_force_intensity": 0.07999999821186066,
       "o.vein_d_fact": 0.44999998807907104,
@@ -31,9 +31,14 @@
       "o.viscous_damping": 0.30000001192092896
    },
    "o.simulation": {
-      "o.cellDepth": 20,
-      "o.cellHeight": 20,
-      "o.cellWidth": 20,
-      "o.dt": 0.10000000149011612
+      "o.boundingSpheresCoeff": 3,
+      "o.cellDepth": 30,
+      "o.cellHeight": 30,
+      "o.cellWidth": 30,
+      "o.dt": 0.10000000149011612,
+      "o.enableReactionForce": true,
+      "o.gridMargin": 20.0,
+      "o.minSpawnY": -20.0,
+      "o.useBloodFlow": true
    }
 }

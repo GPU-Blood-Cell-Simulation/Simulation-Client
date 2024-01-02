@@ -83,6 +83,6 @@ namespace serializable
 		data.bloodCellsDefinition.serializeToCpp();
 
 		// Serialize GeneralConfig
-			// TODO
+		data.generalConfig.serializeToCpp();
 	}
 }

@@ -192,6 +192,9 @@
     <ClCompile Include="src\gui\themes\enemymouse.cpp" />
     <ClCompile Include="src\gui\themes\spectrum.cpp" />
     <ClCompile Include="src\serializable\blood_cell_json_conversion\blood_cells_definition.cpp" />
+    <ClCompile Include="src\serializable\general_config\graphics_config.cpp" />
+    <ClCompile Include="src\serializable\general_config\physics_config.cpp" />
+    <ClCompile Include="src\serializable\general_config\simulation_config.cpp" />
     <ClCompile Include="src\serializable\util\vec_to_string.cpp" />
     <ClCompile Include="src\streaming\stream_frame.cpp" />
     <ClCompile Include="src\streaming\stream_receiver.cpp" />
