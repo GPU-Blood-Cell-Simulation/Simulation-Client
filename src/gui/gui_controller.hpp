@@ -76,5 +76,9 @@ namespace gui
 		void renderSimulation();
 		void renderBloodCellSpringsDetails();
 		void renderBloodCellVerticesDetails();
+
+		void renderSimulationEditor();
+		void renderPhysicsEditor();
+		void renderGraphicsEditor();
 	};
 }

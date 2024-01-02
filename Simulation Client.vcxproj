@@ -178,6 +178,9 @@
     <ClCompile Include="src\gui\components\add_vein.cpp" />
     <ClCompile Include="src\gui\components\blood_details.cpp" />
     <ClCompile Include="src\gui\components\blood_list.cpp" />
+    <ClCompile Include="src\gui\components\general_editor_tabs\graphics_editor.cpp" />
+    <ClCompile Include="src\gui\components\general_editor_tabs\physics_editor.cpp" />
+    <ClCompile Include="src\gui\components\general_editor_tabs\simulation_editor.cpp" />
     <ClCompile Include="src\gui\components\general_editor.cpp" />
     <ClCompile Include="src\gui\components\main_screen.cpp" />
     <ClCompile Include="src\gui\components\menu_bar.cpp" />
@@ -529,6 +532,8 @@
     <ClInclude Include="src\gui\themes\themes.hpp" />
     <ClInclude Include="src\serializable\cpp_serializable.hpp" />
     <ClInclude Include="src\serializable\exceptions.hpp" />
+    <ClInclude Include="src\serializable\general_config\general_config.hpp" />
+    <ClInclude Include="src\serializable\general_config\graphics_config.hpp" />
     <ClInclude Include="src\serializable\util\nameof.hpp" />
     <ClInclude Include="src\serializable\util\vec3_json_conversion.hpp" />
     <ClInclude Include="src\serializable\util\vec_to_string.hpp" />

@@ -18,5 +18,23 @@ namespace gui
 			ImGui::SetCursorPosX((windowWidth - textWidth) * 0.5f);
 			return ImGui::Button(text, ImVec2(textWidth, 30.0f));
 		}
+
+		bool InputPositiveFloat(const char* label, float* v, float minValue)
+		{
+			bool ret = ImGui::InputFloat(label, v);
+			if (*v < minValue)
+				*v = minValue;
+
+			return ret;
+		}
+
+		bool InputPositiveInt(const char* label, int* v, int minValue)
+		{
+			bool ret = ImGui::InputInt(label, v);
+			if (*v < minValue)
+				*v = minValue;
+
+			return ret;
+		}
 	}
 }

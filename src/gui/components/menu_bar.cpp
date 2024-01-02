@@ -49,7 +49,7 @@ namespace gui
             }
             if (ImGui::BeginMenu("Themes"))
             {
-                static int selectedTheme = 0;
+                static int selectedTheme = 2;
                 if (ImGui::MenuItem("ImGui dark", nullptr, selectedTheme == 0))
                 {
                     selectedTheme = 0;

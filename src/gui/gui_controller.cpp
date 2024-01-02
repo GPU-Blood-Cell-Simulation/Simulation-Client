@@ -1,6 +1,7 @@
 #include "gui_controller.hpp"
 
 #include "extensions.hpp"
+#include "themes/themes.hpp"
 #include "../vein/nodes/node.hpp"
 
 #include <GLFW/glfw3.h>
@@ -41,17 +42,11 @@ namespace gui
         //io.ConfigViewportsNoAutoMerge = true;
         //io.ConfigViewportsNoTaskBarIcon = true;
 
-        // Setup Dear ImGui style
-        ImGui::StyleColorsDark();
-        //ImGui::StyleColorsLight();
-
         // When viewports are enabled we tweak WindowRounding/WindowBg so platform windows can look identical to regular ones.
         ImGuiStyle& style = ImGui::GetStyle();
-        if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-        {
-            style.WindowRounding = 0.0f;
-            style.Colors[ImGuiCol_WindowBg].w = 1.0f;
-        }
+        style.WindowMinSize = ImVec2(500, 500);
+
+        themes::cinder::setTheme();
 
         // Setup Platform/Renderer backends
         ImGui_ImplGlfw_InitForOpenGL(window, true);

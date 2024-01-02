@@ -54,12 +54,15 @@ namespace serializable
 
 	void ConfigManager::loadGeneralConfig(const std::string& filePath)
 	{
-		// TODO
+		json jsonData = parseJson(filePath);
+		data.generalConfig = jsonData.template get<GeneralConfig>();
 	}
 
 	void ConfigManager::saveGeneralConfig(const std::string& filePath) const
 	{
-		// TODO
+		std::ofstream os(filePath);
+		json jsonData = data.generalConfig;
+		writeToJson(os, jsonData);
 	}
 
 	ConfigData& ConfigManager::getData()
