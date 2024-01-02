@@ -50,20 +50,30 @@ namespace gui
             if (ImGui::BeginMenu("Themes"))
             {
                 static int selectedTheme = 0;
-                if (ImGui::MenuItem("Default dark", nullptr, selectedTheme == 0))
+                if (ImGui::MenuItem("ImGui dark", nullptr, selectedTheme == 0))
                 {
                     selectedTheme = 0;
-                    styles::dark::setTheme();
+                    themes::imguiDark::setTheme();
                 }
-                if (ImGui::MenuItem("Default light", nullptr, selectedTheme == 1))
+                if (ImGui::MenuItem("ImGu light", nullptr, selectedTheme == 1))
                 {
                     selectedTheme = 1;
-                    styles::light::setTheme();
+                    themes::imguiLight::setTheme();
                 }
                 if (ImGui::MenuItem("Cinder", nullptr, selectedTheme == 2))
                 {
                     selectedTheme = 2;
-                    styles::cinder::setTheme();
+                    themes::cinder::setTheme();
+                }
+                if (ImGui::MenuItem("Spectrum dark", nullptr, selectedTheme == 3))
+                {
+                    selectedTheme = 3;
+                    themes::spectrum::dark::setTheme();
+                }
+                if (ImGui::MenuItem("Spectrum light", nullptr, selectedTheme == 4))
+                {
+                    selectedTheme = 4;
+                    themes::spectrum::light::setTheme();
                 }
                 ImGui::EndMenu();
             }

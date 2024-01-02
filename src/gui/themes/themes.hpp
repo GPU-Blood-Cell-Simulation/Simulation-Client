@@ -1,12 +1,15 @@
 #pragma once
 
+#include "spectrum_light.hpp"
+#include "spectrum_dark.hpp"
+
 #include <imgui/imgui/imgui.h>
 
 namespace gui
 {
-	namespace styles
+	namespace themes
 	{
-		namespace dark
+		namespace imguiDark
 		{
 			inline void setTheme()
 			{
@@ -14,7 +17,7 @@ namespace gui
 			}
 		}
 
-		namespace light
+		namespace imguiLight
 		{
 			inline void setTheme()
 			{
@@ -23,6 +26,11 @@ namespace gui
 		}
 
 		namespace cinder
+		{
+			void setTheme();
+		}
+
+		namespace enemymouse
 		{
 			void setTheme();
 		}

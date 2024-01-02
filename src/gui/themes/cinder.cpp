@@ -2,7 +2,7 @@
 
 namespace gui
 {
-	namespace styles
+	namespace themes
 	{
 		namespace cinder
 		{

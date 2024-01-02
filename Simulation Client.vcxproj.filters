@@ -138,6 +138,12 @@
     <ClCompile Include="src\gui\themes\cinder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\gui\themes\spectrum.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gui\themes\enemymouse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\defines.hpp">
@@ -1164,6 +1170,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\gui\themes\themes.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gui\themes\spectrum_dark.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gui\themes\spectrum_light.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gui\themes\spectrum.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
