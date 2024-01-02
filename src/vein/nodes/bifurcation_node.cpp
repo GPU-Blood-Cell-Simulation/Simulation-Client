@@ -42,9 +42,10 @@ namespace vein
 		mesh.setupMesh();
 	}
 
-	void BifurcationNode::renderGUI(gui::GUIController& guiController)
+	void BifurcationNode::renderGUI(gui::GUIController& guiController, float width)
 	{
-		if (ImGui::Button(getFullName().c_str()))
+		ImGui::SetCursorPosX(width - buttonWidth / 2);
+		if (ImGui::Button(getFullName().c_str(), ImVec2(buttonWidth, buttonHeight)))
 		{
 			ImGui::OpenPopup(getPopupName().c_str());
 		}
@@ -80,7 +81,7 @@ namespace vein
 
 	std::string BifurcationNode::getFullName() const
 	{
-		return "Bifurcation node\nid: " + std::to_string(id);
+		return "Bifurcation\nid: " + std::to_string(id);
 	}
 
 	json BifurcationNode::generateJson() const
@@ -90,5 +91,14 @@ namespace vein
 			{nameof(leftRoll), leftRoll}, {nameof(rightRoll), rightRoll},
 			{nameof(leftPitch), leftPitch}, {nameof(rightPitch), rightPitch},
 			leftJson, rightJson };
+	}
+
+	float BifurcationNode::leftChildButtonOffset() const
+	{
+		return -ImGui::GetWindowWidth() / (2 << level);
+	}
+	float BifurcationNode::rightChildButtonOffset() const
+	{
+		return ImGui::GetWindowWidth() / (2 << level);
 	}
 }

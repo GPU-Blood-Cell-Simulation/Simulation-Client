@@ -20,13 +20,21 @@ namespace vein
 
 		inline static const std::string type = "bifurcation";
 
-		virtual void renderGUI(gui::GUIController& guiController) override;
+		virtual void renderGUI(gui::GUIController& guiController, float width) override;
 		virtual void addToMesh(TempMesh& finalMesh, unsigned int parentLeftBranchLastRowStart, unsigned int parentRightBranchLastRowStart,
 			bool parentIsBifurcation) const override;
 		virtual json generateJson() const override;
 
 	protected:
 		virtual std::string getFullName() const override;
+
+		virtual float leftChildButtonOffset() const override;
+		virtual float rightChildButtonOffset() const override;
+		inline virtual int getChildLevel() const override
+		{
+			return level + 1;
+		}
+
 
 	private:
 		float radiusLeft, radiusRight, leftRoll, rightRoll, leftPitch, rightPitch;

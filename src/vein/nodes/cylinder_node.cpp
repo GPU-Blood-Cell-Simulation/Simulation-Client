@@ -41,9 +41,10 @@ namespace vein
 		mesh.setupMesh();
 	}
 
-	void CylinderNode::renderGUI(gui::GUIController& guiController)
+	void CylinderNode::renderGUI(gui::GUIController& guiController, float width)
 	{
-		if (ImGui::Button(getFullName().c_str()))
+		ImGui::SetCursorPosX(width - buttonWidth / 2);
+		if (ImGui::Button(getFullName().c_str(), ImVec2(buttonWidth, buttonHeight)))
 		{
 			ImGui::OpenPopup(getPopupName().c_str());
 		}
@@ -149,7 +150,7 @@ namespace vein
 
 	std::string CylinderNode::getFullName() const
 	{
-		return "Cylinder node\nid: " + std::to_string(id);
+		return "Cylinder\nid: " + std::to_string(id);
 	}
 
 	json CylinderNode::generateJson() const

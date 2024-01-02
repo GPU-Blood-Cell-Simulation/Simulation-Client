@@ -8,6 +8,7 @@ namespace gui
 	{
 		vein::Node::renderAll(*this, configManager.getData().veinRootNode.get());
 
+		ImGui::NewLine();
 		if (ext::CenteredButton("Done"))
 		{
 			setMode(Mode::mainScreen);
