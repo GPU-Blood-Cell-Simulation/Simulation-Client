@@ -9,6 +9,9 @@ namespace serializable
 {
 	using json = nlohmann::json;
 
+	/// <summary>
+	/// Holds parameters related to displaying the simulation
+	/// </summary>
 	struct GraphicsConfig : public ICppSerializable
 	{
 		bool useLighting;

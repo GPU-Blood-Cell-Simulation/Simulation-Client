@@ -11,6 +11,9 @@ namespace serializable
 {
 	using json = nlohmann::json;
 
+	/// <summary>
+	/// Holds all physics constants used by the server
+	/// </summary>
 	struct PhysicsConfig : public ICppSerializable
 	{
 		// factor to slow down particles after collision

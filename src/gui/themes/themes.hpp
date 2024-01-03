@@ -7,6 +7,9 @@
 
 namespace gui
 {
+	/// <summary>
+	/// This namespace contains all gui themes that the user can set
+	/// </summary>
 	namespace themes
 	{
 		namespace imguiDark

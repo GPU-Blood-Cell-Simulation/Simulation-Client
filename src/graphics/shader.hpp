@@ -7,7 +7,9 @@
 #include <vector>
 
 
-// https://learnopengl.com/Getting-started/Shaders
+/// <summary>
+/// A wrapper class for GLSL shaders. heavily inspired by https://learnopengl.com/Getting-started/Shaders
+/// </summary>
 class Shader
 {
 public:

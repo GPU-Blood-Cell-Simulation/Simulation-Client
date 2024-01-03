@@ -11,16 +11,19 @@ namespace serializable
 {
 	using json = nlohmann::json;
 
+	/// <summary>
+	/// Describes the complete definition af all blood cell types
+	/// </summary>
 	struct BloodCellsDefinition : public ICppSerializable
 	{
         std::vector<BloodCellType> bloodCellTypes;
 
-        int getBloodCellCount() const
+        inline int getBloodCellCount() const
         {
             return std::accumulate(bloodCellTypes.begin(), bloodCellTypes.end(), 0, [](int sum, BloodCellType type) { return sum + type.quantity; });
         }
 
-        int getParticleCount() const
+        inline int getParticleCount() const
         {
             return std::accumulate(bloodCellTypes.begin(), bloodCellTypes.end(), 0, [](int sum, BloodCellType type) { return sum + type.quantity * type.modelSize; });
         }

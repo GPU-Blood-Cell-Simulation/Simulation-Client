@@ -8,8 +8,14 @@
 #include <imgui/imgui/imgui.h>
 #include <vector>
 
+/// <summary>
+/// This namespace contains all classes and functions responsible for rendering the UI and communicating with the user
+/// </summary>
 namespace gui
 {
+	/// <summary>
+	/// Decides which screen should be displayed in the GUI window
+	/// </summary>
 	enum class Mode
 	{
 		mainScreen,
@@ -22,6 +28,9 @@ namespace gui
 		configureBloodCellVertices
 	};
 
+	/// <summary>
+	/// Specifies the IO operation which should be performed after the "Choose file" dialog window is closed successfully
+	/// </summary>
 	enum class IoOperation
 	{
 		none,
@@ -33,13 +42,27 @@ namespace gui
 		veinSave
 	};
 
+	/// <summary>
+	/// Responsible for displaying the GUI in a separate ImGui window.
+	/// Handles ImGui initialization, setup and all logic associated with interaction through the graphical interface
+	/// </summary>
 	class GUIController
 	{
 	public:
 		GUIController(GLFWwindow* window, serializable::ConfigManager& configManager, graphics::GLController& glController);
+
+		/// <summary>
+		/// Renders the whole UI in every frame
+		/// </summary>
 		void renderUI();
 
 		void setMode(Mode mode);
+
+		/// <summary>
+		/// Select a vein segment node in order to add new children to it
+		/// </summary>
+		/// <param name="node">A node to select (clicked by user)</param>
+		/// <param name="selectedLeft">Whether the selected node is the left child of its parent</param>
 		void selectNode(vein::Node* node, bool selectedLeft = true);
 		inline void releaseEditor() { selectedEditor = nullptr; }
 	private:

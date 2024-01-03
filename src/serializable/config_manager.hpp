@@ -6,7 +6,9 @@
 
 namespace serializable
 {
-
+	/// <summary>
+	/// Responsible for holding the config data, loading and saving it to json as well as generating the C++ headers for server.
+	/// </summary>
 	class ConfigManager
 	{
 	public:
@@ -19,10 +21,18 @@ namespace serializable
 		void loadGeneralConfig(const std::string& filePath);
 		void saveGeneralConfig(const std::string& filePath) const;
 
+		/// <summary>
+		/// Get the whole configuration data
+		/// </summary>
+		/// <returns>A reference to internally stored data</returns>
 		ConfigData& getData();
+
 		void serializeAllToCpp() const;
 
 	private:
+		/// <summary>
+		/// Internally stored config data
+		/// </summary>
 		ConfigData data;
 	};
 }
