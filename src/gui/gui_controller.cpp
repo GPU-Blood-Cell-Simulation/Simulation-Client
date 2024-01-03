@@ -1,6 +1,9 @@
 #include "gui_controller.hpp"
 
+#include "extensions.hpp"
+#include "themes/themes.hpp"
 #include "../vein/nodes/node.hpp"
+
 #include <GLFW/glfw3.h>
 #include <imgui/backend/imgui_impl_glfw.h>
 #include <imgui/backend/imgui_impl_opengl3.h>
@@ -39,17 +42,11 @@ namespace gui
         //io.ConfigViewportsNoAutoMerge = true;
         //io.ConfigViewportsNoTaskBarIcon = true;
 
-        // Setup Dear ImGui style
-        ImGui::StyleColorsDark();
-        //ImGui::StyleColorsLight();
-
         // When viewports are enabled we tweak WindowRounding/WindowBg so platform windows can look identical to regular ones.
         ImGuiStyle& style = ImGui::GetStyle();
-        if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-        {
-            style.WindowRounding = 0.0f;
-            style.Colors[ImGuiCol_WindowBg].w = 1.0f;
-        }
+        style.WindowMinSize = ImVec2(500, 500);
+
+        themes::cinder::setTheme();
 
         // Setup Platform/Renderer backends
         ImGui_ImplGlfw_InitForOpenGL(window, true);
@@ -59,7 +56,7 @@ namespace gui
 	void GUIController::renderUI()
 	{
         // Delete child nodes that were marked "to be deleted" in the previous frame
-        configManager.getData().veinDefinition.rootNode->deleteMarkedChildren();
+        configManager.getData().veinRootNode->deleteMarkedChildren();
 
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
@@ -76,8 +73,21 @@ namespace gui
             return;
         }
         
+        ImGuiWindowFlags windowFlags = 0;
+        windowFlags |= ImGuiWindowFlags_MenuBar;
 
-        ImGui::Begin("Configuration window"); // Create a window and append into it.        
+        ImGui::Begin("Configuration window", nullptr, windowFlags); // Create a window and append into it.        
+
+        // Render error if occured
+        if (ImGui::BeginPopupModal("Error"))
+        {
+            ImGui::Text(error.c_str());
+            if (ext::CenteredButton("OK"))
+                ImGui::CloseCurrentPopup();
+            ImGui::EndPopup();
+        }
+
+        renderMenuBar();
 
         switch (mode)
         {
@@ -138,6 +148,12 @@ namespace gui
         }
 
         releaseEditor();
+    }
+
+    void GUIController::setError(const std::string& msg)
+    {
+        ImGui::OpenPopup("Error");
+        error = msg;
     }
 }
 

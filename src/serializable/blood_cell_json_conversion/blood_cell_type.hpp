@@ -1,7 +1,7 @@
 #pragma once
 
 #include "spring.hpp"
-#include "util/vec3_json_conversion.hpp"
+#include "../util/vec3_json_conversion.hpp"
 
 #include <glm/mat4x4.hpp>
 #include <glm/vec3.hpp>
@@ -16,6 +16,7 @@ namespace serializable
 		unsigned int modelSize;
 		std::string name;
 		int quantity;
+		glm::vec3 color;
 		std::vector<glm::vec3> vertices;
 		std::vector<unsigned int> indices;
 		std::vector<glm::vec3> normals;
@@ -45,6 +46,7 @@ namespace serializable
 		{
 			{"name", o.name},
 			{"quantity", o.quantity},
+			{"color", o.color},
 			{"springs", o.springs},
 			{"vertices", o.vertices},
 			{"indices", o.indices},
@@ -56,7 +58,8 @@ namespace serializable
 	{
 		j.at("name").get_to(o.name);
 		j.at("quantity").get_to(o.quantity);
-        j.at("springs").get_to(o.springs);
+		j.at("color").get_to(o.color);
+		j.at("springs").get_to(o.springs);
 		j.at("vertices").get_to(o.vertices);
 		j.at("indices").get_to(o.indices);
 		j.at("normals").get_to(o.normals);

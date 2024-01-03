@@ -9,15 +9,41 @@ namespace vein
 	class CylinderNode : public Node
 	{
 	public:
-		CylinderNode(Node* parent, int vLayers = cyl::vLayers, bool isLeft = true);
+		CylinderNode(Node* parent, float radius, int vLayers, float skewRoll, float skewPitch, bool isLeft = true);
+		CylinderNode(Node* parent, const json& j, bool isLeft = true);
 
-		virtual void renderGUI(gui::GUIController& guiController) override;
+		CylinderNode() = default;
+		CylinderNode(const CylinderNode&) = delete;
+		CylinderNode(CylinderNode&&) = default;
+		CylinderNode& operator=(const CylinderNode&) = delete;
+		CylinderNode& operator=(CylinderNode&&) = default;
+
+		inline static const std::string type = "cylinder";
+
+		virtual void renderGUI(gui::GUIController& guiController, float width) override;
 		virtual void addToMesh(TempMesh& finalMesh, unsigned int parentLeftBranchIndicesEnd, unsigned int parentRightBranchIndicesEnd,
 			bool parentIsBifurcation) const override;
+		virtual json generateJson() const override;
 
 	protected:
-		virtual const std::string getFullName() const override;
+		virtual std::string getFullName() const override;
 
+		inline virtual float leftChildButtonOffset() const override
+		{
+			return 0;
+		}
+		inline virtual float rightChildButtonOffset() const override
+		{
+			return 0;
+		}
+		inline virtual int getChildLevel() const override
+		{
+			return level;;
+		}
+
+		float radius;
 		int vLayers;
+		float skewRoll;
+		float skewPitch;
 	};
 }

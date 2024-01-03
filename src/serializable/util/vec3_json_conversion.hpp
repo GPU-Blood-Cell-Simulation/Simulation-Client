@@ -3,7 +3,7 @@
 #include <glm/vec3.hpp>
 #include <nlohmann/json.hpp>
 
-// Hijacking a library namespace is a bad practice but nlohmann gives us no noiche
+// Hijacking a library namespace is a bad practice but nlohmann gives us no choice
 namespace glm
 {
     using json = nlohmann::json;

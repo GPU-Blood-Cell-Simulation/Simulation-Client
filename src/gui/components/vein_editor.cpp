@@ -1,12 +1,15 @@
 #include "../gui_controller.hpp"
 
+#include "../extensions.hpp"
+
 namespace gui
 {
 	void GUIController::renderVeinEditor()
 	{
-		vein::Node::renderAll(*this, configManager.getData().veinDefinition.rootNode.get());
+		vein::Node::renderAll(*this, configManager.getData().veinRootNode.get());
 
-		if (ImGui::Button("Done"))
+		ImGui::NewLine();
+		if (ext::CenteredButton("Done"))
 		{
 			setMode(Mode::mainScreen);
 			glController.setMode(graphics::Mode::None);

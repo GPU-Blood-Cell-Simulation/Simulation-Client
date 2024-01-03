@@ -1,23 +1,23 @@
 #pragma once
 
 #include "config_data.hpp"
-#include "../vein/nodes/node.hpp"
 
 #include <string>
 
 namespace serializable
 {
+
 	class ConfigManager
 	{
 	public:
-		void loadBloodCellConfig();
-		void saveBloodCellConfig() const;
+		void loadBloodCellConfig(const std::string& filePath);
+		void saveBloodCellConfig(const std::string& filePath) const;
 
-		void loadVeinConfig();
-		void saveVeinConfig() const;
+		void loadVeinConfig(const std::string& filePath);
+		void saveVeinConfig(const std::string& filePath) const;
 
-		void loadGeneralConfig();
-		void saveGeneralConfig() const;
+		void loadGeneralConfig(const std::string& filePath);
+		void saveGeneralConfig(const std::string& filePath) const;
 
 		ConfigData& getData();
 		void serializeAllToCpp() const;

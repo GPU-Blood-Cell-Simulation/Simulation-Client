@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../serializable/blood_cells_definition.hpp"
+#include "../serializable/blood_cell_json_conversion/blood_cells_definition.hpp"
 
 namespace gui
 {

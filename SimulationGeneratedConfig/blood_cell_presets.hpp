@@ -10,7 +10,168 @@ namespace preset
 {
 	using namespace boost::mp11;
 
-using RedBloodCell_One_Springs = mp_list<
+using White_blood_cell_One_Springs = mp_list<
+	Spring<8, 16, 3848992, 7>,
+	Spring<0, 8, 2378811, 7>,
+	Spring<16, 0, 2378811, 7>,
+	Spring<8, 9, 2378800, 7>,
+	Spring<4, 8, 3848992, 7>,
+	Spring<9, 4, 2378811, 7>,
+	Spring<12, 8, 3848992, 7>,
+	Spring<0, 12, 2378811, 7>,
+	Spring<12, 13, 2378800, 7>,
+	Spring<1, 12, 3848992, 7>,
+	Spring<13, 1, 2378811, 7>,
+	Spring<16, 12, 3848992, 7>,
+	Spring<16, 17, 2378800, 7>,
+	Spring<2, 16, 3848992, 7>,
+	Spring<17, 2, 2378811, 7>,
+	Spring<1, 9, 3848992, 7>,
+	Spring<8, 1, 2378811, 7>,
+	Spring<1, 18, 2378811, 7>,
+	Spring<5, 1, 3849000, 7>,
+	Spring<18, 5, 2378811, 7>,
+	Spring<2, 13, 3848992, 7>,
+	Spring<12, 2, 2378811, 7>,
+	Spring<2, 10, 2378811, 7>,
+	Spring<3, 2, 3849000, 7>,
+	Spring<10, 3, 2378811, 7>,
+	Spring<4, 17, 3848992, 7>,
+	Spring<16, 4, 2378811, 7>,
+	Spring<4, 14, 2378811, 7>,
+	Spring<6, 4, 3849000, 7>,
+	Spring<14, 6, 2378811, 7>,
+	Spring<5, 4, 3849000, 7>,
+	Spring<9, 5, 2378811, 7>,
+	Spring<5, 15, 2378811, 7>,
+	Spring<14, 5, 3848992, 7>,
+	Spring<15, 14, 2378800, 7>,
+	Spring<11, 17, 3848992, 7>,
+	Spring<6, 11, 2378811, 7>,
+	Spring<17, 6, 2378811, 7>,
+	Spring<11, 10, 2378800, 7>,
+	Spring<2, 11, 3848992, 7>,
+	Spring<19, 13, 3848992, 7>,
+	Spring<3, 19, 2378811, 7>,
+	Spring<13, 3, 2378811, 7>,
+	Spring<19, 18, 2378800, 7>,
+	Spring<1, 19, 3848992, 7>,
+	Spring<7, 18, 3848992, 7>,
+	Spring<19, 7, 2378811, 7>,
+	Spring<18, 15, 3848992, 7>,
+	Spring<7, 14, 3848992, 7>,
+	Spring<15, 7, 2378811, 7>,
+	Spring<14, 11, 3848992, 7>,
+	Spring<7, 10, 3848992, 7>,
+	Spring<11, 7, 2378811, 7>,
+	Spring<10, 19, 3848992, 7>,
+	Spring<8, 10, 6227800, 7>,
+	Spring<9, 11, 6227800, 7>,
+	Spring<12, 14, 6227800, 7>,
+	Spring<13, 15, 6227800, 7>,
+	Spring<16, 18, 6227800, 7>,
+	Spring<17, 19, 6227800, 7>,
+	Spring<0, 2, 3849000, 7>,
+	Spring<2, 3, 3849000, 7>,
+	Spring<3, 1, 3849000, 7>,
+	Spring<1, 0, 3849000, 7>,
+	Spring<6, 4, 3849000, 7>,
+	Spring<4, 5, 3849000, 7>,
+	Spring<5, 7, 3849000, 7>,
+	Spring<7, 6, 3849000, 7>,
+	Spring<0, 4, 3849000, 7>,
+	Spring<1, 5, 3849000, 7>,
+	Spring<2, 6, 3849000, 7>,
+	Spring<3, 7, 3849000, 7>
+>;
+
+using White_blood_cell_One_Vertices = mp_list<
+	mpFloat3<1924500, 1924500, -1924500, 7>,
+	mpFloat3<1924500, -1924500, -1924500, 7>,
+	mpFloat3<1924500, 1924500, 1924500, 7>,
+	mpFloat3<1924500, -1924500, 1924500, 7>,
+	mpFloat3<-1924500, 1924500, -1924500, 7>,
+	mpFloat3<-1924500, -1924500, -1924500, 7>,
+	mpFloat3<-1924500, 1924500, 1924500, 7>,
+	mpFloat3<-1924500, -1924500, 1924500, 7>,
+	mpFloat3<1189400, 0, -3113900, 7>,
+	mpFloat3<-1189400, 0, -3113900, 7>,
+	mpFloat3<1189400, 0, 3113900, 7>,
+	mpFloat3<-1189400, 0, 3113900, 7>,
+	mpFloat3<3113900, 1189400, 0, 7>,
+	mpFloat3<3113900, -1189400, 0, 7>,
+	mpFloat3<-3113900, 1189400, 0, 7>,
+	mpFloat3<-3113900, -1189400, 0, 7>,
+	mpFloat3<0, 3113900, -1189400, 7>,
+	mpFloat3<0, 3113900, 1189400, 7>,
+	mpFloat3<0, -3113900, -1189400, 7>,
+	mpFloat3<0, -3113900, 1189400, 7>
+>;
+
+using White_blood_cell_One_Indices = mp_list<
+	mp_int<8>, mp_int<16>, mp_int<0>,
+	mp_int<8>, mp_int<9>, mp_int<4>,
+	mp_int<12>, mp_int<8>, mp_int<0>,
+	mp_int<12>, mp_int<13>, mp_int<1>,
+	mp_int<16>, mp_int<12>, mp_int<0>,
+	mp_int<16>, mp_int<17>, mp_int<2>,
+	mp_int<1>, mp_int<9>, mp_int<8>,
+	mp_int<1>, mp_int<18>, mp_int<5>,
+	mp_int<2>, mp_int<13>, mp_int<12>,
+	mp_int<2>, mp_int<10>, mp_int<3>,
+	mp_int<4>, mp_int<17>, mp_int<16>,
+	mp_int<4>, mp_int<14>, mp_int<6>,
+	mp_int<5>, mp_int<4>, mp_int<9>,
+	mp_int<5>, mp_int<15>, mp_int<14>,
+	mp_int<11>, mp_int<17>, mp_int<6>,
+	mp_int<11>, mp_int<10>, mp_int<2>,
+	mp_int<19>, mp_int<13>, mp_int<3>,
+	mp_int<19>, mp_int<18>, mp_int<1>,
+	mp_int<7>, mp_int<18>, mp_int<19>,
+	mp_int<15>, mp_int<5>, mp_int<18>,
+	mp_int<7>, mp_int<14>, mp_int<15>,
+	mp_int<11>, mp_int<6>, mp_int<14>,
+	mp_int<7>, mp_int<10>, mp_int<11>,
+	mp_int<19>, mp_int<3>, mp_int<10>,
+	mp_int<8>, mp_int<4>, mp_int<16>,
+	mp_int<12>, mp_int<1>, mp_int<8>,
+	mp_int<16>, mp_int<2>, mp_int<12>,
+	mp_int<1>, mp_int<5>, mp_int<9>,
+	mp_int<2>, mp_int<3>, mp_int<13>,
+	mp_int<4>, mp_int<6>, mp_int<17>,
+	mp_int<5>, mp_int<14>, mp_int<4>,
+	mp_int<11>, mp_int<2>, mp_int<17>,
+	mp_int<19>, mp_int<1>, mp_int<13>,
+	mp_int<7>, mp_int<15>, mp_int<18>,
+	mp_int<7>, mp_int<11>, mp_int<14>,
+	mp_int<7>, mp_int<19>, mp_int<10>
+>;
+
+using White_blood_cell_One_Normals = mp_list<
+	mpFloat3<5773500, 5773500, -5773500, 7>,
+	mpFloat3<4919500, -5859000, -6439800, 7>,
+	mpFloat3<6439800, 4919500, 5859000, 7>,
+	mpFloat3<6881999, -4253199, 5877699, 7>,
+	mpFloat3<-5859000, 6439800, -4919500, 7>,
+	mpFloat3<-6303700, -3895699, -6714699, 7>,
+	mpFloat3<-5877699, 6881999, 4253199, 7>,
+	mpFloat3<-5773500, -5773500, 5773500, 7>,
+	mpFloat3<3484599, 2153300, -9122499, 7>,
+	mpFloat3<-2628700, -1624400, -9510599, 7>,
+	mpFloat3<2047500, -2530600, 9455400, 7>,
+	mpFloat3<-3484599, 2153300, 9122499, 7>,
+	mpFloat3<9122499, 3484599, -2153300, 7>,
+	mpFloat3<8965100, -4232900, 1307899, 7>,
+	mpFloat3<-9787999, 1742299, 1076700, 7>,
+	mpFloat3<-8506399, -5257499, 0, 7>,
+	mpFloat3<2153300, 9122499, -3484599, 7>,
+	mpFloat3<-1307899, 8965100, 4232900, 7>,
+	mpFloat3<-2530600, -9455400, -2047500, 7>,
+	mpFloat3<2153300, -9122499, 3484599, 7>
+>;
+
+
+using Blood_dust_One_Springs = mp_list<
 	Spring<1, 3, 4435609, 7>,
 	Spring<1, 9, 4435677, 7>,
 	Spring<1, 6, 4435629, 7>,
@@ -71,7 +232,7 @@ using RedBloodCell_One_Springs = mp_list<
 	Spring<1, 19, 5197299, 7>
 >;
 
-using RedBloodCell_One_Vertices = mp_list<
+using Blood_dust_One_Vertices = mp_list<
 	mpFloat3<9599, -2282799, 10400, 7>,
 	mpFloat3<-2699, 628700, -2899, 7>,
 	mpFloat3<-7193499, 593999, -2699, 7>,
@@ -94,7 +255,7 @@ using RedBloodCell_One_Vertices = mp_list<
 	mpFloat3<-2152400, -2247000, 3754900, 7>
 >;
 
-using RedBloodCell_One_Indices = mp_list<
+using Blood_dust_One_Indices = mp_list<
 	mp_int<3>, mp_int<1>, mp_int<6>,
 	mp_int<6>, mp_int<1>, mp_int<9>,
 	mp_int<9>, mp_int<1>, mp_int<12>,
@@ -133,7 +294,7 @@ using RedBloodCell_One_Indices = mp_list<
 	mp_int<17>, mp_int<18>, mp_int<3>
 >;
 
-using RedBloodCell_One_Normals = mp_list<
+using Blood_dust_One_Normals = mp_list<
 	mpFloat3<41999, -9999799, 44999, 7>,
 	mpFloat3<-41999, 9999799, -44999, 7>,
 	mpFloat3<-9890199, 1477999, -6999, 7>,

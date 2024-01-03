@@ -1,7 +1,7 @@
 #include "blood_editor.hpp"
 
 #include "../gui/gui_controller.hpp"
-#include "../serializable/spring.hpp"
+#include "../serializable/blood_cell_json_conversion/spring.hpp"
 
 #include <cstdio>
 #include <utility>
@@ -11,13 +11,16 @@ namespace gui
 {
 	void BloodEditor::renderGUISprings(gui::GUIController &guiController)
 	{
+
 		ImGui::Text("Vertices are numbered [0..%lu]\n\tAdd new spring: ", modelData.vertices.size() - 1);
+		
+		ImGui::ColorPicker3("Cell color", (float*)&modelData.color);
 
 		ImGui::PushItemWidth(100);
-		ImGui::InputInt(" -> ", &from);
+		ImGui::InputInt(" -> ##l4", &from);
 		ImGui::SameLine();
 		ImGui::PushItemWidth(100);
-		ImGui::InputInt(" ", &to);
+		ImGui::InputInt("##l5", &to);
 		if (from < 0)
 			from = 0;
 		if (to < 0)

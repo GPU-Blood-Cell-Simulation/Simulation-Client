@@ -1,6 +1,7 @@
 #include "vein_mesh.hpp"
 
 #include "../defines.hpp"
+#include "../serializable/exceptions.hpp"
 #include "../serializable/util/vec_to_string.hpp"
 
 #include <glad/glad.h>
@@ -25,7 +26,16 @@ namespace vein
 
 	VeinMesh::~VeinMesh()
 	{
-		// TODO: clean up openGL memory
+		glBindVertexArray(VAO);
+
+		glBindBuffer(GL_ARRAY_BUFFER, VBO);
+		glDeleteBuffers(1, &VBO);
+
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+		glDeleteBuffers(1, &EBO);
+
+		glDeleteVertexArrays(1, &VAO);
+		glBindVertexArray(0);
 	}
 
 	void VeinMesh::setupMesh()
@@ -60,8 +70,9 @@ namespace vein
 
 	void SerializableMesh::serializeToCpp() const
 	{	
-		std::cout << "Serializing vein \n";	
 		std::ofstream os(veinCppSerializationPath);
+		if (!os)
+			throw serializable::FileOpenException();
 
 		int veinPositionCount = positions.size();
 		// serialize positions
@@ -98,5 +109,7 @@ namespace vein
 		}
 		os << "};\n\n";
 
+		if (!os)
+			throw serializable::FileWriteException();
 	}
 }

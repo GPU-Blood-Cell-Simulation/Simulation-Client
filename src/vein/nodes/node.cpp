@@ -2,29 +2,37 @@
 #include "../../gui/gui_controller.hpp"
 
 #include <queue>
+#include <tuple>
 
 namespace vein
 {
-	Node::Node(Node* parent, VeinMesh&& mesh, bool isLeft) : parent(parent), mesh(mesh), isLeft(isLeft), id(objectCount++) {}
+	Node::Node(Node* parent, VeinMesh&& mesh, float leftBranchRadius, float rightBranchRadius, bool isLeft) :
+		parent(parent), mesh(mesh), leftBranchRadius(leftBranchRadius), rightBranchRadius(rightBranchRadius), isLeft(isLeft),
+		id(objectCount++), level(parent == nullptr ? 1 : parent->getChildLevel()) {}
+
+	Node::~Node()
+	{
+		objectCount--;
+	}
 
 	void Node::renderAll(gui::GUIController& guiController, Node* root)
 	{
-		std::queue<Node*> q;
-		q.push(root);
+		std::queue<std::tuple<Node*, float>> q;
+		q.push(std::tuple(root, ImGui::GetWindowSize().x / 2));
 
 		while (q.size() > 0)
 		{
 			int levelNodes = q.size();
 			while (levelNodes > 0)
 			{
-				Node* p = q.front();
+				auto [p, width] = q.front();
 				q.pop();
 
-				p->renderGUI(guiController);
+				p->renderGUI(guiController, width);
 				ImGui::SameLine();
 
-				if (p->left) q.push((p->left).get());
-				if (p->right) q.push((p->right).get());
+				if (p->left) q.push(std::tuple((p->left).get(), width + p->leftChildButtonOffset()));
+				if (p->right) q.push(std::tuple((p->right).get(), width + p->rightChildButtonOffset()));
 
 				levelNodes--;
 			}
@@ -81,5 +89,24 @@ namespace vein
 		{
 			right->draw(shader);
 		}
+	}
+
+	std::string Node::getPopupName() const
+	{
+		return "popup{}" + std::to_string(id);
+	}
+
+	std::tuple<json, json> Node::generateLeftAndRightJson() const
+	{
+		json leftJson = left ? json{ nameof(left), left->generateJson()} : json{ nameof(left), nullptr};
+		json rightJson = right ? json{ nameof(right), right->generateJson() } : json{ nameof(right), nullptr };
+		return std::tuple(std::move(leftJson), std::move(rightJson));
+	}
+
+	void Node::setupModelMatrix(const glm::vec3& translation, float rollAngle, float pitchAngle)
+	{
+		model = glm::translate(glm::mat4(1.0f), translation) *
+			glm::rotate(glm::mat4(1.0f), pitchAngle, glm::vec3(1, 0, 0)) *
+			glm::rotate(glm::mat4(1.0f), rollAngle, glm::vec3(0, 0, 1));
 	}
 }

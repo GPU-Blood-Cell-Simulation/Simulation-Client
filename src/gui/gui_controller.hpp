@@ -2,7 +2,7 @@
 
 #include "../graphics/glcontroller.hpp"
 #include "../serializable/config_manager.hpp"
-#include "../serializable/blood_cells_definition.hpp"
+#include "../serializable/blood_cell_json_conversion/blood_cells_definition.hpp"
 #include "../vein/nodes/node.hpp"
 #include "../bloodcell/blood_editor.hpp"
 #include <imgui/imgui/imgui.h>
@@ -20,6 +20,17 @@ namespace gui
 		simulation,
 		configureBloodCellSprings, 
 		configureBloodCellVertices
+	};
+
+	enum class IoOperation
+	{
+		none,
+		generalLoad,
+		bloodCellLoad,
+		veinLoad,
+		generalSave,
+		bloodCellSave,
+		veinSave
 	};
 
 	class GUIController
@@ -41,16 +52,22 @@ namespace gui
 		// vein
 		bool selectedLeft = true;
 		bool firstRender = true;
-		vein::Node* selectedNode = configManager.getData().veinDefinition.rootNode.get();
+		vein::Node* selectedNode = configManager.getData().veinRootNode.get();
 
 		// blood cells
 		std::vector<BloodEditor> editors;
 		BloodEditor* selectedEditor = nullptr;
 
+		std::string error;
+		void setError(const std::string& msg);
+
 		void finalDraw();
 		void loadEditors();
 
 		// Components
+		void renderMenuBar();
+		void renderDialogWindow(IoOperation& operation);
+
 		void renderMainScreen();
 		void renderGeneralEditor();
 		void renderBloodList();
@@ -59,5 +76,9 @@ namespace gui
 		void renderSimulation();
 		void renderBloodCellSpringsDetails();
 		void renderBloodCellVerticesDetails();
+
+		void renderSimulationEditor();
+		void renderPhysicsEditor();
+		void renderGraphicsEditor();
 	};
 }
