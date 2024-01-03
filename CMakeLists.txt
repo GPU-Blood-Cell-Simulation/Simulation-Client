@@ -31,6 +31,13 @@ file(GLOB_RECURSE IMGUI_SOURCES "Libraries/include/imgui/*.cpp")
 add_library(imgui ${IMGUI_SOURCES})
 
 #
+# Add imgui file dialog library
+#
+add_subdirectory("Libraries/include/imgui_file_dialog")
+target_link_libraries(ImGuiFileDialog PUBLIC imgui)
+target_include_directories(ImGuiFileDialog PUBLIC ${CMAKE_SOURCE_DIR}/Libraries/include/)
+
+#
 # Define executable
 #
 add_executable(Simulation_client ${CPP_SOURCES} ${C_SOURCES} ${CPP_HEADERS})
@@ -47,6 +54,7 @@ target_link_libraries(Simulation_client PUBLIC
   OpenMP::OpenMP_CXX
   ${CMAKE_SOURCE_DIR}/Libraries/lib/libglfw3.a
   imgui
+  ImGuiFileDialog
   PkgConfig::gstreamer
   PkgConfig::gstreamer-app
 )
