@@ -13,7 +13,15 @@ namespace graphics
 	class InputController
 	{
 	public:
+		/// <summary>
+		/// The callback that handles the input from user keyboard after GLFW polls events
+		/// </summary>
 		static void handleUserInput(GLFWwindow* window, int key, int scancode, int action, int mods);
+
+		/// <summary>
+		/// Moves or rotates the camera based on user keyboard input
+		/// </summary>
+		/// <param name="camera">The camera to move or rotate</param>
 		void adjustParametersUsingInput(Camera& camera);
 	private:
 		struct PressedKeys

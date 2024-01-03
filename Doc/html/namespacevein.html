@@ -100,6 +100,9 @@ $(function(){initNavTree('namespacevein.html',''); initResizable(); });
   <div class="headertitle"><div class="title">vein Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>This namespace contains all elements connected to the vein definition, generation and transforming.  
+<a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
@@ -136,8 +139,8 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a2329f46de8b8e87f167d5c71a6ea0e51" id="r_a2329f46de8b8e87f167d5c71a6ea0e51"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2329f46de8b8e87f167d5c71a6ea0e51">json</a> = nlohmann::json</td></tr>
-<tr class="separator:a2329f46de8b8e87f167d5c71a6ea0e51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a101d59fffd90806252758d96bad3fe59" id="r_a101d59fffd90806252758d96bad3fe59"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a101d59fffd90806252758d96bad3fe59">json</a> = nlohmann::json</td></tr>
+<tr class="separator:a101d59fffd90806252758d96bad3fe59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa52969426446dfd1b78a6c74b4ead7e3" id="r_aa52969426446dfd1b78a6c74b4ead7e3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa52969426446dfd1b78a6c74b4ead7e3">Transformation</a> = tps::Thin_plate_spline_transformation&lt;3, 3&gt;</td></tr>
 <tr class="separator:aa52969426446dfd1b78a6c74b4ead7e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad79ec507acc0e89647a2d0bca305f20a" id="r_ad79ec507acc0e89647a2d0bca305f20a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad79ec507acc0e89647a2d0bca305f20a">Domain_Point</a> = Transformation::Domain_point</td></tr>
@@ -147,16 +150,21 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a7a7b7f5d4ca1f6df9cd33fcb6533f8d6" id="r_a7a7b7f5d4ca1f6df9cd33fcb6533f8d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a7b7f5d4ca1f6df9cd33fcb6533f8d6">to_json</a> (<a class="el" href="#a2329f46de8b8e87f167d5c71a6ea0e51">json</a> &amp;j, const auto &amp;o)</td></tr>
+<tr class="memitem:a7a7b7f5d4ca1f6df9cd33fcb6533f8d6" id="r_a7a7b7f5d4ca1f6df9cd33fcb6533f8d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a7b7f5d4ca1f6df9cd33fcb6533f8d6">to_json</a> (<a class="el" href="#a101d59fffd90806252758d96bad3fe59">json</a> &amp;j, const auto &amp;o)</td></tr>
 <tr class="separator:a7a7b7f5d4ca1f6df9cd33fcb6533f8d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9dc6e6fef4389f98d49db0b5fded7c3e" id="r_a9dc6e6fef4389f98d49db0b5fded7c3e"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9dc6e6fef4389f98d49db0b5fded7c3e">toGLM</a> (const auto &amp;p)</td></tr>
+<tr class="memdesc:a9dc6e6fef4389f98d49db0b5fded7c3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms a tps point into a glm 3D vector.  <br /></td></tr>
 <tr class="separator:a9dc6e6fef4389f98d49db0b5fded7c3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a153da3a0d9352c8166058815dce770d1" id="r_a153da3a0d9352c8166058815dce770d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ad79ec507acc0e89647a2d0bca305f20a">Domain_Point</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a153da3a0d9352c8166058815dce770d1">toDP</a> (const glm::vec3 &amp;v)</td></tr>
+<tr class="memdesc:a153da3a0d9352c8166058815dce770d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms a glm 3D vector into a tps domain point (starting coordinates)  <br /></td></tr>
 <tr class="separator:a153da3a0d9352c8166058815dce770d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad19b86c748ba1a8d70ad1fe02f738493" id="r_ad19b86c748ba1a8d70ad1fe02f738493"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ae89966ff095cadd242665f17d6ba3d94">Range_Point</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad19b86c748ba1a8d70ad1fe02f738493">toRP</a> (const glm::vec3 &amp;v)</td></tr>
+<tr class="memdesc:ad19b86c748ba1a8d70ad1fe02f738493"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms a glm 3D vector into a tps range point (result coordinates)  <br /></td></tr>
 <tr class="separator:ad19b86c748ba1a8d70ad1fe02f738493"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This namespace contains all elements connected to the vein definition, generation and transforming. </p>
+</div><h2 class="groupheader">Typedef Documentation</h2>
 <a id="ad79ec507acc0e89647a2d0bca305f20a" name="ad79ec507acc0e89647a2d0bca305f20a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad79ec507acc0e89647a2d0bca305f20a">&#9670;&#160;</a></span>Domain_Point</h2>
 
@@ -171,14 +179,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a2329f46de8b8e87f167d5c71a6ea0e51" name="a2329f46de8b8e87f167d5c71a6ea0e51"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2329f46de8b8e87f167d5c71a6ea0e51">&#9670;&#160;</a></span>json</h2>
+<a id="a101d59fffd90806252758d96bad3fe59" name="a101d59fffd90806252758d96bad3fe59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a101d59fffd90806252758d96bad3fe59">&#9670;&#160;</a></span>json</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="#a2329f46de8b8e87f167d5c71a6ea0e51">vein::json</a> = nlohmann::json</td>
+          <td class="memname">typedef nlohmann::json <a class="el" href="#a101d59fffd90806252758d96bad3fe59">vein::json</a> = nlohmann::json</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -226,7 +234,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void vein::to_json </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="#a2329f46de8b8e87f167d5c71a6ea0e51">json</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>j</em>, </span></td>
+          <td class="paramtype"><a class="el" href="#a101d59fffd90806252758d96bad3fe59">json</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>j</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -266,6 +274,15 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Transforms a glm 3D vector into a tps domain point (starting coordinates) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>A glm 3D vector</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
 </div>
 </div>
 <a id="a9dc6e6fef4389f98d49db0b5fded7c3e" name="a9dc6e6fef4389f98d49db0b5fded7c3e"></a>
@@ -291,6 +308,15 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Transforms a tps point into a glm 3D vector. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>Either a Domain_Point or a Range_point</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
 </div>
 </div>
 <a id="ad19b86c748ba1a8d70ad1fe02f738493" name="ad19b86c748ba1a8d70ad1fe02f738493"></a>
@@ -315,6 +341,15 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Transforms a glm 3D vector into a tps range point (result coordinates) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>A glm 3D vector</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
 </div>

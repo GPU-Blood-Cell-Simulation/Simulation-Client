@@ -17,6 +17,7 @@ var searchData=
   ['collisiondampingcoeff_14',['collisionDampingCoeff',['../structserializable_1_1_physics_config.html#a72e60a9e56416ab01bb595d139f5b988',1,'serializable::PhysicsConfig']]],
   ['collisionspringcoeff_15',['collisionSpringCoeff',['../structserializable_1_1_physics_config.html#ac8ff2dc8f604ee02d1555ce2081ad018',1,'serializable::PhysicsConfig']]],
   ['collistionshearcoeff_16',['collistionShearCoeff',['../structserializable_1_1_physics_config.html#ae2fbe95455ec9529690402c156a79dd2',1,'serializable::PhysicsConfig']]],
-  ['cppconfigdatapath_17',['cppConfigDataPath',['../defines_8hpp.html#a8893c65b0be164050e753bacec620dbd',1,'defines.hpp']]],
-  ['cppserializationpath_18',['cppSerializationPath',['../defines_8hpp.html#a9ba8c695d6a26515b14023d0f4abd969',1,'defines.hpp']]]
+  ['color_17',['color',['../structserializable_1_1_blood_cell_type.html#ac23d5abd2483ad6142ca889f16ead87e',1,'serializable::BloodCellType']]],
+  ['cppconfigdatapath_18',['cppConfigDataPath',['../defines_8hpp.html#a8893c65b0be164050e753bacec620dbd',1,'defines.hpp']]],
+  ['cppserializationpath_19',['cppSerializationPath',['../defines_8hpp.html#a9ba8c695d6a26515b14023d0f4abd969',1,'defines.hpp']]]
 ];

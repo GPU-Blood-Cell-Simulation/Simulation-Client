@@ -16,6 +16,9 @@
 #include "../vein/vein_mesh.hpp"
 
 
+/// <summary>
+/// This namespace contains all elements responsible for rendering in the OpenGl window
+/// </summary>
 namespace graphics
 {
 	/// <summary>

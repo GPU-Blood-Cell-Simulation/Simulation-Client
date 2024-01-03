@@ -16,6 +16,7 @@
 
 namespace graphics
 {
+	using namespace glm;
 
 	GLController::GLController(GLFWwindow* window, serializable::ConfigManager& configManager) : window(window), configManager(configManager)
 	{

@@ -28,8 +28,18 @@ namespace graphics
 		void rotateUp();
 		void rotateDown();
 
+		/// <summary>
+		/// Returns the view matrix associated with current camera position and rotation
+		/// </summary>
+		/// <returns>The view matrix</returns>
 		glm::mat4 getView() const;
+
+		/// <summary>
+		/// Current camera position
+		/// </summary>
+		/// <returns>The camera's position</returns>
 		glm::vec3 getPosition() const;
+
 	private:
 		glm::mat4 view;
 

@@ -38,10 +38,33 @@ namespace vein
 		void markChildrenToBeDeleted(bool leftChild = true);
 		void deleteMarkedChildren();
 
+		/// <summary>
+		/// Draw the node's mesh in the OpenGL window
+		/// </summary>
+		/// <param name="shader">The shader used for this draw call</param>
 		void draw(Shader* shader) const;
+
+		/// <summary>
+		/// Renders a button in a tree-like hierarchy in the ImGui window
+		/// </summary>
+		/// <param name="guiController">The GUIController instance</param>
+		/// <param name="width">the window width at which the center of the button should be rendered</param>
 		virtual void renderGUI(gui::GUIController& guiController, float width) = 0;
+
+		/// <summary>
+		/// Adds this node's mesh to the final mesh and glues them together
+		/// </summary>
+		/// <param name="finalMesh">The final mesh that this node will append to</param>
+		/// <param name="parentLeftBranchLastRowStart">The starting index of the parent's left branch's last row</param>
+		/// <param name="parentRightBranchLastRowStart">The starting index of the parent's right branch's last row</param>
+		/// <param name="parentIsBifurcation">Whether the parent is a bifurcation (has two endings)</param>
 		virtual void addToMesh(TempMesh& finalMesh, unsigned int parentLeftBranchLastRowStart, unsigned int parentRightBranchLastRowStart, 
 			bool parentIsBifurcation = false) const = 0;
+
+		/// <summary>
+		/// Generate a json sub-object containing the information needed to reconstruct this node and its children (if present) recursively
+		/// </summary>
+		/// <returns>A json object</returns>
 		virtual json generateJson() const = 0;
 
 		Node* parent;
@@ -79,14 +102,37 @@ namespace vein
 		Node& operator=(const Node&) = delete;
 		Node& operator=(Node&&) = default;
 
+		/// <summary>
+		/// Returns the node's name in the form of its type and unique id
+		/// </summary>
+		/// <returns>The node's full name</returns>
 		virtual std::string getFullName() const = 0;
+
+		/// <summary>
+		/// Returns the node's unique ImGui popup identifier
+		/// </summary>
+		/// <returns>The node's ImGui popup name</returns>
 		std::string getPopupName() const;
+
+		/// <summary>
+		/// Recursively generates the json sub-objects from its left and right child (if present)
+		/// </summary>
+		/// <returns>Both its children's generated jsons as a tuple</returns>
 		std::tuple<json, json> generateLeftAndRightJson() const;
+
+		/// <summary>
+		/// Based on the json provided, this node attaches two new nodes as children 
+		/// </summary>
+		/// <param name="j">A json describing this node</param>
 		void fillLeftAndRightFromJson(const json& j);
-		void setupModelMatrix(const glm::vec3& translation, float rollAngle, float pitchAngle);
 
 		virtual float leftChildButtonOffset() const = 0;
 		virtual float rightChildButtonOffset() const = 0;
+
+		/// <summary>
+		/// Calculates children's level in the node tree
+		/// </summary>
+		/// <returns>The level in tree hierarchy of this node's children</returns>
 		virtual int getChildLevel() const = 0;
 
 		VeinMesh mesh;

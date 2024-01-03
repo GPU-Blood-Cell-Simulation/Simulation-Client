@@ -27,7 +27,7 @@ namespace vein
 
 		// Calculate vein segment rotation and translation
 		auto& parentQuat = isLeft ? parent->leftQuat : parent->rightQuat;
-		auto rotation = glm::toMat4(parentQuat) * glm::toMat4(quat(glm::vec3(skewPitch, 0, skewRoll)));
+		auto rotation = glm::toMat4(parentQuat) * glm::toMat4(glm::quat(glm::vec3(skewPitch, 0, skewRoll)));
 		leftQuat = rightQuat = glm::toQuat(rotation);
 
 		auto translation = isLeft ? parent->leftEndCenter : parent->rightEndCenter;

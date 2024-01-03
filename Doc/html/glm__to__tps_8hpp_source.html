@@ -113,32 +113,33 @@ $(function(){initNavTree('glm__to__tps_8hpp_source.html',''); initResizable(); }
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="comment">// Conversions between glm and tps data structures</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="foldopen" id="foldopen00014" data-start="{" data-end="}">
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="namespacevein.html#a9dc6e6fef4389f98d49db0b5fded7c3e">   14</a></span>    <span class="keyword">inline</span> glm::vec3 <a class="code hl_function" href="namespacevein.html#a9dc6e6fef4389f98d49db0b5fded7c3e">toGLM</a>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; p)</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    {</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <span class="keywordflow">return</span> glm::vec3(p(0), p(1), p(2));</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    }</div>
-</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
 <div class="foldopen" id="foldopen00019" data-start="{" data-end="}">
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="namespacevein.html#a153da3a0d9352c8166058815dce770d1">   19</a></span>    <span class="keyword">inline</span> <a class="code hl_typedef" href="namespacevein.html#ad79ec507acc0e89647a2d0bca305f20a">Domain_Point</a> <a class="code hl_function" href="namespacevein.html#a153da3a0d9352c8166058815dce770d1">toDP</a>(<span class="keyword">const</span> glm::vec3&amp; v)</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="namespacevein.html#a9dc6e6fef4389f98d49db0b5fded7c3e">   19</a></span>    <span class="keyword">inline</span> glm::vec3 <a class="code hl_function" href="namespacevein.html#a9dc6e6fef4389f98d49db0b5fded7c3e">toGLM</a>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; p)</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    {</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="keywordflow">return</span> <a class="code hl_typedef" href="namespacevein.html#ad79ec507acc0e89647a2d0bca305f20a">Domain_Point</a>(v.x, v.y, v.z);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="keywordflow">return</span> glm::vec3(p(0), p(1), p(2));</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    }</div>
 </div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="foldopen" id="foldopen00024" data-start="{" data-end="}">
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="namespacevein.html#ad19b86c748ba1a8d70ad1fe02f738493">   24</a></span>    <span class="keyword">inline</span> <a class="code hl_typedef" href="namespacevein.html#ae89966ff095cadd242665f17d6ba3d94">Range_Point</a> <a class="code hl_function" href="namespacevein.html#ad19b86c748ba1a8d70ad1fe02f738493">toRP</a>(<span class="keyword">const</span> glm::vec3&amp; v)</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    {</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <span class="keywordflow">return</span> <a class="code hl_typedef" href="namespacevein.html#ae89966ff095cadd242665f17d6ba3d94">Range_Point</a>(v.x, v.y, v.z);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    }</div>
+<div class="foldopen" id="foldopen00029" data-start="{" data-end="}">
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="namespacevein.html#a153da3a0d9352c8166058815dce770d1">   29</a></span>    <span class="keyword">inline</span> <a class="code hl_typedef" href="namespacevein.html#ad79ec507acc0e89647a2d0bca305f20a">Domain_Point</a> <a class="code hl_function" href="namespacevein.html#a153da3a0d9352c8166058815dce770d1">toDP</a>(<span class="keyword">const</span> glm::vec3&amp; v)</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keywordflow">return</span> <a class="code hl_typedef" href="namespacevein.html#ad79ec507acc0e89647a2d0bca305f20a">Domain_Point</a>(v.x, v.y, v.z);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    }</div>
 </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>}</div>
-<div class="ttc" id="anamespacevein_html"><div class="ttname"><a href="namespacevein.html">vein</a></div><div class="ttdef"><b>Definition</b> defines.hpp:50</div></div>
-<div class="ttc" id="anamespacevein_html_a153da3a0d9352c8166058815dce770d1"><div class="ttname"><a href="namespacevein.html#a153da3a0d9352c8166058815dce770d1">vein::toDP</a></div><div class="ttdeci">Domain_Point toDP(const glm::vec3 &amp;v)</div><div class="ttdef"><b>Definition</b> glm_to_tps.hpp:19</div></div>
-<div class="ttc" id="anamespacevein_html_a9dc6e6fef4389f98d49db0b5fded7c3e"><div class="ttname"><a href="namespacevein.html#a9dc6e6fef4389f98d49db0b5fded7c3e">vein::toGLM</a></div><div class="ttdeci">glm::vec3 toGLM(const auto &amp;p)</div><div class="ttdef"><b>Definition</b> glm_to_tps.hpp:14</div></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="foldopen" id="foldopen00040" data-start="{" data-end="}">
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="namespacevein.html#ad19b86c748ba1a8d70ad1fe02f738493">   40</a></span>    <span class="keyword">inline</span> <a class="code hl_typedef" href="namespacevein.html#ae89966ff095cadd242665f17d6ba3d94">Range_Point</a> <a class="code hl_function" href="namespacevein.html#ad19b86c748ba1a8d70ad1fe02f738493">toRP</a>(<span class="keyword">const</span> glm::vec3&amp; v)</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordflow">return</span> <a class="code hl_typedef" href="namespacevein.html#ae89966ff095cadd242665f17d6ba3d94">Range_Point</a>(v.x, v.y, v.z);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    }</div>
+</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>}</div>
+<div class="ttc" id="anamespacevein_html"><div class="ttname"><a href="namespacevein.html">vein</a></div><div class="ttdoc">This namespace contains all elements connected to the vein definition, generation and transforming.</div><div class="ttdef"><b>Definition</b> defines.hpp:50</div></div>
+<div class="ttc" id="anamespacevein_html_a153da3a0d9352c8166058815dce770d1"><div class="ttname"><a href="namespacevein.html#a153da3a0d9352c8166058815dce770d1">vein::toDP</a></div><div class="ttdeci">Domain_Point toDP(const glm::vec3 &amp;v)</div><div class="ttdoc">Transforms a glm 3D vector into a tps domain point (starting coordinates)</div><div class="ttdef"><b>Definition</b> glm_to_tps.hpp:29</div></div>
+<div class="ttc" id="anamespacevein_html_a9dc6e6fef4389f98d49db0b5fded7c3e"><div class="ttname"><a href="namespacevein.html#a9dc6e6fef4389f98d49db0b5fded7c3e">vein::toGLM</a></div><div class="ttdeci">glm::vec3 toGLM(const auto &amp;p)</div><div class="ttdoc">Transforms a tps point into a glm 3D vector.</div><div class="ttdef"><b>Definition</b> glm_to_tps.hpp:19</div></div>
 <div class="ttc" id="anamespacevein_html_aa52969426446dfd1b78a6c74b4ead7e3"><div class="ttname"><a href="namespacevein.html#aa52969426446dfd1b78a6c74b4ead7e3">vein::Transformation</a></div><div class="ttdeci">tps::Thin_plate_spline_transformation&lt; 3, 3 &gt; Transformation</div><div class="ttdef"><b>Definition</b> glm_to_tps.hpp:8</div></div>
-<div class="ttc" id="anamespacevein_html_ad19b86c748ba1a8d70ad1fe02f738493"><div class="ttname"><a href="namespacevein.html#ad19b86c748ba1a8d70ad1fe02f738493">vein::toRP</a></div><div class="ttdeci">Range_Point toRP(const glm::vec3 &amp;v)</div><div class="ttdef"><b>Definition</b> glm_to_tps.hpp:24</div></div>
+<div class="ttc" id="anamespacevein_html_ad19b86c748ba1a8d70ad1fe02f738493"><div class="ttname"><a href="namespacevein.html#ad19b86c748ba1a8d70ad1fe02f738493">vein::toRP</a></div><div class="ttdeci">Range_Point toRP(const glm::vec3 &amp;v)</div><div class="ttdoc">Transforms a glm 3D vector into a tps range point (result coordinates)</div><div class="ttdef"><b>Definition</b> glm_to_tps.hpp:40</div></div>
 <div class="ttc" id="anamespacevein_html_ad79ec507acc0e89647a2d0bca305f20a"><div class="ttname"><a href="namespacevein.html#ad79ec507acc0e89647a2d0bca305f20a">vein::Domain_Point</a></div><div class="ttdeci">Transformation::Domain_point Domain_Point</div><div class="ttdef"><b>Definition</b> glm_to_tps.hpp:9</div></div>
 <div class="ttc" id="anamespacevein_html_ae89966ff095cadd242665f17d6ba3d94"><div class="ttname"><a href="namespacevein.html#ae89966ff095cadd242665f17d6ba3d94">vein::Range_Point</a></div><div class="ttdeci">Transformation::Range_point Range_Point</div><div class="ttdef"><b>Definition</b> glm_to_tps.hpp:10</div></div>
 </div><!-- fragment --></div><!-- contents -->

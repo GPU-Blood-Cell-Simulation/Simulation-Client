@@ -97,19 +97,27 @@ $(function(){initNavTree('namespacegui_1_1ext.html',''); initResizable(); });
   <div class="headertitle"><div class="title">gui::ext Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Contains ImGui extensions.  
+<a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a6c338ef0af868fdcd8d597e70724a6fb" id="r_a6c338ef0af868fdcd8d597e70724a6fb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c338ef0af868fdcd8d597e70724a6fb">CenteredButton</a> (const char *text, float textWidth)</td></tr>
-<tr class="separator:a6c338ef0af868fdcd8d597e70724a6fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ea3fc35b3e927a37a710efab42b658a" id="r_a2ea3fc35b3e927a37a710efab42b658a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ea3fc35b3e927a37a710efab42b658a">InputPositiveFloat</a> (const char *label, float *v, float minValue)</td></tr>
-<tr class="separator:a2ea3fc35b3e927a37a710efab42b658a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7806efa7cc8d933ad38e352ff3b493e" id="r_ad7806efa7cc8d933ad38e352ff3b493e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad7806efa7cc8d933ad38e352ff3b493e">InputPositiveInt</a> (const char *label, int *v, int minValue)</td></tr>
-<tr class="separator:ad7806efa7cc8d933ad38e352ff3b493e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6a461f94638491f0e6e9c8051d83bd4" id="r_ad6a461f94638491f0e6e9c8051d83bd4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6a461f94638491f0e6e9c8051d83bd4">CenteredButton</a> (const char *text, float textWidth=-1)</td></tr>
+<tr class="memdesc:ad6a461f94638491f0e6e9c8051d83bd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">A wrapper creating an ImGui::Button that is centered horiontally on the screen.  <br /></td></tr>
+<tr class="separator:ad6a461f94638491f0e6e9c8051d83bd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abea88a31fdfb6708d60c6873fae927aa" id="r_abea88a31fdfb6708d60c6873fae927aa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abea88a31fdfb6708d60c6873fae927aa">InputPositiveFloat</a> (const char *label, float *v, float minValue=0)</td></tr>
+<tr class="memdesc:abea88a31fdfb6708d60c6873fae927aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">A wrapper for ImGui::InputFloat that accepts only values above a threshold.  <br /></td></tr>
+<tr class="separator:abea88a31fdfb6708d60c6873fae927aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e3474538d418e14b43365e28bd98beb" id="r_a1e3474538d418e14b43365e28bd98beb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e3474538d418e14b43365e28bd98beb">InputPositiveInt</a> (const char *label, int *v, int minValue=1)</td></tr>
+<tr class="memdesc:a1e3474538d418e14b43365e28bd98beb"><td class="mdescLeft">&#160;</td><td class="mdescRight">A wrapper for ImGui::InputInt that accepts only values above a threshold.  <br /></td></tr>
+<tr class="separator:a1e3474538d418e14b43365e28bd98beb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="a6c338ef0af868fdcd8d597e70724a6fb" name="a6c338ef0af868fdcd8d597e70724a6fb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c338ef0af868fdcd8d597e70724a6fb">&#9670;&#160;</a></span>CenteredButton()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Contains ImGui extensions. </p>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="ad6a461f94638491f0e6e9c8051d83bd4" name="ad6a461f94638491f0e6e9c8051d83bd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6a461f94638491f0e6e9c8051d83bd4">&#9670;&#160;</a></span>CenteredButton()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -122,15 +130,25 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>textWidth</em></span>&#160;)</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>textWidth</em><span class="paramdefsep"> = </span><span class="paramdefval">-1</span></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>A wrapper creating an ImGui::Button that is centered horiontally on the screen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">text</td><td>Text to display</td></tr>
+    <tr><td class="paramname">textWidth</td><td>The width of the button's text. If negative, it will be calculated automatically</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The ImGui::Button result</dd></dl>
+
 </div>
 </div>
-<a id="a2ea3fc35b3e927a37a710efab42b658a" name="a2ea3fc35b3e927a37a710efab42b658a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2ea3fc35b3e927a37a710efab42b658a">&#9670;&#160;</a></span>InputPositiveFloat()</h2>
+<a id="abea88a31fdfb6708d60c6873fae927aa" name="abea88a31fdfb6708d60c6873fae927aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abea88a31fdfb6708d60c6873fae927aa">&#9670;&#160;</a></span>InputPositiveFloat()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -148,15 +166,26 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>minValue</em></span>&#160;)</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>minValue</em><span class="paramdefsep"> = </span><span class="paramdefval">0</span></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>A wrapper for ImGui::InputFloat that accepts only values above a threshold. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">label</td><td>Label to display</td></tr>
+    <tr><td class="paramname">v</td><td>The value pointer</td></tr>
+    <tr><td class="paramname">minValue</td><td>The minium value to clamp to</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The ImGui::InputFloat result</dd></dl>
+
 </div>
 </div>
-<a id="ad7806efa7cc8d933ad38e352ff3b493e" name="ad7806efa7cc8d933ad38e352ff3b493e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad7806efa7cc8d933ad38e352ff3b493e">&#9670;&#160;</a></span>InputPositiveInt()</h2>
+<a id="a1e3474538d418e14b43365e28bd98beb" name="a1e3474538d418e14b43365e28bd98beb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e3474538d418e14b43365e28bd98beb">&#9670;&#160;</a></span>InputPositiveInt()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -174,10 +203,21 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>minValue</em></span>&#160;)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>minValue</em><span class="paramdefsep"> = </span><span class="paramdefval">1</span></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>A wrapper for ImGui::InputInt that accepts only values above a threshold. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">label</td><td>Label to display</td></tr>
+    <tr><td class="paramname">v</td><td>The value pointer</td></tr>
+    <tr><td class="paramname">minValue</td><td>The minium value to clamp to</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The ImGui::InputInt result</dd></dl>
 
 </div>
 </div>

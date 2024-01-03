@@ -2,16 +2,21 @@
 
 #include <glm/vec3.hpp>
 
-using namespace glm;
 
+/// <summary>
+/// A struct representing a light source in OpenGL
+/// </summary>
 struct Light
 {
-    vec3 ambient;
-    vec3 diffuse;
-    vec3 specular;
+    glm::vec3 ambient;
+    glm::vec3 diffuse;
+    glm::vec3 specular;
 };
 
+/// <summary>
+/// A struct representing a directional light source in OpenGL
+/// </summary>
 struct DirLight : public Light
 {
-    vec3 direction;
+    glm::vec3 direction;
 };

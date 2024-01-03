@@ -227,7 +227,6 @@ namespace vein
 		// end
 		glm::quat rotationQuat(glm::vec3(skewPitch, 0, skewRoll));
 		glm::mat4 rotation = glm::toMat4(rotationQuat);
-		// glm::rotate(glm::mat4(1.0f), skewPitch, glm::vec3(1, 0, 0))* glm::rotate(glm::mat4(1.0f), skewRoll, glm::vec3(0, 0, 1));
 
 		#pragma omp parallel for
 		for (int i = 0; i < 2 * bif::hLayers; i += 2)

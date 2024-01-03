@@ -43,7 +43,9 @@ var annotated_dup =
     [ "CylinderSolidColorShader", "class_cylinder_solid_color_shader.html", "class_cylinder_solid_color_shader" ],
     [ "DirLight", "struct_dir_light.html", "struct_dir_light" ],
     [ "Light", "struct_light.html", "struct_light" ],
+    [ "ServerCommunicationController", "class_server_communication_controller.html", "class_server_communication_controller" ],
     [ "Shader", "class_shader.html", "class_shader" ],
+    [ "SimulationInputController", "class_simulation_input_controller.html", null ],
     [ "StreamFrame", "class_stream_frame.html", "class_stream_frame" ],
     [ "StreamReceiver", "class_stream_receiver.html", "class_stream_receiver" ]
 ];

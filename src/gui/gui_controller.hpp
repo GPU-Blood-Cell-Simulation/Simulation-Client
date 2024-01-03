@@ -8,6 +8,9 @@
 #include <imgui/imgui/imgui.h>
 #include <vector>
 
+/// <summary>
+/// This namespace contains all classes and functions responsible for rendering the UI and communicating with the user
+/// </summary>
 namespace gui
 {
 	/// <summary>

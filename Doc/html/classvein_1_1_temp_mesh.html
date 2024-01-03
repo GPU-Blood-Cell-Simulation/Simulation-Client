@@ -119,8 +119,10 @@ Inheritance diagram for vein::TempMesh:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:afd1ea2a2135f783f8e958d3d0706938c" id="r_afd1ea2a2135f783f8e958d3d0706938c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd1ea2a2135f783f8e958d3d0706938c">TempMesh</a> (std::vector&lt; glm::vec3 &gt; &amp;&amp;<a class="el" href="#a7619f18c02d3a6f60f434133f3440e06">positions</a>, std::vector&lt; unsigned int &gt; &amp;&amp;<a class="el" href="#a9a3df8db4a9d388f001131dd124ec817">indices</a>)</td></tr>
+<tr class="memdesc:afd1ea2a2135f783f8e958d3d0706938c"><td class="mdescLeft">&#160;</td><td class="mdescRight">A constructor moving both positions and indices.  <br /></td></tr>
 <tr class="separator:afd1ea2a2135f783f8e958d3d0706938c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef1ca7fc971c84f59d1710850aef6e1b" id="r_aef1ca7fc971c84f59d1710850aef6e1b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef1ca7fc971c84f59d1710850aef6e1b">TempMesh</a> (std::vector&lt; glm::vec3 &gt; &amp;&amp;<a class="el" href="#a7619f18c02d3a6f60f434133f3440e06">positions</a>, const std::vector&lt; unsigned int &gt; &amp;<a class="el" href="#a9a3df8db4a9d388f001131dd124ec817">indices</a>)</td></tr>
+<tr class="memdesc:aef1ca7fc971c84f59d1710850aef6e1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">A constructor moving only positions and copying indices.  <br /></td></tr>
 <tr class="separator:aef1ca7fc971c84f59d1710850aef6e1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1aafca18d151bac793bf4fc88e319735" id="r_a1aafca18d151bac793bf4fc88e319735"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1aafca18d151bac793bf4fc88e319735">~TempMesh</a> ()</td></tr>
 <tr class="separator:a1aafca18d151bac793bf4fc88e319735"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -159,6 +161,15 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>A constructor moving both positions and indices. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">positions</td><td>An rvalue ref to a vector of mesh vertex position</td></tr>
+    <tr><td class="paramname">indices</td><td>An rvalue ref to a vector of mesh indices</td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="aef1ca7fc971c84f59d1710850aef6e1b" name="aef1ca7fc971c84f59d1710850aef6e1b"></a>
@@ -179,6 +190,15 @@ Protected Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>A constructor moving only positions and copying indices. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">positions</td><td>An rvalue ref to a vector of mesh vertex position</td></tr>
+    <tr><td class="paramname">indices</td><td>An regular reference to a vector of mesh indices</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -120,7 +120,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2de8512ae5f159e4a47afc7d96422f64" id="r_a2de8512ae5f159e4a47afc7d96422f64"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2de8512ae5f159e4a47afc7d96422f64">BifurcationNode</a> (<a class="el" href="classvein_1_1_node.html">Node</a> *<a class="el" href="classvein_1_1_node.html#a37bfeaf3bea84e1bdbd5dda16deffa6b">parent</a>, float radiusLeft, float radiusRight, float leftRoll, float rightRoll, float leftPitch, float rightPitch, bool <a class="el" href="classvein_1_1_node.html#a5bf65571c4df333531ebe202607b7f4a">isLeft</a>=true)</td></tr>
 <tr class="memdesc:a2de8512ae5f159e4a47afc7d96422f64"><td class="mdescLeft">&#160;</td><td class="mdescRight">The basic constructor.  <br /></td></tr>
 <tr class="separator:a2de8512ae5f159e4a47afc7d96422f64"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac310fe18ddc51446af5088214658c10d" id="r_ac310fe18ddc51446af5088214658c10d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac310fe18ddc51446af5088214658c10d">BifurcationNode</a> (<a class="el" href="classvein_1_1_node.html">Node</a> *<a class="el" href="classvein_1_1_node.html#a37bfeaf3bea84e1bdbd5dda16deffa6b">parent</a>, const <a class="el" href="namespacevein.html#a2329f46de8b8e87f167d5c71a6ea0e51">json</a> &amp;j, bool <a class="el" href="classvein_1_1_node.html#a5bf65571c4df333531ebe202607b7f4a">isLeft</a>=true)</td></tr>
+<tr class="memitem:ac310fe18ddc51446af5088214658c10d" id="r_ac310fe18ddc51446af5088214658c10d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac310fe18ddc51446af5088214658c10d">BifurcationNode</a> (<a class="el" href="classvein_1_1_node.html">Node</a> *<a class="el" href="classvein_1_1_node.html#a37bfeaf3bea84e1bdbd5dda16deffa6b">parent</a>, const <a class="el" href="namespacevein.html#a101d59fffd90806252758d96bad3fe59">json</a> &amp;j, bool <a class="el" href="classvein_1_1_node.html#a5bf65571c4df333531ebe202607b7f4a">isLeft</a>=true)</td></tr>
+<tr class="memdesc:ac310fe18ddc51446af5088214658c10d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor from json.  <br /></td></tr>
 <tr class="separator:ac310fe18ddc51446af5088214658c10d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3398bf0883627465d71344041fd13a6" id="r_ab3398bf0883627465d71344041fd13a6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab3398bf0883627465d71344041fd13a6">BifurcationNode</a> ()=default</td></tr>
 <tr class="separator:ab3398bf0883627465d71344041fd13a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,10 +134,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abf33fcbcf99d63b0adcfdb3dd2365956" id="r_abf33fcbcf99d63b0adcfdb3dd2365956"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classvein_1_1_bifurcation_node.html">BifurcationNode</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abf33fcbcf99d63b0adcfdb3dd2365956">operator=</a> (<a class="el" href="classvein_1_1_bifurcation_node.html">BifurcationNode</a> &amp;&amp;)=default</td></tr>
 <tr class="separator:abf33fcbcf99d63b0adcfdb3dd2365956"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeadeb04d68ca8e7aeaab5366945b68b5" id="r_aeadeb04d68ca8e7aeaab5366945b68b5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeadeb04d68ca8e7aeaab5366945b68b5">renderGUI</a> (<a class="el" href="classgui_1_1_g_u_i_controller.html">gui::GUIController</a> &amp;guiController, float <a class="el" href="defines_8hpp.html#a61ed02a8f208ffec631a84fc9958ffc0">width</a>) override</td></tr>
+<tr class="memdesc:aeadeb04d68ca8e7aeaab5366945b68b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders a button in a tree-like hierarchy in the ImGui window.  <br /></td></tr>
 <tr class="separator:aeadeb04d68ca8e7aeaab5366945b68b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91f7c4a50d70f17f14d9a477c8e15539" id="r_a91f7c4a50d70f17f14d9a477c8e15539"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91f7c4a50d70f17f14d9a477c8e15539">addToMesh</a> (<a class="el" href="classvein_1_1_temp_mesh.html">TempMesh</a> &amp;finalMesh, unsigned int parentLeftBranchLastRowStart, unsigned int parentRightBranchLastRowStart, bool parentIsBifurcation) const override</td></tr>
+<tr class="memdesc:a91f7c4a50d70f17f14d9a477c8e15539"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds this node's mesh to the final mesh and glues them together. Additionally glues the internal segments of the bifurcation mesh.  <br /></td></tr>
 <tr class="separator:a91f7c4a50d70f17f14d9a477c8e15539"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1769470700415b971d5b4cbe21ec5ead" id="r_a1769470700415b971d5b4cbe21ec5ead"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacevein.html#a2329f46de8b8e87f167d5c71a6ea0e51">json</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1769470700415b971d5b4cbe21ec5ead">generateJson</a> () const override</td></tr>
+<tr class="memitem:a1769470700415b971d5b4cbe21ec5ead" id="r_a1769470700415b971d5b4cbe21ec5ead"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacevein.html#a101d59fffd90806252758d96bad3fe59">json</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1769470700415b971d5b4cbe21ec5ead">generateJson</a> () const override</td></tr>
+<tr class="memdesc:a1769470700415b971d5b4cbe21ec5ead"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate a json sub-object containing the information needed to reconstruct this node and its children (if present) recursively.  <br /></td></tr>
 <tr class="separator:a1769470700415b971d5b4cbe21ec5ead"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classvein_1_1_node"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classvein_1_1_node')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classvein_1_1_node.html">vein::Node</a></td></tr>
 <tr class="memitem:acab6e0ae5a041209c3f312f6e322db3d inherit pub_methods_classvein_1_1_node" id="r_acab6e0ae5a041209c3f312f6e322db3d"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvein_1_1_node.html#acab6e0ae5a041209c3f312f6e322db3d">~Node</a> ()</td></tr>
@@ -146,6 +150,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae8ee935f1b692424730e6cb5f7f462ea inherit pub_methods_classvein_1_1_node" id="r_ae8ee935f1b692424730e6cb5f7f462ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvein_1_1_node.html#ae8ee935f1b692424730e6cb5f7f462ea">deleteMarkedChildren</a> ()</td></tr>
 <tr class="separator:ae8ee935f1b692424730e6cb5f7f462ea inherit pub_methods_classvein_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab71ed7478eeb43617fdb561b4943f35d inherit pub_methods_classvein_1_1_node" id="r_ab71ed7478eeb43617fdb561b4943f35d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvein_1_1_node.html#ab71ed7478eeb43617fdb561b4943f35d">draw</a> (<a class="el" href="class_shader.html">Shader</a> *shader) const</td></tr>
+<tr class="memdesc:ab71ed7478eeb43617fdb561b4943f35d inherit pub_methods_classvein_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw the node's mesh in the OpenGL window.  <br /></td></tr>
 <tr class="separator:ab71ed7478eeb43617fdb561b4943f35d inherit pub_methods_classvein_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
@@ -156,12 +161,14 @@ Static Public Attributes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:ab85a6256323ef86b50f984c9cf78d04f" id="r_ab85a6256323ef86b50f984c9cf78d04f"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab85a6256323ef86b50f984c9cf78d04f">getFullName</a> () const override</td></tr>
+<tr class="memdesc:ab85a6256323ef86b50f984c9cf78d04f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the node's name in the form of its type and unique id.  <br /></td></tr>
 <tr class="separator:ab85a6256323ef86b50f984c9cf78d04f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28ac70f4173ecb01092dd9824137ecef" id="r_a28ac70f4173ecb01092dd9824137ecef"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28ac70f4173ecb01092dd9824137ecef">leftChildButtonOffset</a> () const override</td></tr>
 <tr class="separator:a28ac70f4173ecb01092dd9824137ecef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9485ebf27a127cf2326cc6d0511870c7" id="r_a9485ebf27a127cf2326cc6d0511870c7"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9485ebf27a127cf2326cc6d0511870c7">rightChildButtonOffset</a> () const override</td></tr>
 <tr class="separator:a9485ebf27a127cf2326cc6d0511870c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa75cc12a4c1d4561ad9211ef1fcf9fdf" id="r_aa75cc12a4c1d4561ad9211ef1fcf9fdf"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa75cc12a4c1d4561ad9211ef1fcf9fdf">getChildLevel</a> () const override</td></tr>
+<tr class="memdesc:aa75cc12a4c1d4561ad9211ef1fcf9fdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increases the children's level by one.  <br /></td></tr>
 <tr class="separator:aa75cc12a4c1d4561ad9211ef1fcf9fdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classvein_1_1_node"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classvein_1_1_node')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classvein_1_1_node.html">vein::Node</a></td></tr>
 <tr class="memitem:a3d0f746450e387c4b9a105d540a4bbdf inherit pro_methods_classvein_1_1_node" id="r_a3d0f746450e387c4b9a105d540a4bbdf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvein_1_1_node.html#a3d0f746450e387c4b9a105d540a4bbdf">Node</a> (<a class="el" href="classvein_1_1_node.html">Node</a> *<a class="el" href="classvein_1_1_node.html#a37bfeaf3bea84e1bdbd5dda16deffa6b">parent</a>, <a class="el" href="classvein_1_1_vein_mesh.html">VeinMesh</a> &amp;&amp;<a class="el" href="classvein_1_1_node.html#a092a354d455d8dae2d0d5381e2460040">mesh</a>, float <a class="el" href="classvein_1_1_node.html#a29b78def906fac6383ae9fd74ea539e3">leftBranchRadius</a>, float <a class="el" href="classvein_1_1_node.html#a5f3a8ecd16e408fc5dc801b098c27d05">rightBranchRadius</a>, bool <a class="el" href="classvein_1_1_node.html#a5bf65571c4df333531ebe202607b7f4a">isLeft</a>=true)</td></tr>
@@ -178,13 +185,14 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a68c8984448c11f16fc5a1184490cb0a6 inherit pro_methods_classvein_1_1_node" id="r_a68c8984448c11f16fc5a1184490cb0a6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classvein_1_1_node.html">Node</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvein_1_1_node.html#a68c8984448c11f16fc5a1184490cb0a6">operator=</a> (<a class="el" href="classvein_1_1_node.html">Node</a> &amp;&amp;)=default</td></tr>
 <tr class="separator:a68c8984448c11f16fc5a1184490cb0a6 inherit pro_methods_classvein_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a368797e23c8857a8dc799360d4123a71 inherit pro_methods_classvein_1_1_node" id="r_a368797e23c8857a8dc799360d4123a71"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvein_1_1_node.html#a368797e23c8857a8dc799360d4123a71">getPopupName</a> () const</td></tr>
+<tr class="memdesc:a368797e23c8857a8dc799360d4123a71 inherit pro_methods_classvein_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the node's unique ImGui popup identifier.  <br /></td></tr>
 <tr class="separator:a368797e23c8857a8dc799360d4123a71 inherit pro_methods_classvein_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeba5af513afbc10f37f73b3ddaa5193f inherit pro_methods_classvein_1_1_node" id="r_aeba5af513afbc10f37f73b3ddaa5193f"><td class="memItemLeft" align="right" valign="top">std::tuple&lt; <a class="el" href="namespacevein.html#a2329f46de8b8e87f167d5c71a6ea0e51">json</a>, <a class="el" href="namespacevein.html#a2329f46de8b8e87f167d5c71a6ea0e51">json</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvein_1_1_node.html#aeba5af513afbc10f37f73b3ddaa5193f">generateLeftAndRightJson</a> () const</td></tr>
+<tr class="memitem:aeba5af513afbc10f37f73b3ddaa5193f inherit pro_methods_classvein_1_1_node" id="r_aeba5af513afbc10f37f73b3ddaa5193f"><td class="memItemLeft" align="right" valign="top">std::tuple&lt; <a class="el" href="namespacevein.html#a101d59fffd90806252758d96bad3fe59">json</a>, <a class="el" href="namespacevein.html#a101d59fffd90806252758d96bad3fe59">json</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvein_1_1_node.html#aeba5af513afbc10f37f73b3ddaa5193f">generateLeftAndRightJson</a> () const</td></tr>
+<tr class="memdesc:aeba5af513afbc10f37f73b3ddaa5193f inherit pro_methods_classvein_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recursively generates the json sub-objects from its left and right child (if present)  <br /></td></tr>
 <tr class="separator:aeba5af513afbc10f37f73b3ddaa5193f inherit pro_methods_classvein_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d1e3c770910154f8a567fae949b9867 inherit pro_methods_classvein_1_1_node" id="r_a5d1e3c770910154f8a567fae949b9867"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvein_1_1_node.html#a5d1e3c770910154f8a567fae949b9867">fillLeftAndRightFromJson</a> (const <a class="el" href="namespacevein.html#a2329f46de8b8e87f167d5c71a6ea0e51">json</a> &amp;j)</td></tr>
+<tr class="memitem:a5d1e3c770910154f8a567fae949b9867 inherit pro_methods_classvein_1_1_node" id="r_a5d1e3c770910154f8a567fae949b9867"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvein_1_1_node.html#a5d1e3c770910154f8a567fae949b9867">fillLeftAndRightFromJson</a> (const <a class="el" href="namespacevein.html#a101d59fffd90806252758d96bad3fe59">json</a> &amp;j)</td></tr>
+<tr class="memdesc:a5d1e3c770910154f8a567fae949b9867 inherit pro_methods_classvein_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Based on the json provided, this node attaches two new nodes as children.  <br /></td></tr>
 <tr class="separator:a5d1e3c770910154f8a567fae949b9867 inherit pro_methods_classvein_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab92bce0f68ec16c23e16ea75308c889 inherit pro_methods_classvein_1_1_node" id="r_aab92bce0f68ec16c23e16ea75308c889"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvein_1_1_node.html#aab92bce0f68ec16c23e16ea75308c889">setupModelMatrix</a> (const glm::vec3 &amp;translation, float rollAngle, float pitchAngle)</td></tr>
-<tr class="separator:aab92bce0f68ec16c23e16ea75308c889 inherit pro_methods_classvein_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -311,7 +319,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespacevein.html#a2329f46de8b8e87f167d5c71a6ea0e51">json</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>j</em>, </span></td>
+          <td class="paramtype">const <a class="el" href="namespacevein.html#a101d59fffd90806252758d96bad3fe59">json</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>j</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -320,6 +328,16 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Constructor from json. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parent</td><td>The parent node pointer</td></tr>
+    <tr><td class="paramname">j</td><td>A json describing this node and its children (if present)</td></tr>
+    <tr><td class="paramname">isLeft</td><td>Whether this node is its parent's left child</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -436,6 +454,17 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Adds this node's mesh to the final mesh and glues them together. Additionally glues the internal segments of the bifurcation mesh. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">finalMesh</td><td>The final mesh that this node will append to</td></tr>
+    <tr><td class="paramname">parentLeftBranchLastRowStart</td><td>The starting index of the parent's left branch's last row</td></tr>
+    <tr><td class="paramname">parentRightBranchLastRowStart</td><td>The starting index of the parent's right branch's last row</td></tr>
+    <tr><td class="paramname">parentIsBifurcation</td><td>Whether the parent is a bifurcation (has two endings)</td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Implements <a class="el" href="classvein_1_1_node.html#ac711bfb0992fb7dc749e2399ae0e7619">vein::Node</a>.</p>
 
 </div>
@@ -450,7 +479,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacevein.html#a2329f46de8b8e87f167d5c71a6ea0e51">json</a> vein::BifurcationNode::generateJson </td>
+          <td class="memname"><a class="el" href="namespacevein.html#a101d59fffd90806252758d96bad3fe59">json</a> vein::BifurcationNode::generateJson </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td> const</td>
@@ -462,6 +491,9 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Generate a json sub-object containing the information needed to reconstruct this node and its children (if present) recursively. </p>
+<dl class="section return"><dt>Returns</dt><dd>A json object</dd></dl>
 
 <p>Implements <a class="el" href="classvein_1_1_node.html#a367035e433677d320c3076f1df410a51">vein::Node</a>.</p>
 
@@ -490,6 +522,9 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Increases the children's level by one. </p>
+<dl class="section return"><dt>Returns</dt><dd>Children's level in the tree hierarchy</dd></dl>
+
 <p>Implements <a class="el" href="classvein_1_1_node.html#adbba84aabc4b3f4a29857fefb68ba239">vein::Node</a>.</p>
 
 </div>
@@ -516,6 +551,9 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the node's name in the form of its type and unique id. </p>
+<dl class="section return"><dt>Returns</dt><dd>The node's full name</dd></dl>
 
 <p>Implements <a class="el" href="classvein_1_1_node.html#aab0c0407473c56739d4446a9502dee5b">vein::Node</a>.</p>
 
@@ -624,6 +662,15 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Renders a button in a tree-like hierarchy in the ImGui window. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">guiController</td><td>The GUIController instance</td></tr>
+    <tr><td class="paramname">width</td><td>the window width at which the center of the button should be rendered</td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implements <a class="el" href="classvein_1_1_node.html#a5270f5676d4450113f3c6a9b926ccebb">vein::Node</a>.</p>
 

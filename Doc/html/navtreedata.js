@@ -52,6 +52,7 @@ var NAVTREE =
         [ "Functions", "globals_func.html", null ],
         [ "Variables", "globals_vars.html", "globals_vars" ],
         [ "Typedefs", "globals_type.html", null ],
+        [ "Enumerations", "globals_enum.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -61,13 +62,13 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "add__vein_8cpp.html",
-"classvein_1_1_node.html#a29b78def906fac6383ae9fd74ea539e3",
-"glad_8c.html#a00aa740b57bdeb17cd0c0a7a05b74c16",
-"glad_8c.html#a40f63cf24bf7c1b2b921b2a592a0ef99",
-"glad_8c.html#a7d4c3254bf69c2660504fe5e536966f3",
-"glad_8c.html#ab4901c8685fd0937d143761dbbbab046",
-"glad_8c.html#af1878e0c0e21202716889749dbae98ce",
-"physics__config_8hpp_source.html"
+"classvein_1_1_cylinder_node.html#aed0c43ae24b32058938fb71f7601c123",
+"general__config_8hpp.html",
+"glad_8c.html#a3f9c7586b735c74fc4f4e019eed987e5",
+"glad_8c.html#a7b47a3c3028acf5fd525c9146e63dfee",
+"glad_8c.html#ab37297c00d59b3da973e1f1256377630",
+"glad_8c.html#aeec32fa7693ec8bd1d3c4e56eed39b61",
+"namespacevein_1_1cyl.html#a5909ab5a41190c049de5ed101d36b6a7"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

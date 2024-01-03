@@ -1,6 +1,6 @@
 var struct_light =
 [
-    [ "ambient", "struct_light.html#aad570a3d99a848c3545d6d4a603ccfe2", null ],
-    [ "diffuse", "struct_light.html#af6ab18b1393e6d5b43e9876c78980897", null ],
-    [ "specular", "struct_light.html#a3fe6c0cd1dde7d845eb5067bd8f348c6", null ]
+    [ "ambient", "struct_light.html#afaa34bb2efc167adcb2055359fd08a49", null ],
+    [ "diffuse", "struct_light.html#ad47b5347556fd8cd9ebdc60fdfed196b", null ],
+    [ "specular", "struct_light.html#aefcfb83a0540ddb885c2622061b28d7e", null ]
 ];

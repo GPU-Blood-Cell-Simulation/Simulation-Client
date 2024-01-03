@@ -4,6 +4,9 @@
 #include "glm_to_tps.hpp"
 #include "vein_mesh.hpp"
 
+/// <summary>
+/// This namespace contains all elements connected to the vein definition, generation and transforming
+/// </summary>
 namespace vein
 {
 	/// <summary>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['iooperation_0',['IoOperation',['../namespacegui.html#aff046ec5178cb5a7687e08c4d7cb955e',1,'gui']]]
+  ['connectionstate_0',['ConnectionState',['../server__communication__controller_8hpp.html#acdd867d72142510ce53521a63a062f9b',1,'server_communication_controller.hpp']]]
 ];

@@ -8,5 +8,7 @@ var dir_560415a5d2bc4999842279f4fc1debef =
     [ "inputcontroller.hpp", "inputcontroller_8hpp.html", "inputcontroller_8hpp" ],
     [ "light.hpp", "light_8hpp.html", "light_8hpp" ],
     [ "shader.cpp", "shader_8cpp.html", "shader_8cpp" ],
-    [ "shader.hpp", "shader_8hpp.html", "shader_8hpp" ]
+    [ "shader.hpp", "shader_8hpp.html", "shader_8hpp" ],
+    [ "stream_input_controller.cpp", "stream__input__controller_8cpp.html", null ],
+    [ "stream_input_controller.hpp", "stream__input__controller_8hpp.html", "stream__input__controller_8hpp" ]
 ];

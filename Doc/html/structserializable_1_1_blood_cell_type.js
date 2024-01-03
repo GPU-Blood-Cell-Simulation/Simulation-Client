@@ -1,5 +1,6 @@
 var structserializable_1_1_blood_cell_type =
 [
+    [ "color", "structserializable_1_1_blood_cell_type.html#ac23d5abd2483ad6142ca889f16ead87e", null ],
     [ "indices", "structserializable_1_1_blood_cell_type.html#a0b558d7f9d07b2194c7d161583306583", null ],
     [ "modelSize", "structserializable_1_1_blood_cell_type.html#a4ba904e03406b43f63c32d93f20ff79f", null ],
     [ "name", "structserializable_1_1_blood_cell_type.html#a874a9a0a4a24d22675994fadb5a1a1cf", null ],

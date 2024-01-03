@@ -34,9 +34,11 @@ var hierarchy =
         [ "vein::RootNode", "classvein_1_1_root_node.html", null ]
       ] ]
     ] ],
+    [ "ServerCommunicationController", "class_server_communication_controller.html", null ],
     [ "Shader", "class_shader.html", [
       [ "CylinderSolidColorShader", "class_cylinder_solid_color_shader.html", null ]
     ] ],
+    [ "SimulationInputController", "class_simulation_input_controller.html", null ],
     [ "serializable::Spring", "structserializable_1_1_spring.html", null ],
     [ "StreamFrame", "class_stream_frame.html", null ],
     [ "StreamReceiver", "class_stream_receiver.html", null ],

@@ -1,9 +1,9 @@
 var namespacegui =
 [
     [ "ext", "namespacegui_1_1ext.html", [
-      [ "CenteredButton", "namespacegui_1_1ext.html#a6c338ef0af868fdcd8d597e70724a6fb", null ],
-      [ "InputPositiveFloat", "namespacegui_1_1ext.html#a2ea3fc35b3e927a37a710efab42b658a", null ],
-      [ "InputPositiveInt", "namespacegui_1_1ext.html#ad7806efa7cc8d933ad38e352ff3b493e", null ]
+      [ "CenteredButton", "namespacegui_1_1ext.html#ad6a461f94638491f0e6e9c8051d83bd4", null ],
+      [ "InputPositiveFloat", "namespacegui_1_1ext.html#abea88a31fdfb6708d60c6873fae927aa", null ],
+      [ "InputPositiveInt", "namespacegui_1_1ext.html#a1e3474538d418e14b43365e28bd98beb", null ]
     ] ],
     [ "themes", "namespacegui_1_1themes.html", "namespacegui_1_1themes" ],
     [ "BloodEditor", "classgui_1_1_blood_editor.html", "classgui_1_1_blood_editor" ],

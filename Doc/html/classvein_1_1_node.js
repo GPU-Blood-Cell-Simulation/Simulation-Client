@@ -20,7 +20,6 @@ var classvein_1_1_node =
     [ "operator=", "classvein_1_1_node.html#a68c8984448c11f16fc5a1184490cb0a6", null ],
     [ "renderGUI", "classvein_1_1_node.html#a5270f5676d4450113f3c6a9b926ccebb", null ],
     [ "rightChildButtonOffset", "classvein_1_1_node.html#afe22a75562e5fe9a62a0050cada29cd8", null ],
-    [ "setupModelMatrix", "classvein_1_1_node.html#aab92bce0f68ec16c23e16ea75308c889", null ],
     [ "id", "classvein_1_1_node.html#ab76e231c259b90f9c3c23dd948067c26", null ],
     [ "isLeft", "classvein_1_1_node.html#a5bf65571c4df333531ebe202607b7f4a", null ],
     [ "left", "classvein_1_1_node.html#ad208c0f4953c67b7585ef9e1f63c1934", null ],
