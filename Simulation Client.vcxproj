@@ -92,7 +92,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(GSTREAMER_1_0_ROOT_MSVC_X86_64)lib;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>gobject-2.0.lib;glib-2.0.lib;gstreamer-1.0.lib;gstapp-1.0.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>winmm.lib;ws2_32.lib;gobject-2.0.lib;glib-2.0.lib;gstreamer-1.0.lib;gstapp-1.0.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -111,7 +111,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(GSTREAMER_1_0_ROOT_MSVC_X86_64)lib;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>gobject-2.0.lib;glib-2.0.lib;gstreamer-1.0.lib;gstapp-1.0.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>winmm.lib;ws2_32.lib;gobject-2.0.lib;glib-2.0.lib;gstreamer-1.0.lib;gstapp-1.0.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -133,7 +133,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(GSTREAMER_1_0_ROOT_MSVC_X86_64)lib;$(SolutionDir)Libraries\lib;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>gobject-2.0.lib;glib-2.0.lib;gstreamer-1.0.lib;gstapp-1.0.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>winmm.lib;ws2_32.lib;gobject-2.0.lib;glib-2.0.lib;gstreamer-1.0.lib;gstapp-1.0.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -157,7 +157,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(GSTREAMER_1_0_ROOT_MSVC_X86_64)lib;$(SolutionDir)Libraries\lib;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>gobject-2.0.lib;glib-2.0.lib;gstreamer-1.0.lib;gstapp-1.0.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>winmm.lib;ws2_32.lib;gobject-2.0.lib;glib-2.0.lib;gstreamer-1.0.lib;gstapp-1.0.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -171,10 +171,12 @@
     <ClCompile Include="Libraries\include\imgui\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Libraries\include\imgui_file_dialog\ImGuiFileDialog.cpp" />
     <ClCompile Include="src\bloodcell\blood_editor.cpp" />
+    <ClCompile Include="src\communication\server_communication_controller.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\graphics\camera.cpp" />
     <ClCompile Include="src\graphics\glcontroller.cpp" />
     <ClCompile Include="src\graphics\inputcontroller.cpp" />
+    <ClCompile Include="src\graphics\stream_input_controller.cpp" />
     <ClCompile Include="src\gui\components\add_vein.cpp" />
     <ClCompile Include="src\gui\components\blood_details.cpp" />
     <ClCompile Include="src\gui\components\blood_list.cpp" />
@@ -212,6 +214,15 @@
     <ClCompile Include="src\vein\vein_generator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Libraries\include\enet\callbacks.h" />
+    <ClInclude Include="Libraries\include\enet\enet.h" />
+    <ClInclude Include="Libraries\include\enet\list.h" />
+    <ClInclude Include="Libraries\include\enet\protocol.h" />
+    <ClInclude Include="Libraries\include\enet\time.h" />
+    <ClInclude Include="Libraries\include\enet\types.h" />
+    <ClInclude Include="Libraries\include\enet\unix.h" />
+    <ClInclude Include="Libraries\include\enet\utility.h" />
+    <ClInclude Include="Libraries\include\enet\win32.h" />
     <ClInclude Include="Libraries\include\glad\glad.h" />
     <ClInclude Include="Libraries\include\GLFW\glfw3.h" />
     <ClInclude Include="Libraries\include\GLFW\glfw3native.h" />
@@ -523,11 +534,13 @@
     <ClInclude Include="SimulationConfigData\template_bloodcells_definition.hpp" />
     <ClInclude Include="SimulationConfigData\template_blood_cell_presets.hpp" />
     <ClInclude Include="src\bloodcell\blood_editor.hpp" />
+    <ClInclude Include="src\communication\server_communication_controller.hpp" />
     <ClInclude Include="src\defines.hpp" />
     <ClInclude Include="src\graphics\camera.hpp" />
     <ClInclude Include="src\graphics\glcontroller.hpp" />
     <ClInclude Include="src\graphics\inputcontroller.hpp" />
     <ClInclude Include="src\graphics\light.hpp" />
+    <ClInclude Include="src\graphics\stream_input_controller.hpp" />
     <ClInclude Include="src\gui\extensions.hpp" />
     <ClInclude Include="src\gui\themes\spectrum.hpp" />
     <ClInclude Include="src\gui\themes\spectrum_dark.hpp" />
@@ -703,6 +716,7 @@
     <None Include="Libraries\include\glm\gtx\wrap.inl" />
   </ItemGroup>
   <ItemGroup>
+    <Library Include="Libraries\lib\enet64.lib" />
     <Library Include="Libraries\lib\glfw3.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
