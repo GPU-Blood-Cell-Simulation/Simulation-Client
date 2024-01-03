@@ -1,5 +1,8 @@
 #include "../gui_controller.hpp"
+
+#include "../extensions.hpp"
 #include "../../bloodcell/blood_editor.hpp"
+
 #include <nlohmann/json.hpp>
 #include <fstream>
 
@@ -23,7 +26,8 @@ namespace gui
 			ImGui::SameLine();
 
 			ImGui::PushItemWidth(100);
-			if (ImGui::InputInt("quantity", &editor.modelQuantity))
+			std::string inputName = "quantity##" + editor.GetModelName();
+			if (ImGui::InputInt(inputName.c_str(), &editor.modelQuantity))
 			{
 				editor.updateQuantity();
 			}
@@ -39,7 +43,7 @@ namespace gui
 		ImGui::NewLine();
 		ImGui::NewLine();
 
-		if (ImGui::Button("Done"))
+		if (ext::CenteredButton("Done"))
 		{
 			setMode(Mode::mainScreen);
 			glController.setMode(graphics::Mode::None);

@@ -19,7 +19,7 @@ namespace vein
 
 		inline static const std::string type = "root";
 
-		virtual void renderGUI(gui::GUIController& guiController) override;
+		virtual void renderGUI(gui::GUIController& guiController, float width) override;
 		virtual void addToMesh(TempMesh& finalMesh, unsigned int parentLeftBranchLastRowStart, unsigned int parentRightBranchLastRowStart,
 			bool parentIsBifurcation) const override;
 		virtual json generateJson() const override;

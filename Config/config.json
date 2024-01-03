@@ -1,1 +1,0 @@
-{"bloodCells":{"types":[{"count":2,"particlesInCell":3,"springs":[{"end":1,"length":10,"start":0},{"end":2,"length":10,"start":1},{"end":0,"length":10,"start":2}]}]},"physics":null,"simulation":{"cellDepth":20,"cellHeight":20,"cellWidth":20},"vein":null}

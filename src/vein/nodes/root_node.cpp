@@ -9,9 +9,10 @@ namespace vein
 		CylinderNode(nullptr, cyl::veinRadius, cyl::vLayers, 0, 0)
 	{}
 
-	void RootNode::renderGUI(gui::GUIController& guiController)
+	void RootNode::renderGUI(gui::GUIController& guiController, float width)
 	{
-		if (ImGui::Button(getFullName().c_str()))
+		ImGui::SetCursorPosX(width - buttonWidth / 2);
+		if (ImGui::Button(getFullName().c_str(), ImVec2(buttonWidth, buttonHeight)))
 		{
 			if (!left)
 				ImGui::OpenPopup(getPopupName().c_str());

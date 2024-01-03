@@ -30,7 +30,7 @@ namespace vein
 		void deleteMarkedChildren();
 
 		void draw(Shader* shader) const;
-		virtual void renderGUI(gui::GUIController& guiController) = 0;
+		virtual void renderGUI(gui::GUIController& guiController, float width) = 0;
 		virtual void addToMesh(TempMesh& finalMesh, unsigned int parentLeftBranchLastRowStart, unsigned int parentRightBranchLastRowStart, 
 			bool parentIsBifurcation = false) const = 0;
 		virtual json generateJson() const = 0;
@@ -68,10 +68,17 @@ namespace vein
 		void fillLeftAndRightFromJson(const json& j);
 		void setupModelMatrix(const glm::vec3& translation, float rollAngle, float pitchAngle);
 
+		virtual float leftChildButtonOffset() const = 0;
+		virtual float rightChildButtonOffset() const = 0;
+		virtual int getChildLevel() const = 0;
+
 		VeinMesh mesh;
 
 		const bool isLeft = true;
 		unsigned int id = 0;
+		int level = 1;
+		static constexpr float buttonHeight = 40.0f;
+		static constexpr float buttonWidth = 80.0f;
     
 		glm::mat4 model{1.0f};
 	};

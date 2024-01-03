@@ -20,13 +20,26 @@ namespace vein
 
 		inline static const std::string type = "cylinder";
 
-		virtual void renderGUI(gui::GUIController& guiController) override;
+		virtual void renderGUI(gui::GUIController& guiController, float width) override;
 		virtual void addToMesh(TempMesh& finalMesh, unsigned int parentLeftBranchIndicesEnd, unsigned int parentRightBranchIndicesEnd,
 			bool parentIsBifurcation) const override;
 		virtual json generateJson() const override;
 
 	protected:
 		virtual std::string getFullName() const override;
+
+		inline virtual float leftChildButtonOffset() const override
+		{
+			return 0;
+		}
+		inline virtual float rightChildButtonOffset() const override
+		{
+			return 0;
+		}
+		inline virtual int getChildLevel() const override
+		{
+			return level;;
+		}
 
 		float radius;
 		int vLayers;

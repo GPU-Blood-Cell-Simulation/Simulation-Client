@@ -20,16 +20,6 @@ inline constexpr float height = 500.0f;
 inline constexpr float depth = 300.0f;
 
 // Serialization
-inline const std::string configPath =
-#ifdef _WIN32
- 	"Config/";
-#else
-	"../Config/";
-#endif
-inline const std::string veinConfigPath = configPath + "vein_config.json";
-inline const std::string bloodCellConfigPath = configPath + "blood_cell_config.json";
-inline const std::string generalConfigPath = configPath + "general_config.json";
-
 inline const std::string cppSerializationPath =
 #ifdef _WIN32
  	"SimulationGeneratedConfig/";

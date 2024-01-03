@@ -3,6 +3,7 @@
 #include "vein_node_json_conversion.hpp"
 
 #include "../defines.hpp"
+#include "exceptions.hpp"
 
 #include <fstream>
 
@@ -10,42 +11,58 @@ using json = nlohmann::json;
 
 namespace serializable
 {
-	void ConfigManager::loadBloodCellConfig()
+	static json parseJson(const std::string& filePath)
 	{
-		std::ifstream is(bloodCellConfigPath);
-		json jsonData = json::parse(is);
-		data.bloodCellsDefinition = jsonData.template get<BloodCellsDefinition>();
-	}
-	void ConfigManager::saveBloodCellConfig() const
-	{
-		std::ofstream os(bloodCellConfigPath);
-		json jsonData = data.bloodCellsDefinition;
-		os << std::setw(3) << jsonData;
+		std::ifstream is(filePath);
+		if (!is)
+			throw FileOpenException();
+		return json::parse(is);
 	}
 
-	void ConfigManager::loadVeinConfig()
+	static void writeToJson(std::ofstream& os, const json& jsonData)
 	{
-		std::ifstream is(veinConfigPath);
-		json jsonData = json::parse(is);
+		os << std::setw(3) << jsonData;
+		if (!os)
+			throw FileWriteException();
+	}
+
+	void ConfigManager::loadBloodCellConfig(const std::string& filePath)
+	{
+		json jsonData = parseJson(filePath);
+		data.bloodCellsDefinition = jsonData.template get<BloodCellsDefinition>();
+	}
+	void ConfigManager::saveBloodCellConfig(const std::string& filePath) const
+	{
+		std::ofstream os(filePath);
+		json jsonData = data.bloodCellsDefinition;
+		writeToJson(os, jsonData);
+	}
+
+	void ConfigManager::loadVeinConfig(const std::string& filePath)
+	{
+		json jsonData = parseJson(filePath);
 		data.veinRootNode.reset();
 		data.veinRootNode = std::make_unique<vein::RootNode>(jsonData);
 	}
 
-	void ConfigManager::saveVeinConfig() const
+	void ConfigManager::saveVeinConfig(const std::string& filePath) const
 	{
-		std::ofstream os(veinConfigPath);
+		std::ofstream os(filePath);
 		json jsonData = data.veinRootNode->generateJson();
-		os << jsonData;
+		writeToJson(os, jsonData);
 	}
 
-	void ConfigManager::loadGeneralConfig()
+	void ConfigManager::loadGeneralConfig(const std::string& filePath)
 	{
-		// TODO
+		json jsonData = parseJson(filePath);
+		data.generalConfig = jsonData.template get<GeneralConfig>();
 	}
 
-	void ConfigManager::saveGeneralConfig() const
+	void ConfigManager::saveGeneralConfig(const std::string& filePath) const
 	{
-		// TODO
+		std::ofstream os(filePath);
+		json jsonData = data.generalConfig;
+		writeToJson(os, jsonData);
 	}
 
 	ConfigData& ConfigManager::getData()
@@ -60,23 +77,12 @@ namespace serializable
 		data.veinRootNode->addToMesh(finalMesh, 0, 0);
 
 		// Serialize vein
-		try
-		{
-			finalMesh.serializeToCpp();
-		}
-		catch (std::ofstream::failure& e)
-		{
-			std::cout << "ostream error : " << e.what() << "\n";
-		}
-		catch (...)
-		{
-			std::cout << "other error during mesh generation\n";
-		}
+		finalMesh.serializeToCpp();
 
 		// Serialize BloodCells
 		data.bloodCellsDefinition.serializeToCpp();
 
 		// Serialize GeneralConfig
-			// TODO
+		data.generalConfig.serializeToCpp();
 	}
 }

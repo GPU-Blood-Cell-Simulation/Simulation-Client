@@ -2,14 +2,13 @@
 #include "../../gui/gui_controller.hpp"
 
 #include <queue>
-
-#include <iostream>
+#include <tuple>
 
 namespace vein
 {
 	Node::Node(Node* parent, VeinMesh&& mesh, float leftBranchRadius, float rightBranchRadius, bool isLeft) :
 		parent(parent), mesh(mesh), leftBranchRadius(leftBranchRadius), rightBranchRadius(rightBranchRadius), isLeft(isLeft),
-		id(objectCount++) {}
+		id(objectCount++), level(parent == nullptr ? 1 : parent->getChildLevel()) {}
 
 	Node::~Node()
 	{
@@ -18,22 +17,22 @@ namespace vein
 
 	void Node::renderAll(gui::GUIController& guiController, Node* root)
 	{
-		std::queue<Node*> q;
-		q.push(root);
+		std::queue<std::tuple<Node*, float>> q;
+		q.push(std::tuple(root, ImGui::GetWindowSize().x / 2));
 
 		while (q.size() > 0)
 		{
 			int levelNodes = q.size();
 			while (levelNodes > 0)
 			{
-				Node* p = q.front();
+				auto [p, width] = q.front();
 				q.pop();
 
-				p->renderGUI(guiController);
+				p->renderGUI(guiController, width);
 				ImGui::SameLine();
 
-				if (p->left) q.push((p->left).get());
-				if (p->right) q.push((p->right).get());
+				if (p->left) q.push(std::tuple((p->left).get(), width + p->leftChildButtonOffset()));
+				if (p->right) q.push(std::tuple((p->right).get(), width + p->rightChildButtonOffset()));
 
 				levelNodes--;
 			}
