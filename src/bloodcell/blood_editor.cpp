@@ -11,21 +11,10 @@ namespace gui
 {
 	void BloodEditor::renderGUISprings(gui::GUIController &guiController)
 	{
-		int b = modelData.color & 0xFF;
-		int g = (modelData.color >> 8) & 0xFF;
-		int r = (modelData.color >> 16) & 0xFF;
 
 		ImGui::Text("Vertices are numbered [0..%lu]\n\tAdd new spring: ", modelData.vertices.size() - 1);
 		
-		ImGui::PushItemWidth(100);
-		ImGui::InputInt("##l1", &r);
-		ImGui::SameLine();
-		ImGui::PushItemWidth(100);
-		ImGui::InputInt("##l2", &g);
-		ImGui::SameLine();
-		ImGui::PushItemWidth(100);
-		ImGui::InputInt("cell color##l3", &b);
-		modelData.color = (r << 16) | (g << 8) | b;
+		ImGui::ColorPicker3("Cell color", (float*)&modelData.color);
 
 		ImGui::PushItemWidth(100);
 		ImGui::InputInt(" -> ##l4", &from);

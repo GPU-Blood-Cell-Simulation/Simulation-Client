@@ -16,7 +16,7 @@ namespace serializable
 		unsigned int modelSize;
 		std::string name;
 		int quantity;
-		int color;
+		glm::vec3 color;
 		std::vector<glm::vec3> vertices;
 		std::vector<unsigned int> indices;
 		std::vector<glm::vec3> normals;
@@ -42,41 +42,26 @@ namespace serializable
 
 	inline void to_json(json& j, const BloodCellType& o)
 	{
-		j["name"] = o.name;
-		j["quantity"] = o.quantity;
-		j["color"] = o.color;
-		for (auto& spring : o.springs)
-			j["springs"].push_back({ spring.from, spring.to });
-		for (auto& vertex : o.vertices)
-			j["vertices"].push_back({ vertex.x, vertex.y, vertex.z });
-		for (auto& index : o.indices)
-			j["indices"].push_back(index);
-		for (auto& normal : o.normals)
-			j["normals"].push_back({ normal.x, normal.y, normal.z });
+		j = json
+		{
+			{"name", o.name},
+			{"quantity", o.quantity},
+			{"color", o.color},
+			{"springs", o.springs},
+			{"vertices", o.vertices},
+			{"indices", o.indices},
+			{"normals", o.normals}
+		};
 	}
 
 	inline void from_json(const json& j, BloodCellType& o)
 	{
-		o.name = j["name"];
-		o.quantity = j["quantity"];
-		o.color = j["color"];
-		for (json spring : j["springs"])
-		{
-			o.springs.push_back(Spring(std::stoi(spring[0].dump()), std::stoi(spring[1].dump())));
-		}
-		for (json vertex : j["vertices"])
-		{
-			o.vertices.push_back(glm::vec3(std::stof(vertex[0].dump()),
-				std::stof(vertex[1].dump()), std::stof(vertex[2].dump())));
-		}
-		for (json index : j["indices"])
-		{
-			o.indices.push_back(std::stoi(index.dump()));
-		}
-		for (json normal : j["normals"])
-		{
-			o.normals.push_back(glm::vec3(std::stof(normal[0].dump()),
-				std::stof(normal[1].dump()), std::stof(normal[2].dump())));
-		}
+		j.at("name").get_to(o.name);
+		j.at("quantity").get_to(o.quantity);
+		j.at("color").get_to(o.color);
+		j.at("springs").get_to(o.springs);
+		j.at("vertices").get_to(o.vertices);
+		j.at("indices").get_to(o.indices);
+		j.at("normals").get_to(o.normals);
 	}
 }

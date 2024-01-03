@@ -34,7 +34,10 @@ namespace serializable
 		{
 			if (definition->quantity > 0)
 			{
-				definitionHeader << "\r\n\tBloodCellDef<" << definition->quantity << ", " << definition->vertices.size() << ", " << definition->indices.size() << ", "<< definition->color <<",\n";
+				int color = (static_cast<int>(255 * definition->color.x) << 16)|
+					(static_cast<int>(255 * definition->color.y) << 8) |
+					static_cast<int>(255 * definition->color.z);
+				definitionHeader << "\r\n\tBloodCellDef<" << definition->quantity << ", " << definition->vertices.size() << ", " << definition->indices.size() << ", "<< color <<",\n";
 				definitionHeader << "\t\tpreset::" << definition->name << "_Springs,\n";
 				definitionHeader << "\t\tpreset::" << definition->name << "_Vertices,\n";
 				definitionHeader << "\t\tpreset::" << definition->name << "_Indices,\n";
