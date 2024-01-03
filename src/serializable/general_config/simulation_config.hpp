@@ -13,7 +13,7 @@ namespace serializable
 	{
 		int maxFrames = 20000;
 		int maxCudaStreams = 16;
-		float dt = 0.1f;
+		float dt = 0.008f;
 
 		bool useBloodFlow = true;
 		bool enableReactionForce = true;
