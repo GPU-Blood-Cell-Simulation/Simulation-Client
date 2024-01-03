@@ -6,9 +6,21 @@
 
 namespace vein
 {
+	/// <summary>
+	/// A node type that represents a standard vein segment with one opening and one end. Can be bent into all directions.
+	/// </summary>
 	class CylinderNode : public Node
 	{
 	public:
+		/// <summary>
+		/// The basic contructor
+		/// </summary>
+		/// <param name="parent">Parent node in the vein tree</param>
+		/// <param name="radius">Radius of the ending</param>
+		/// <param name="vLayers">Vein length (vertical layers)</param>
+		/// <param name="skewRoll">Vein skew with respect to the roll angle</param>
+		/// <param name="skewPitch">Vein skew with respect to the pitch angle</param>
+		/// <param name="isLeft">Whether this node is its parent's left child</param>
 		CylinderNode(Node* parent, float radius, int vLayers, float skewRoll, float skewPitch, bool isLeft = true);
 		CylinderNode(Node* parent, const json& j, bool isLeft = true);
 
@@ -38,7 +50,7 @@ namespace vein
 		}
 		inline virtual int getChildLevel() const override
 		{
-			return level;;
+			return level;
 		}
 
 		float radius;

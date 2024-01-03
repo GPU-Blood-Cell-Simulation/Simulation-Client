@@ -8,6 +8,9 @@ namespace serializable
 {
 	using json = nlohmann::json;
 
+	/// <summary>
+	/// Holds config unrelated to the vein or blood cells, that is: general simulation config, physics and graphics parameters
+	/// </summary>
 	struct GeneralConfig : public ICppSerializable
 	{
 		SimulationConfig simulation;

@@ -8,6 +8,9 @@
 
 namespace graphics
 {
+	/// <summary>
+	/// Corresponds to the position of the user in the OpenGL world. Responsible for transforming the View matrix
+	/// </summary>
 	class Camera
 	{
 	public:
@@ -35,7 +38,9 @@ namespace graphics
 		glm::vec3 up = glm::vec3(0, 1, 0);
 		glm::vec3 right = glm::cross(front, up);
 
-
+		/// <summary>
+		/// Recalculates the View matrix when position or rotation changes
+		/// </summary>
 		void calculateView();
 	};
 }

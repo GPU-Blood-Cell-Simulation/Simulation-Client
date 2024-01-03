@@ -12,6 +12,9 @@
 
 namespace vein
 {
+    /// <summary>
+    /// A base mesh class that is not intended to be drawn - it's used only as a container
+    /// </summary>
     class TempMesh
     {
     public:
@@ -25,6 +28,9 @@ namespace vein
         TempMesh() {}
     };
 
+    /// <summary>
+    /// A standard mesh object drawable by OpenGl. Has GPU buffers associated with it
+    /// </summary>
     class VeinMesh : public TempMesh {
     public:
         VeinMesh(std::vector<glm::vec3>&& positions, std::vector<unsigned int>&& indices);
@@ -38,7 +44,15 @@ namespace vein
         VeinMesh& operator=(const VeinMesh&) = default;
         VeinMesh& operator=(VeinMesh&&) = default;
 
+        /// <summary>
+        /// Pass the mesh data to OpenGL
+        /// </summary>
         void setupMesh();
+
+        /// <summary>
+        /// Draws the object on the screen
+        /// </summary>
+        /// <param name="shader">A shader that will be used for this draw call</param>
         void draw(const Shader* shader) const;
 
     private:

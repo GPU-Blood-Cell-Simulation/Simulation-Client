@@ -11,6 +11,9 @@ namespace serializable
 {
 	using json = nlohmann::json;
 
+	/// <summary>
+	/// Defines a single distinct type of a blood cell. Contains data necessary to reproduce it on the server side.
+	/// </summary>
 	struct BloodCellType
 	{
 		unsigned int modelSize;

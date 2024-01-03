@@ -6,6 +6,9 @@
 
 namespace vein
 {
+	/// <summary>
+	/// A special cylinder node that is always present at the top (and only there). Cannot be deleted.
+	/// </summary>
 	class RootNode : public CylinderNode
 	{
 	public:

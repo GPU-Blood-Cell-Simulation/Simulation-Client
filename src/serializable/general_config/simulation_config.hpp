@@ -9,6 +9,9 @@ namespace serializable
 {
 	using json = nlohmann::json;
 
+	/// <summary>
+	/// Holds general simulation parameters
+	/// </summary>
 	struct SimulationConfig : public ICppSerializable
 	{
 		int maxFrames = 20000;

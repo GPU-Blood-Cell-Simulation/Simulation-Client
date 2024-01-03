@@ -6,6 +6,9 @@
 
 namespace serializable
 {
+	/// <summary>
+	/// Holds the entire config data
+	/// </summary>
 	struct ConfigData
 	{
 		GeneralConfig generalConfig;

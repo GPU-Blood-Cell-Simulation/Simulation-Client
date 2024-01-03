@@ -18,6 +18,9 @@
 
 namespace graphics
 {
+	/// <summary>
+	/// Drawing mode specifies which elements should be drawn in the OpenGL window
+	/// </summary>
 	enum class Mode
 	{
 		None,
@@ -25,17 +28,51 @@ namespace graphics
 		VeinEdit,
 	};
 
-	// Controls rendering of the particles
+	/// <summary>
+	/// Controls rendering in the OpenGl window
+	/// </summary>
 	class GLController {
 	public:
 		GLController(GLFWwindow* window, serializable::ConfigManager& configManager);
+		/// <summary>
+		/// Draws background only
+		/// </summary>
 		void drawNothing();
+
+		/// <summary>
+		/// Draws the data streamed from the server
+		/// </summary>
 		void drawSimulation();
+
+		/// <summary>
+		/// Draws the vein model in its raw form - every segment is treated as a separate mesh
+		/// </summary>
 		void drawVeinEditor();
+
+		/// <summary>
+		/// Draws the specified elements based on which mode is set
+		/// </summary>
 		void draw();
+
+		/// <summary>
+		/// Begins listening for data from the server and sets up stream receiving
+		/// </summary>
 		void beginSimulation();
+
+		/// <summary>
+		/// Ends connection to the server
+		/// </summary>
 		void endSimulation();
+
+		/// <summary>
+		/// Gets keyboard input from user and processes it
+		/// </summary>
 		void handleInput();
+
+		/// <summary>
+		/// Sets the current drawing mode
+		/// </summary>
+		/// <param name="mode">Enum specifies which elements should be drawn</param>
 		void setMode(Mode mode);
 		void setFinalMesh(vein::SerializableMesh& calculatedMesh);
 

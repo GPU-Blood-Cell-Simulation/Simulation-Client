@@ -19,11 +19,20 @@ namespace vein
 {
 	using json = nlohmann::json;
 
+	/// <summary>
+	/// A base abstract class representing a single node in the vein - equivalent to a single segment.
+	/// Various types of nodes are defined.
+	/// </summary>
 	class Node
 	{
 	public:
 		virtual ~Node();
 
+		/// <summary>
+		/// Render the whole hierarchy of nodes in the GUI window as buttons. Traverses the tree using BFS.
+		/// </summary>
+		/// <param name="guiController">The GUIController instance</param>
+		/// <param name="root">Root node to begin with</param>
 		static void renderAll(gui::GUIController& guiController, Node* root);
 
 		void markChildrenToBeDeleted(bool leftChild = true);
@@ -53,6 +62,14 @@ namespace vein
 		bool rightToBeDeleted = false;
 
 	protected:
+		/// <summary>
+		/// The basic contructor
+		/// </summary>
+		/// <param name="parent">Parent node in the vein tree</param>
+		/// <param name="mesh">The generated mesh that will be assiociated with this node</param>
+		/// <param name="leftBranchRadius">Radius of the left ending</param>
+		/// <param name="rightBranchRadius">Radius of the right ending (if present)</param>
+		/// <param name="isLeft">Whether this node is its parent's left child</param>
 		Node(Node* parent, VeinMesh&& mesh, float leftBranchRadius, float rightBranchRadius, bool isLeft = true);
 
 		// constructors needed for json serialization

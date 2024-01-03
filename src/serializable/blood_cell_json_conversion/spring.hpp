@@ -6,6 +6,9 @@ namespace serializable
 {
 	using json = nlohmann::json;
 
+	/// <summary>
+	/// Describes a single spring betweeen two particles in a blood cell
+	/// </summary>
 	struct Spring
 	{
 		int from = -1;

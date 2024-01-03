@@ -1,1 +1,67 @@
-{"left":{"left":null,"leftPitch":-0.3672347664833069,"leftRoll":-1.0132509469985962,"radiusLeft":16.66699981689453,"radiusRight":50.0,"right":null,"rightPitch":0.0,"rightRoll":0.7853981852531433,"type":"bifurcation"},"right":null,"type":"root"}
+{
+   "left": {
+      "left": {
+         "left": {
+            "left": null,
+            "radius": 87.12100219726563,
+            "right": null,
+            "skewPitch": -0.954974353313446,
+            "skewRoll": -0.8835729956626892,
+            "type": "cylinder",
+            "vLayers": 50
+         },
+         "leftPitch": 0.45518189668655396,
+         "leftRoll": -0.9951344132423401,
+         "radiusLeft": 50.0,
+         "radiusRight": 30.68199920654297,
+         "right": {
+            "left": {
+               "left": {
+                  "left": null,
+                  "leftPitch": 0.3346843421459198,
+                  "leftRoll": -0.9951344132423401,
+                  "radiusLeft": 50.0,
+                  "radiusRight": 30.68199920654297,
+                  "right": null,
+                  "rightPitch": -0.6202900409698486,
+                  "rightRoll": 0.26775094866752625,
+                  "type": "bifurcation"
+               },
+               "radius": 87.12100219726563,
+               "right": null,
+               "skewPitch": -0.954974353313446,
+               "skewRoll": -0.8835729956626892,
+               "type": "cylinder",
+               "vLayers": 50
+            },
+            "leftPitch": 0.45518189668655396,
+            "leftRoll": -0.9951344132423401,
+            "radiusLeft": 50.0,
+            "radiusRight": 30.68199920654297,
+            "right": {
+               "left": null,
+               "radius": 87.12100219726563,
+               "right": null,
+               "skewPitch": -0.954974353313446,
+               "skewRoll": -0.8835729956626892,
+               "type": "cylinder",
+               "vLayers": 50
+            },
+            "rightPitch": -0.6202900409698486,
+            "rightRoll": 0.26775094866752625,
+            "type": "bifurcation"
+         },
+         "rightPitch": -0.6202900409698486,
+         "rightRoll": 0.26775094866752625,
+         "type": "bifurcation"
+      },
+      "radius": 87.12100219726563,
+      "right": null,
+      "skewPitch": -0.954974353313446,
+      "skewRoll": -0.8835729956626892,
+      "type": "cylinder",
+      "vLayers": 50
+   },
+   "right": null,
+   "type": "root"
+}
