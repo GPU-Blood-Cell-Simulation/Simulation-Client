@@ -3,7 +3,7 @@
 inline int VEIN_POLYGON_MODE = 0;
 inline bool BLOOD_CELL_SPRINGS_RENDER = true;
 
-inline constexpr bool useLighting = false;
+inline constexpr bool useLighting = true;
 
 inline constexpr int windowWidth = 800;
 inline constexpr int windowHeight = 800;

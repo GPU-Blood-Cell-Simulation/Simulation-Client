@@ -5,12 +5,13 @@
 
 #include <utility>
 #include <fstream>
-
+#include <iostream>
 
 namespace serializable
 {
     void BloodCellsDefinition::serializeToCpp() const
     {
+		std::cout << "Serializing blood cells\n";
 		std::ifstream templateDefinitionHeader(bloodCellsDefinitionConfigDataPath);
 		std::ofstream definitionHeader(bloodCellsDefinitionCppSerializationPath);
 		if (!templateDefinitionHeader || !definitionHeader)
@@ -33,7 +34,7 @@ namespace serializable
 		{
 			if (definition->quantity > 0)
 			{
-				definitionHeader << "\r\n\tBloodCellDef<" << definition->quantity << ", " << definition->vertices.size() << ", " << definition->indices.size() << ",\n";
+				definitionHeader << "\r\n\tBloodCellDef<" << definition->quantity << ", " << definition->vertices.size() << ", " << definition->indices.size() << ", "<< definition->color <<",\n";
 				definitionHeader << "\t\tpreset::" << definition->name << "_Springs,\n";
 				definitionHeader << "\t\tpreset::" << definition->name << "_Vertices,\n";
 				definitionHeader << "\t\tpreset::" << definition->name << "_Indices,\n";

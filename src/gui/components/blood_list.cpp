@@ -26,7 +26,8 @@ namespace gui
 			ImGui::SameLine();
 
 			ImGui::PushItemWidth(100);
-			if (ImGui::InputInt("quantity", &editor.modelQuantity))
+			std::string inputName = "quantity##" + editor.GetModelName();
+			if (ImGui::InputInt(inputName.c_str(), &editor.modelQuantity))
 			{
 				editor.updateQuantity();
 			}
