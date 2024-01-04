@@ -6,6 +6,9 @@ namespace gui
 {
 	class GUIController;
 
+	/// <summary>
+	/// Main editor for blood cell types
+	/// </summary>
 	class BloodEditor
 	{
 		serializable::BloodCellType& modelData;
@@ -17,6 +20,9 @@ namespace gui
 		int modelQuantity;
 		BloodEditor(serializable::BloodCellType& data);
 
+		/// <summary>
+		/// Updates blood cell type quantity in model from UI
+		/// </summary>
 		void updateQuantity() { modelData.quantity = modelQuantity; }
 		std::string GetModelName() const { return modelData.name; }
 		
