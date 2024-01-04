@@ -8,7 +8,7 @@ namespace gui
 	{
 		auto& data = configManager.getData().generalConfig.simulation;
 
-		ext::InputPositiveFloat("Delta time (dt)", &data.dt, 0.01f);
+		ext::InputPositiveFloat("Delta time (dt)", &data.dt, 0.001f);
 		ImGui::Checkbox("Use blood flow", &data.useBloodFlow);
 		ImGui::Checkbox("Enable reaction force", &data.enableReactionForce);
 		ImGui::NewLine();

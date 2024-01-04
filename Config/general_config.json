@@ -28,14 +28,14 @@
       "o.vein_d_fact": 0.44999998807907104,
       "o.vein_k_sniff": 0.05000000074505806,
       "o.velocity_collision_damping": 0.9599999785423279,
-      "o.viscous_damping": 0.30000001192092896
+      "o.viscous_damping": 0.39000001192092896
    },
    "o.simulation": {
       "o.boundingSpheresCoeff": 3,
       "o.cellDepth": 30,
       "o.cellHeight": 30,
       "o.cellWidth": 30,
-      "o.dt": 0.10000000149011612,
+      "o.dt": 0.00800000037997961,
       "o.enableReactionForce": true,
       "o.gridMargin": 20.0,
       "o.minSpawnY": -20.0,

@@ -2,7 +2,7 @@
 
 inline constexpr int maxFrames = 20000;
 inline constexpr int maxCudaStreams = 16;
-inline constexpr float dt = 0.1;
+inline constexpr float dt = 0.008;
 inline constexpr bool useBloodFlow = 1;
 inline constexpr bool enableReactionForce = 1;
 
