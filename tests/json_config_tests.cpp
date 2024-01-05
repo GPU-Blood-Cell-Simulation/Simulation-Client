@@ -9,14 +9,16 @@ using namespace serializable;
 using json = nlohmann::json;
 
 
-TEST(SimulationConfigTests, LoadSimulationConfigPositive) {
+TEST(SimulationConfigTests, LoadSimulationConfigPositive)
+{
     SimulationConfig config1;
     json j;
     EXPECT_NO_THROW(j = config1);
     EXPECT_NO_THROW(SimulationConfig config2 = j.template get<SimulationConfig>());
 }
 
-TEST(SimulationConfigTests, LoadSimulationConfigMissing) {
+TEST(SimulationConfigTests, LoadSimulationConfigMissing)
+{
     SimulationConfig config1;
     json j;
     EXPECT_NO_THROW(j = config1);
@@ -24,7 +26,8 @@ TEST(SimulationConfigTests, LoadSimulationConfigMissing) {
     EXPECT_THROW(SimulationConfig config2 = j.template get<SimulationConfig>(), std::exception);
 }
 
-TEST(SimulationConfigTests, LoadSimulationConfigWrongValue) {
+TEST(SimulationConfigTests, LoadSimulationConfigWrongValue)
+{
     SimulationConfig config1;
     json j;
     EXPECT_NO_THROW(j = config1);
@@ -33,14 +36,16 @@ TEST(SimulationConfigTests, LoadSimulationConfigWrongValue) {
 }
 
 
-TEST(PhysicsConfigTests, LoadPhysicsConfigPositive) {
+TEST(PhysicsConfigTests, LoadPhysicsConfigPositive)
+{
     PhysicsConfig config1;
     json j;
     EXPECT_NO_THROW(j = config1);
     EXPECT_NO_THROW(PhysicsConfig config2 = j.template get<PhysicsConfig>());
 }
 
-TEST(PhysicsConfigTests, LoadPhysicsConfigMissing) {
+TEST(PhysicsConfigTests, LoadPhysicsConfigMissing)
+{
     PhysicsConfig config1;
     json j;
     EXPECT_NO_THROW(j = config1);
@@ -48,7 +53,8 @@ TEST(PhysicsConfigTests, LoadPhysicsConfigMissing) {
     EXPECT_THROW(PhysicsConfig config2 = j.template get<PhysicsConfig>(), std::exception);
 }
 
-TEST(PhysicsConfigTests, LoadPhysicsConfigWrongValue) {
+TEST(PhysicsConfigTests, LoadPhysicsConfigWrongValue)
+{
     PhysicsConfig config1;
     json j;
     EXPECT_NO_THROW(j = config1);
@@ -57,14 +63,16 @@ TEST(PhysicsConfigTests, LoadPhysicsConfigWrongValue) {
 }
 
 
-TEST(GraphicsConfigTests, LoadGraphicsConfigPositive) {
+TEST(GraphicsConfigTests, LoadGraphicsConfigPositive)
+{
     GraphicsConfig config1;
     json j;
     EXPECT_NO_THROW(j = config1);
     EXPECT_NO_THROW(GraphicsConfig config2 = j.template get<GraphicsConfig>());
 }
 
-TEST(GraphicsConfigTests, LoadGraphicsConfigMissing) {
+TEST(GraphicsConfigTests, LoadGraphicsConfigMissing)
+{
     GraphicsConfig config1;
     json j;
     EXPECT_NO_THROW(j = config1);
@@ -72,7 +80,8 @@ TEST(GraphicsConfigTests, LoadGraphicsConfigMissing) {
     EXPECT_THROW(GraphicsConfig config2 = j.template get<GraphicsConfig>(), std::exception);
 }
 
-TEST(GraphicsConfigTests, LoadGraphicsConfigWrongValue) {
+TEST(GraphicsConfigTests, LoadGraphicsConfigWrongValue)
+{
     GraphicsConfig config1;
     json j;
     EXPECT_NO_THROW(j = config1);
@@ -81,14 +90,16 @@ TEST(GraphicsConfigTests, LoadGraphicsConfigWrongValue) {
 }
 
 
-TEST(GeneralConfigTests, LoadGeneralConfigPositive) {
+TEST(GeneralConfigTests, LoadGeneralConfigPositive)
+{
     GeneralConfig config1;
     json j;
     EXPECT_NO_THROW(j = config1);
     EXPECT_NO_THROW(GeneralConfig config2 = j.template get<GeneralConfig>());
 }
 
-TEST(GeneralConfigTests, LoadGeneralConfigMissing) {
+TEST(GeneralConfigTests, LoadGeneralConfigMissing)
+{
     GeneralConfig config1;
     json j;
     EXPECT_NO_THROW(j = config1);
@@ -96,7 +107,8 @@ TEST(GeneralConfigTests, LoadGeneralConfigMissing) {
     EXPECT_THROW(GeneralConfig config2 = j.template get<GeneralConfig>(), std::exception);
 }
 
-TEST(GeneralConfigTests, LoadGeneralConfigWrongValue) {
+TEST(GeneralConfigTests, LoadGeneralConfigWrongValue)
+{
     GeneralConfig config1;
     json j;
     EXPECT_NO_THROW(j = config1);

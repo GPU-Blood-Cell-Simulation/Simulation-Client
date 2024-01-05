@@ -11,7 +11,7 @@ if (BUILD_TESTING)
     target_link_libraries(sample_tests PRIVATE GTest::gtest_main)
     gtest_discover_tests(sample_tests)
 
-    # utilities
+    # json config
     add_executable(json_config_tests
         json_config_tests.cpp
     )
@@ -20,5 +20,15 @@ if (BUILD_TESTING)
         test_client
     )
     gtest_discover_tests(json_config_tests)
+
+    # vein generation
+    add_executable(vein_generator_tests
+        vein_generator_tests.cpp
+    )
+    target_link_libraries(vein_generator_tests PRIVATE
+        GTest::gtest_main
+        test_client
+    )
+    gtest_discover_tests(vein_generator_tests)
 
 endif()

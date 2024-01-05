@@ -82,6 +82,11 @@ namespace vein
         /// OpenGL Render data
         /// </summary>
         unsigned int VAO = 0, VBO = 0, EBO = 0;
+
+        /// <summary>
+        /// Whether this instance is an owner of gpu buffers (has been initialized by setupMesh())
+        /// </summary>
+        bool vOwner = false;
     };
 
     class SerializableMesh : public TempMesh, public serializable::ICppSerializable
