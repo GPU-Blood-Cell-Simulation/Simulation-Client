@@ -73,7 +73,8 @@ namespace graphics
 
 		// Change view mode
 		case GLFW_KEY_V:
-			glPolygonMode(GL_FRONT_AND_BACK, (VEIN_POLYGON_MODE = (VEIN_POLYGON_MODE == GL_LINE ? GL_FILL : GL_LINE)));
+			if (action == GLFW_PRESS)
+				glPolygonMode(GL_FRONT_AND_BACK, (VEIN_POLYGON_MODE = (VEIN_POLYGON_MODE == GL_LINE ? GL_FILL : GL_LINE)));
 			break;
 		}
 	}
