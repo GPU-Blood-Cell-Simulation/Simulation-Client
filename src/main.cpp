@@ -54,9 +54,6 @@ int main()
     glEnable(GL_CULL_FACE);
     //VEIN_POLYGON_MODE = GL_FILL;
 
-    // debug
-    glEnable(GL_DEBUG_OUTPUT);
-
     // Main simulation loop
     programLoop(window);
 
