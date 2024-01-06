@@ -1,0 +1,31 @@
+name: Run all tests
+
+on:
+  workflow_call:
+
+jobs:
+  run_tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - run: sudo apt-get clean 
+    - run: sudo apt-get autoclean
+
+    - name: Install pkg
+      run: sudo apt-get -y update
+
+    - name: Install libraries
+      run: sudo apt-get install -y libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly -f
+
+    - name: Setup cmake
+      uses: jwlawson/actions-setup-cmake@v1.14
+
+    - name: Configure and build the project
+      uses: threeal/cmake-action@v1.2.0
+      with:
+        run-build: true
+
+    - name: Test the project
+      uses: threeal/ctest-action@main

@@ -1,0 +1,9 @@
+name: Pull request workflow
+
+on:
+  - pull_request
+  - workflow_dispatch
+
+jobs:
+    unit_tests:
+      uses: ./.github/workflows/run_tests.yml
