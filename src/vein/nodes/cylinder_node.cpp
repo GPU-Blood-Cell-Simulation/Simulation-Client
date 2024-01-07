@@ -68,7 +68,7 @@ namespace vein
 		}
 	}
 
-	void CylinderNode::addToMesh(TempMesh& finalMesh, unsigned int parentLeftBranchLastRowStart, unsigned int parentRightBranchLastRowStart,
+	void CylinderNode::addToMesh(SerializableMesh& finalMesh, unsigned int parentLeftBranchLastRowStart, unsigned int parentRightBranchLastRowStart,
 		bool parentIsBifurcation) const
 	{
 		unsigned int positionsInitialSize = finalMesh.positions.size();
@@ -145,6 +145,10 @@ namespace vein
 		{
 			unsigned int thisSegmentLastRowStart = positionsInitialSize + (vLayers - 2) * cyl::hLayers;
 			left->addToMesh(finalMesh, thisSegmentLastRowStart, thisSegmentLastRowStart);
+		}
+		else
+		{
+			finalMesh.addEnding(leftEndCenter, leftBranchRadius);
 		}
 	}
 

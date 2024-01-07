@@ -11,7 +11,6 @@ namespace serializable
 {
     void BloodCellsDefinition::serializeToCpp() const
     {
-		std::cout << "Serializing blood cells\n";
 		std::ifstream templateDefinitionHeader(bloodCellsDefinitionConfigDataPath);
 		std::ofstream definitionHeader(bloodCellsDefinitionCppSerializationPath);
 		if (!templateDefinitionHeader || !definitionHeader)

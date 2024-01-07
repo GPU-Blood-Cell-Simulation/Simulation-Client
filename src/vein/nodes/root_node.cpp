@@ -30,7 +30,7 @@ namespace vein
 
 	}
 
-	void RootNode::addToMesh(TempMesh& finalMesh, unsigned int parentLeftBranchLastRowStart, unsigned int parentRightBranchLastRowStart,
+	void RootNode::addToMesh(SerializableMesh& finalMesh, unsigned int parentLeftBranchLastRowStart, unsigned int parentRightBranchLastRowStart,
 		bool parentIsBifurcation) const
 	{
 		finalMesh.positions = mesh.positions;
@@ -41,6 +41,10 @@ namespace vein
 		{
 			unsigned int thisSegmentLastRowStart = finalMesh.positions.size() - cyl::hLayers;
 			left->addToMesh(finalMesh, thisSegmentLastRowStart, thisSegmentLastRowStart);
+		}
+		else
+		{
+			finalMesh.addEnding(leftEndCenter, leftBranchRadius);
 		}
 	}
 

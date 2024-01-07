@@ -53,7 +53,7 @@ namespace vein
 		/// <param name="parentLeftBranchLastRowStart">The starting index of the parent's left branch's last row</param>
 		/// <param name="parentRightBranchLastRowStart">The starting index of the parent's right branch's last row</param>
 		/// <param name="parentIsBifurcation">Whether the parent is a bifurcation (has two endings)</param>
-		virtual void addToMesh(TempMesh& finalMesh, unsigned int parentLeftBranchIndicesEnd, unsigned int parentRightBranchIndicesEnd,
+		virtual void addToMesh(SerializableMesh& finalMesh, unsigned int parentLeftBranchIndicesEnd, unsigned int parentRightBranchIndicesEnd,
 			bool parentIsBifurcation) const override;
 
 		/// <summary>

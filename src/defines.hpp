@@ -41,6 +41,7 @@ inline const std::string cppConfigDataPath =
 	"../SimulationConfigData/";
 #endif
 
+inline const std::string veinDefinitionConfigDataPath = cppConfigDataPath + "template_vein_definition.hpp";
 inline const std::string bloodCellsDefinitionConfigDataPath = cppConfigDataPath + "template_blood_cells_definition.hpp";
 inline const std::string bloodCellPresetsConfigDataPath = cppConfigDataPath + "template_blood_cell_presets.hpp";
 
