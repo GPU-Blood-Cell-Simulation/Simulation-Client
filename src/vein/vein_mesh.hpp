@@ -96,5 +96,10 @@ namespace vein
         /// Serialize all vertices and indices to a .hpp file
         /// </summary>
         virtual void serializeToCpp() const override;
+        void addEnding(const glm::vec3& endingPosition, float radius);
+
+    private:
+        std::vector<glm::vec3> endingPositions;
+        std::vector<float> endingRadii;
     };
 }
