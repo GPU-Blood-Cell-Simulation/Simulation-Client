@@ -68,6 +68,21 @@ file(COPY Shaders DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 #
 # Tests
 #
+
+
+list(REMOVE_ITEM CPP_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp")
+add_library(test_client ${CPP_SOURCES} ${C_SOURCES} ${CPP_HEADERS})
+target_link_libraries(test_client PUBLIC
+  OpenMP::OpenMP_CXX
+  ${CMAKE_SOURCE_DIR}/Libraries/lib/libglfw3.a
+  ${CMAKE_SOURCE_DIR}/Libraries/lib/libenet.a
+  imgui
+  ImGuiFileDialog
+  PkgConfig::gstreamer
+  PkgConfig::gstreamer-app
+)
+
+#add_subdirectory("src/")
 include(CTest)
 add_subdirectory("${PROJECT_SOURCE_DIR}/Libraries/googletest-1.14.0/")
 add_subdirectory("tests/")

@@ -26,6 +26,8 @@ namespace vein
 
 	VeinMesh::~VeinMesh()
 	{
+		if (!vOwner)
+			return;
 		glBindVertexArray(VAO);
 
 		glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -58,6 +60,8 @@ namespace vein
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), (void*)0);
 
 		glBindVertexArray(0);
+
+		vOwner = true;
 	}
 
 	void VeinMesh::draw(const Shader* shader) const
