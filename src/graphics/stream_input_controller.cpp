@@ -1,7 +1,7 @@
 #include "stream_input_controller.hpp"
 
 
-void SimulationInputController::setInputCallback(GLFWwindow *window, ServerCommunicationController *controller)
+void SimulationInputController::setInputCallback(GLFWwindow *window, ClientCommunicationEndpoint *controller)
 {
     glfwSetWindowUserPointer(window, controller);
 	glfwSetKeyCallback(window, SimulationInputController::handleUserInput);
@@ -10,58 +10,76 @@ void SimulationInputController::setInputCallback(GLFWwindow *window, ServerCommu
 
 void SimulationInputController::handleUserInput(GLFWwindow *window, int key, int scancode, int action, int mods)
 {
-    Event eventToSend;
+    EventType eventToSend;
 
+    // Get the ClientCommunicationEndpoint instance from a custom GLFW pointer
+    auto controller = static_cast<ClientCommunicationEndpoint*>(glfwGetWindowUserPointer(window));
+
+    // Single events
+    switch (key)
+    {
+    case GLFW_KEY_V:
+        if (action == GLFW_PRESS)
+            controller->sendSingleEvent(EventType::togglePolygonMode);
+        return;
+
+    case GLFW_KEY_B:
+        if (action == GLFW_PRESS)
+            controller->sendSingleEvent(EventType::toggleSpringsRendering);
+        return;
+    
+    default:
+        break;
+    }
+
+    // Events with duration
     switch (key)
     {
     // Movement
     case GLFW_KEY_W:
-        eventToSend = Event::cameraForward;
+        eventToSend = EventType::cameraForward;
         break;
 
     case GLFW_KEY_S:
-        eventToSend = Event::cameraBack;
+        eventToSend = EventType::cameraBack;
         break;
 
     case GLFW_KEY_A:
-        eventToSend = Event::cameraLeft;
+        eventToSend = EventType::cameraLeft;
         break;
 
     case GLFW_KEY_D:
-        eventToSend = Event::cameraRight;
+        eventToSend = EventType::cameraRight;
         break;
 
     case GLFW_KEY_SPACE:
-        eventToSend = Event::cameraAscend;
+        eventToSend = EventType::cameraAscend;
         break;
 
     case GLFW_KEY_LEFT_SHIFT:
-        eventToSend = Event::cameraDescend;
+        eventToSend = EventType::cameraDescend;
         break;
 
     // Rotation
     case GLFW_KEY_UP:
-        eventToSend = Event::cameraRotateUp;
+        eventToSend = EventType::cameraRotateUp;
         break;
 
     case GLFW_KEY_DOWN:
-        eventToSend = Event::cameraRotateDown;
+        eventToSend = EventType::cameraRotateDown;
         break;
 
     case GLFW_KEY_LEFT:
-        eventToSend = Event::cameraRotateLeft;
+        eventToSend = EventType::cameraRotateLeft;
         break;
 
     case GLFW_KEY_RIGHT:
-        eventToSend = Event::cameraRotateRight;
+        eventToSend = EventType::cameraRotateRight;
         break;
 
     default:
         return;
     }
-
-    // Get the ServerCommunicationController instance from a custom GLFW pointer
-    auto controller = static_cast<ServerCommunicationController*>(glfwGetWindowUserPointer(window));
 
     switch (action)
     {

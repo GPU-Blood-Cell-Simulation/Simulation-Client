@@ -78,7 +78,12 @@ namespace graphics
 		controller.setInputCallback(window, &serverCommunication);
 	}
 
-	void GLController::endSimulation()
+    void GLController::abortSimulation()
+    {
+		serverCommunication.sendSingleEvent(EventType::stopRendering);
+    }
+
+    void GLController::endSimulation()
 	{
 		mode = Mode::None;
 
@@ -100,7 +105,7 @@ namespace graphics
 	void GLController::handleInput()
 	{
 		if (mode == Mode::Simulation) {
-			serverCommunication.pollMessages();
+			serverCommunication.pollEvents();
 		}
 		else {
 			inputController.adjustParametersUsingInput(camera);

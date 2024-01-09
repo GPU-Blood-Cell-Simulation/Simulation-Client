@@ -6,7 +6,12 @@ namespace gui
 	{
 		ImGui::Text("Simulation in progress");
 
-		if (ImGui::Button("Done"))
+		Imgui::T
+
+		if (ImGui::Button("Abort simulation"))
+			glController.abortSimulation();
+
+		if (ImGui::Button("Stop watching stream"))
 		{
 			setMode(Mode::mainScreen);
 			glController.endSimulation();
