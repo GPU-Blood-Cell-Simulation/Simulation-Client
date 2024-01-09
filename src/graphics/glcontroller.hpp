@@ -7,7 +7,7 @@
 #include "../serializable/config_manager.hpp"
 #include "../vein/nodes/bifurcation_node.hpp"
 #include "../streaming/stream_receiver.hpp"
-#include "../communication/server_communication_controller.hpp"
+#include "../communication/client_endpoint.hpp"
 
 #include <glm/mat4x4.hpp>
 #include <glm/vec3.hpp>
@@ -62,6 +62,9 @@ namespace graphics
 		/// </summary>
 		void beginSimulation();
 
+
+		void abortSimulation();
+
 		/// <summary>
 		/// Ends connection to the server
 		/// </summary>
@@ -96,7 +99,7 @@ namespace graphics
 
 		serializable::ConfigManager& configManager;
 
-		ServerCommunicationController serverCommunication;
+		ClientCommunicationEndpoint serverCommunication;
 
 		vein::Node* veinRoot;
 		std::unique_ptr<vein::VeinMesh> finalMesh;
