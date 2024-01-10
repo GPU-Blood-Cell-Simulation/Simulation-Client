@@ -31,6 +31,15 @@ namespace graphics
 		VeinEdit,
 	};
 
+	enum class SimulationStatus
+	{
+		notInSimulationMode,
+		waitingForServer,
+		inProgress,
+		successfullyEnded,
+		connectionLost
+	};
+
 	/// <summary>
 	/// Controls rendering in the OpenGl window
 	/// </summary>
@@ -64,6 +73,8 @@ namespace graphics
 
 
 		void abortSimulation();
+
+		SimulationStatus simulationStatusGet() const;
 
 		/// <summary>
 		/// Ends connection to the server
@@ -100,6 +111,7 @@ namespace graphics
 		serializable::ConfigManager& configManager;
 
 		ClientCommunicationEndpoint serverCommunication;
+		SimulationStatus simulationStatus;
 
 		vein::Node* veinRoot;
 		std::unique_ptr<vein::VeinMesh> finalMesh;

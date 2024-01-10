@@ -18,7 +18,8 @@ namespace graphics
 {
 	using namespace glm;
 
-	GLController::GLController(GLFWwindow* window, serializable::ConfigManager& configManager) : window(window), configManager(configManager)
+	GLController::GLController(GLFWwindow* window, serializable::ConfigManager& configManager):
+		window(window), configManager(configManager), simulationStatus(SimulationStatus::notInSimulationMode)
 	{
 		// Set up GLFW to work with inputController
 		glfwSetWindowUserPointer(window, &inputController);
@@ -76,11 +77,22 @@ namespace graphics
 
 		SimulationInputController controller;
 		controller.setInputCallback(window, &serverCommunication);
+
+		simulationStatus = SimulationStatus::waitingForServer;
 	}
 
     void GLController::abortSimulation()
     {
+		if (mode != Mode::Simulation) {
+			return;
+		}
+
 		serverCommunication.sendSingleEvent(EventType::stopRendering);
+    }
+
+    SimulationStatus GLController::simulationStatusGet() const
+    {
+        return simulationStatus;
     }
 
     void GLController::endSimulation()
@@ -105,7 +117,26 @@ namespace graphics
 	void GLController::handleInput()
 	{
 		if (mode == Mode::Simulation) {
-			serverCommunication.pollEvents();
+			EventType event = serverCommunication.pollEvents();
+
+			switch (event)
+			{
+			case EventType::streamSuccessfullyEnded:
+				simulationStatus = SimulationStatus::successfullyEnded;
+				break;
+
+			case EventType::newConnection:
+				simulationStatus = SimulationStatus::inProgress;
+				break;
+
+			case EventType::peerDisconnected:
+				if (simulationStatus != SimulationStatus::successfullyEnded)
+					simulationStatus = SimulationStatus::connectionLost;
+				break;
+			
+			default:
+				break;
+			}
 		}
 		else {
 			inputController.adjustParametersUsingInput(camera);

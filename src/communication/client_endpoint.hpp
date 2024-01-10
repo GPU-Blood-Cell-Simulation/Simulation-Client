@@ -72,6 +72,3 @@ private:
     static EventType parseEvent(const ENetEvent* event);
     static bool eventIsImportant(EventType event);
 };
-
-
-
