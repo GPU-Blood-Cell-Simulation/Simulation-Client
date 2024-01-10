@@ -30,8 +30,8 @@ namespace gui
         return ImGui::GetIO();
     }
 
-	GUIController::GUIController(GLFWwindow* window, serializable::ConfigManager& configManager, graphics::GLController& glController) :
-        io(createImguiContext()), configManager(configManager), glController(glController)
+	GUIController::GUIController(GLFWwindow* window, serializable::ConfigManager& configManager, streaming::StreamManager& streamManager, graphics::GLController& glController):
+        io(createImguiContext()), configManager(configManager), streamManager(streamManager), glController(glController)
 	{
         // Setup Dear ImGui context
         io = ImGui::GetIO(); (void)io;

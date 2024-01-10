@@ -4,26 +4,30 @@ namespace gui
 {
 	void GUIController::renderSimulation()
 	{
-		ImGui::Text("Simulation in progress");
+		//ImGui::Text("Simulation in progress");
 
 		if (ImGui::Button("Abort simulation"))
-			glController.abortSimulation();
+			streamManager.abortSimulation();
 
-		switch (glController.simulationStatusGet())
+		switch (streamManager.streamStatusGet())
 		{
-		case graphics::SimulationStatus::waitingForServer:
+		case streaming::StreamStatus::initStatus:
+			ImGui::Text("Stream is getting ready");
+			break;
+
+		case streaming::StreamStatus::waitingForServer:
 			ImGui::Text("Connecting to server...");
 			break;
 
-		case graphics::SimulationStatus::inProgress:
+		case streaming::StreamStatus::inProgress:
 			ImGui::Text("Simulation in progress");
 			break;
 
-		case graphics::SimulationStatus::successfullyEnded:
+		case streaming::StreamStatus::successfullyEnded:
 			ImGui::Text("Simulation successfully ended");
 			break;
 
-		case graphics::SimulationStatus::connectionLost:
+		case streaming::StreamStatus::connectionLost:
 			ImGui::Text("Connection with server lost!");
 			break;
 		
@@ -34,7 +38,7 @@ namespace gui
 		if (ImGui::Button("Stop watching stream"))
 		{
 			setMode(Mode::mainScreen);
-			glController.endSimulation();
+			glController.setMode(graphics::Mode::None);
 		}
 	}
 }

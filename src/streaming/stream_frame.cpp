@@ -1,7 +1,7 @@
 #include "stream_frame.hpp"
 
 
-StreamFrame::StreamFrame(GstSample *sample):
+streaming::StreamFrame::StreamFrame(GstSample *sample):
     sample(sample)
 {
     if (!haveData()) {
@@ -16,7 +16,7 @@ StreamFrame::StreamFrame(GstSample *sample):
 }
 
 
-StreamFrame::~StreamFrame()
+streaming::StreamFrame::~StreamFrame()
 {
     if (!haveData()) {
         return;
@@ -27,7 +27,7 @@ StreamFrame::~StreamFrame()
 }
 
 
-int StreamFrame::getWidth()
+int streaming::StreamFrame::getWidth()
 {
     if (!haveData()) {
         return 0;
@@ -39,7 +39,7 @@ int StreamFrame::getWidth()
     return result;
 }
 
-int StreamFrame::getHeight()
+int streaming::StreamFrame::getHeight()
 {
     if (!haveData()) {
         return 0;
