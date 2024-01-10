@@ -8,8 +8,6 @@
 #include <memory>
 #include <vector>
 
-#include <iostream>
-
 namespace vein
 {
     /// <summary>
@@ -79,7 +77,7 @@ namespace vein
 
     private:
         /// <summary>
-        /// OpenGL Render data
+        /// OpenGL Render databaseMesh
         /// </summary>
         unsigned int VAO = 0, VBO = 0, EBO = 0;
 

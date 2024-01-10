@@ -4,6 +4,7 @@
 #include <queue>
 #include <tuple>
 
+
 namespace vein
 {
 	Node::Node(Node* parent, VeinMesh&& mesh, float leftBranchRadius, float rightBranchRadius, bool isLeft) :

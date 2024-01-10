@@ -71,11 +71,11 @@ namespace vein
 		std::unique_ptr<Node> left;
 		std::unique_ptr<Node> right;
 
-		glm::quat leftQuat;
-		glm::quat rightQuat;
+		glm::quat leftQuat {glm::vec3(0, 0, 0)};
+		glm::quat rightQuat {glm::vec3(0, 0, 0)};
 
-		glm::vec3 leftEndCenter;
-		glm::vec3 rightEndCenter;
+		glm::vec3 leftEndCenter {0, 0, 0};
+		glm::vec3 rightEndCenter {0, 0, 0};
 		float leftBranchRadius = 0;
 		float rightBranchRadius = 0;
 

@@ -16,7 +16,7 @@ namespace vein
 		), radiusLeft, radiusRight, isLeft),
 		radiusLeft(radiusLeft), radiusRight(radiusRight), leftRoll(leftRoll), rightRoll(rightRoll), leftPitch(leftPitch), rightPitch(rightPitch)
 	{
-		auto& parentQuat = isLeft ? parent->leftQuat : parent->rightQuat;
+		auto parentQuat = isLeft ? parent->leftQuat : parent->rightQuat;
 		auto rotationLeft = glm::toMat4(parentQuat) * glm::toMat4(glm::quat(glm::vec3(-leftPitch, 0, leftRoll)));
 		auto rotationRight = glm::toMat4(parentQuat) * glm::toMat4(glm::quat(glm::vec3(-rightPitch, 0, rightRoll)));
 

@@ -6,6 +6,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <imgui/imgui/imgui.h>
 
+
 namespace vein
 {
 	CylinderNode::CylinderNode(Node* parent, float radius, int vLayers, float skewRoll, float skewPitch, bool isLeft) :
@@ -26,13 +27,12 @@ namespace vein
 		}
 
 		// Calculate vein segment rotation and translation
-		auto& parentQuat = isLeft ? parent->leftQuat : parent->rightQuat;
+		auto parentQuat = isLeft ? parent->leftQuat : parent->rightQuat;
 		auto rotation = glm::toMat4(parentQuat) * glm::toMat4(glm::quat(glm::vec3(skewPitch, 0, skewRoll)));
 		leftQuat = rightQuat = glm::toQuat(rotation);
 
 		auto translation = isLeft ? parent->leftEndCenter : parent->rightEndCenter;
 		model = glm::translate(glm::mat4(1.0f), translation) * glm::toMat4(parentQuat);
-
 		auto dist = mesh.positions[mesh.positions.size() - 1] - mesh.positions[mesh.positions.size() - 1 - cyl::hLayers/2];
 		leftEndCenter = rightEndCenter = model * glm::vec4(
 			mesh.positions[mesh.positions.size() - 1 - cyl::hLayers/2] + dist * 0.5f,

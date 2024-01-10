@@ -8,6 +8,7 @@
 #include <fstream>
 #include <memory>
 
+
 namespace vein
 {
 	TempMesh::TempMesh(std::vector<glm::vec3>&& positions, std::vector<unsigned int>&& indices) : positions(positions), indices(indices)
@@ -28,6 +29,7 @@ namespace vein
 	{
 		if (!vOwner)
 			return;
+
 		glBindVertexArray(VAO);
 
 		glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -52,7 +54,7 @@ namespace vein
 		glBufferData(GL_ARRAY_BUFFER, positions.size() * sizeof(glm::vec3), &positions[0], GL_STATIC_DRAW);
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(int),
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int),
 			&indices[0], GL_STATIC_DRAW);
 
 		// vertex positions
