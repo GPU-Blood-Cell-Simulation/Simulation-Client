@@ -7,36 +7,39 @@
 #include <memory>
 
 
-class StreamReceiver
+namespace streaming
 {
-public:
-    StreamReceiver();
-    ~StreamReceiver();
+    class StreamReceiver
+    {
+    public:
+        StreamReceiver();
+        ~StreamReceiver();
 
-    void portSet(int port);
+        void portSet(int port);
 
-    void startListening();
-    void pause();
+        void startListening();
+        void pause();
 
-    std::shared_ptr<StreamFrame> getFrame();
+        std::shared_ptr<StreamFrame> getFrame();
 
-    inline bool streamEnded() const { return streamEnd; }
+        inline bool streamEnded() const { return streamEnd; }
 
-    void handleEvents();
+        void handleEvents();
 
-private:
-    GstElement *pipeline;
-    GstElement *udpsrc;
-    GstElement *capsfilter;
-    GstElement *rtpjitterbuffer;
-    GstElement *rtph264depay;
-    GstElement *h264decoder;
-    GstElement *converter;
-    GstElement *appsink;
+    private:
+        GstElement *pipeline;
+        GstElement *udpsrc;
+        GstElement *capsfilter;
+        GstElement *rtpjitterbuffer;
+        GstElement *rtph264depay;
+        GstElement *h264decoder;
+        GstElement *converter;
+        GstElement *appsink;
 
-    GstBus *bus;
+        GstBus *bus;
 
-    bool streamEnd;
+        bool streamEnd;
 
-    std::shared_ptr<StreamFrame> actFrame;
-};
+        std::shared_ptr<StreamFrame> actFrame;
+    };
+}
