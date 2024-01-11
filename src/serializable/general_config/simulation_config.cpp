@@ -19,7 +19,7 @@ namespace serializable
 		os << "inline constexpr float dt = " << dt << ";\n";
 		os << "inline constexpr bool useBloodFlow = " << useBloodFlow << ";\n";
 		os << "inline constexpr bool enableReactionForce = " << enableReactionForce << ";\n";
-		os << "inline constexpr bool enableBigCellsBrake = 1;\n\n";
+		os << "inline constexpr bool enableBigCellsBrake = true;\n\n";
 
 		os << "inline constexpr int cellWidth = " << cellWidth << ";\n";
 		os << "inline constexpr int cellHeight = " << cellHeight << ";\n";
