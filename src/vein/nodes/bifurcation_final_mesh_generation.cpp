@@ -4,7 +4,7 @@
 
 namespace vein
 {
-	void BifurcationNode::addToMesh(TempMesh& finalMesh, unsigned int parentLeftBranchLastRowStart, unsigned int parentRightBranchLastRowStart,
+	void BifurcationNode::addToMesh(SerializableMesh& finalMesh, unsigned int parentLeftBranchLastRowStart, unsigned int parentRightBranchLastRowStart,
 		bool parentIsBifurcation) const
 	{
 		unsigned int positionsInitialSize = finalMesh.positions.size();
@@ -278,10 +278,19 @@ namespace vein
 		{
 			left->addToMesh(finalMesh, thisSegmentLeftBranchLastRowStart, thisSegmentRightBranchLastRowStart, true);
 		}
+		else
+		{
+			finalMesh.addEnding(leftEndCenter, leftBranchRadius);
+		}
+
 		if (right)
 		{
 			
 			right->addToMesh(finalMesh, thisSegmentLeftBranchLastRowStart, thisSegmentRightBranchLastRowStart, true);
+		}
+		else
+		{
+			finalMesh.addEnding(rightEndCenter, rightBranchRadius);
 		}
 	}
 }

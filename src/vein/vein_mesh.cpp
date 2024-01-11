@@ -74,13 +74,19 @@ namespace vein
 
 	void SerializableMesh::serializeToCpp() const
 	{	
+		std::ifstream is(veinDefinitionConfigDataPath);
 		std::ofstream os(veinCppSerializationPath);
-		if (!os)
+		if (!is || !os)
 			throw serializable::FileOpenException();
 
+		os << is.rdbuf();
+		if (!is)
+			throw serializable::FileReadException();
+
 		int veinPositionCount = positions.size();
+
 		// serialize positions
-		os << "#pragma once\n#include <array>\n#include \"../utilities/constexpr_vec.hpp\"\n\n" << "//Vein positions\n\n";
+		os << "\n";
 		os << "inline constexpr std::array<cvec, " << veinPositionCount << "> veinPositions {\n";
 		for (int i = 0; i < veinPositionCount - 1; i++)
 		{
@@ -113,7 +119,43 @@ namespace vein
 		}
 		os << "};\n\n";
 
+		// Serialize vein ending centers
+		os << "using VeinEndingCenters = mp_list<\n";
+		for (int i = 0; i < endingPositions.size() - 1; i++)
+		{
+			auto&& pos = endingPositions[i];
+			os << "mp_float3<" << static_cast<int>(pos.x * 1000) << ", " << static_cast<int>(pos.y * 1000) << ", "
+				<< static_cast<int>(pos.z * 1000) << ", 4>,\n";
+		}
+		if (endingPositions.size() > 0)
+		{
+			auto&& pos = endingPositions[endingPositions.size() - 1];
+			os << "mp_float3<" << static_cast<int>(pos.x * 1000) << ", " << static_cast<int>(pos.y * 1000) << ", "
+				<< static_cast<int>(pos.z * 1000) << ", 4>\n";
+		}
+		os << ">;\n\n";
+
+		// Serialize vein ending radii
+		os << "using VeinEndingRadii = mp_list<\n";
+		for (int i = 0; i < endingRadii.size() - 1; i++)
+		{
+			float radius = endingRadii[i];
+			os << "mp_float<" << static_cast<int>(radius * 1000) << ", 4>,\n";
+		}
+		if (endingRadii.size() > 0)
+		{
+			auto&& radius = endingRadii[endingRadii.size() - 1];
+			os << "mp_float<" << static_cast<int>(radius * 1000) << ", 4>\n";
+		}
+		os << ">;";
+
 		if (!os)
 			throw serializable::FileWriteException();
+	}
+
+	void SerializableMesh::addEnding(const glm::vec3& endingPosition, float endingRadius)
+	{
+		endingPositions.push_back(endingPosition);
+		endingRadii.push_back(endingRadius);
 	}
 }
