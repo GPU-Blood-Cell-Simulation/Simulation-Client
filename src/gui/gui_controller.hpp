@@ -80,6 +80,8 @@ namespace gui
 		// blood cells
 		std::vector<BloodEditor> editors;
 		BloodEditor* selectedEditor = nullptr;
+		char newCellName[512];
+		int newCellVerticesCount;
 
 		std::string error;
 		void setError(const std::string& msg);

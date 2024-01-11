@@ -41,6 +41,24 @@ namespace gui
 			ImGui::EndPopup();
 		}
 		ImGui::NewLine();
+		ImGui::Text("Add custom blood cell definition with name ");
+		ImGui::SameLine();
+		ImGui::PushItemWidth(200);
+		ImGui::InputText("##cellname", newCellName, 512);
+		ImGui::SameLine();
+		ImGui::Text(" vertices count ");
+		ImGui::SameLine();
+		ImGui::InputInt("##verticecount", &newCellVerticesCount);
+		ImGui::SameLine();
+		if (newCellVerticesCount < 0)
+			newCellVerticesCount = 0;
+		if (ImGui::Button("+"))
+		{
+			serializable::BloodCellType newCell = { 0, std::string(newCellName), 0, {1,1,1}};
+			editors.push_back(newCell);
+			memset(newCellName, 0, 512 * sizeof(char));
+			newCellVerticesCount = 0;
+		}
 		ImGui::NewLine();
 
 		if (ext::CenteredButton("Done"))
