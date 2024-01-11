@@ -53,7 +53,7 @@ namespace graphics
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 		// Create the shaders
-		cylinderSolidColorShader = std::make_unique<Shader>(CylinderSolidColorShader());
+		veinSolidColorShader = std::make_unique<VeinSolidColorShader>();
 	}
 
 
@@ -159,13 +159,15 @@ namespace graphics
 
 	void GLController::drawVeinEditor() 
 	{
-		cylinderSolidColorShader->use();
-		cylinderSolidColorShader->setMatrix("view", camera.getView());
-		cylinderSolidColorShader->setMatrix("projection", projection);
+		veinSolidColorShader->use();
+		veinSolidColorShader->setMatrix("view", camera.getView());
+		veinSolidColorShader->setMatrix("projection", projection);
 
+		glDisable(GL_DEPTH_TEST);
 		glDisable(GL_CULL_FACE);
-		configManager.getData().veinRootNode->draw(cylinderSolidColorShader.get());
+		configManager.getData().veinRootNode->draw(veinSolidColorShader.get());
 		glEnable(GL_CULL_FACE);
+		glEnable(GL_DEPTH_TEST);
 	}
 
 

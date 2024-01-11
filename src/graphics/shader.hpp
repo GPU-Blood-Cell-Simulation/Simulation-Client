@@ -29,8 +29,8 @@ protected:
     Shader(const char* vertexPath, const char* fragmentPath);
 };
 
-class CylinderSolidColorShader : public Shader
+class VeinSolidColorShader : public Shader
 {
 public:
-    CylinderSolidColorShader();
+    VeinSolidColorShader();
 };

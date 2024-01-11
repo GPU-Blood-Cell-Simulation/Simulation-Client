@@ -121,5 +121,5 @@ void Shader::setLighting(DirLight dirLight) const
     setVector("dirLight.specular", dirLight.specular);
 }
 
-CylinderSolidColorShader::CylinderSolidColorShader() : Shader("Shaders/cylindersolidcolor.vert", "Shaders/cylindersolidcolor.frag")
+VeinSolidColorShader::VeinSolidColorShader() : Shader("Shaders/veinsolidcolor.vert", "Shaders/veinsolidcolor.frag")
 {}

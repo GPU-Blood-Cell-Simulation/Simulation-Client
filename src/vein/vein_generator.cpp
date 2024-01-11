@@ -208,7 +208,7 @@ namespace vein
 		{
 			transfromedPositions[i] = toGLM(tps.transform(toDP(scaledMesh.positions[i])));
 		}
-		return VeinMesh(std::move(transfromedPositions), scaledMesh.indices);
+		return VeinMesh(std::move(transfromedPositions), std::move(scaledMesh.indices));
 	}
 
 
@@ -298,6 +298,6 @@ namespace vein
 		{
 			transfromedPositions[i] = toGLM(tps.transform(toDP(baseMesh.positions[i])));
 		}
-		return VeinMesh(std::move(transfromedPositions), baseMesh.indices);
+		return VeinMesh(std::move(transfromedPositions), std::move(baseMesh.indices));
 	}
 }

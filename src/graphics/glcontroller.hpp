@@ -104,7 +104,7 @@ namespace graphics
 		Camera camera;
 		bool useLighting = true;
 		DirLight directionalLight;
-		std::unique_ptr<Shader> cylinderSolidColorShader;
+		std::unique_ptr<Shader> veinSolidColorShader;
 
 		unsigned int gBuffer;
 	};
