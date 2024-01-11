@@ -29,6 +29,9 @@ namespace serializable
 		os << "inline constexpr float collisionDampingCoeff = " << collisionDampingCoeff << ";\n";
 		os << "inline constexpr float collistionShearCoeff = " << collistionShearCoeff << ";\n\n";
 
+		os << "inline constexpr int maxCellSizeFactorBeforeBrake = 2;\n";
+		os << "inline constexpr float bigParticleBrakingIntensity = 0.6;\n\n";
+
 		os << "inline constexpr float initVelocityX = " << initVelocity.x << ";\n";
 		os << "inline constexpr float initVelocityY = " << initVelocity.y << ";\n";
 		os << "inline constexpr float initVelocityZ = " << initVelocity.z << ";\n";
