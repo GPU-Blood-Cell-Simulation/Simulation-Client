@@ -14,7 +14,7 @@ namespace serializable
 			throw FileOpenException();
 
 		os << "#pragma once\n\n";
-		os << "inline int VEIN_POLYGON_MODE = 0;\ninline bool BLOOD_CELL_SPRINGS_RENDER = true;\n\n";
+		os << "inline int VEIN_POLYGON_MODE = 0;\ninline bool BLOOD_CELL_SPRINGS_RENDER = true;\ninline bool BLOOD_CELL_SPHERE_RENDER = false;\n\n";
 		os << "inline constexpr bool useLighting = " << (useLighting ? "true" : "false") << ";\n\n";
 		os << "inline constexpr int windowWidth = 800;\ninline constexpr int windowHeight = 800;\n\n";
 
