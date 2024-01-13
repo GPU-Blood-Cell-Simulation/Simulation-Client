@@ -80,14 +80,13 @@ namespace gui
 		// blood cells
 		std::vector<BloodEditor> editors;
 		BloodEditor* selectedEditor = nullptr;
-		char newCellName[512];
-		int newCellVerticesCount;
 
 		std::string error;
 		void setError(const std::string& msg);
 
 		void finalDraw();
 		void loadEditors();
+		void addTypeAndEditor(std::string typeName, int typeSize);
 
 		// Components
 		void renderMenuBar();
@@ -95,12 +94,12 @@ namespace gui
 
 		void renderMainScreen();
 		void renderGeneralEditor();
-		void renderBloodList();
+		void renderBloodList(serializable::ConfigData& config);
 		void renderVeinEditor();
 		void renderAddVein();
 		void renderSimulation();
-		void renderBloodCellSpringsDetails();
-		void renderBloodCellVerticesDetails();
+		void renderBloodCellSpringsDetails(serializable::ConfigData& config);
+		void renderBloodCellVerticesDetails(serializable::ConfigData& config);
 
 		void renderSimulationEditor();
 		void renderPhysicsEditor();

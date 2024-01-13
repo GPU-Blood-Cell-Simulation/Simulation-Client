@@ -6,11 +6,15 @@
 #include <nlohmann/json.hpp>
 #include <fstream>
 
+#ifndef _cellTypes
+#define _cellTypes config.bloodCellsDefinition.bloodCellTypes
+#endif
+
 namespace gui
 {
 	using json = nlohmann::json;
 
-	void GUIController::renderBloodList()
+	void GUIController::renderBloodList(serializable::ConfigData& config)
 	{
 		if (editors.size() == 0)
 			ImGui::Text("No blood cells defined yet");
@@ -19,18 +23,16 @@ namespace gui
 		ImGui::NewLine();
 		for(auto& editor : editors)
 		{
-			if (ImGui::Button(editor.GetModelName().c_str())) {
+			serializable::BloodCellType& modelData = _cellTypes.at(editor.editorIndex);
+			if (ImGui::Button(modelData.name.c_str())) {
 				selectedEditor = &editor;
 				ImGui::OpenPopup("BloodListPopup");
 			}
 			ImGui::SameLine();
 
 			ImGui::PushItemWidth(100);
-			std::string inputName = "quantity##" + editor.GetModelName();
-			if (ImGui::InputInt(inputName.c_str(), &editor.modelQuantity))
-			{
-				editor.updateQuantity();
-			}
+			std::string inputName = "quantity##" + modelData.name;
+			ImGui::InputInt(inputName.c_str(), &modelData.quantity);
 		}
 		if (ImGui::BeginPopup("BloodListPopup"))
 		{
@@ -40,24 +42,29 @@ namespace gui
 				setMode(Mode::configureBloodCellVertices);			
 			ImGui::EndPopup();
 		}
+
+		static char newCellName[255] = "";
+		static int newCellVerticesCount = 1;
+
 		ImGui::NewLine();
-		ImGui::Text("Add custom blood cell definition with name ");
+		ImGui::NewLine();
+		ImGui::NewLine();
+		ImGui::Text("Add custom blood cell definition: ");
+		ImGui::Text("\tName:");
 		ImGui::SameLine();
-		ImGui::PushItemWidth(200);
-		ImGui::InputText("##cellname", newCellName, 512);
-		ImGui::SameLine();
-		ImGui::Text(" vertices count ");
+		ImGui::PushItemWidth(130);
+		ImGui::InputText("##cellname", newCellName, IM_ARRAYSIZE(newCellName));
+		ImGui::Text("\tVertices count:");
 		ImGui::SameLine();
 		ImGui::InputInt("##verticecount", &newCellVerticesCount);
-		ImGui::SameLine();
-		if (newCellVerticesCount < 0)
-			newCellVerticesCount = 0;
-		if (ImGui::Button("+"))
+		if (newCellVerticesCount < 1)
+			newCellVerticesCount = 1;
+		if (ImGui::Button(" Add "))
 		{
-			serializable::BloodCellType newCell = { 0, std::string(newCellName), 0, {1,1,1}};
-			editors.push_back(newCell);
-			memset(newCellName, 0, 512 * sizeof(char));
-			newCellVerticesCount = 0;
+			std::string newName(newCellName);
+			if(!newName.empty() && std::all_of(newName.begin(), newName.end(), [](auto ch) { return !std::isspace(ch);}) && 
+				(std::find_if(_cellTypes.begin(), _cellTypes.end(), [&newName](auto& conf) {return conf.name == newName;}) == _cellTypes.end()))
+					addTypeAndEditor(newName, newCellVerticesCount);
 		}
 		ImGui::NewLine();
 

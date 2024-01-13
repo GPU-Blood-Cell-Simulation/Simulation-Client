@@ -2,18 +2,26 @@
 
 #include "../gui/gui_controller.hpp"
 #include "../serializable/blood_cell_json_conversion/spring.hpp"
-
+#include <algorithm>
 #include <cstdio>
 #include <utility>
 #include <glm/gtc/type_ptr.hpp>
 
+#ifndef _cellTypes
+#define _cellTypes config.bloodCellsDefinition.bloodCellTypes
+#endif
+
+
 namespace gui
 {
-	void BloodEditor::renderGUISprings(gui::GUIController &guiController)
+	void BloodEditor::renderGUISprings(gui::GUIController &guiController, serializable::ConfigData& config)
 	{
+		serializable::BloodCellType& modelData = _cellTypes.at(editorIndex);
+		static int selectedSpringIndex = -1;
+		static int from = 0;
+		static int to = 0;
 
 		ImGui::Text("Vertices are numbered [0..%lu]\n\tAdd new spring: ", modelData.vertices.size() - 1);
-		
 		ImGui::ColorPicker3("Cell color", (float*)&modelData.color);
 
 		ImGui::PushItemWidth(100);
@@ -74,8 +82,11 @@ namespace gui
 		}
 	}
 
-	void BloodEditor::renderGUIVertices(gui::GUIController &guiController)
+	void BloodEditor::renderGUIVertices(gui::GUIController &guiController, serializable::ConfigData& config)
 	{
+		serializable::BloodCellType& modelData = _cellTypes.at(editorIndex);
+		static float vertexScaleFactor = 1.0f;
+		
 		ImGui::Text("Vertices are numbered [0..%lu]\n ", modelData.vertices.size() - 1);
 
 		ImGui::NewLine();
@@ -119,5 +130,5 @@ namespace gui
 		}
 	}
 
-	BloodEditor::BloodEditor(serializable::BloodCellType &data) : modelData(data), modelQuantity(data.quantity) {}
+	BloodEditor::BloodEditor(int editorIndex) : editorIndex(editorIndex) {}
 }

@@ -28,7 +28,7 @@ namespace serializable
 		bloodcellPreset << templateBloodcellPreset.rdbuf();
 		if (!templateBloodcellPreset)
 			throw serializable::FileReadException();
-
+		
 		for (auto definition = bloodCellTypes.cbegin(); definition != bloodCellTypes.cend(); ++definition)
 		{
 			if (definition->quantity > 0)
