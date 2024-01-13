@@ -28,10 +28,8 @@ namespace streaming
 
     private:
         GstElement *pipeline;
-        GstElement *udpsrc;
-        GstElement *capsfilter;
-        GstElement *rtpjitterbuffer;
-        GstElement *rtph264depay;
+        GstElement *tcpsrc;
+        GstElement *demuxer;
         GstElement *h264decoder;
         GstElement *converter;
         GstElement *appsink;
@@ -41,5 +39,8 @@ namespace streaming
         bool streamEnd;
 
         std::shared_ptr<StreamFrame> actFrame;
+
+        static GstElement *createPipelineElement(const std::string& factoryName, const std::string& name);
+        static void padAddedCallbackHandler(GstElement *src, GstPad *new_pad, streaming::StreamReceiver *data);
     };
 }

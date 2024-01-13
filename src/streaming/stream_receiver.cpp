@@ -13,40 +13,31 @@ streaming::StreamReceiver::StreamReceiver():
 	gst_init (NULL, NULL);
 
     pipeline = gst_pipeline_new("pipeline");
-	udpsrc = gst_element_factory_make("udpsrc", "udpsrc");
-	capsfilter = gst_element_factory_make("capsfilter", "capsfilter");
-	rtpjitterbuffer = gst_element_factory_make("rtpjitterbuffer", "rtpjitterbuffer");
-	rtph264depay = gst_element_factory_make("rtph264depay", "rtph264depay");
-	h264decoder = gst_element_factory_make("avdec_h264", "avdec_h264");
-	converter = gst_element_factory_make("videoconvert", "converter");
-	appsink = gst_element_factory_make("appsink", "appsink");
-
-	if (!pipeline || !udpsrc || !capsfilter || !rtpjitterbuffer ||
-		!rtph264depay || !h264decoder || !converter || !appsink) {
+	if (!pipeline) {
 		throw std::runtime_error("Error while creating pipeline object");
 	}
 
-	gst_bin_add_many(GST_BIN(pipeline), udpsrc, capsfilter, rtpjitterbuffer,
-		rtph264depay, h264decoder, converter, appsink, NULL);
+	tcpsrc = createPipelineElement("tcpclientsrc", "tcpsrc");
+	demuxer = createPipelineElement("matroskademux", "demuxer");
+	h264decoder = createPipelineElement("avdec_h264", "avdec_h264");
+	converter = createPipelineElement("videoconvert", "converter");
+	appsink = createPipelineElement("appsink", "appsink");
 
-	if ( !gst_element_link_many(udpsrc, capsfilter, rtpjitterbuffer, rtph264depay,
-		h264decoder, converter, appsink, NULL)) {
-		throw std::runtime_error("Cannot link objects to pipeline");
+	gst_bin_add_many(GST_BIN(pipeline), tcpsrc, demuxer, h264decoder, converter, appsink, NULL);
+
+	if (gst_element_link_many(tcpsrc, demuxer, NULL) != TRUE ||
+		gst_element_link_many(h264decoder, converter, appsink, NULL) != TRUE) {
+			throw std::runtime_error("Cannot link objects to pipeline");
 	}
 
-    GstCaps *caps = gst_caps_from_string("application/x-rtp, media=(string)video, "
-		"clock-rate=(int)90000, encoding-name=(string)H264, payload=(int)96");
-	g_object_set(capsfilter, "caps", caps, NULL);
-	gst_caps_unref(caps);
-
-	g_object_set(G_OBJECT(rtpjitterbuffer), "latency", 0, NULL);
-
-	caps = gst_caps_new_simple("video/x-raw",
-								"format", G_TYPE_STRING, "RGBA",
+	GstCaps *caps = gst_caps_new_simple("video/x-raw",
+								"format", G_TYPE_STRING, "RGBA", /* Possible mistake */
 								NULL);
 	
 	g_object_set(appsink, "caps", caps, NULL);
 	gst_caps_unref(caps);
+
+	g_signal_connect(demuxer, "pad-added", G_CALLBACK(padAddedCallbackHandler), this);
 
     bus = gst_element_get_bus(pipeline);
     if (!bus) {
@@ -69,7 +60,7 @@ streaming::StreamReceiver::~StreamReceiver()
 
 void streaming::StreamReceiver::portSet(int port)
 {
-    g_object_set(udpsrc, "port", port, NULL);
+    g_object_set(tcpsrc, "port", port, NULL);
 }
 
 
@@ -151,4 +142,59 @@ void streaming::StreamReceiver::handleEvents()
 	default:
 		throw std::runtime_error("Unexpected message");
 	}
+}
+
+GstElement *streaming::StreamReceiver::createPipelineElement(const std::string &factoryName, const std::string &name)
+{
+    GstElement *result = gst_element_factory_make(factoryName.c_str(), name.c_str());
+	if (!result) {
+		throw std::runtime_error("Error while creating " + name + " element");
+	}
+
+	return result;
+}
+
+void streaming::StreamReceiver::padAddedCallbackHandler(GstElement *src, GstPad *new_pad, streaming::StreamReceiver *data)
+{
+	GstPad *sink_pad = gst_element_get_static_pad (data->h264decoder, "sink");
+	GstPadLinkReturn ret;
+	GstCaps *new_pad_caps = NULL;
+	GstStructure *new_pad_struct = NULL;
+	const gchar *new_pad_type = NULL;
+
+	g_print ("Received new pad '%s' from '%s':\n", GST_PAD_NAME (new_pad), GST_ELEMENT_NAME (src));
+
+	/* If our converter is already linked, we have nothing to do here */
+	if (gst_pad_is_linked(sink_pad)) {
+	g_print ("We are already linked. Ignoring.\n");
+	goto exit;
+	}
+
+	/* Check the new pad's type */
+	new_pad_caps = gst_pad_get_current_caps (new_pad);
+	new_pad_struct = gst_caps_get_structure (new_pad_caps, 0);
+	new_pad_type = gst_structure_get_name (new_pad_struct);
+
+	g_print("New pad type: %s\n", new_pad_type);
+
+	if (!g_str_has_prefix (new_pad_type, "video/x-h264")) {
+	g_print ("It has type '%s' which is not raw audio. Ignoring.\n", new_pad_type);
+	goto exit;
+	}
+
+	/* Attempt the link */
+	ret = gst_pad_link (new_pad, sink_pad);
+	if (GST_PAD_LINK_FAILED (ret)) {
+	g_print ("Type is '%s' but link failed.\n", new_pad_type);
+	} else {
+	g_print ("Link succeeded (type '%s').\n", new_pad_type);
+	}
+
+	exit:
+	/* Unreference the new pad's caps, if we got them */
+	if (new_pad_caps != NULL)
+	gst_caps_unref (new_pad_caps);
+
+	/* Unreference the sink pad */
+	gst_object_unref (sink_pad);
 }
