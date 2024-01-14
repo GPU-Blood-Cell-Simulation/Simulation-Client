@@ -16,7 +16,7 @@ namespace serializable
 	/// </summary>
 	struct BloodCellType
 	{
-		unsigned int modelSize;
+		int modelSize;
 		std::string name;
 		int quantity;
 		glm::vec3 color;

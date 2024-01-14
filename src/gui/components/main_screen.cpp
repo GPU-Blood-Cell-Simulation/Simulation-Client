@@ -41,7 +41,7 @@ namespace gui
                 setError("Error while creating config C++ headers for the server: \n" + std::string(e.what()));
                 return;
             }
-
+            
             // Send data to server
             //      TODO
 

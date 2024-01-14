@@ -1,15 +1,16 @@
 #include "../gui_controller.hpp"
+#include "../../serializable/config_data.hpp"
 #include <string>
 
 namespace gui
 {
-	void GUIController::renderBloodCellSpringsDetails()
+	void GUIController::renderBloodCellSpringsDetails(serializable::ConfigData& config)
 	{
-		selectedEditor->renderGUISprings(*this);
+		selectedEditor->renderGUISprings(*this, config);
 	}
 
-	void GUIController::renderBloodCellVerticesDetails()
+	void GUIController::renderBloodCellVerticesDetails(serializable::ConfigData& config)
 	{
-		selectedEditor->renderGUIVertices(*this);
+		selectedEditor->renderGUIVertices(*this, config);
 	}
 }

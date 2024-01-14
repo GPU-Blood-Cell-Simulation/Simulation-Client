@@ -98,7 +98,7 @@ namespace gui
             renderGeneralEditor();
             break;
         case Mode::bloodEdit:
-            renderBloodList();
+            renderBloodList(configManager.getData());
             break;
         case Mode::veinEdit:
             renderVeinEditor();
@@ -110,10 +110,10 @@ namespace gui
             renderSimulation();
             break;
         case Mode::configureBloodCellSprings:
-            renderBloodCellSpringsDetails();
+            renderBloodCellSpringsDetails(configManager.getData());
             break;
         case Mode::configureBloodCellVertices:
-            renderBloodCellVerticesDetails();
+            renderBloodCellVerticesDetails(configManager.getData());
             break;
         }
 
@@ -142,12 +142,27 @@ namespace gui
     void GUIController::loadEditors()
     {
         editors.clear();
-        for (auto&& type : configManager.getData().bloodCellsDefinition.bloodCellTypes)
+        for (int i = 0; i < configManager.getData().bloodCellsDefinition.bloodCellTypes.size(); ++i)
         {
-            editors.push_back(BloodEditor(type));
+            editors.push_back(BloodEditor(i));
         }
 
         releaseEditor();
+    }
+
+    void GUIController::addTypeAndEditor(std::string typeName, int typeSize)
+    {
+		serializable::BloodCellType newBloodCell = {typeSize, typeName, 0,  {1,1,1} };
+		newBloodCell.vertices.resize(typeSize, {0,0,0});
+		newBloodCell.normals.resize(typeSize, {0,0,0});
+		for(int i = 0; i < typeSize; ++i)
+        {
+            newBloodCell.indices.push_back(i);
+            newBloodCell.indices.push_back((i + 1)%typeSize);
+            newBloodCell.indices.push_back((i + 2)%typeSize);
+        }
+        configManager.getData().bloodCellsDefinition.bloodCellTypes.push_back(newBloodCell);
+        editors.push_back(configManager.getData().bloodCellsDefinition.bloodCellTypes.size() - 1);
     }
 
     void GUIController::setError(const std::string& msg)
