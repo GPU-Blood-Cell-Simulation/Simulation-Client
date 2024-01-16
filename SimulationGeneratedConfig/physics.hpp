@@ -8,13 +8,16 @@ inline constexpr float vein_k_sniff = 0.05;
 inline constexpr float particle_d_fact = 9;
 inline constexpr float vein_d_fact = 0.45;
 
-inline constexpr float viscous_damping = 0.3;
+inline constexpr float viscous_damping = 0.39;
 inline constexpr float vein_boundaries_velocity_damping = 0.65;
 inline constexpr float vein_collision_force_intensity = 0.08;
 
 inline constexpr float collisionSpringCoeff = 6;
 inline constexpr float collisionDampingCoeff = 6;
 inline constexpr float collistionShearCoeff = 4;
+
+inline constexpr int maxCellSizeFactorBeforeBrake = 2;
+inline constexpr float bigParticleBrakingIntensity = 0.6;
 
 inline constexpr float initVelocityX = 0;
 inline constexpr float initVelocityY = -80;

@@ -56,7 +56,7 @@ namespace serializable
 				bloodcellPreset << ">;\n\nusing " << definition->name << "_Vertices = mp_list<\n";
 				for (auto vertex = definition->vertices.cbegin(); vertex != definition->vertices.cend(); ++vertex)
 				{
-					bloodcellPreset << "\tmpFloat3<" << static_cast<int>(pow(10, precision) * vertex->x) << ", "
+					bloodcellPreset << "\tmp_float3<" << static_cast<int>(pow(10, precision) * vertex->x) << ", "
 						<< static_cast<int>(pow(10, precision) * vertex->y) << ", " << static_cast<int>(pow(10, precision) * vertex->z) << ", "
 						<< precision << ">" << (vertex == std::prev(definition->vertices.end()) ? "" : ",") << "\n";
 				}
@@ -73,7 +73,7 @@ namespace serializable
 
 				for (auto normal = definition->normals.cbegin(); normal != definition->normals.cend(); ++normal)
 				{
-					bloodcellPreset << "\tmpFloat3<" << static_cast<int>(pow(10, precision) * normal->x) << ", "
+					bloodcellPreset << "\tmp_float3<" << static_cast<int>(pow(10, precision) * normal->x) << ", "
 						<< static_cast<int>(pow(10, precision) * normal->y) << ", " << static_cast<int>(pow(10, precision) * normal->z) << ", " 
 						<< precision << ">" << (normal == std::prev(definition->normals.cend()) ? "" : ",") << "\n";
 				}
