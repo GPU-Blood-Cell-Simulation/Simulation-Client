@@ -123,7 +123,7 @@ namespace vein
 
 		// Serialize vein ending centers
 		os << "using VeinEndingCenters = mp_list<\n";
-		for (int i = 0; i < endingPositions.size() - 1; i++)
+		for (unsigned int i = 0; i < endingPositions.size() - 1; i++)
 		{
 			auto&& pos = endingPositions[i];
 			os << "mp_float3<" << static_cast<int>(pos.x * 1000) << ", " << static_cast<int>(pos.y * 1000) << ", "
@@ -139,7 +139,7 @@ namespace vein
 
 		// Serialize vein ending radii
 		os << "using VeinEndingRadii = mp_list<\n";
-		for (int i = 0; i < endingRadii.size() - 1; i++)
+		for (unsigned int i = 0; i < endingRadii.size() - 1; i++)
 		{
 			float radius = endingRadii[i];
 			os << "mp_float<" << static_cast<int>(radius * 1000) << ", 4>,\n";

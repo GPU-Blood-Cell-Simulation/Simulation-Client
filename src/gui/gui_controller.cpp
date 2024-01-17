@@ -78,10 +78,10 @@ namespace gui
 
         ImGui::Begin("Configuration window", nullptr, windowFlags); // Create a window and append into it.        
 
-        // Render error if occured
+        // Render error if occurred
         if (ImGui::BeginPopupModal("Error"))
         {
-            ImGui::Text(error.c_str());
+            ImGui::Text("%s", error.c_str());
             if (ext::CenteredButton("OK"))
                 ImGui::CloseCurrentPopup();
             ImGui::EndPopup();
@@ -142,7 +142,7 @@ namespace gui
     void GUIController::loadEditors()
     {
         editors.clear();
-        for (int i = 0; i < configManager.getData().bloodCellsDefinition.bloodCellTypes.size(); ++i)
+        for (size_t i = 0; i < configManager.getData().bloodCellsDefinition.bloodCellTypes.size(); ++i)
         {
             editors.push_back(BloodEditor(i));
         }
