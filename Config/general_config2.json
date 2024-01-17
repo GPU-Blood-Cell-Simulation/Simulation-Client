@@ -2,7 +2,11 @@
    "o.graphics": {
       "o.cameraMovementSpeedCoefficient": 0.009999999776482582,
       "o.cameraRotationSpeed": 0.019999999552965164,
-      "o.useLighting": true
+      "o.useLighting": true,
+      "o.saveVideoToFile": true,
+      "o.videoFileName": "blood_simulation.mov",
+      "o.videoHeight": 800,
+      "o.videoWidth": 800
    },
    "o.physics": {
       "o.collisionDampingCoeff": 6.0,
