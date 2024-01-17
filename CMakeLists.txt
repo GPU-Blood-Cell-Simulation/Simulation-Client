@@ -38,6 +38,16 @@ target_link_libraries(ImGuiFileDialog PUBLIC imgui)
 target_include_directories(ImGuiFileDialog PUBLIC ${CMAKE_SOURCE_DIR}/Libraries/include/)
 
 #
+# Add imgui stdlib
+#
+add_library(ImGuiStdLib
+  ${CMAKE_SOURCE_DIR}/Libraries/include/imgui_stdlib/imgui_stdlib.cpp
+  ${CMAKE_SOURCE_DIR}/Libraries/include/imgui_stdlib/imgui_stdlib.h
+)
+target_link_libraries(ImGuiStdLib PUBLIC imgui)
+target_include_directories(ImGuiStdLib PUBLIC ${CMAKE_SOURCE_DIR}/Libraries/include/)
+
+#
 # Define executable
 #
 add_executable(Simulation_client ${CPP_SOURCES} ${C_SOURCES} ${CPP_HEADERS})
@@ -55,6 +65,7 @@ target_link_libraries(Simulation_client PUBLIC
   ${CMAKE_SOURCE_DIR}/Libraries/lib/libglfw3.a
   ${CMAKE_SOURCE_DIR}/Libraries/lib/libenet.a
   imgui
+  ImGuiStdLib
   ImGuiFileDialog
   PkgConfig::gstreamer
   PkgConfig::gstreamer-app
