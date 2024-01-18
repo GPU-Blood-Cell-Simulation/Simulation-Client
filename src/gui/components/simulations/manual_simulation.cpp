@@ -15,6 +15,7 @@ namespace gui
         if (ext::CenteredButton("Watch stream", 200.0))
         {
             setMode(Mode::streamWatching);
+            glController.setMode(graphics::Mode::Simulation);
         }
         ImGui::NewLine();
         if (ext::CenteredButton("Back to main menu", 200.0))

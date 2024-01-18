@@ -42,12 +42,7 @@ namespace gui
                 return;
             }
             
-            // Send data to server
-            //      TODO
-
-            // Navigate to simulation screen
             setMode(Mode::selectingRuntimeType);
-            glController.setMode(graphics::Mode::Simulation);
         }
 	}
 }

@@ -1,5 +1,6 @@
 #include "../gui_controller.hpp"
 
+
 namespace gui
 {
 	void GUIController::renderStream()

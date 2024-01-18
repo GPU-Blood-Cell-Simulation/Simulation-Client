@@ -34,7 +34,7 @@ namespace gui
             threadResult = system("cd Simulation-Server/ && git pull");
         }
         else {
-            threadResult = system("git clone --branch PNieck/faster_streaming https://github.com/GPU-Blood-Cell-Simulation/Simulation-Server.git");
+            threadResult = system("git clone --branch  PNieck/comunication_refactor https://github.com/GPU-Blood-Cell-Simulation/Simulation-Server.git");
         }
 
         threadFinished = true;
@@ -173,6 +173,7 @@ namespace gui
             SimulationPhases.init = Phase::before;
 
             setMode(Mode::streamWatching);
+            glController.setMode(graphics::Mode::Simulation);
         }
     }
 }
