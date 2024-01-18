@@ -5,23 +5,26 @@
 #include <cstdint>
 
 
-class StreamFrame
+namespace streaming
 {
-public:
-    StreamFrame(GstSample *sample);
-    ~StreamFrame();
+    class StreamFrame
+    {
+    public:
+        StreamFrame(GstSample *sample);
+        ~StreamFrame();
 
-    inline bool haveData() const { return sample != NULL; }
+        inline bool haveData() const { return sample != NULL; }
 
-    inline uint8_t* getData() const { return map.data; }
+        inline uint8_t* getData() const { return map.data; }
 
-    int getWidth();
-    int getHeight();
+        int getWidth();
+        int getHeight();
 
-private:
-    GstSample *sample;
-    GstBuffer *buffer;
-    GstMapInfo map;
-    GstCaps* cap;
-    const GstStructure* structure;
-};
+    private:
+        GstSample *sample;
+        GstBuffer *buffer;
+        GstMapInfo map;
+        GstCaps* cap;
+        const GstStructure* structure;
+    };
+}

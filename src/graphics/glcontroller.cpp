@@ -4,7 +4,6 @@
 
 #include "../serializable/config_data.hpp"
 #include "../defines.hpp"
-#include "stream_input_controller.hpp"
 
 #ifdef _WIN32
 #include <windows.h>
@@ -18,11 +17,10 @@ namespace graphics
 {
 	using namespace glm;
 
-	GLController::GLController(GLFWwindow* window, serializable::ConfigManager& configManager) : window(window), configManager(configManager)
+	GLController::GLController(GLFWwindow* window, serializable::ConfigManager& configManager, streaming::StreamManager& streamManager):
+		window(window), configManager(configManager), streamManager(streamManager)
 	{
-		// Set up GLFW to work with inputController
-		glfwSetWindowUserPointer(window, &inputController);
-		glfwSetKeyCallback(window, InputController::handleUserInput);
+		inputController.setInputCallback(window);
 
 		// Create a directional light
 		directionalLight = DirLight
@@ -56,13 +54,10 @@ namespace graphics
 		veinSolidColorShader = std::make_unique<VeinSolidColorShader>();
 	}
 
-
 	void GLController::beginSimulation()
 	{
-		mode = Mode::Simulation;
-
-		streamReceiver.portSet(4321);
-		streamReceiver.startListening();
+		streamManager.setupInputCallback(window);
+		streamManager.beginWatchingSimulation(4321, 4322);
 
 		glGenTextures(1, &streamTex);
 		glBindTexture(GL_TEXTURE_2D, streamTex);
@@ -71,46 +66,51 @@ namespace graphics
 
 		glGenFramebuffers(1, &streamFBO);
         glBindFramebuffer(GL_READ_FRAMEBUFFER, streamFBO);
-
-		serverCommunication.connectToServer(4322);
-
-		SimulationInputController controller;
-		controller.setInputCallback(window, &serverCommunication);
 	}
 
-	void GLController::endSimulation()
-	{
-		mode = Mode::None;
 
+    void GLController::endSimulation()
+	{
 		glBindTexture(GL_TEXTURE_2D, 0);
 		glDeleteTextures(1, &streamTex);
 
 		glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
 		glDeleteFramebuffers(1, &streamFBO);
 
-		streamReceiver.pause();
+		streamManager.endWatchingSimulation();
 
-		serverCommunication.disconnect();
-
-		glfwSetWindowUserPointer(window, &inputController);
-		glfwSetKeyCallback(window, InputController::handleUserInput);
+		// Change user input callback to default
+		inputController.setInputCallback(window);
 	}
 
 
 	void GLController::handleInput()
 	{
-		if (mode == Mode::Simulation) {
-			serverCommunication.pollMessages();
-		}
-		else {
+		switch (mode)
+		{
+		case Mode::Simulation:
+			streamManager.handleInput();
+			break;
+
+		case Mode::VeinEdit:
 			inputController.adjustParametersUsingInput(camera);
-		}		
+			break;
+		
+		default:
+			break;
+		}	
 	}
 
 
 	void GLController::setMode(Mode mode)
 	{
+		if (this->mode == Mode::Simulation && mode != Mode::Simulation)
+			endSimulation();
+
 		this->mode = mode;
+
+		if (mode == Mode::Simulation)
+			beginSimulation();
 	}
 
 	void GLController::setFinalMesh(vein::SerializableMesh& calculatedMesh)
@@ -128,14 +128,7 @@ namespace graphics
 
 	void GLController::drawSimulation()
 	{
-		streamReceiver.handleEvents();
-		
-		if (streamReceiver.streamEnded()) {
-			endSimulation();
-			return;
-		}
-
-		std::shared_ptr<StreamFrame> frame(streamReceiver.getFrame());
+		std::shared_ptr<streaming::StreamFrame> frame(streamManager.streamFrameGet());
 
 		if (!frame->haveData()) {
 			return;

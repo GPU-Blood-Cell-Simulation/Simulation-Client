@@ -6,7 +6,7 @@
 #include <iostream>
 
 
-StreamReceiver::StreamReceiver():
+streaming::StreamReceiver::StreamReceiver():
 	streamEnd(false)
 {
     /* init GStreamer */
@@ -58,7 +58,7 @@ StreamReceiver::StreamReceiver():
 }
 
 
-StreamReceiver::~StreamReceiver()
+streaming::StreamReceiver::~StreamReceiver()
 {
     gst_object_unref(bus);
 	gst_element_set_state (pipeline, GST_STATE_NULL);
@@ -67,13 +67,13 @@ StreamReceiver::~StreamReceiver()
 }
 
 
-void StreamReceiver::portSet(int port)
+void streaming::StreamReceiver::portSet(int port)
 {
     g_object_set(udpsrc, "port", port, NULL);
 }
 
 
-void StreamReceiver::startListening()
+void streaming::StreamReceiver::startListening()
 {
     GstStateChangeReturn ret = gst_element_set_state(pipeline, GST_STATE_PLAYING);
 
@@ -84,7 +84,7 @@ void StreamReceiver::startListening()
 }
 
 
-void StreamReceiver::pause()
+void streaming::StreamReceiver::pause()
 {
     GstStateChangeReturn ret = gst_element_set_state(pipeline, GST_STATE_PAUSED);
 
@@ -94,7 +94,7 @@ void StreamReceiver::pause()
     }
 }
 
-std::shared_ptr<StreamFrame> StreamReceiver::getFrame()
+std::shared_ptr<streaming::StreamFrame> streaming::StreamReceiver::getFrame()
 {
 	GstSample *videosample =
             gst_app_sink_try_pull_sample(GST_APP_SINK(appsink), 10 * GST_MSECOND);
@@ -130,7 +130,7 @@ static void pipelineError(GstMessage* msg)
 }
 
 
-void StreamReceiver::handleEvents()
+void streaming::StreamReceiver::handleEvents()
 {
 	GstMessage *msg = gst_bus_pop_filtered(bus, static_cast<GstMessageType>(GST_MESSAGE_ERROR | GST_MESSAGE_EOS));
 

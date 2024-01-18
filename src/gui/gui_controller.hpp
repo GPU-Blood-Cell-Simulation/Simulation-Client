@@ -5,6 +5,7 @@
 #include "../serializable/blood_cell_json_conversion/blood_cells_definition.hpp"
 #include "../vein/nodes/node.hpp"
 #include "../bloodcell/blood_editor.hpp"
+#include "../streaming/stream_manager.hpp"
 #include <imgui/imgui/imgui.h>
 #include <vector>
 
@@ -52,7 +53,12 @@ namespace gui
 	class GUIController
 	{
 	public:
-		GUIController(GLFWwindow* window, serializable::ConfigManager& configManager, graphics::GLController& glController);
+		GUIController(
+			GLFWwindow* window,
+			serializable::ConfigManager& configManager,
+			streaming::StreamManager& streamManager,
+			graphics::GLController& glController
+		);
 
 		/// <summary>
 		/// Renders the whole UI in every frame
@@ -73,6 +79,7 @@ namespace gui
 		
 		Mode mode = Mode::mainScreen;
 		serializable::ConfigManager& configManager;
+		streaming::StreamManager& streamManager;
 		graphics::GLController& glController;	
 
 		// vein

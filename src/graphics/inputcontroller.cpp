@@ -4,7 +4,14 @@
 
 namespace graphics
 {
-	// GLFW keyboard callback function
+    void InputController::setInputCallback(GLFWwindow *window)
+    {
+		// Set up GLFW to work with inputController
+		glfwSetWindowUserPointer(window, this);
+		glfwSetKeyCallback(window, InputController::handleUserInput);
+    }
+
+    // GLFW keyboard callback function
 	void InputController::handleUserInput(GLFWwindow* window, int key, int scancode, int action, int mods)
 	{
 		bool keyIsPressed;

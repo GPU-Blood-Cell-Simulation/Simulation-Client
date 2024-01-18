@@ -13,6 +13,8 @@ namespace graphics
 	class InputController
 	{
 	public:
+		void setInputCallback(GLFWwindow* window);
+
 		/// <summary>
 		/// The callback that handles the input from user keyboard after GLFW polls events
 		/// </summary>
