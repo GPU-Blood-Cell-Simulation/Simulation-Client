@@ -23,7 +23,10 @@ namespace gui
 		bloodEdit,
 		veinEdit,
 		addVein,
-		simulation,
+		selectingRuntimeType,
+		localRuntime,
+		manualRuntime,
+		streamWatching,
 		configureBloodCellSprings, 
 		configureBloodCellVertices
 	};
@@ -97,7 +100,10 @@ namespace gui
 		void renderBloodList(serializable::ConfigData& config);
 		void renderVeinEditor();
 		void renderAddVein();
-		void renderSimulation();
+		void renderStream();
+		void renderLocalSimulation();
+		void renderManualSimulation();
+		void renderSimulationTypeSelect();
 		void renderBloodCellSpringsDetails(serializable::ConfigData& config);
 		void renderBloodCellVerticesDetails(serializable::ConfigData& config);
 

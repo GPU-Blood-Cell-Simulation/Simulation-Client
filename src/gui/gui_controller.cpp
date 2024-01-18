@@ -106,8 +106,17 @@ namespace gui
         case Mode::addVein:
             renderAddVein();
             break;
-        case Mode::simulation:
-            renderSimulation();
+        case Mode::streamWatching:
+            renderStream();
+            break;
+        case Mode::selectingRuntimeType:
+            renderSimulationTypeSelect();
+            break;
+        case Mode::manualRuntime:
+            renderManualSimulation();
+            break;
+        case Mode::localRuntime:
+            renderLocalSimulation();
             break;
         case Mode::configureBloodCellSprings:
             renderBloodCellSpringsDetails(configManager.getData());

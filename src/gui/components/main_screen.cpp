@@ -46,7 +46,7 @@ namespace gui
             //      TODO
 
             // Navigate to simulation screen
-            setMode(Mode::simulation);
+            setMode(Mode::selectingRuntimeType);
             glController.beginSimulation();
         }
 	}
