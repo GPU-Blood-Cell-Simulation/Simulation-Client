@@ -26,6 +26,7 @@ namespace gui
 			serializable::BloodCellType& modelData = _cellTypes.at(editor.editorIndex);
 			if (ImGui::Button(modelData.name.c_str())) {
 				selectedEditor = &editor;
+				editor.recalculateBloodTypeDiameter(_cellTypes.at(editor.editorIndex));
 				ImGui::OpenPopup("BloodListPopup");
 			}
 			ImGui::SameLine();

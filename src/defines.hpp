@@ -5,6 +5,7 @@
 
 inline int VEIN_POLYGON_MODE = 0;
 
+	
 // Window size
 inline constexpr int windowWidth = 800;
 inline constexpr int windowHeight = 800;
@@ -18,6 +19,9 @@ inline constexpr float cameraRotationSpeed = 0.02f;
 inline constexpr float width = 300.0f;
 inline constexpr float height = 500.0f;
 inline constexpr float depth = 300.0f;
+
+// conversion factor from world units to real world units [mm]
+inline constexpr float lengthConversionFactor = 0.2;
 
 // Serialization
 inline const std::string cppSerializationPath =

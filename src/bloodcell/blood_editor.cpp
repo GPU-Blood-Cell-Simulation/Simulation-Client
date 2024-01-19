@@ -1,5 +1,5 @@
 #include "blood_editor.hpp"
-
+#include "../defines.hpp"
 #include "../gui/gui_controller.hpp"
 #include "../serializable/blood_cell_json_conversion/spring.hpp"
 #include <algorithm>
@@ -14,6 +14,19 @@
 
 namespace gui
 {
+	void BloodEditor::recalculateBloodTypeDiameter(serializable::BloodCellType& type)
+	{
+		float maxLength = 0;
+		for(auto v : type.vertices)
+			for(auto u : type.vertices)
+				{
+					float length = sqrt(pow(u.x - v.x,2) + pow(u.y - v.y,2) + pow(u.z - v.z,2));
+					if(length > maxLength)
+						maxLength = length;
+				}
+		diameter = maxLength;
+	}
+
 	void BloodEditor::renderGUISprings(gui::GUIController &guiController, serializable::ConfigData& config)
 	{
 		serializable::BloodCellType& modelData = _cellTypes.at(editorIndex);
@@ -86,8 +99,17 @@ namespace gui
 	{
 		serializable::BloodCellType& modelData = _cellTypes.at(editorIndex);
 		static float vertexScaleFactor = 1.0f;
-		
-		ImGui::Text("Vertices are numbered [0..%lu]\n ", modelData.vertices.size() - 1);
+		static bool sizeChanged = true;
+
+		recalculateBloodTypeDiameter(modelData);
+
+		if(sizeChanged)
+		{
+			recalculateBloodTypeDiameter(modelData);
+			sizeChanged = false;
+		}
+
+		ImGui::Text("Vertices are numbered [0..%lu]\nCell type diameter: %.5f mm   [%.1f microns]\n ", modelData.vertices.size() - 1, diameter*lengthConversionFactor, diameter*lengthConversionFactor*1000);
 
 		ImGui::NewLine();
 		int counter = 0;
@@ -114,13 +136,15 @@ namespace gui
 				vertex /= vertexScaleFactor;
 			}
 			vertexScaleFactor = 1.0f;
+			sizeChanged = true;
 		}
 		ImGui::NewLine();
 		ImGui::PushItemWidth(200);
 		for (glm::vec3 &vertex : modelData.vertices)
 		{
 			std::string name = "Vertex " + std::to_string(counter);
-			ImGui::InputFloat3(name.c_str(), glm::value_ptr(vertex));
+			if(ImGui::InputFloat3(name.c_str(), glm::value_ptr(vertex)))
+				sizeChanged = true;
 			counter++;
 		}
 		if (ImGui::Button("Confirm"))
