@@ -4,6 +4,9 @@
 
 #include <thread>
 #include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <filesystem>
 
 enum class Phase {
     before,
@@ -71,9 +74,24 @@ namespace gui
         threadFinished = true;
     }
 
-    static void runServer()
+    static int runServer()
     {
-        system("cd Simulation-Server/build/ && ./Simulation_server");
+        pid_t pid = fork();
+
+        if (pid < 0)
+            return -1; // Fork failed
+
+        if (pid == 0) {
+            // Child process
+            auto currentPath = std::filesystem::current_path();
+            auto serverBuildPath = currentPath / "Simulation-Server/build/";
+
+            std::filesystem::current_path(serverBuildPath);
+            execlp("./Simulation_server", "./Simulation_server", NULL);
+        }
+
+        // Parent process
+        return 0;
     }
 
 
@@ -166,11 +184,13 @@ namespace gui
         }
 
         else if (SimulationPhases.compile == Phase::after) {
-            std::cout << "Starting run thread\n";
-            thread = std::thread(&runServer);
-            thread.detach();
-
             SimulationPhases.init = Phase::before;
+
+            std::cout << "Starting simulation process\n";
+            if (runServer() < 0) {
+                setError("Erro while creating simulation process");
+                setMode(Mode::mainScreen);
+            }
 
             setMode(Mode::streamWatching);
             glController.setMode(graphics::Mode::Simulation);
