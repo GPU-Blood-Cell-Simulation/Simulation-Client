@@ -21,6 +21,7 @@ namespace graphics
 		window(window), configManager(configManager), streamManager(streamManager)
 	{
 		inputController.setInputCallback(window);
+		glfwSetWindowSizeCallback(window, window_size_callback);
 
 		// Create a directional light
 		directionalLight = DirLight
@@ -84,7 +85,13 @@ namespace graphics
 	}
 
 
-	void GLController::handleInput()
+    void GLController::window_size_callback(GLFWwindow *window, int width, int height)
+    {
+		glViewport(0, 0, width, height);
+    }
+
+
+    void GLController::handleInput()
 	{
 		switch (mode)
 		{
