@@ -364,3 +364,7 @@ FodyWeavers.xsd
 
 # Visual Studio Code dir
 .vscode/
+
+# SimulationGeneratedConfig
+SimulationGeneratedConfig/*
+!SimulationGeneratedConfig/.gitkeep
