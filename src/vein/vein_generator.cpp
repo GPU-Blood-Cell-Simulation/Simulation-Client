@@ -63,7 +63,7 @@ namespace vein
 		glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(0, 0, 1));
 
 		#pragma omp parallel for
-		for (int i = 0; i < mesh.positions.size(); i++)
+		for (unsigned int i = 0; i < mesh.positions.size(); i++)
 		{
 			positions[i] = rotation * glm::vec4(mesh.positions[i], 1.0f);
 		}
@@ -201,14 +201,14 @@ namespace vein
 		Transformation tps(domainPoints.begin(), domainPoints.end(), rangePoints.begin(), rangePoints.end());
 
 		// Transform vertices
-		std::vector<glm::vec3> transfromedPositions(scaledMesh.positions.size());
+		std::vector<glm::vec3> transformedPositions(scaledMesh.positions.size());
 
 		#pragma omp parallel for
-		for (int i = 0; i < scaledMesh.positions.size(); i++)
+		for (unsigned int i = 0; i < scaledMesh.positions.size(); i++)
 		{
-			transfromedPositions[i] = toGLM(tps.transform(toDP(scaledMesh.positions[i])));
+			transformedPositions[i] = toGLM(tps.transform(toDP(scaledMesh.positions[i])));
 		}
-		return VeinMesh(std::move(transfromedPositions), std::move(scaledMesh.indices));
+		return VeinMesh(std::move(transformedPositions), std::move(scaledMesh.indices));
 	}
 
 
@@ -247,7 +247,8 @@ namespace vein
 		indices.reserve(6 * (vLayers - 1) * cyl::hLayers);
 
 		constexpr float radianBatch = 2 * glm::pi<float>() / cyl::hLayers;
-		const float triangleBase = radianBatch * radiusTop;
+		//const float triangleBase = radianBatch * radiusTop;
+
 		for (int i = 0; i < vLayers; ++i)
 		{
 			float h = -i * cyl::triangleHeight;
@@ -291,13 +292,13 @@ namespace vein
 		Transformation tps(domainPoints.begin(), domainPoints.end(), rangePoints.begin(), rangePoints.end());
 
 		// Transform vertices
-		std::vector<glm::vec3> transfromedPositions(baseMesh.positions.size());
+		std::vector<glm::vec3> transformedPositions(baseMesh.positions.size());
 
 		#pragma omp parallel for
-		for (int i = 0; i < baseMesh.positions.size(); i++)
+		for (unsigned int i = 0; i < baseMesh.positions.size(); i++)
 		{
-			transfromedPositions[i] = toGLM(tps.transform(toDP(baseMesh.positions[i])));
+			transformedPositions[i] = toGLM(tps.transform(toDP(baseMesh.positions[i])));
 		}
-		return VeinMesh(std::move(transfromedPositions), std::move(baseMesh.indices));
+		return VeinMesh(std::move(transformedPositions), std::move(baseMesh.indices));
 	}
 }

@@ -30,8 +30,8 @@ namespace gui
         return ImGui::GetIO();
     }
 
-	GUIController::GUIController(GLFWwindow* window, serializable::ConfigManager& configManager, graphics::GLController& glController) :
-        io(createImguiContext()), configManager(configManager), glController(glController)
+	GUIController::GUIController(GLFWwindow* window, serializable::ConfigManager& configManager, streaming::StreamManager& streamManager, graphics::GLController& glController):
+        io(createImguiContext()), configManager(configManager), streamManager(streamManager), glController(glController)
 	{
         // Setup Dear ImGui context
         io = ImGui::GetIO(); (void)io;
@@ -78,10 +78,10 @@ namespace gui
 
         ImGui::Begin("Configuration window", nullptr, windowFlags); // Create a window and append into it.        
 
-        // Render error if occured
+        // Render error if occurred
         if (ImGui::BeginPopupModal("Error"))
         {
-            ImGui::Text(error.c_str());
+            ImGui::Text("%s", error.c_str());
             if (ext::CenteredButton("OK"))
                 ImGui::CloseCurrentPopup();
             ImGui::EndPopup();
@@ -106,8 +106,17 @@ namespace gui
         case Mode::addVein:
             renderAddVein();
             break;
-        case Mode::simulation:
-            renderSimulation();
+        case Mode::streamWatching:
+            renderStream();
+            break;
+        case Mode::selectingRuntimeType:
+            renderSimulationTypeSelect();
+            break;
+        case Mode::manualRuntime:
+            renderManualSimulation();
+            break;
+        case Mode::localRuntime:
+            renderLocalSimulation();
             break;
         case Mode::configureBloodCellSprings:
             renderBloodCellSpringsDetails(configManager.getData());
@@ -142,7 +151,7 @@ namespace gui
     void GUIController::loadEditors()
     {
         editors.clear();
-        for (int i = 0; i < configManager.getData().bloodCellsDefinition.bloodCellTypes.size(); ++i)
+        for (size_t i = 0; i < configManager.getData().bloodCellsDefinition.bloodCellTypes.size(); ++i)
         {
             editors.push_back(BloodEditor(i));
         }

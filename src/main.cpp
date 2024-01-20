@@ -4,6 +4,7 @@
 #include "graphics/glcontroller.hpp"
 #include "gui/gui_controller.hpp"
 #include "serializable/config_manager.hpp"
+#include "streaming/stream_manager.hpp"
 #include "vein/nodes/root_node.hpp"
 
 #include <GLFW/glfw3.h>
@@ -73,11 +74,14 @@ void programLoop(GLFWwindow* window)
     // Create a configuration manager
     serializable::ConfigManager configManager;
 
+    // Create a streaming manager
+    streaming::StreamManager streamManager;
+
     // Create a graphics controller
-    graphics::GLController glController(window, configManager);
+    graphics::GLController glController(window, configManager, streamManager);
 
     // Create a GUI controller
-    gui::GUIController guiController(window, configManager, glController);
+    gui::GUIController guiController(window, configManager, streamManager, glController);
 
     // MAIN LOOP HERE - dictated by glfw
 

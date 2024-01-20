@@ -33,9 +33,9 @@ namespace gui
 			from = 0;
 		if (to < 0)
 			to = 0;
-		if (from >= modelData.vertices.size())
+		if ((size_t)from >= modelData.vertices.size())
 			from = modelData.vertices.size() - 1;
-		if (to >= modelData.vertices.size())
+		if ((size_t)to >= modelData.vertices.size())
 			to = modelData.vertices.size() - 1;
 
 		if (ImGui::Button("Add"))

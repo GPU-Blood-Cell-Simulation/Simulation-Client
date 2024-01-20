@@ -6,8 +6,22 @@ namespace gui
 {
 	namespace ext
 	{
-		bool CenteredButton(const char* text, float textWidth)
-		{
+
+        void CenteredText(const char *text, float textWidth)
+        {
+			auto windowWidth = ImGui::GetWindowSize().x;
+			if (textWidth < 0)
+			{
+				textWidth = ImGui::CalcTextSize(text).x;
+			}
+
+			ImGui::SetCursorPosX((windowWidth - textWidth) * 0.5f);
+			ImGui::Text("%s", text);
+        }
+
+
+        bool CenteredButton(const char *text, float textWidth)
+        {
 			auto windowWidth = ImGui::GetWindowSize().x;
 			if (textWidth < 0)
 			{

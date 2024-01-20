@@ -42,6 +42,8 @@ namespace gui
 					case IoOperation::veinSave:
 						configManager.saveVeinConfig(filePath);
 						break;
+					default:
+						break;
 					}
 				}
 				catch (const serializable::FileOpenException& e)

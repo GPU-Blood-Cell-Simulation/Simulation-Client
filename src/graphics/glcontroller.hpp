@@ -6,8 +6,7 @@
 #include "../serializable/blood_cell_json_conversion/blood_cells_definition.hpp"
 #include "../serializable/config_manager.hpp"
 #include "../vein/nodes/bifurcation_node.hpp"
-#include "../streaming/stream_receiver.hpp"
-#include "../communication/server_communication_controller.hpp"
+#include "../streaming/stream_manager.hpp"
 
 #include <glm/mat4x4.hpp>
 #include <glm/vec3.hpp>
@@ -31,41 +30,22 @@ namespace graphics
 		VeinEdit,
 	};
 
+
 	/// <summary>
 	/// Controls rendering in the OpenGl window
 	/// </summary>
 	class GLController {
 	public:
-		GLController(GLFWwindow* window, serializable::ConfigManager& configManager);
-		/// <summary>
-		/// Draws background only
-		/// </summary>
-		void drawNothing();
-
-		/// <summary>
-		/// Draws the data streamed from the server
-		/// </summary>
-		void drawSimulation();
-
-		/// <summary>
-		/// Draws the vein model in its raw form - every segment is treated as a separate mesh
-		/// </summary>
-		void drawVeinEditor();
+		GLController(
+			GLFWwindow* window,
+			serializable::ConfigManager& configManager,
+			streaming::StreamManager& streamManager
+		);
 
 		/// <summary>
 		/// Draws the specified elements based on which mode is set
 		/// </summary>
 		void draw();
-
-		/// <summary>
-		/// Begins listening for data from the server and sets up stream receiving
-		/// </summary>
-		void beginSimulation();
-
-		/// <summary>
-		/// Ends connection to the server
-		/// </summary>
-		void endSimulation();
 
 		/// <summary>
 		/// Gets keyboard input from user and processes it
@@ -91,12 +71,10 @@ namespace graphics
 
 		InputController inputController;
 		
-		StreamReceiver streamReceiver;
 		GLuint streamTex, streamFBO;
 
 		serializable::ConfigManager& configManager;
-
-		ServerCommunicationController serverCommunication;
+		streaming::StreamManager& streamManager;
 
 		vein::Node* veinRoot;
 		std::unique_ptr<vein::VeinMesh> finalMesh;
@@ -107,5 +85,31 @@ namespace graphics
 		std::unique_ptr<Shader> veinSolidColorShader;
 
 		unsigned int gBuffer;
+
+
+		/// <summary>
+		/// Draws background only
+		/// </summary>
+		void drawNothing();
+
+		/// <summary>
+		/// Draws the data streamed from the server
+		/// </summary>
+		void drawSimulation();
+
+		/// <summary>
+		/// Draws the vein model in its raw form - every segment is treated as a separate mesh
+		/// </summary>
+		void drawVeinEditor();
+
+		/// <summary>
+		/// Begins listening for data from the server and sets up stream receiving
+		/// </summary>
+		void beginSimulation();
+
+		/// <summary>
+		/// Ends connection to the server
+		/// </summary>
+		void endSimulation();
 	};
 }
