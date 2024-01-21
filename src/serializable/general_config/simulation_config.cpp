@@ -14,7 +14,7 @@ namespace serializable
 			throw FileOpenException();
 
 		os << "#pragma once\n\n";
-		os << "inline constexpr int maxFrames = " << maxFrames << ";\n";
+		os << "inline constexpr int maxFrames = " << static_cast<int>(simulationTime * framerate) << ";\n";
 		os << "inline constexpr int maxCudaStreams = 16;\n";
 		os << "inline constexpr float dt = " << dt << ";\n";
 		os << "inline constexpr bool useBloodFlow = " << useBloodFlow << ";\n";
