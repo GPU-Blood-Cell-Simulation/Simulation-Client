@@ -6,11 +6,16 @@
 #include <utility>
 #include <fstream>
 #include <iostream>
+#include <exception>
+
 
 namespace serializable
 {
     void BloodCellsDefinition::serializeToCpp() const
     {
+		if (bloodCellTypes.empty())
+			throw std::length_error("Not blood cell types where defined");
+
 		std::ifstream templateDefinitionHeader(bloodCellsDefinitionConfigDataPath);
 		std::ofstream definitionHeader(bloodCellsDefinitionCppSerializationPath);
 		if (!templateDefinitionHeader || !definitionHeader)
