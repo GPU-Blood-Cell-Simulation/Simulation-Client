@@ -111,5 +111,13 @@ namespace graphics
 		/// Ends connection to the server
 		/// </summary>
 		void endSimulation();
+
+		/// <summary>
+		/// Function invokes, when window changes size. Adjusts graphics settings for that
+		/// </summary>
+		/// <param name="window">Pointer to window, which invoked event</param>
+		/// <param name="width">New window width</param>
+		/// <param name="height">New window height</param>
+		static void window_size_callback(GLFWwindow* window, int width, int height);
 	};
 }
