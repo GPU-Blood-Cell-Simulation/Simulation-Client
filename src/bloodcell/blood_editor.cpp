@@ -17,8 +17,8 @@ namespace gui
 	void BloodEditor::recalculateBloodTypeDiameter(serializable::BloodCellType& type)
 	{
 		float maxLength = 0;
-		for(auto v : type.vertices)
-			for(auto u : type.vertices)
+		for(auto&& v : type.vertices)
+			for(auto&& u : type.vertices)
 				{
 					float length = sqrt(pow(u.x - v.x,2) + pow(u.y - v.y,2) + pow(u.z - v.z,2));
 					if(length > maxLength)
