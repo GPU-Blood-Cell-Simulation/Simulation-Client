@@ -14,7 +14,8 @@ namespace serializable
 	/// </summary>
 	struct SimulationConfig : public ICppSerializable
 	{
-		int maxFrames = 20000;
+		const static int framerate = 30;
+		float simulationTime = 20;	// Simulation time in seconds
 		int maxCudaStreams = 16;
 		float dt = 0.008f;
 
