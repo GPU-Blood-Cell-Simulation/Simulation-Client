@@ -12,10 +12,12 @@ namespace gui
 	/// </summary>
 	class BloodEditor
 	{
+		float diameter;
 	public:
 		int editorIndex;
+		
 		BloodEditor(int editorIndex);
-
+		void recalculateBloodTypeDiameter(serializable::BloodCellType& type);
 		void renderGUISprings(gui::GUIController& guiController, serializable::ConfigData& config);
 		void renderGUIVertices(gui::GUIController& guiController, serializable::ConfigData& config);
 	};

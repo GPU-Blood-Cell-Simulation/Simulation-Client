@@ -54,6 +54,8 @@ namespace gui
 		// Cylinder
 		static int length = vein::cyl::vLayers;
 		static float cylRadius = vein::cyl::veinRadius; 
+		static float displayLength = length*vein::cyl::triangleHeight*lengthConversionFactor;
+		static float displayCylRadius = cylRadius*lengthConversionFactor;
 		static float cylSkewRollDeg = 0;
 		static float cylSkewPitchDeg = 0;
 
@@ -64,6 +66,8 @@ namespace gui
 		static float pitchRightDeg = 0;
 		static float bifRadiusLeft = vein::bif::veinRadius;
 		static float bifRadiusRight = vein::bif::veinRadius; 
+		static float displayBifRadiusLeft = lengthConversionFactor*bifRadiusLeft;
+		static float displayBifRadiusRight = lengthConversionFactor*bifRadiusRight;
 
 		// First time mesh creation
 		if (firstRender)
@@ -88,8 +92,9 @@ namespace gui
 		
 		if (segmentType == 0) // cylinder segment
 		{
-			if (ImGui::InputInt(" Segment length ", &length))
+			if (ImGui::InputFloat(" Segment length ", &displayLength, vein::cyl::triangleHeight*lengthConversionFactor, 5, "%.2f mm"))
 			{
+				length = int(displayLength/vein::cyl::triangleHeight/lengthConversionFactor);
 				if (length < 5)
 					length = 5;
 				if (length > 10000)
@@ -99,17 +104,22 @@ namespace gui
 			}
 			cylinderChanged |= ImGui::SliderFloat("Skew - Roll [deg]", &cylSkewRollDeg, -90.0f, 90.0f);
 			cylinderChanged |= ImGui::SliderFloat("Skew - Pitch [deg]", &cylSkewPitchDeg, -90.0f, 90.0f);
-			cylinderChanged |= ImGui::SliderFloat("Segment end radius", &cylRadius, vein::cyl::veinRadius / 3, vein::cyl::veinRadius * 3);
+			cylinderChanged |= ImGui::SliderFloat("Segment end radius", &displayCylRadius, lengthConversionFactor*vein::cyl::veinRadius / 3, lengthConversionFactor*vein::cyl::veinRadius * 3, "%.2f mm");
+			
+			cylRadius = displayCylRadius/lengthConversionFactor;
 		}
 		else // bifurcation segment
 		{
 			bifurcationChanged |= ImGui::SliderFloat("Left branch roll angle [deg]", &rollLeftDeg, -90.0f, 0.0f);
 			bifurcationChanged |= ImGui::SliderFloat("Left branch pitch angle [deg]", &pitchLeftDeg, -45.0f, 45.0f);
-			bifurcationChanged |= ImGui::SliderFloat("Left branch radius", &bifRadiusLeft, vein::bif::veinRadius / 3, vein::bif::veinRadius * 3);
+			bifurcationChanged |= ImGui::SliderFloat("Left branch radius", &displayBifRadiusLeft, lengthConversionFactor*vein::bif::veinRadius / 3, lengthConversionFactor*vein::bif::veinRadius * 3, "%.2f mm");
 			ImGui::NewLine();
 			bifurcationChanged |= ImGui::SliderFloat("Right branch roll angle [deg]", &rollRightDeg, 0.0f, 90.0f);
 			bifurcationChanged |= ImGui::SliderFloat("Right branch pitch angle [deg]", &pitchRightDeg, -45.0f, 45.0f);
-			bifurcationChanged |= ImGui::SliderFloat("Right branch radius", &bifRadiusRight, vein::bif::veinRadius / 3, vein::bif::veinRadius * 3);
+			bifurcationChanged |= ImGui::SliderFloat("Right branch radius", &displayBifRadiusRight, lengthConversionFactor*vein::bif::veinRadius / 3, lengthConversionFactor*vein::bif::veinRadius * 3, "%.2f mm");
+			
+			bifRadiusLeft = displayBifRadiusLeft/lengthConversionFactor;
+			bifRadiusRight = displayBifRadiusRight/lengthConversionFactor;
 		}
 
 		if (ImGui::Button("Cancel"))
