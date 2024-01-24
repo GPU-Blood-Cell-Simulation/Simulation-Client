@@ -6,6 +6,7 @@
 #include <cstdio>
 #include <utility>
 #include <glm/gtc/type_ptr.hpp>
+#include "../gui/extensions.hpp"
 
 #ifndef _cellTypes
 #define _cellTypes config.bloodCellsDefinition.bloodCellTypes
@@ -33,9 +34,10 @@ namespace gui
 		static int selectedSpringIndex = -1;
 		static int from = 0;
 		static int to = 0;
+		int buttonWidth = ImGui::GetWindowSize().x / 5 - 10;
 
 		ImGui::Text("Vertices are numbered [0..%lu]\n\tAdd new spring: ", modelData.vertices.size() - 1);
-		ImGui::ColorPicker3("Cell color", (float*)&modelData.color);
+		//ImGui::ColorPicker3("Cell color", (float*)&modelData.color);
 
 		ImGui::PushItemWidth(100);
 		ImGui::InputInt(" -> ##l4", &from);
@@ -65,7 +67,7 @@ namespace gui
 		for (auto&& spring : modelData.springs)
 		{
 			std::string buttonText = "Spr." + std::to_string(spring.from) + " -> " +  std::to_string(spring.to);
-			if (ImGui::Button(buttonText.c_str()))
+			if (ImGui::Button(buttonText.c_str(), ImVec2(buttonWidth, 40)))
 			{
 				selectedSpringIndex = counter - 1;
 				ImGui::OpenPopup("springEditorPopup");
@@ -88,7 +90,8 @@ namespace gui
 		}
 
 		ImGui::NewLine();
-		if (ImGui::Button("Confirm"))
+		ImGui::NewLine();
+		if (ext::CenteredButton("Confirm"))
 		{
 			guiController.setMode(gui::Mode::bloodEdit);
 			guiController.releaseEditor();
@@ -147,7 +150,24 @@ namespace gui
 				sizeChanged = true;
 			counter++;
 		}
-		if (ImGui::Button("Confirm"))
+		ImGui::NewLine();
+		if (ext::CenteredButton("Confirm"))
+		{
+			guiController.setMode(gui::Mode::bloodEdit);
+			guiController.releaseEditor();
+		}
+	}
+	
+
+	void BloodEditor::renderGUIColors(gui::GUIController& guiController, serializable::ConfigData& config)
+	{
+		serializable::BloodCellType& modelData = _cellTypes.at(editorIndex);
+
+		ImGui::Text("Select blood cell model color:");
+		ImGui::NewLine();
+		ImGui::ColorPicker3("Cell color", (float*)&modelData.color);
+		ImGui::NewLine();
+		if (ext::CenteredButton("Confirm"))
 		{
 			guiController.setMode(gui::Mode::bloodEdit);
 			guiController.releaseEditor();

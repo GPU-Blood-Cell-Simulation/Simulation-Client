@@ -29,7 +29,8 @@ namespace gui
 		manualRuntime,
 		streamWatching,
 		configureBloodCellSprings, 
-		configureBloodCellVertices
+		configureBloodCellVertices,
+		configureBloodCellColor
 	};
 
 	/// <summary>
@@ -113,6 +114,7 @@ namespace gui
 		void renderSimulationTypeSelect();
 		void renderBloodCellSpringsDetails(serializable::ConfigData& config);
 		void renderBloodCellVerticesDetails(serializable::ConfigData& config);
+		void renderBloodCellColorDetails(serializable::ConfigData& config);
 
 		void renderSimulationEditor();
 		void renderPhysicsEditor();

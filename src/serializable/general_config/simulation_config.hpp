@@ -23,14 +23,14 @@ namespace serializable
 		bool enableReactionForce = true;
 
 		// uniform grid cell count
-		int cellWidth = 30;
-		int cellHeight = 30;
-		int cellDepth = 30;
+		int cellWidth = 3;
+		int cellHeight = 3;
+		int cellDepth = 3;
 
 		// represents ratio of radius of maximal and actual bounding sphere
 		// for particles in cells
 		int boundingSpheresCoeff = 3;
-		float gridMargin = 20.0f;
+		float gridMargin = 40.0f;
 
 		float minSpawnY = -20;
 
