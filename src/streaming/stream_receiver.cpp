@@ -39,10 +39,10 @@ streaming::StreamReceiver::StreamReceiver():
 	g_object_set(capsfilter, "caps", caps, NULL);
 	gst_caps_unref(caps);
 
-	g_object_set(G_OBJECT(rtpjitterbuffer), "latency", 0, NULL);
+	g_object_set(G_OBJECT(rtpjitterbuffer), "latency", 50, NULL);
 
 	caps = gst_caps_new_simple("video/x-raw",
-								"format", G_TYPE_STRING, "RGBA",
+								"format", G_TYPE_STRING, "RGB",
 								NULL);
 	
 	g_object_set(appsink, "caps", caps, NULL);
