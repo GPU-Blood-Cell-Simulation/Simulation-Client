@@ -7,47 +7,57 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <filesystem>
-
-enum class Phase {
-    before,
-    inProgress,
-    after
-};
-
-static struct {
-    Phase init = Phase::before;
-    Phase cloneRepo = Phase::before;
-    Phase copyConfig = Phase::before;
-    Phase cmakeConfigure = Phase::before;
-    Phase compile = Phase::before;
-} SimulationPhases;
-
-static bool threadFinished = false;
-static std::thread thread;
-static int threadResult;
+#include <atomic>
 
 
 namespace gui
 {
+    enum class LocalSimPhase {
+        init,
+
+        beforeRepoClone,
+        duringRepoClone,
+
+        beforeConfigCopy,
+        duringConfigCopy,
+
+        beforeCMakeConfigure,
+        duringCMakeConfigure,
+
+        beforeCompilation,
+        duringCompilation,
+
+        beforeServerRun
+    };
+
+    static struct {
+        LocalSimPhase phase = LocalSimPhase::init;
+
+        std::atomic_bool threadFinished = false;
+        std::thread thread;
+        int threadResult;
+    } LocalSimContext;
+
+
     static void cloneRepo()
     {
         struct stat sb;
 
         if (stat("Simulation-Server", &sb) == 0) {
-            threadResult = system("cd Simulation-Server/ && git pull");
+            LocalSimContext.threadResult = system("cd Simulation-Server/ && git pull");
         }
         else {
-            threadResult = system("git clone --branch  PNieck/comunication_refactor https://github.com/GPU-Blood-Cell-Simulation/Simulation-Server.git");
+            LocalSimContext.threadResult = system("git clone --branch dev https://github.com/GPU-Blood-Cell-Simulation/Simulation-Server.git");
         }
 
-        threadFinished = true;
+        LocalSimContext.threadFinished = true;
     }
 
 
     static void copyConfig()
     {
-        threadResult = system("cp -a ../SimulationGeneratedConfig/. Simulation-Server/src/config/");
-        threadFinished = true;
+        LocalSimContext.threadResult = system("cp -a ../SimulationGeneratedConfig/. Simulation-Server/src/config/");
+        LocalSimContext.threadFinished = true;
     }
 
 
@@ -56,22 +66,22 @@ namespace gui
         struct stat sb;
 
         if (stat("Simulation-Server", &sb) != 0) {
-            threadResult = system("mkdir Simulation-Server/build/");
-            if (threadResult != 0) {
-                threadFinished = true;
+            LocalSimContext.threadResult = system("mkdir Simulation-Server/build/");
+            if (LocalSimContext.threadResult != 0) {
+                LocalSimContext.threadFinished = true;
                 return;
             }
         }
 
-        threadResult = system("cmake -S Simulation-Server/ -B Simulation-Server/build/ -D WINDOW_RENDERING=OFF -DCMAKE_BUILD_TYPE=Debug");
-        threadFinished = true;
+        LocalSimContext.threadResult = system("cmake -S Simulation-Server/ -B Simulation-Server/build/ -D WINDOW_RENDERING=OFF -DCMAKE_BUILD_TYPE=Debug");
+        LocalSimContext.threadFinished = true;
     }
 
 
     static void compileServer()
     {
-        threadResult = system("cmake --build Simulation-Server/build/ --parallel 3 --target Simulation_server");
-        threadFinished = true;
+        LocalSimContext.threadResult = system("cmake --build Simulation-Server/build/ --parallel 3 --target Simulation_server");
+        LocalSimContext.threadFinished = true;
     }
 
     static int runServer()
@@ -97,103 +107,111 @@ namespace gui
 
     void GUIController::renderLocalSimulation()
     {
-        if (SimulationPhases.init == Phase::before) {
+        switch (LocalSimContext.phase)
+        {
+            case LocalSimPhase::init:
+                LocalSimContext.phase = LocalSimPhase::beforeRepoClone;
+                break;
 
-            std::cout << "Init Simulation Phase\n";
-            SimulationPhases.init = Phase::after;
-            SimulationPhases.cloneRepo = Phase::before;
-            SimulationPhases.copyConfig = Phase::before;
-            SimulationPhases.cmakeConfigure = Phase::before;
-            SimulationPhases.compile = Phase::before;
-        }
+            case LocalSimPhase::beforeRepoClone:
+                std::cout << "Starting git thread\n";
+                LocalSimContext.threadFinished = false;
+                LocalSimContext.thread = std::thread(&cloneRepo);
+                LocalSimContext.phase = LocalSimPhase::duringRepoClone;
+                break;
 
-        if (SimulationPhases.cloneRepo == Phase::before) {
-            std::cout << "Starting git thread\n";
-            thread = std::thread(&cloneRepo);
-            SimulationPhases.cloneRepo = Phase::inProgress;
-        }
+            case LocalSimPhase::duringRepoClone:
+                if (LocalSimContext.threadFinished == true) {
+                    LocalSimContext.thread.join();
 
-        else if (SimulationPhases.cloneRepo == Phase::inProgress && threadFinished == true) {
-            std::cout << "Joining git thread\n";
-            thread.join();
-            threadFinished = false;
-            SimulationPhases.cloneRepo = Phase::after;
-            if (threadResult != 0) {
-                setError("Error while cloning repo");
-                setMode(Mode::mainScreen);
-            } else {
-                std::cout << "Successful repo clone\n";
-            }
-        }
+                    if (LocalSimContext.threadResult != 0) {
+                        setError("Error while cloning repo");
+                        LocalSimContext.phase = LocalSimPhase::init;
+                        setMode(Mode::mainScreen);
+                    } else {
+                        std::cout << "Successful repo clone\n";
+                        LocalSimContext.phase = LocalSimPhase::beforeConfigCopy;
+                    }
+                }
+                break;
 
-        else if (SimulationPhases.cloneRepo == Phase::after && SimulationPhases.copyConfig == Phase::before) {
-            std::cout << "Starting clone thread\n";
-            thread = std::thread(&copyConfig);
-            SimulationPhases.copyConfig = Phase::inProgress;
-        }
+            case LocalSimPhase::beforeConfigCopy:
+                std::cout << "Starting clone thread\n";
+                LocalSimContext.threadFinished = false;
+                LocalSimContext.thread = std::thread(&copyConfig);
+                LocalSimContext.phase = LocalSimPhase::duringConfigCopy;
+                break;
 
-        else if (SimulationPhases.copyConfig == Phase::inProgress && threadFinished == true) {
-            std::cout << "Joining clone thread\n";
-            thread.join();
-            threadFinished = false;
-            SimulationPhases.copyConfig = Phase::after;
-            if (threadResult != 0) {
-                setError("Error while copying config");
-                setMode(Mode::mainScreen);
-            } else {
-                std::cout << "Successful copying config\n";
-            }
-        }
+            case LocalSimPhase::duringConfigCopy:
+                if (LocalSimContext.threadFinished == true) {
+                    LocalSimContext.thread.join();
 
-        else if (SimulationPhases.copyConfig == Phase::after && SimulationPhases.cmakeConfigure == Phase::before) {
-            std::cout << "Starting configure cmake thread\n";
-            thread = std::thread(&configureCMake);
-            SimulationPhases.cmakeConfigure = Phase::inProgress;
-        }
+                    if (LocalSimContext.threadResult != 0) {
+                        setError("Error while copying config");
+                        LocalSimContext.phase = LocalSimPhase::init;
+                        setMode(Mode::mainScreen);
+                    } else {
+                        std::cout << "Successful config copy\n";
+                        LocalSimContext.phase = LocalSimPhase::beforeCMakeConfigure;
+                    }
+                }
+                break;
 
-        else if (SimulationPhases.cmakeConfigure == Phase::inProgress && threadFinished == true) {
-            std::cout << "Joining configure cmake thread\n";
-            thread.join();
-            threadFinished = false;
-            SimulationPhases.cmakeConfigure = Phase::after;
-            if (threadResult != 0) {
-                setError("Error while configuring cmake");
-                setMode(Mode::mainScreen);
-            } else {
-                std::cout << "Successful cmake configure\n";
-            }
-        }
+            case LocalSimPhase::beforeCMakeConfigure:
+                std::cout << "Starting CMake configure thread\n";
+                LocalSimContext.threadFinished = false;
+                LocalSimContext.thread = std::thread(&configureCMake);
+                LocalSimContext.phase = LocalSimPhase::duringCMakeConfigure;
+                break;
 
-        else if (SimulationPhases.cmakeConfigure == Phase::after && SimulationPhases.compile == Phase::before) {
-            std::cout << "Starting compilation thread\n";
-            thread = std::thread(&compileServer);
-            SimulationPhases.compile = Phase::inProgress;
-        }
+            case LocalSimPhase::duringCMakeConfigure:
+                if (LocalSimContext.threadFinished == true) {
+                    LocalSimContext.thread.join();
 
-        else if (SimulationPhases.compile == Phase::inProgress && threadFinished == true) {
-            std::cout << "Joining compilation thread\n";
-            thread.join();
-            threadFinished = false;
-            SimulationPhases.compile = Phase::after;
-            if (threadResult != 0) {
-                setError("Error while compiling");
-                setMode(Mode::mainScreen);
-            } else {
-                std::cout << "Successful compile\n";
-            }
-        }
+                    if (LocalSimContext.threadResult != 0) {
+                        setError("Error while configuring CMake");
+                        LocalSimContext.phase = LocalSimPhase::init;
+                        setMode(Mode::mainScreen);
+                    } else {
+                        std::cout << "Successful CMake configure\n";
+                        LocalSimContext.phase = LocalSimPhase::beforeCompilation;
+                    }
+                }
+                break;
 
-        else if (SimulationPhases.compile == Phase::after) {
-            SimulationPhases.init = Phase::before;
+            case LocalSimPhase::beforeCompilation:
+                std::cout << "Starting compilation thread\n";
+                LocalSimContext.threadFinished = false;
+                LocalSimContext.thread = std::thread(&compileServer);
+                LocalSimContext.phase = LocalSimPhase::duringCompilation;
+                break;
 
-            std::cout << "Starting simulation process\n";
-            if (runServer() < 0) {
-                setError("Erro while creating simulation process");
-                setMode(Mode::mainScreen);
-            }
+            case LocalSimPhase::duringCompilation:
+                if (LocalSimContext.threadFinished == true) {
+                    LocalSimContext.thread.join();
 
-            setMode(Mode::streamWatching);
-            glController.setMode(graphics::Mode::Simulation);
+                    if (LocalSimContext.threadResult != 0) {
+                        setError("Error while configuring CMake");
+                        LocalSimContext.phase = LocalSimPhase::init;
+                        setMode(Mode::mainScreen);
+                    } else {
+                        std::cout << "Successful CMake configure\n";
+                        LocalSimContext.phase = LocalSimPhase::beforeServerRun;
+                    }
+                }
+                break;
+
+            case LocalSimPhase::beforeServerRun:
+                std::cout << "Starting simulation process\n";
+                LocalSimContext.phase = LocalSimPhase::init;
+                if (runServer() < 0) {
+                    setError("Erro while creating simulation process");
+                    setMode(Mode::mainScreen);
+                }
+
+                setMode(Mode::streamWatching);
+                glController.setMode(graphics::Mode::Simulation);
+                break;
         }
     }
 }
