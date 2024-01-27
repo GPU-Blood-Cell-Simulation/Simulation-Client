@@ -13,4 +13,9 @@ namespace gui
 	{
 		selectedEditor->renderGUIVertices(*this, config);
 	}
+
+	void GUIController::renderBloodCellColorDetails(serializable::ConfigData& config)
+	{
+		selectedEditor->renderGUIColors(*this, config);
+	}
 }

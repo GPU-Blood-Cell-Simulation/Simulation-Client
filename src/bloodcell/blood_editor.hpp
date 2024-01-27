@@ -20,5 +20,7 @@ namespace gui
 		void recalculateBloodTypeDiameter(serializable::BloodCellType& type);
 		void renderGUISprings(gui::GUIController& guiController, serializable::ConfigData& config);
 		void renderGUIVertices(gui::GUIController& guiController, serializable::ConfigData& config);
+		void renderGUIColors(gui::GUIController& guiController, serializable::ConfigData& config);
+
 	};
 }

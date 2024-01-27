@@ -25,6 +25,10 @@ namespace serializable
 		os << "inline constexpr int cellHeight = " << cellHeight << ";\n";
 		os << "inline constexpr int cellDepth  = " << cellDepth << ";\n\n";
 
+		os << "inline constexpr int cellWidthTriangles = 25;\n";
+		os << "inline constexpr int cellHeightTriangles = 25;\n";
+		os << "inline constexpr int cellDepthTriangles = 25;\n\n";
+
 		os << "inline constexpr int boundingSpheresCoeff = " << boundingSpheresCoeff << ";\n";
 		os << "inline constexpr float gridYMargin = " << gridMargin << ";\n";
 		os << "inline constexpr float gridXZMargin  = " << gridMargin << ";\n";

@@ -40,7 +40,9 @@ namespace gui
 			if (ImGui::Button("Edit springs"))
 				setMode(Mode::configureBloodCellSprings);
 			else if (ImGui::Button("Edit vertices"))
-				setMode(Mode::configureBloodCellVertices);			
+				setMode(Mode::configureBloodCellVertices);
+			else if (ImGui::Button("Edit color"))
+				setMode(Mode::configureBloodCellColor);				
 			ImGui::EndPopup();
 		}
 

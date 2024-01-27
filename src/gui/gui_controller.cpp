@@ -124,6 +124,9 @@ namespace gui
         case Mode::configureBloodCellVertices:
             renderBloodCellVerticesDetails(configManager.getData());
             break;
+        case Mode::configureBloodCellColor:
+            renderBloodCellColorDetails(configManager.getData());
+            break;
         }
 
         ImGui::End();

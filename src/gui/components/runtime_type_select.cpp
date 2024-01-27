@@ -28,7 +28,13 @@ namespace gui
         {
             setMode(Mode::manualRuntime);
         }
-        
+        ImGui::NewLine();
+        ImGui::NewLine();
+        ImGui::NewLine();
+        if(ext::CenteredButton("Back to main menu", textWidth))
+        {
+            setMode(Mode::mainScreen);
+        }
     }
 }
 

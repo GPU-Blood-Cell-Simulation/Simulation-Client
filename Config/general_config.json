@@ -36,12 +36,12 @@
    },
    "o.simulation": {
       "o.boundingSpheresCoeff": 3,
-      "o.cellDepth": 30,
-      "o.cellHeight": 30,
-      "o.cellWidth": 30,
+      "o.cellDepth": 3,
+      "o.cellHeight": 3,
+      "o.cellWidth": 3,
       "o.dt": 0.00800000037997961,
       "o.enableReactionForce": true,
-      "o.gridMargin": 20.0,
+      "o.gridMargin": 40.0,
       "o.minSpawnY": -20.0,
       "o.useBloodFlow": true
    }
