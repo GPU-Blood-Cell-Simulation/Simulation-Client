@@ -31,6 +31,11 @@ var annotated_dup =
       [ "SimulationConfig", "structserializable_1_1_simulation_config.html", "structserializable_1_1_simulation_config" ],
       [ "Spring", "structserializable_1_1_spring.html", "structserializable_1_1_spring" ]
     ] ],
+    [ "streaming", "namespacestreaming.html", [
+      [ "StreamFrame", "classstreaming_1_1_stream_frame.html", "classstreaming_1_1_stream_frame" ],
+      [ "StreamManager", "classstreaming_1_1_stream_manager.html", "classstreaming_1_1_stream_manager" ],
+      [ "StreamReceiver", "classstreaming_1_1_stream_receiver.html", "classstreaming_1_1_stream_receiver" ]
+    ] ],
     [ "vein", "namespacevein.html", [
       [ "BifurcationNode", "classvein_1_1_bifurcation_node.html", "classvein_1_1_bifurcation_node" ],
       [ "CylinderNode", "classvein_1_1_cylinder_node.html", "classvein_1_1_cylinder_node" ],
@@ -40,12 +45,10 @@ var annotated_dup =
       [ "TempMesh", "classvein_1_1_temp_mesh.html", "classvein_1_1_temp_mesh" ],
       [ "VeinMesh", "classvein_1_1_vein_mesh.html", "classvein_1_1_vein_mesh" ]
     ] ],
-    [ "CylinderSolidColorShader", "class_cylinder_solid_color_shader.html", "class_cylinder_solid_color_shader" ],
+    [ "ClientCommunicationEndpoint", "class_client_communication_endpoint.html", "class_client_communication_endpoint" ],
     [ "DirLight", "struct_dir_light.html", "struct_dir_light" ],
     [ "Light", "struct_light.html", "struct_light" ],
-    [ "ServerCommunicationController", "class_server_communication_controller.html", "class_server_communication_controller" ],
     [ "Shader", "class_shader.html", "class_shader" ],
     [ "SimulationInputController", "class_simulation_input_controller.html", null ],
-    [ "StreamFrame", "class_stream_frame.html", "class_stream_frame" ],
-    [ "StreamReceiver", "class_stream_receiver.html", "class_stream_receiver" ]
+    [ "VeinSolidColorShader", "class_vein_solid_color_shader.html", "class_vein_solid_color_shader" ]
 ];

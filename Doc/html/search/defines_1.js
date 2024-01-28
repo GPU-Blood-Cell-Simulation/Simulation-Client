@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nameof_0',['nameof',['../nameof_8hpp.html#a59c22626433428b4615e3353907d9f9d',1,'nameof.hpp']]]
+  ['bits_5fin_5fbyte_0',['BITS_IN_BYTE',['../client__endpoint_8cpp.html#ac54bd5b32c8baefaf13608a9296a7564',1,'client_endpoint.cpp']]]
 ];

@@ -109,50 +109,55 @@ $(function(){initNavTree('stream__receiver_8hpp_source.html',''); initResizable(
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="foldopen" id="foldopen00010" data-start="{" data-end="};">
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="class_stream_receiver.html">   10</a></span><span class="keyword">class </span><a class="code hl_class" href="class_stream_receiver.html">StreamReceiver</a></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacestreaming.html">streaming</a></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <a class="code hl_function" href="class_stream_receiver.html#af0d00b9d3554f48757bc6fef1732695f">StreamReceiver</a>();</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <a class="code hl_function" href="class_stream_receiver.html#a0a511c79fc21a84fbb0bd4801e7024f5">~StreamReceiver</a>();</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_stream_receiver.html#a478946386cb6345fa1c21b9ed749dda5">portSet</a>(<span class="keywordtype">int</span> port);</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_stream_receiver.html#a1f518ba123a8a55883f57f1ec75183be">startListening</a>();</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_stream_receiver.html#a76e62226af224f7f23bea675b7726755">pause</a>();</div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classstreaming_1_1_stream_receiver.html">   15</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classstreaming_1_1_stream_receiver.html">StreamReceiver</a></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <a class="code hl_function" href="classstreaming_1_1_stream_receiver.html#a81a57df7b3207fa7f8526d895586d41b">StreamReceiver</a>();</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <a class="code hl_function" href="classstreaming_1_1_stream_receiver.html#a647388f3dd883cb5091daabd21f3bca5">~StreamReceiver</a>();</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    std::shared_ptr&lt;StreamFrame&gt; <a class="code hl_function" href="class_stream_receiver.html#a87a61f110bbc95165dafa1e896e6869e">getFrame</a>();</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="class_stream_receiver.html#adaa8f7b0a31acaf3da9ff9b1ff3cc8f3">   23</a></span>    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_stream_receiver.html#adaa8f7b0a31acaf3da9ff9b1ff3cc8f3">streamEnded</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> streamEnd; }</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_stream_receiver.html#a3eb71307aa881b4585351f8608eb2bea">handleEvents</a>();</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classstreaming_1_1_stream_receiver.html#a88d29fd764bd225e5b431f38f89945bb">portSet</a>(<span class="keywordtype">int</span> port);</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    GstElement *pipeline;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    GstElement *udpsrc;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    GstElement *capsfilter;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    GstElement *rtpjitterbuffer;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    GstElement *rtph264depay;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    GstElement *h264decoder;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    GstElement *converter;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    GstElement *appsink;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classstreaming_1_1_stream_receiver.html#a6de7ea5535bd869800fd14e3fe7271fb">startListening</a>();</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classstreaming_1_1_stream_receiver.html#ad38275384755a580bbfc0f4b410b2d5e">pause</a>();</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    GstBus *bus;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">bool</span> streamEnd;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    std::shared_ptr&lt;StreamFrame&gt; actFrame;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>};</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        std::shared_ptr&lt;StreamFrame&gt; <a class="code hl_function" href="classstreaming_1_1_stream_receiver.html#a1d619a1a92a2de26e3e3408e3a178673">getFrame</a>();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classstreaming_1_1_stream_receiver.html#a4f87bc9b9db294ffc93a2ab819b18dca">   47</a></span>        <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classstreaming_1_1_stream_receiver.html#a4f87bc9b9db294ffc93a2ab819b18dca">streamEnded</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> streamEnd; }</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classstreaming_1_1_stream_receiver.html#ad059fdf7577c3fed0ca622e7bb6e278a">handleEvents</a>();</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        GstElement *pipeline;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        GstElement *udpsrc;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        GstElement *capsfilter;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        GstElement *rtpjitterbuffer;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        GstElement *rtph264depay;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        GstElement *h264decoder;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        GstElement *converter;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        GstElement *appsink;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        GstBus *bus;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordtype">bool</span> streamEnd;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        std::shared_ptr&lt;StreamFrame&gt; actFrame;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    };</div>
 </div>
-<div class="ttc" id="aclass_stream_receiver_html"><div class="ttname"><a href="class_stream_receiver.html">StreamReceiver</a></div><div class="ttdef"><b>Definition</b> stream_receiver.hpp:11</div></div>
-<div class="ttc" id="aclass_stream_receiver_html_a0a511c79fc21a84fbb0bd4801e7024f5"><div class="ttname"><a href="class_stream_receiver.html#a0a511c79fc21a84fbb0bd4801e7024f5">StreamReceiver::~StreamReceiver</a></div><div class="ttdeci">~StreamReceiver()</div><div class="ttdef"><b>Definition</b> stream_receiver.cpp:61</div></div>
-<div class="ttc" id="aclass_stream_receiver_html_a1f518ba123a8a55883f57f1ec75183be"><div class="ttname"><a href="class_stream_receiver.html#a1f518ba123a8a55883f57f1ec75183be">StreamReceiver::startListening</a></div><div class="ttdeci">void startListening()</div><div class="ttdef"><b>Definition</b> stream_receiver.cpp:76</div></div>
-<div class="ttc" id="aclass_stream_receiver_html_a3eb71307aa881b4585351f8608eb2bea"><div class="ttname"><a href="class_stream_receiver.html#a3eb71307aa881b4585351f8608eb2bea">StreamReceiver::handleEvents</a></div><div class="ttdeci">void handleEvents()</div><div class="ttdef"><b>Definition</b> stream_receiver.cpp:133</div></div>
-<div class="ttc" id="aclass_stream_receiver_html_a478946386cb6345fa1c21b9ed749dda5"><div class="ttname"><a href="class_stream_receiver.html#a478946386cb6345fa1c21b9ed749dda5">StreamReceiver::portSet</a></div><div class="ttdeci">void portSet(int port)</div><div class="ttdef"><b>Definition</b> stream_receiver.cpp:70</div></div>
-<div class="ttc" id="aclass_stream_receiver_html_a76e62226af224f7f23bea675b7726755"><div class="ttname"><a href="class_stream_receiver.html#a76e62226af224f7f23bea675b7726755">StreamReceiver::pause</a></div><div class="ttdeci">void pause()</div><div class="ttdef"><b>Definition</b> stream_receiver.cpp:87</div></div>
-<div class="ttc" id="aclass_stream_receiver_html_a87a61f110bbc95165dafa1e896e6869e"><div class="ttname"><a href="class_stream_receiver.html#a87a61f110bbc95165dafa1e896e6869e">StreamReceiver::getFrame</a></div><div class="ttdeci">std::shared_ptr&lt; StreamFrame &gt; getFrame()</div><div class="ttdef"><b>Definition</b> stream_receiver.cpp:97</div></div>
-<div class="ttc" id="aclass_stream_receiver_html_adaa8f7b0a31acaf3da9ff9b1ff3cc8f3"><div class="ttname"><a href="class_stream_receiver.html#adaa8f7b0a31acaf3da9ff9b1ff3cc8f3">StreamReceiver::streamEnded</a></div><div class="ttdeci">bool streamEnded() const</div><div class="ttdef"><b>Definition</b> stream_receiver.hpp:23</div></div>
-<div class="ttc" id="aclass_stream_receiver_html_af0d00b9d3554f48757bc6fef1732695f"><div class="ttname"><a href="class_stream_receiver.html#af0d00b9d3554f48757bc6fef1732695f">StreamReceiver::StreamReceiver</a></div><div class="ttdeci">StreamReceiver()</div><div class="ttdef"><b>Definition</b> stream_receiver.cpp:9</div></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>}</div>
+<div class="ttc" id="aclassstreaming_1_1_stream_receiver_html"><div class="ttname"><a href="classstreaming_1_1_stream_receiver.html">streaming::StreamReceiver</a></div><div class="ttdoc">Receives stream.</div><div class="ttdef"><b>Definition</b> stream_receiver.hpp:16</div></div>
+<div class="ttc" id="aclassstreaming_1_1_stream_receiver_html_a1d619a1a92a2de26e3e3408e3a178673"><div class="ttname"><a href="classstreaming_1_1_stream_receiver.html#a1d619a1a92a2de26e3e3408e3a178673">streaming::StreamReceiver::getFrame</a></div><div class="ttdeci">std::shared_ptr&lt; StreamFrame &gt; getFrame()</div><div class="ttdoc">Returns the newest frame, which was received from server.</div><div class="ttdef"><b>Definition</b> stream_receiver.cpp:97</div></div>
+<div class="ttc" id="aclassstreaming_1_1_stream_receiver_html_a4f87bc9b9db294ffc93a2ab819b18dca"><div class="ttname"><a href="classstreaming_1_1_stream_receiver.html#a4f87bc9b9db294ffc93a2ab819b18dca">streaming::StreamReceiver::streamEnded</a></div><div class="ttdeci">bool streamEnded() const</div><div class="ttdoc">Checks if server ended stream.</div><div class="ttdef"><b>Definition</b> stream_receiver.hpp:47</div></div>
+<div class="ttc" id="aclassstreaming_1_1_stream_receiver_html_a647388f3dd883cb5091daabd21f3bca5"><div class="ttname"><a href="classstreaming_1_1_stream_receiver.html#a647388f3dd883cb5091daabd21f3bca5">streaming::StreamReceiver::~StreamReceiver</a></div><div class="ttdeci">~StreamReceiver()</div><div class="ttdef"><b>Definition</b> stream_receiver.cpp:61</div></div>
+<div class="ttc" id="aclassstreaming_1_1_stream_receiver_html_a6de7ea5535bd869800fd14e3fe7271fb"><div class="ttname"><a href="classstreaming_1_1_stream_receiver.html#a6de7ea5535bd869800fd14e3fe7271fb">streaming::StreamReceiver::startListening</a></div><div class="ttdeci">void startListening()</div><div class="ttdoc">Starts listening to stream. Before invocation port must be set.</div><div class="ttdef"><b>Definition</b> stream_receiver.cpp:76</div></div>
+<div class="ttc" id="aclassstreaming_1_1_stream_receiver_html_a81a57df7b3207fa7f8526d895586d41b"><div class="ttname"><a href="classstreaming_1_1_stream_receiver.html#a81a57df7b3207fa7f8526d895586d41b">streaming::StreamReceiver::StreamReceiver</a></div><div class="ttdeci">StreamReceiver()</div><div class="ttdef"><b>Definition</b> stream_receiver.cpp:9</div></div>
+<div class="ttc" id="aclassstreaming_1_1_stream_receiver_html_a88d29fd764bd225e5b431f38f89945bb"><div class="ttname"><a href="classstreaming_1_1_stream_receiver.html#a88d29fd764bd225e5b431f38f89945bb">streaming::StreamReceiver::portSet</a></div><div class="ttdeci">void portSet(int port)</div><div class="ttdoc">Sets port, which client uses to listen video stream.</div><div class="ttdef"><b>Definition</b> stream_receiver.cpp:70</div></div>
+<div class="ttc" id="aclassstreaming_1_1_stream_receiver_html_ad059fdf7577c3fed0ca622e7bb6e278a"><div class="ttname"><a href="classstreaming_1_1_stream_receiver.html#ad059fdf7577c3fed0ca622e7bb6e278a">streaming::StreamReceiver::handleEvents</a></div><div class="ttdeci">void handleEvents()</div><div class="ttdoc">Function handles all events connected with stream. Function should be invoked regularly.</div><div class="ttdef"><b>Definition</b> stream_receiver.cpp:133</div></div>
+<div class="ttc" id="aclassstreaming_1_1_stream_receiver_html_ad38275384755a580bbfc0f4b410b2d5e"><div class="ttname"><a href="classstreaming_1_1_stream_receiver.html#ad38275384755a580bbfc0f4b410b2d5e">streaming::StreamReceiver::pause</a></div><div class="ttdeci">void pause()</div><div class="ttdoc">Stops listening to stream.</div><div class="ttdef"><b>Definition</b> stream_receiver.cpp:87</div></div>
+<div class="ttc" id="anamespacestreaming_html"><div class="ttname"><a href="namespacestreaming.html">streaming</a></div><div class="ttdef"><b>Definition</b> stream_frame.hpp:9</div></div>
 <div class="ttc" id="astream__frame_8hpp_html"><div class="ttname"><a href="stream__frame_8hpp.html">stream_frame.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

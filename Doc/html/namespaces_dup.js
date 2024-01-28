@@ -8,5 +8,6 @@ var namespaces_dup =
     [ "graphics", "namespacegraphics.html", "namespacegraphics" ],
     [ "gui", "namespacegui.html", "namespacegui" ],
     [ "serializable", "namespaceserializable.html", "namespaceserializable" ],
+    [ "streaming", "namespacestreaming.html", "namespacestreaming" ],
     [ "vein", "namespacevein.html", "namespacevein" ]
 ];

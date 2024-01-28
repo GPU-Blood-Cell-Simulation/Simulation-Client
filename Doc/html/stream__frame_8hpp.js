@@ -1,4 +1,4 @@
 var stream__frame_8hpp =
 [
-    [ "StreamFrame", "class_stream_frame.html", "class_stream_frame" ]
+    [ "streaming::StreamFrame", "classstreaming_1_1_stream_frame.html", "classstreaming_1_1_stream_frame" ]
 ];

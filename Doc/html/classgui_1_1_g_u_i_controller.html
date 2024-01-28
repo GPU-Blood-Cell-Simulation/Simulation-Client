@@ -106,12 +106,13 @@ $(function(){initNavTree('classgui_1_1_g_u_i_controller.html',''); initResizable
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2610b8580949e2ea323e8b770fbf4885" id="r_a2610b8580949e2ea323e8b770fbf4885"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2610b8580949e2ea323e8b770fbf4885">GUIController</a> (GLFWwindow *window, <a class="el" href="classserializable_1_1_config_manager.html">serializable::ConfigManager</a> &amp;configManager, <a class="el" href="classgraphics_1_1_g_l_controller.html">graphics::GLController</a> &amp;glController)</td></tr>
-<tr class="separator:a2610b8580949e2ea323e8b770fbf4885"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43bb168d36939f513343c89e913e1790" id="r_a43bb168d36939f513343c89e913e1790"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43bb168d36939f513343c89e913e1790">GUIController</a> (GLFWwindow *window, <a class="el" href="classserializable_1_1_config_manager.html">serializable::ConfigManager</a> &amp;configManager, <a class="el" href="classstreaming_1_1_stream_manager.html">streaming::StreamManager</a> &amp;streamManager, <a class="el" href="classgraphics_1_1_g_l_controller.html">graphics::GLController</a> &amp;glController)</td></tr>
+<tr class="separator:a43bb168d36939f513343c89e913e1790"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae52577c103eba84a06e709bdc44317f3" id="r_ae52577c103eba84a06e709bdc44317f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae52577c103eba84a06e709bdc44317f3">renderUI</a> ()</td></tr>
 <tr class="memdesc:ae52577c103eba84a06e709bdc44317f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders the whole UI in every frame.  <br /></td></tr>
 <tr class="separator:ae52577c103eba84a06e709bdc44317f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1546279d9be71f5d8566af4a31ea694f" id="r_a1546279d9be71f5d8566af4a31ea694f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1546279d9be71f5d8566af4a31ea694f">setMode</a> (<a class="el" href="namespacegui.html#aae1d71f8c90a24d481b61b124632784b">Mode</a> mode)</td></tr>
+<tr class="memdesc:a1546279d9be71f5d8566af4a31ea694f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switches which screen should be rendered.  <br /></td></tr>
 <tr class="separator:a1546279d9be71f5d8566af4a31ea694f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80f3ae2816a377985fdbfa163780a012" id="r_a80f3ae2816a377985fdbfa163780a012"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a80f3ae2816a377985fdbfa163780a012">selectNode</a> (<a class="el" href="classvein_1_1_node.html">vein::Node</a> *node, bool selectedLeft=true)</td></tr>
 <tr class="memdesc:a80f3ae2816a377985fdbfa163780a012"><td class="mdescLeft">&#160;</td><td class="mdescRight">Select a vein segment node in order to add new children to it.  <br /></td></tr>
@@ -122,8 +123,8 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Responsible for displaying the GUI in a separate ImGui window. Handles ImGui initialization, setup and all logic associated with interaction through the graphical interface. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a2610b8580949e2ea323e8b770fbf4885" name="a2610b8580949e2ea323e8b770fbf4885"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2610b8580949e2ea323e8b770fbf4885">&#9670;&#160;</a></span>GUIController()</h2>
+<a id="a43bb168d36939f513343c89e913e1790" name="a43bb168d36939f513343c89e913e1790"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43bb168d36939f513343c89e913e1790">&#9670;&#160;</a></span>GUIController()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -137,6 +138,11 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="classserializable_1_1_config_manager.html">serializable::ConfigManager</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>configManager</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classstreaming_1_1_stream_manager.html">streaming::StreamManager</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>streamManager</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -238,6 +244,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Switches which screen should be rendered. </p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
@@ -252,7 +260,10 @@ Public Member Functions</h2></td></tr>
 <li>src/gui/components/general_editor_tabs/<a class="el" href="simulation__editor_8cpp.html">simulation_editor.cpp</a></li>
 <li>src/gui/components/<a class="el" href="main__screen_8cpp.html">main_screen.cpp</a></li>
 <li>src/gui/components/<a class="el" href="menu__bar_8cpp.html">menu_bar.cpp</a></li>
-<li>src/gui/components/<a class="el" href="simulation_8cpp.html">simulation.cpp</a></li>
+<li>src/gui/components/<a class="el" href="runtime__type__select_8cpp.html">runtime_type_select.cpp</a></li>
+<li>src/gui/components/simulations/<a class="el" href="local__simulation_8cpp.html">local_simulation.cpp</a></li>
+<li>src/gui/components/simulations/<a class="el" href="manual__simulation_8cpp.html">manual_simulation.cpp</a></li>
+<li>src/gui/components/<a class="el" href="stream_8cpp.html">stream.cpp</a></li>
 <li>src/gui/components/<a class="el" href="vein__editor_8cpp.html">vein_editor.cpp</a></li>
 <li>src/gui/<a class="el" href="gui__controller_8cpp.html">gui_controller.cpp</a></li>
 </ul>

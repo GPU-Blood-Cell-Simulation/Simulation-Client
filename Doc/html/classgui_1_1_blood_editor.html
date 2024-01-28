@@ -100,29 +100,34 @@ $(function(){initNavTree('classgui_1_1_blood_editor.html',''); initResizable(); 
 </div><!--header-->
 <div class="contents">
 
+<p>Main editor for blood cell types.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="blood__editor_8hpp_source.html">blood_editor.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:abf7b6965c2fe7be946a60ac1d8e8555f" id="r_abf7b6965c2fe7be946a60ac1d8e8555f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abf7b6965c2fe7be946a60ac1d8e8555f">BloodEditor</a> (<a class="el" href="structserializable_1_1_blood_cell_type.html">serializable::BloodCellType</a> &amp;data)</td></tr>
-<tr class="separator:abf7b6965c2fe7be946a60ac1d8e8555f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c3188b96877840008b38b97bfacb9f2" id="r_a3c3188b96877840008b38b97bfacb9f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c3188b96877840008b38b97bfacb9f2">updateQuantity</a> ()</td></tr>
-<tr class="separator:a3c3188b96877840008b38b97bfacb9f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1b8dc018a81c2605f008e7462f2bb23" id="r_ae1b8dc018a81c2605f008e7462f2bb23"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae1b8dc018a81c2605f008e7462f2bb23">GetModelName</a> () const</td></tr>
-<tr class="separator:ae1b8dc018a81c2605f008e7462f2bb23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa9ee1961cc58ce5f9eaf358f420b3d3" id="r_aaa9ee1961cc58ce5f9eaf358f420b3d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa9ee1961cc58ce5f9eaf358f420b3d3">renderGUISprings</a> (<a class="el" href="classgui_1_1_g_u_i_controller.html">gui::GUIController</a> &amp;guiController)</td></tr>
-<tr class="separator:aaa9ee1961cc58ce5f9eaf358f420b3d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adaf2647cae228678fb1536bdafae5581" id="r_adaf2647cae228678fb1536bdafae5581"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adaf2647cae228678fb1536bdafae5581">renderGUIVertices</a> (<a class="el" href="classgui_1_1_g_u_i_controller.html">gui::GUIController</a> &amp;guiController)</td></tr>
-<tr class="separator:adaf2647cae228678fb1536bdafae5581"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab637e865cb671a433dfabda1f11d416a" id="r_ab637e865cb671a433dfabda1f11d416a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab637e865cb671a433dfabda1f11d416a">BloodEditor</a> (int <a class="el" href="#a06963c5b760ea03d2e46184f86afa7b8">editorIndex</a>)</td></tr>
+<tr class="separator:ab637e865cb671a433dfabda1f11d416a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66019613b8a6c39ef6d6efbc7fc6cf3a" id="r_a66019613b8a6c39ef6d6efbc7fc6cf3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66019613b8a6c39ef6d6efbc7fc6cf3a">recalculateBloodTypeDiameter</a> (<a class="el" href="structserializable_1_1_blood_cell_type.html">serializable::BloodCellType</a> &amp;type)</td></tr>
+<tr class="separator:a66019613b8a6c39ef6d6efbc7fc6cf3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28681977a3a42d8fd04c6532a48b6747" id="r_a28681977a3a42d8fd04c6532a48b6747"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28681977a3a42d8fd04c6532a48b6747">renderGUISprings</a> (<a class="el" href="classgui_1_1_g_u_i_controller.html">gui::GUIController</a> &amp;guiController, <a class="el" href="structserializable_1_1_config_data.html">serializable::ConfigData</a> &amp;config)</td></tr>
+<tr class="separator:a28681977a3a42d8fd04c6532a48b6747"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a752d04a1795aaa8a247cdd9f2e1d050e" id="r_a752d04a1795aaa8a247cdd9f2e1d050e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a752d04a1795aaa8a247cdd9f2e1d050e">renderGUIVertices</a> (<a class="el" href="classgui_1_1_g_u_i_controller.html">gui::GUIController</a> &amp;guiController, <a class="el" href="structserializable_1_1_config_data.html">serializable::ConfigData</a> &amp;config)</td></tr>
+<tr class="separator:a752d04a1795aaa8a247cdd9f2e1d050e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82f89c878d4680cf200e0ac4b2b318de" id="r_a82f89c878d4680cf200e0ac4b2b318de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a82f89c878d4680cf200e0ac4b2b318de">renderGUIColors</a> (<a class="el" href="classgui_1_1_g_u_i_controller.html">gui::GUIController</a> &amp;guiController, <a class="el" href="structserializable_1_1_config_data.html">serializable::ConfigData</a> &amp;config)</td></tr>
+<tr class="separator:a82f89c878d4680cf200e0ac4b2b318de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a5f2e5cfc1893ceac84245e0aabdb4c09" id="r_a5f2e5cfc1893ceac84245e0aabdb4c09"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f2e5cfc1893ceac84245e0aabdb4c09">modelQuantity</a></td></tr>
-<tr class="separator:a5f2e5cfc1893ceac84245e0aabdb4c09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06963c5b760ea03d2e46184f86afa7b8" id="r_a06963c5b760ea03d2e46184f86afa7b8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06963c5b760ea03d2e46184f86afa7b8">editorIndex</a></td></tr>
+<tr class="separator:a06963c5b760ea03d2e46184f86afa7b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="abf7b6965c2fe7be946a60ac1d8e8555f" name="abf7b6965c2fe7be946a60ac1d8e8555f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf7b6965c2fe7be946a60ac1d8e8555f">&#9670;&#160;</a></span>BloodEditor()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Main editor for blood cell types. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ab637e865cb671a433dfabda1f11d416a" name="ab637e865cb671a433dfabda1f11d416a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab637e865cb671a433dfabda1f11d416a">&#9670;&#160;</a></span>BloodEditor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -130,7 +135,7 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">gui::BloodEditor::BloodEditor </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structserializable_1_1_blood_cell_type.html">serializable::BloodCellType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span></td><td>)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>editorIndex</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -139,33 +144,46 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ae1b8dc018a81c2605f008e7462f2bb23" name="ae1b8dc018a81c2605f008e7462f2bb23"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae1b8dc018a81c2605f008e7462f2bb23">&#9670;&#160;</a></span>GetModelName()</h2>
+<a id="a66019613b8a6c39ef6d6efbc7fc6cf3a" name="a66019613b8a6c39ef6d6efbc7fc6cf3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66019613b8a6c39ef6d6efbc7fc6cf3a">&#9670;&#160;</a></span>recalculateBloodTypeDiameter()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::string gui::BloodEditor::GetModelName </td>
+          <td class="memname">void gui::BloodEditor::recalculateBloodTypeDiameter </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td> const</td>
+          <td class="paramtype"><a class="el" href="structserializable_1_1_blood_cell_type.html">serializable::BloodCellType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>type</em></span></td><td>)</td>
+          <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="aaa9ee1961cc58ce5f9eaf358f420b3d3" name="aaa9ee1961cc58ce5f9eaf358f420b3d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaa9ee1961cc58ce5f9eaf358f420b3d3">&#9670;&#160;</a></span>renderGUISprings()</h2>
+<a id="a82f89c878d4680cf200e0ac4b2b318de" name="a82f89c878d4680cf200e0ac4b2b318de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82f89c878d4680cf200e0ac4b2b318de">&#9670;&#160;</a></span>renderGUIColors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gui::BloodEditor::renderGUIColors </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classgui_1_1_g_u_i_controller.html">gui::GUIController</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>guiController</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structserializable_1_1_config_data.html">serializable::ConfigData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>config</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a28681977a3a42d8fd04c6532a48b6747" name="a28681977a3a42d8fd04c6532a48b6747"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28681977a3a42d8fd04c6532a48b6747">&#9670;&#160;</a></span>renderGUISprings()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -173,16 +191,20 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">void gui::BloodEditor::renderGUISprings </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classgui_1_1_g_u_i_controller.html">gui::GUIController</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>guiController</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classgui_1_1_g_u_i_controller.html">gui::GUIController</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>guiController</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="structserializable_1_1_config_data.html">serializable::ConfigData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>config</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="adaf2647cae228678fb1536bdafae5581" name="adaf2647cae228678fb1536bdafae5581"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adaf2647cae228678fb1536bdafae5581">&#9670;&#160;</a></span>renderGUIVertices()</h2>
+<a id="a752d04a1795aaa8a247cdd9f2e1d050e" name="a752d04a1795aaa8a247cdd9f2e1d050e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a752d04a1795aaa8a247cdd9f2e1d050e">&#9670;&#160;</a></span>renderGUIVertices()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -190,48 +212,27 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">void gui::BloodEditor::renderGUIVertices </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classgui_1_1_g_u_i_controller.html">gui::GUIController</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>guiController</em></span></td><td>)</td>
-          <td></td>
+          <td class="paramtype"><a class="el" href="classgui_1_1_g_u_i_controller.html">gui::GUIController</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>guiController</em>, </span></td>
         </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a3c3188b96877840008b38b97bfacb9f2" name="a3c3188b96877840008b38b97bfacb9f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3c3188b96877840008b38b97bfacb9f2">&#9670;&#160;</a></span>updateQuantity()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
         <tr>
-          <td class="memname">void gui::BloodEditor::updateQuantity </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="structserializable_1_1_config_data.html">serializable::ConfigData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>config</em></span>&#160;)</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a5f2e5cfc1893ceac84245e0aabdb4c09" name="a5f2e5cfc1893ceac84245e0aabdb4c09"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f2e5cfc1893ceac84245e0aabdb4c09">&#9670;&#160;</a></span>modelQuantity</h2>
+<a id="a06963c5b760ea03d2e46184f86afa7b8" name="a06963c5b760ea03d2e46184f86afa7b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06963c5b760ea03d2e46184f86afa7b8">&#9670;&#160;</a></span>editorIndex</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int gui::BloodEditor::modelQuantity</td>
+          <td class="memname">int gui::BloodEditor::editorIndex</td>
         </tr>
       </table>
 </div><div class="memdoc">

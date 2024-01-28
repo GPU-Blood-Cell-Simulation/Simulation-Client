@@ -107,35 +107,42 @@ $(function(){initNavTree('stream__frame_8hpp_source.html',''); initResizable(); 
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="foldopen" id="foldopen00008" data-start="{" data-end="};">
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="class_stream_frame.html">    8</a></span><span class="keyword">class </span><a class="code hl_class" href="class_stream_frame.html">StreamFrame</a></div>
+<div class="foldopen" id="foldopen00008" data-start="{" data-end="}">
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="namespacestreaming.html">    8</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacestreaming.html">streaming</a></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <a class="code hl_function" href="class_stream_frame.html#a78913fc527cdecb73370ad7cefd59779">StreamFrame</a>(GstSample *sample);</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <a class="code hl_function" href="class_stream_frame.html#aba07ca544fc0a2c8b2223b1c7db588e3">~StreamFrame</a>();</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="class_stream_frame.html#a0c64f36b266edd2e76200f95416ad206">   14</a></span>    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_stream_frame.html#a0c64f36b266edd2e76200f95416ad206">haveData</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> sample != NULL; }</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="class_stream_frame.html#ac98cf8cb174ed9bad7837065734c2a80">   16</a></span>    <span class="keyword">inline</span> uint8_t* <a class="code hl_function" href="class_stream_frame.html#ac98cf8cb174ed9bad7837065734c2a80">getData</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> map.data; }</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_stream_frame.html#a72dbda85c15274df526b9bc2dd97d378">getWidth</a>();</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_stream_frame.html#ab80d3e57d4cc162fc53df888c466cf00">getHeight</a>();</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    GstSample *sample;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    GstBuffer *buffer;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    GstMapInfo map;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    GstCaps* cap;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">const</span> GstStructure* structure;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>};</div>
+<div class="foldopen" id="foldopen00013" data-start="{" data-end="};">
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classstreaming_1_1_stream_frame.html">   13</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classstreaming_1_1_stream_frame.html">StreamFrame</a></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <a class="code hl_function" href="classstreaming_1_1_stream_frame.html#a149959978874f0b6f967ec9edec1f11c">StreamFrame</a>(GstSample *sample);</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <a class="code hl_function" href="classstreaming_1_1_stream_frame.html#aa54a32acb5f1e199ab081361830798b0">~StreamFrame</a>();</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classstreaming_1_1_stream_frame.html#a677fe0e1a7cd09957c96cc2a316b5f28">   23</a></span>        <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classstreaming_1_1_stream_frame.html#a677fe0e1a7cd09957c96cc2a316b5f28">haveData</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> sample != NULL; }</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        uint8_t* <a class="code hl_function" href="classstreaming_1_1_stream_frame.html#a9edd28fbc8581ca912ebb2ace1c0ce9b">getData</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classstreaming_1_1_stream_frame.html#aa50eb996c15d07769a846638013387a4">getWidth</a>();</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classstreaming_1_1_stream_frame.html#a08da92778267b8ad88510a7ab3c49624">getHeight</a>();</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        GstSample *sample;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        GstBuffer *buffer;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        GstMapInfo map;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        GstCaps* cap;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keyword">const</span> GstStructure* structure;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    };</div>
 </div>
-<div class="ttc" id="aclass_stream_frame_html"><div class="ttname"><a href="class_stream_frame.html">StreamFrame</a></div><div class="ttdef"><b>Definition</b> stream_frame.hpp:9</div></div>
-<div class="ttc" id="aclass_stream_frame_html_a0c64f36b266edd2e76200f95416ad206"><div class="ttname"><a href="class_stream_frame.html#a0c64f36b266edd2e76200f95416ad206">StreamFrame::haveData</a></div><div class="ttdeci">bool haveData() const</div><div class="ttdef"><b>Definition</b> stream_frame.hpp:14</div></div>
-<div class="ttc" id="aclass_stream_frame_html_a72dbda85c15274df526b9bc2dd97d378"><div class="ttname"><a href="class_stream_frame.html#a72dbda85c15274df526b9bc2dd97d378">StreamFrame::getWidth</a></div><div class="ttdeci">int getWidth()</div><div class="ttdef"><b>Definition</b> stream_frame.cpp:30</div></div>
-<div class="ttc" id="aclass_stream_frame_html_a78913fc527cdecb73370ad7cefd59779"><div class="ttname"><a href="class_stream_frame.html#a78913fc527cdecb73370ad7cefd59779">StreamFrame::StreamFrame</a></div><div class="ttdeci">StreamFrame(GstSample *sample)</div><div class="ttdef"><b>Definition</b> stream_frame.cpp:4</div></div>
-<div class="ttc" id="aclass_stream_frame_html_ab80d3e57d4cc162fc53df888c466cf00"><div class="ttname"><a href="class_stream_frame.html#ab80d3e57d4cc162fc53df888c466cf00">StreamFrame::getHeight</a></div><div class="ttdeci">int getHeight()</div><div class="ttdef"><b>Definition</b> stream_frame.cpp:42</div></div>
-<div class="ttc" id="aclass_stream_frame_html_aba07ca544fc0a2c8b2223b1c7db588e3"><div class="ttname"><a href="class_stream_frame.html#aba07ca544fc0a2c8b2223b1c7db588e3">StreamFrame::~StreamFrame</a></div><div class="ttdeci">~StreamFrame()</div><div class="ttdef"><b>Definition</b> stream_frame.cpp:19</div></div>
-<div class="ttc" id="aclass_stream_frame_html_ac98cf8cb174ed9bad7837065734c2a80"><div class="ttname"><a href="class_stream_frame.html#ac98cf8cb174ed9bad7837065734c2a80">StreamFrame::getData</a></div><div class="ttdeci">uint8_t * getData() const</div><div class="ttdef"><b>Definition</b> stream_frame.hpp:16</div></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>}</div>
+</div>
+<div class="ttc" id="aclassstreaming_1_1_stream_frame_html"><div class="ttname"><a href="classstreaming_1_1_stream_frame.html">streaming::StreamFrame</a></div><div class="ttdoc">Class represents single video frame received from server.</div><div class="ttdef"><b>Definition</b> stream_frame.hpp:14</div></div>
+<div class="ttc" id="aclassstreaming_1_1_stream_frame_html_a08da92778267b8ad88510a7ab3c49624"><div class="ttname"><a href="classstreaming_1_1_stream_frame.html#a08da92778267b8ad88510a7ab3c49624">streaming::StreamFrame::getHeight</a></div><div class="ttdeci">int getHeight()</div><div class="ttdoc">Returns height of video frame.</div><div class="ttdef"><b>Definition</b> stream_frame.cpp:50</div></div>
+<div class="ttc" id="aclassstreaming_1_1_stream_frame_html_a149959978874f0b6f967ec9edec1f11c"><div class="ttname"><a href="classstreaming_1_1_stream_frame.html#a149959978874f0b6f967ec9edec1f11c">streaming::StreamFrame::StreamFrame</a></div><div class="ttdeci">StreamFrame(GstSample *sample)</div><div class="ttdef"><b>Definition</b> stream_frame.cpp:4</div></div>
+<div class="ttc" id="aclassstreaming_1_1_stream_frame_html_a677fe0e1a7cd09957c96cc2a316b5f28"><div class="ttname"><a href="classstreaming_1_1_stream_frame.html#a677fe0e1a7cd09957c96cc2a316b5f28">streaming::StreamFrame::haveData</a></div><div class="ttdeci">bool haveData() const</div><div class="ttdoc">If no frames were received from server, then frames without data are returned.</div><div class="ttdef"><b>Definition</b> stream_frame.hpp:23</div></div>
+<div class="ttc" id="aclassstreaming_1_1_stream_frame_html_a9edd28fbc8581ca912ebb2ace1c0ce9b"><div class="ttname"><a href="classstreaming_1_1_stream_frame.html#a9edd28fbc8581ca912ebb2ace1c0ce9b">streaming::StreamFrame::getData</a></div><div class="ttdeci">uint8_t * getData() const</div><div class="ttdoc">Allows to get raw RGB pixel data of single video frame. Single pixels is described by three bytes - o...</div><div class="ttdef"><b>Definition</b> stream_frame.cpp:29</div></div>
+<div class="ttc" id="aclassstreaming_1_1_stream_frame_html_aa50eb996c15d07769a846638013387a4"><div class="ttname"><a href="classstreaming_1_1_stream_frame.html#aa50eb996c15d07769a846638013387a4">streaming::StreamFrame::getWidth</a></div><div class="ttdeci">int getWidth()</div><div class="ttdoc">Returns width of video frame.</div><div class="ttdef"><b>Definition</b> stream_frame.cpp:38</div></div>
+<div class="ttc" id="aclassstreaming_1_1_stream_frame_html_aa54a32acb5f1e199ab081361830798b0"><div class="ttname"><a href="classstreaming_1_1_stream_frame.html#aa54a32acb5f1e199ab081361830798b0">streaming::StreamFrame::~StreamFrame</a></div><div class="ttdeci">~StreamFrame()</div><div class="ttdef"><b>Definition</b> stream_frame.cpp:19</div></div>
+<div class="ttc" id="anamespacestreaming_html"><div class="ttname"><a href="namespacestreaming.html">streaming</a></div><div class="ttdef"><b>Definition</b> stream_frame.hpp:9</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

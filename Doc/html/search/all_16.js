@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['yellow400_0',['YELLOW400',['../structgui_1_1themes_1_1spectrum_1_1dark.html#a2bace6c73bb2e4a2b74c9d4ca670e011',1,'gui::themes::spectrum::dark::YELLOW400'],['../structgui_1_1themes_1_1spectrum_1_1light.html#af141bf64c5913ec4806e68b555ea90af',1,'gui::themes::spectrum::light::YELLOW400']]],
-  ['yellow500_1',['YELLOW500',['../structgui_1_1themes_1_1spectrum_1_1dark.html#aff9934749c1dd1103f9c0f4c4e223d8b',1,'gui::themes::spectrum::dark::YELLOW500'],['../structgui_1_1themes_1_1spectrum_1_1light.html#aafad3ecf5e920be943be776b4891d4f8',1,'gui::themes::spectrum::light::YELLOW500']]],
-  ['yellow600_2',['YELLOW600',['../structgui_1_1themes_1_1spectrum_1_1dark.html#a8358cb97d6ab51ef1e4bf91a53dbf6d3',1,'gui::themes::spectrum::dark::YELLOW600'],['../structgui_1_1themes_1_1spectrum_1_1light.html#ac968a40afb6ba1197f80f12eb23a776a',1,'gui::themes::spectrum::light::YELLOW600']]],
-  ['yellow700_3',['YELLOW700',['../structgui_1_1themes_1_1spectrum_1_1dark.html#a6571883a2010f834c0f4deac85c89ab6',1,'gui::themes::spectrum::dark::YELLOW700'],['../structgui_1_1themes_1_1spectrum_1_1light.html#af945b296972f7434e6ed7f8be33428a3',1,'gui::themes::spectrum::light::YELLOW700']]]
+  ['waitingforserver_0',['waitingForServer',['../namespacestreaming.html#ad6ab87cb158894470607f12602d9dbc6a108e5482f90eb5c4e9855f53ced91d27',1,'streaming']]],
+  ['what_1',['what',['../classserializable_1_1_file_open_exception.html#a899d0e318e37a52d4f15fc2ae8779226',1,'serializable::FileOpenException::what()'],['../classserializable_1_1_file_write_exception.html#af0041cb932e754a5b00e4f2c2ee99816',1,'serializable::FileWriteException::what()'],['../classserializable_1_1_file_read_exception.html#a331e2882d693cb3d1a24f65fb82f1f1d',1,'serializable::FileReadException::what()']]],
+  ['white_2',['WHITE',['../structgui_1_1themes_1_1spectrum_1_1base.html#ac19720a22920d09588328d2519914789',1,'gui::themes::spectrum::base']]],
+  ['width_3',['width',['../defines_8hpp.html#a61ed02a8f208ffec631a84fc9958ffc0',1,'defines.hpp']]],
+  ['windowheight_4',['windowHeight',['../defines_8hpp.html#ab849da23cfa9ba653bbc12d9feca52d0',1,'defines.hpp']]],
+  ['windowwidth_5',['windowWidth',['../defines_8hpp.html#a050b21607767707ea2b3000538598bdf',1,'defines.hpp']]]
 ];
