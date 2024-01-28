@@ -27,6 +27,11 @@ void SimulationInputController::handleUserInput(GLFWwindow *window, int key, int
         if (action == GLFW_PRESS)
             controller->sendSingleEvent(EventType::toggleSpringsRendering);
         return;
+
+    case GLFW_KEY_N:
+        if (action == GLFW_PRESS)
+            controller->sendSingleEvent(EventType::toggleSpheresRendering);
+        return;
     
     default:
         break;

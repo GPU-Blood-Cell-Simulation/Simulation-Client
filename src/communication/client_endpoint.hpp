@@ -32,6 +32,7 @@ enum class EventType: event_t {
 
     togglePolygonMode,
     toggleSpringsRendering,
+    toggleSpheresRendering,
 
     streamSuccessfullyEnded,
     stopRendering,
