@@ -5,6 +5,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+
 namespace graphics
 {
 	/// <summary>
@@ -13,6 +14,10 @@ namespace graphics
 	class InputController
 	{
 	public:
+		/// <summary>
+		/// Sets handleUserInput method as keyboard event handler for specific window
+		/// </summary>
+		/// <param name="window">Window, which keyboard events should be handled</param>
 		void setInputCallback(GLFWwindow* window);
 
 		/// <summary>

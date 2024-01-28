@@ -7,6 +7,11 @@
 
 class SimulationInputController {
 public:
+    /// <summary>
+    /// Setup callback, which sends events to server during streaming in response to clicking keys
+    /// </summary>
+    /// <param name="window">Pointer to GLFW window with stream output</param>
+    /// <param name="controller">Message controller connected to server</param>
     static void setInputCallback(GLFWwindow* window, ClientCommunicationEndpoint* controller);
 
 private:

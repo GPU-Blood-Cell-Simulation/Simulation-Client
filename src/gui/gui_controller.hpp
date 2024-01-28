@@ -66,6 +66,9 @@ namespace gui
 		/// </summary>
 		void renderUI();
 
+		/// <summary>
+		/// Switches which screen should be rendered
+		/// </summary>
 		void setMode(Mode mode);
 
 		/// <summary>
@@ -114,7 +117,6 @@ namespace gui
 		void renderBloodCellSpringsDetails(serializable::ConfigData& config);
 		void renderBloodCellVerticesDetails(serializable::ConfigData& config);
 		void renderBloodCellColorDetails(serializable::ConfigData& config);
-
 		void renderSimulationEditor();
 		void renderPhysicsEditor();
 		void renderGraphicsEditor();

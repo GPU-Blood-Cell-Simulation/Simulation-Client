@@ -29,6 +29,10 @@ protected:
     Shader(const char* vertexPath, const char* fragmentPath);
 };
 
+
+/// <summary>
+/// Vein color shader
+/// </summary>
 class VeinSolidColorShader : public Shader
 {
 public:

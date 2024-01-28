@@ -14,7 +14,6 @@
 #include <sstream>
 #include <fstream>
 
-//#pragma float_control( except, on )
 // NVIDIA GPU selector for devices with multiple GPUs (e.g. laptops)
 #ifdef _WIN32
 extern "C"

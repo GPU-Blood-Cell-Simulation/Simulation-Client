@@ -119,12 +119,6 @@ namespace graphics
 		if (mode == Mode::Simulation)
 			beginSimulation();
 	}
-
-	void GLController::setFinalMesh(vein::SerializableMesh& calculatedMesh)
-	{
-		finalMesh = std::make_unique<vein::VeinMesh>(std::move(calculatedMesh.positions), std::move(calculatedMesh.indices));
-		finalMesh->setupMesh();
-	}
 	
 
     void GLController::drawNothing()

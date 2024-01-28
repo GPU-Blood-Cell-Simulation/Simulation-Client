@@ -57,7 +57,6 @@ namespace graphics
 		/// </summary>
 		/// <param name="mode">Enum specifies which elements should be drawn</param>
 		void setMode(Mode mode);
-		void setFinalMesh(vein::SerializableMesh& calculatedMesh);
 
 	private:
 
@@ -77,7 +76,6 @@ namespace graphics
 		streaming::StreamManager& streamManager;
 
 		vein::Node* veinRoot;
-		std::unique_ptr<vein::VeinMesh> finalMesh;
 
 		Camera camera;
 		bool useLighting = true;
