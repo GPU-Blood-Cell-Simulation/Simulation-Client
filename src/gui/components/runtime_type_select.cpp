@@ -12,10 +12,17 @@ namespace gui
         ext::CenteredText("Select how to run server");
         ImGui::Dummy(ImVec2(0.0f, 20.0f));
 
+#ifdef _WIN32
+        ImGui::BeginDisabled(true);
+#endif
         if (ext::CenteredButton("Run locally", textWidth))
         {
             setMode(Mode::localRuntime);
         }
+#ifdef _WIN32
+        ImGui::EndDisabled();
+        ext::CenteredText("Option only avaibale on Linux");
+#endif
         ImGui::NewLine();
 
         ImGui::BeginDisabled(true);

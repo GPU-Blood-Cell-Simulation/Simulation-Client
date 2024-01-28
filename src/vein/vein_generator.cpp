@@ -63,7 +63,7 @@ namespace vein
 		glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), angle, glm::vec3(0, 0, 1));
 
 		#pragma omp parallel for
-		for (unsigned int i = 0; i < mesh.positions.size(); i++)
+		for (int i = 0; i < mesh.positions.size(); i++)
 		{
 			positions[i] = rotation * glm::vec4(mesh.positions[i], 1.0f);
 		}
@@ -204,7 +204,7 @@ namespace vein
 		std::vector<glm::vec3> transformedPositions(scaledMesh.positions.size());
 
 		#pragma omp parallel for
-		for (unsigned int i = 0; i < scaledMesh.positions.size(); i++)
+		for (int i = 0; i < scaledMesh.positions.size(); i++)
 		{
 			transformedPositions[i] = toGLM(tps.transform(toDP(scaledMesh.positions[i])));
 		}
@@ -295,7 +295,7 @@ namespace vein
 		std::vector<glm::vec3> transformedPositions(baseMesh.positions.size());
 
 		#pragma omp parallel for
-		for (unsigned int i = 0; i < baseMesh.positions.size(); i++)
+		for (int i = 0; i < baseMesh.positions.size(); i++)
 		{
 			transformedPositions[i] = toGLM(tps.transform(toDP(baseMesh.positions[i])));
 		}

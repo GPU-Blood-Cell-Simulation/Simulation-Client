@@ -109,7 +109,6 @@ namespace gui
 		void renderVeinEditor();
 		void renderAddVein();
 		void renderStream();
-		void renderLocalSimulation();
 		void renderManualSimulation();
 		void renderSimulationTypeSelect();
 		void renderBloodCellSpringsDetails(serializable::ConfigData& config);
@@ -119,5 +118,9 @@ namespace gui
 		void renderSimulationEditor();
 		void renderPhysicsEditor();
 		void renderGraphicsEditor();
+
+#ifndef  _WIN32
+		void renderLocalSimulation();
+#endif
 	};
 }
