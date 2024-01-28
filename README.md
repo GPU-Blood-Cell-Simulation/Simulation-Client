@@ -37,7 +37,7 @@ You can also use the app to define the parameters. The general config constists 
 Use the blood cells editor to define blood cell types yourself - including vertices, springs betweeen them, colors and quantity.
 The vein editor allows you to creae your own tree-like hierarchy of vein segments including both simple cylinders and bifurcations. Each segment can be bent and rotated.
 
-When "compile and run" is clicked the data you defined is going to be serialized to C++ headers that will be compiled into the server. The server is automatically run and the data it renders is streamed back to the client.
+When "Compile and run" is clicked the data you defined is going to be serialized to C++ headers that will have to be compiled into the server. If you so desire (click "Run locally"), it can be done automatically and the server will be automatically run and the data it renders will streamed back to the client.
 
 
 ## Keyboard controls
@@ -54,4 +54,5 @@ Both the vein editor and the aforementioned final simulation screen enable the u
  * Left arrow - rotate left (yaw axis)
  * Right arrow - rotate right (yaw axis)
  * V - switch between solid shader and edges-only
- * B - switch the visibility of blood cell springs
+ * B - switch the visibility of blood cell springs (simulation only)
+ * N - switch between the normal blood cell view and "blood cells as spheres connected by springs" (simulation only)
