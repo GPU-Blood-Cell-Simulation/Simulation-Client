@@ -115,9 +115,13 @@ namespace gui
         case Mode::manualRuntime:
             renderManualSimulation();
             break;
+
+#ifndef _WIN32
         case Mode::localRuntime:
             renderLocalSimulation();
             break;
+#endif
+
         case Mode::configureBloodCellSprings:
             renderBloodCellSpringsDetails(configManager.getData());
             break;

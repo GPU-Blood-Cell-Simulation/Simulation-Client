@@ -84,7 +84,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(GSTREAMER_1_0_ROOT_MSVC_X86_64)include\glib-2.0\glib;$(GSTREAMER_1_0_ROOT_MSVC_X86_64)include\glib-2.0\;$(GSTREAMER_1_0_ROOT_MSVC_X86_64)include\gstreamer-1.0;$(GSTREAMER_1_0_ROOT_MSVC_X86_64)lib\glib-2.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -101,7 +101,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(GSTREAMER_1_0_ROOT_MSVC_X86_64)include\glib-2.0\glib;$(GSTREAMER_1_0_ROOT_MSVC_X86_64)include\glib-2.0\;$(GSTREAMER_1_0_ROOT_MSVC_X86_64)include\gstreamer-1.0;$(GSTREAMER_1_0_ROOT_MSVC_X86_64)lib\glib-2.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -118,7 +118,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
@@ -142,7 +142,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
@@ -171,12 +171,11 @@
     <ClCompile Include="Libraries\include\imgui\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Libraries\include\imgui_file_dialog\ImGuiFileDialog.cpp" />
     <ClCompile Include="src\bloodcell\blood_editor.cpp" />
-    <ClCompile Include="src\communication\server_communication_controller.cpp" />
+    <ClCompile Include="src\communication\client_endpoint.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\graphics\camera.cpp" />
     <ClCompile Include="src\graphics\glcontroller.cpp" />
     <ClCompile Include="src\graphics\inputcontroller.cpp" />
-    <ClCompile Include="src\graphics\stream_input_controller.cpp" />
     <ClCompile Include="src\gui\components\add_vein.cpp" />
     <ClCompile Include="src\gui\components\blood_details.cpp" />
     <ClCompile Include="src\gui\components\blood_list.cpp" />
@@ -186,7 +185,9 @@
     <ClCompile Include="src\gui\components\general_editor.cpp" />
     <ClCompile Include="src\gui\components\main_screen.cpp" />
     <ClCompile Include="src\gui\components\menu_bar.cpp" />
-    <ClCompile Include="src\gui\components\simulation.cpp" />
+    <ClCompile Include="src\gui\components\runtime_type_select.cpp" />
+    <ClCompile Include="src\gui\components\simulations\manual_simulation.cpp" />
+    <ClCompile Include="src\gui\components\stream.cpp" />
     <ClCompile Include="src\gui\components\vein_editor.cpp" />
     <ClCompile Include="src\gui\components\dialog_window.cpp" />
     <ClCompile Include="src\gui\extensions.cpp" />
@@ -199,6 +200,8 @@
     <ClCompile Include="src\serializable\general_config\simulation_config.cpp" />
     <ClCompile Include="src\serializable\util\vec_to_string.cpp" />
     <ClCompile Include="src\streaming\stream_frame.cpp" />
+    <ClCompile Include="src\streaming\stream_input_controller.cpp" />
+    <ClCompile Include="src\streaming\stream_manager.cpp" />
     <ClCompile Include="src\streaming\stream_receiver.cpp" />
     <ClCompile Include="src\vein\nodes\bifurcation_final_mesh_generation.cpp" />
     <ClCompile Include="src\vein\nodes\cylinder_node.cpp" />
@@ -532,8 +535,11 @@
     <ClInclude Include="Libraries\include\nlohmann\json_fwd.hpp" />
     <ClInclude Include="Libraries\include\tps\tps.hpp" />
     <ClInclude Include="SimulationConfigData\template_bloodcells_definition.hpp" />
+    <ClInclude Include="SimulationConfigData\template_blood_cells_definition.hpp" />
     <ClInclude Include="SimulationConfigData\template_blood_cell_presets.hpp" />
+    <ClInclude Include="SimulationConfigData\template_vein_definition.hpp" />
     <ClInclude Include="src\bloodcell\blood_editor.hpp" />
+    <ClInclude Include="src\communication\client_endpoint.hpp" />
     <ClInclude Include="src\communication\server_communication_controller.hpp" />
     <ClInclude Include="src\defines.hpp" />
     <ClInclude Include="src\graphics\camera.hpp" />
@@ -555,6 +561,8 @@
     <ClInclude Include="src\serializable\util\vec_to_string.hpp" />
     <ClInclude Include="src\serializable\vein_node_json_conversion.hpp" />
     <ClInclude Include="src\streaming\stream_frame.hpp" />
+    <ClInclude Include="src\streaming\stream_input_controller.hpp" />
+    <ClInclude Include="src\streaming\stream_manager.hpp" />
     <ClInclude Include="src\streaming\stream_receiver.hpp" />
     <ClInclude Include="src\vein\nodes\cylinder_node.hpp" />
     <ClInclude Include="src\vein\nodes\root_node.hpp" />
