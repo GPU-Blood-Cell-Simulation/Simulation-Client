@@ -47,7 +47,7 @@ namespace gui
             LocalSimContext.threadResult = system("cd Simulation-Server/ && git pull");
         }
         else {
-            LocalSimContext.threadResult = system("git clone --branch dev https://github.com/GPU-Blood-Cell-Simulation/Simulation-Server.git");
+            LocalSimContext.threadResult = system("git clone --branch master https://github.com/GPU-Blood-Cell-Simulation/Simulation-Server.git");
         }
 
         LocalSimContext.threadFinished = true;
