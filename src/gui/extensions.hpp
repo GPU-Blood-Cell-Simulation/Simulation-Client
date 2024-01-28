@@ -7,7 +7,11 @@ namespace gui
 	/// </summary>
 	namespace ext
 	{
-
+		/// <summary>
+		/// A wrapper creating an ImGui::Text that is centered horizontally on the screen
+		/// </summary>
+		/// <param name="text">Text to display</param>
+		/// <param name="textWidth">The width of the button's text. If negative, it will be calculated automatically</param>
 		void CenteredText(const char *text, float textWidth= -1.0f);
 
 		/// <summary>

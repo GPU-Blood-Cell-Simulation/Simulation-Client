@@ -26,6 +26,14 @@ streaming::StreamFrame::~StreamFrame()
     gst_sample_unref(sample);
 }
 
+uint8_t *streaming::StreamFrame::getData() const
+{
+    if (!haveData()) {
+        return NULL;
+    }
+
+    return map.data;
+}
 
 int streaming::StreamFrame::getWidth()
 {

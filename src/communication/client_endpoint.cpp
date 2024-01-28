@@ -102,18 +102,27 @@ void ClientCommunicationEndpoint::disconnect()
 
 void ClientCommunicationEndpoint::sendStartEvent(EventType event) const
 {
+    if (!eventSupportDuration(event))
+        throw std::runtime_error("Event is not supporting duration");
+
     sendMsg(static_cast<event_t>(event) | START_EVENT_MASK);
 }
 
 
 void ClientCommunicationEndpoint::sendEndEvent(EventType event) const
 {
+    if (!eventSupportDuration(event))
+        throw std::runtime_error("Event is not supporting duration");
+
     sendMsg((static_cast<event_t>(event)));
 }
 
 
 void ClientCommunicationEndpoint::sendSingleEvent(EventType event) const
 {
+    if (eventSupportDuration(event))
+        throw std::runtime_error("Event is cannot supporting duration");
+
     sendMsg((static_cast<event_t>(event)));
 }
 
@@ -201,4 +210,17 @@ bool ClientCommunicationEndpoint::eventIsImportant(EventType event)
     default:
         return false;
     }
+}
+
+
+bool ClientCommunicationEndpoint::eventSupportDuration(EventType event)
+{
+    int eventCode = static_cast<int>(event);
+
+
+    if (eventCode >= static_cast<int>(EventType::cameraLeft) &&
+        eventCode <= static_cast<int>(EventType::cameraRotateDown))
+        return true;
+
+    return false;
 }
