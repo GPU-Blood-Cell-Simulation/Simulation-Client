@@ -28,9 +28,9 @@
       "o.veinImpactDistance": 6.0,
       "o.veinImpactMinimalForceDistance": 9.999999747378752e-05,
       "o.vein_boundaries_velocity_damping": 0.6499999761581421,
-      "o.vein_collision_force_intensity": 0.07999999821186066,
-      "o.vein_d_fact": 0.44999998807907104,
-      "o.vein_k_sniff": 0.05000000074505806,
+      "o.vein_collision_force_intensity": 0.005,
+      "o.vein_d_fact": 0.7,
+      "o.vein_k_sniff": 0.1,
       "o.velocity_collision_damping": 0.9599999785423279,
       "o.viscous_damping": 0.11999999731779099
    },
