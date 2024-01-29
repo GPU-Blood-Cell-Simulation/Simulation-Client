@@ -24,6 +24,8 @@ The ImGui library (Copyright (c) 2014-2024 Omar Cornut) is distributed under the
 
 The ImGuiFileDialog (Copyright (c) 2018-2023 Stephane Cuillerdier (aka Aiekick)) is distributed under the aforementioned MIT license
 
+The Imgui styles from https://github.com/GraphicsProgramming/dear-imgui-styles (Copyright (c) 2022 Graphics Programming) are distributed under the aforementioned MIT license
+
 The Nlohmann Json library (Copyright (c) 2013-2022 Niels Lohmann) is distributed under the aforementioned MIT license
 
 The GFLW library (Copyright © 2002-2006 Marcus Geelnard, Copyright © 2006-2019 Camilla Löwy) is distributed under the zlib/libpng license (<https://opensource.org/license/zlib/>)
