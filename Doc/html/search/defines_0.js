@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bits_5fin_5fbyte_0',['BITS_IN_BYTE',['../server__communication__controller_8cpp.html#ac54bd5b32c8baefaf13608a9296a7564',1,'server_communication_controller.cpp']]]
+  ['_5fcelltypes_0',['_cellTypes',['../blood__editor_8cpp.html#af16805e7b32fb95375eb02e34b124232',1,'_cellTypes:&#160;blood_editor.cpp'],['../blood__list_8cpp.html#af16805e7b32fb95375eb02e34b124232',1,'_cellTypes:&#160;blood_list.cpp']]]
 ];

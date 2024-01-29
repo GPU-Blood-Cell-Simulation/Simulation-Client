@@ -17,7 +17,7 @@ namespace streaming
         ~StreamFrame();
 
         /// <summary>
-        /// No no frames were received from server, then frames without data are returned
+        /// If no frames were received from server, then frames without data are returned
         /// </summary>
         /// <returns>True if frame contains full video frame</returns>
         inline bool haveData() const { return sample != NULL; }

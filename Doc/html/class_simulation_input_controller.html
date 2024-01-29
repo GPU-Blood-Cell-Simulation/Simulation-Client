@@ -103,12 +103,13 @@ $(function(){initNavTree('class_simulation_input_controller.html',''); initResiz
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a10059dcf4dfc6d7b150c268dc27bed86" id="r_a10059dcf4dfc6d7b150c268dc27bed86"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a10059dcf4dfc6d7b150c268dc27bed86">setInputCallback</a> (GLFWwindow *window, <a class="el" href="class_server_communication_controller.html">ServerCommunicationController</a> *controller)</td></tr>
-<tr class="separator:a10059dcf4dfc6d7b150c268dc27bed86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa420a16dfeda566ce687fbb1014a4293" id="r_aa420a16dfeda566ce687fbb1014a4293"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa420a16dfeda566ce687fbb1014a4293">setInputCallback</a> (GLFWwindow *window, <a class="el" href="class_client_communication_endpoint.html">ClientCommunicationEndpoint</a> *controller)</td></tr>
+<tr class="memdesc:aa420a16dfeda566ce687fbb1014a4293"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup callback, which sends events to server during streaming in response to clicking keys.  <br /></td></tr>
+<tr class="separator:aa420a16dfeda566ce687fbb1014a4293"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a10059dcf4dfc6d7b150c268dc27bed86" name="a10059dcf4dfc6d7b150c268dc27bed86"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a10059dcf4dfc6d7b150c268dc27bed86">&#9670;&#160;</a></span>setInputCallback()</h2>
+<a id="aa420a16dfeda566ce687fbb1014a4293" name="aa420a16dfeda566ce687fbb1014a4293"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa420a16dfeda566ce687fbb1014a4293">&#9670;&#160;</a></span>setInputCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -124,7 +125,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_server_communication_controller.html">ServerCommunicationController</a> *</td>          <td class="paramname"><span class="paramname"><em>controller</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="class_client_communication_endpoint.html">ClientCommunicationEndpoint</a> *</td>          <td class="paramname"><span class="paramname"><em>controller</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -134,11 +135,20 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Setup callback, which sends events to server during streaming in response to clicking keys. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window</td><td>Pointer to GLFW window with stream output</td></tr>
+    <tr><td class="paramname">controller</td><td>Message controller connected to server</td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/graphics/<a class="el" href="stream__input__controller_8hpp_source.html">stream_input_controller.hpp</a></li>
-<li>src/graphics/<a class="el" href="stream__input__controller_8cpp.html">stream_input_controller.cpp</a></li>
+<li>src/streaming/<a class="el" href="stream__input__controller_8hpp_source.html">stream_input_controller.hpp</a></li>
+<li>src/streaming/<a class="el" href="stream__input__controller_8cpp.html">stream_input_controller.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

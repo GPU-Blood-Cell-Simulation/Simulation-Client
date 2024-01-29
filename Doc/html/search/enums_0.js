@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['connectionstate_0',['ConnectionState',['../server__communication__controller_8hpp.html#acdd867d72142510ce53521a63a062f9b',1,'server_communication_controller.hpp']]]
+  ['eventtype_0',['EventType',['../client__endpoint_8hpp.html#a77632a3669c7129e56fb5a6722a8c624',1,'client_endpoint.hpp']]]
 ];

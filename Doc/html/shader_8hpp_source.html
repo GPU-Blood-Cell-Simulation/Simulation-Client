@@ -130,15 +130,14 @@ $(function(){initNavTree('shader_8hpp_source.html',''); initResizable(); });
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>};</div>
 </div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="foldopen" id="foldopen00032" data-start="{" data-end="};">
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="class_cylinder_solid_color_shader.html">   32</a></span><span class="keyword">class </span><a class="code hl_class" href="class_cylinder_solid_color_shader.html">CylinderSolidColorShader</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_shader.html">Shader</a></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_function" href="class_cylinder_solid_color_shader.html#a64a4bab4094863e9774a83ea44bffcae">CylinderSolidColorShader</a>();</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>};</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="class_vein_solid_color_shader.html">   36</a></span><span class="keyword">class </span><a class="code hl_class" href="class_vein_solid_color_shader.html">VeinSolidColorShader</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_shader.html">Shader</a></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>{</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <a class="code hl_function" href="class_vein_solid_color_shader.html#a1d64c19ffa7e0597e0a630368e906906">VeinSolidColorShader</a>();</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>};</div>
 </div>
-<div class="ttc" id="aclass_cylinder_solid_color_shader_html"><div class="ttname"><a href="class_cylinder_solid_color_shader.html">CylinderSolidColorShader</a></div><div class="ttdef"><b>Definition</b> shader.hpp:33</div></div>
-<div class="ttc" id="aclass_cylinder_solid_color_shader_html_a64a4bab4094863e9774a83ea44bffcae"><div class="ttname"><a href="class_cylinder_solid_color_shader.html#a64a4bab4094863e9774a83ea44bffcae">CylinderSolidColorShader::CylinderSolidColorShader</a></div><div class="ttdeci">CylinderSolidColorShader()</div><div class="ttdef"><b>Definition</b> shader.cpp:124</div></div>
 <div class="ttc" id="aclass_shader_html"><div class="ttname"><a href="class_shader.html">Shader</a></div><div class="ttdoc">A wrapper class for GLSL shaders. heavily inspired by https://learnopengl.com/Getting-started/Shaders...</div><div class="ttdef"><b>Definition</b> shader.hpp:14</div></div>
 <div class="ttc" id="aclass_shader_html_a142a08b6fbdfc982d82ca10ee0b0f38d"><div class="ttname"><a href="class_shader.html#a142a08b6fbdfc982d82ca10ee0b0f38d">Shader::ID</a></div><div class="ttdeci">unsigned int ID</div><div class="ttdef"><b>Definition</b> shader.hpp:17</div></div>
 <div class="ttc" id="aclass_shader_html_a1afa499f4ed280a162bd319a6cf3a50d"><div class="ttname"><a href="class_shader.html#a1afa499f4ed280a162bd319a6cf3a50d">Shader::setVector</a></div><div class="ttdeci">void setVector(const char *name, glm::vec3 vector) const</div><div class="ttdef"><b>Definition</b> shader.cpp:104</div></div>
@@ -149,6 +148,8 @@ $(function(){initNavTree('shader_8hpp_source.html',''); initResizable(); });
 <div class="ttc" id="aclass_shader_html_acc795411c2ca485e8181ca192e65f7f0"><div class="ttname"><a href="class_shader.html#acc795411c2ca485e8181ca192e65f7f0">Shader::setFloat</a></div><div class="ttdeci">void setFloat(const char *name, float value) const</div><div class="ttdef"><b>Definition</b> shader.cpp:92</div></div>
 <div class="ttc" id="aclass_shader_html_ae17b240a07f6302dcb4f2d98742f4d1b"><div class="ttname"><a href="class_shader.html#ae17b240a07f6302dcb4f2d98742f4d1b">Shader::setMatrix</a></div><div class="ttdeci">void setMatrix(const char *name, glm::mat4 matrix) const</div><div class="ttdef"><b>Definition</b> shader.cpp:110</div></div>
 <div class="ttc" id="aclass_shader_html_afc43d007e07441ee320f1b26162b4915"><div class="ttname"><a href="class_shader.html#afc43d007e07441ee320f1b26162b4915">Shader::setInt</a></div><div class="ttdeci">void setInt(const char *name, int value) const</div><div class="ttdef"><b>Definition</b> shader.cpp:98</div></div>
+<div class="ttc" id="aclass_vein_solid_color_shader_html"><div class="ttname"><a href="class_vein_solid_color_shader.html">VeinSolidColorShader</a></div><div class="ttdoc">Vein color shader.</div><div class="ttdef"><b>Definition</b> shader.hpp:37</div></div>
+<div class="ttc" id="aclass_vein_solid_color_shader_html_a1d64c19ffa7e0597e0a630368e906906"><div class="ttname"><a href="class_vein_solid_color_shader.html#a1d64c19ffa7e0597e0a630368e906906">VeinSolidColorShader::VeinSolidColorShader</a></div><div class="ttdeci">VeinSolidColorShader()</div><div class="ttdef"><b>Definition</b> shader.cpp:124</div></div>
 <div class="ttc" id="alight_8hpp_html"><div class="ttname"><a href="light_8hpp.html">light.hpp</a></div></div>
 <div class="ttc" id="astruct_dir_light_html"><div class="ttname"><a href="struct_dir_light.html">DirLight</a></div><div class="ttdoc">A struct representing a directional light source in OpenGL.</div><div class="ttdef"><b>Definition</b> light.hpp:20</div></div>
 </div><!-- fragment --></div><!-- contents -->

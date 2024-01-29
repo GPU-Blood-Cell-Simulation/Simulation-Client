@@ -116,6 +116,7 @@ Namespaces</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgui_1_1_blood_editor.html">BloodEditor</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main editor for blood cell types.  <a href="classgui_1_1_blood_editor.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgui_1_1_g_u_i_controller.html">GUIController</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Responsible for displaying the GUI in a separate ImGui window. Handles ImGui initialization, setup and all logic associated with interaction through the graphical interface.  <a href="classgui_1_1_g_u_i_controller.html#details">More...</a><br /></td></tr>
@@ -128,6 +129,22 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
+<tr class="memitem:a07ac04be951538ba70fe04cbb6b30d33" id="r_a07ac04be951538ba70fe04cbb6b30d33"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07ac04be951538ba70fe04cbb6b30d33">LocalSimPhase</a> { <br />
+&#160;&#160;<a class="el" href="#a07ac04be951538ba70fe04cbb6b30d33ae37f0136aa3ffaf149b351f6a4c948e9">init</a>
+, <a class="el" href="#a07ac04be951538ba70fe04cbb6b30d33a72322f77ee4d630decef020954da10f5">beforeRepoClone</a>
+, <a class="el" href="#a07ac04be951538ba70fe04cbb6b30d33a789ad86ef6e25f156d26f0ba75531502">duringRepoClone</a>
+, <a class="el" href="#a07ac04be951538ba70fe04cbb6b30d33acbc8e23b1a328f5f194f79c458fae99a">beforeConfigCopy</a>
+, <br />
+&#160;&#160;<a class="el" href="#a07ac04be951538ba70fe04cbb6b30d33a10a3251eb4facc23ce8cc61e3ffe27d8">duringConfigCopy</a>
+, <a class="el" href="#a07ac04be951538ba70fe04cbb6b30d33ac6e2dd6feb3958d08b40240c77f246a8">beforeCMakeConfigure</a>
+, <a class="el" href="#a07ac04be951538ba70fe04cbb6b30d33aeba4276d9d6cbb773bec32b955b841fa">duringCMakeConfigure</a>
+, <a class="el" href="#a07ac04be951538ba70fe04cbb6b30d33a83669565a301989f3d36634343c3da4c">beforeCompilation</a>
+, <br />
+&#160;&#160;<a class="el" href="#a07ac04be951538ba70fe04cbb6b30d33abed18485979697f9e60bf664ed1accb7">duringCompilation</a>
+, <a class="el" href="#a07ac04be951538ba70fe04cbb6b30d33a44d5fa6282a01f7c4e80b159d5f49e95">beforeServerRun</a>
+<br />
+ }</td></tr>
+<tr class="separator:a07ac04be951538ba70fe04cbb6b30d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aae1d71f8c90a24d481b61b124632784b" id="r_aae1d71f8c90a24d481b61b124632784b"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae1d71f8c90a24d481b61b124632784b">Mode</a> { <br />
 &#160;&#160;<a class="el" href="#aae1d71f8c90a24d481b61b124632784bae34e74f25f1025ca818432057d92b8d9">mainScreen</a>
 , <a class="el" href="#aae1d71f8c90a24d481b61b124632784ba8b4793cb0b27732557055192373348b8">generalEdit</a>
@@ -135,9 +152,14 @@ Enumerations</h2></td></tr>
 , <a class="el" href="#aae1d71f8c90a24d481b61b124632784ba3800a329a71ec302cf3448ef6e9aed76">veinEdit</a>
 , <br />
 &#160;&#160;<a class="el" href="#aae1d71f8c90a24d481b61b124632784bab226b29e39dc052ad95fbf05bcd49e7c">addVein</a>
-, <a class="el" href="#aae1d71f8c90a24d481b61b124632784ba9e083ec666c9f3db044bb7c381640227">simulation</a>
+, <a class="el" href="#aae1d71f8c90a24d481b61b124632784ba2308fd8e7b4e13c07fb2a7b85021d322">selectingRuntimeType</a>
+, <a class="el" href="#aae1d71f8c90a24d481b61b124632784ba1c84867cd2c375b58b607920e1587835">localRuntime</a>
+, <a class="el" href="#aae1d71f8c90a24d481b61b124632784ba682c93951c3fd62b5e8405581b9edaaa">manualRuntime</a>
+, <br />
+&#160;&#160;<a class="el" href="#aae1d71f8c90a24d481b61b124632784ba92a6b8f06cdf2a2bd18a6134b671e513">streamWatching</a>
 , <a class="el" href="#aae1d71f8c90a24d481b61b124632784ba7e905e5e432fc46242d2b115240610c6">configureBloodCellSprings</a>
 , <a class="el" href="#aae1d71f8c90a24d481b61b124632784bab7fff57d916cc0465cc24ed6c36159db">configureBloodCellVertices</a>
+, <a class="el" href="#aae1d71f8c90a24d481b61b124632784bab3c3052f94aa4647d4ed968fbedd4edb">configureBloodCellColor</a>
 <br />
  }</td></tr>
 <tr class="memdesc:aae1d71f8c90a24d481b61b124632784b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decides which screen should be displayed in the GUI window.  <a href="#aae1d71f8c90a24d481b61b124632784b">More...</a><br /></td></tr>
@@ -207,6 +229,40 @@ Enumerations</h2></td></tr>
 
 </div>
 </div>
+<a id="a07ac04be951538ba70fe04cbb6b30d33" name="a07ac04be951538ba70fe04cbb6b30d33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07ac04be951538ba70fe04cbb6b30d33">&#9670;&#160;</a></span>LocalSimPhase</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#a07ac04be951538ba70fe04cbb6b30d33">gui::LocalSimPhase</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a07ac04be951538ba70fe04cbb6b30d33ae37f0136aa3ffaf149b351f6a4c948e9" name="a07ac04be951538ba70fe04cbb6b30d33ae37f0136aa3ffaf149b351f6a4c948e9"></a>init&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a07ac04be951538ba70fe04cbb6b30d33a72322f77ee4d630decef020954da10f5" name="a07ac04be951538ba70fe04cbb6b30d33a72322f77ee4d630decef020954da10f5"></a>beforeRepoClone&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a07ac04be951538ba70fe04cbb6b30d33a789ad86ef6e25f156d26f0ba75531502" name="a07ac04be951538ba70fe04cbb6b30d33a789ad86ef6e25f156d26f0ba75531502"></a>duringRepoClone&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a07ac04be951538ba70fe04cbb6b30d33acbc8e23b1a328f5f194f79c458fae99a" name="a07ac04be951538ba70fe04cbb6b30d33acbc8e23b1a328f5f194f79c458fae99a"></a>beforeConfigCopy&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a07ac04be951538ba70fe04cbb6b30d33a10a3251eb4facc23ce8cc61e3ffe27d8" name="a07ac04be951538ba70fe04cbb6b30d33a10a3251eb4facc23ce8cc61e3ffe27d8"></a>duringConfigCopy&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a07ac04be951538ba70fe04cbb6b30d33ac6e2dd6feb3958d08b40240c77f246a8" name="a07ac04be951538ba70fe04cbb6b30d33ac6e2dd6feb3958d08b40240c77f246a8"></a>beforeCMakeConfigure&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a07ac04be951538ba70fe04cbb6b30d33aeba4276d9d6cbb773bec32b955b841fa" name="a07ac04be951538ba70fe04cbb6b30d33aeba4276d9d6cbb773bec32b955b841fa"></a>duringCMakeConfigure&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a07ac04be951538ba70fe04cbb6b30d33a83669565a301989f3d36634343c3da4c" name="a07ac04be951538ba70fe04cbb6b30d33a83669565a301989f3d36634343c3da4c"></a>beforeCompilation&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a07ac04be951538ba70fe04cbb6b30d33abed18485979697f9e60bf664ed1accb7" name="a07ac04be951538ba70fe04cbb6b30d33abed18485979697f9e60bf664ed1accb7"></a>duringCompilation&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a07ac04be951538ba70fe04cbb6b30d33a44d5fa6282a01f7c4e80b159d5f49e95" name="a07ac04be951538ba70fe04cbb6b30d33a44d5fa6282a01f7c4e80b159d5f49e95"></a>beforeServerRun&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
 <a id="aae1d71f8c90a24d481b61b124632784b" name="aae1d71f8c90a24d481b61b124632784b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aae1d71f8c90a24d481b61b124632784b">&#9670;&#160;</a></span>Mode</h2>
 
@@ -234,10 +290,71 @@ Enumerations</h2></td></tr>
 <tr><td class="fieldname"><a id="aae1d71f8c90a24d481b61b124632784ba17812c944d5cd39b5f5d94c1d36816d9" name="aae1d71f8c90a24d481b61b124632784ba17812c944d5cd39b5f5d94c1d36816d9"></a>bloodEdit&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aae1d71f8c90a24d481b61b124632784ba3800a329a71ec302cf3448ef6e9aed76" name="aae1d71f8c90a24d481b61b124632784ba3800a329a71ec302cf3448ef6e9aed76"></a>veinEdit&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aae1d71f8c90a24d481b61b124632784bab226b29e39dc052ad95fbf05bcd49e7c" name="aae1d71f8c90a24d481b61b124632784bab226b29e39dc052ad95fbf05bcd49e7c"></a>addVein&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aae1d71f8c90a24d481b61b124632784ba9e083ec666c9f3db044bb7c381640227" name="aae1d71f8c90a24d481b61b124632784ba9e083ec666c9f3db044bb7c381640227"></a>simulation&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aae1d71f8c90a24d481b61b124632784ba2308fd8e7b4e13c07fb2a7b85021d322" name="aae1d71f8c90a24d481b61b124632784ba2308fd8e7b4e13c07fb2a7b85021d322"></a>selectingRuntimeType&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aae1d71f8c90a24d481b61b124632784ba1c84867cd2c375b58b607920e1587835" name="aae1d71f8c90a24d481b61b124632784ba1c84867cd2c375b58b607920e1587835"></a>localRuntime&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aae1d71f8c90a24d481b61b124632784ba682c93951c3fd62b5e8405581b9edaaa" name="aae1d71f8c90a24d481b61b124632784ba682c93951c3fd62b5e8405581b9edaaa"></a>manualRuntime&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aae1d71f8c90a24d481b61b124632784ba92a6b8f06cdf2a2bd18a6134b671e513" name="aae1d71f8c90a24d481b61b124632784ba92a6b8f06cdf2a2bd18a6134b671e513"></a>streamWatching&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aae1d71f8c90a24d481b61b124632784ba7e905e5e432fc46242d2b115240610c6" name="aae1d71f8c90a24d481b61b124632784ba7e905e5e432fc46242d2b115240610c6"></a>configureBloodCellSprings&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aae1d71f8c90a24d481b61b124632784bab7fff57d916cc0465cc24ed6c36159db" name="aae1d71f8c90a24d481b61b124632784bab7fff57d916cc0465cc24ed6c36159db"></a>configureBloodCellVertices&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aae1d71f8c90a24d481b61b124632784bab3c3052f94aa4647d4ed968fbedd4edb" name="aae1d71f8c90a24d481b61b124632784bab3c3052f94aa4647d4ed968fbedd4edb"></a>configureBloodCellColor&#160;</td><td class="fielddoc"></td></tr>
 </table>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a29cfda8b5eb8d08da65f0db0e6ac4039" name="a29cfda8b5eb8d08da65f0db0e6ac4039"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29cfda8b5eb8d08da65f0db0e6ac4039">&#9670;&#160;</a></span>phase</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a07ac04be951538ba70fe04cbb6b30d33">LocalSimPhase</a> gui::phase = <a class="el" href="#a07ac04be951538ba70fe04cbb6b30d33ae37f0136aa3ffaf149b351f6a4c948e9">LocalSimPhase::init</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5ca95368a433b514ae2db2fb6e2eecd1" name="a5ca95368a433b514ae2db2fb6e2eecd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ca95368a433b514ae2db2fb6e2eecd1">&#9670;&#160;</a></span>thread</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::thread gui::thread</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4a602be4c84c9a8d82a8cb1218471356" name="a4a602be4c84c9a8d82a8cb1218471356"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a602be4c84c9a8d82a8cb1218471356">&#9670;&#160;</a></span>threadFinished</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::atomic_bool gui::threadFinished = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a42cfaae423625d5212b10401d86b0e8f" name="a42cfaae423625d5212b10401d86b0e8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42cfaae423625d5212b10401d86b0e8f">&#9670;&#160;</a></span>threadResult</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int gui::threadResult</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

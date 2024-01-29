@@ -7,6 +7,7 @@ var hierarchy =
     [ "serializable::BloodCellType", "structserializable_1_1_blood_cell_type.html", null ],
     [ "gui::BloodEditor", "classgui_1_1_blood_editor.html", null ],
     [ "graphics::Camera", "classgraphics_1_1_camera.html", null ],
+    [ "ClientCommunicationEndpoint", "class_client_communication_endpoint.html", null ],
     [ "serializable::ConfigData", "structserializable_1_1_config_data.html", null ],
     [ "serializable::ConfigManager", "classserializable_1_1_config_manager.html", null ],
     [ "std::exception", null, [
@@ -34,14 +35,14 @@ var hierarchy =
         [ "vein::RootNode", "classvein_1_1_root_node.html", null ]
       ] ]
     ] ],
-    [ "ServerCommunicationController", "class_server_communication_controller.html", null ],
     [ "Shader", "class_shader.html", [
-      [ "CylinderSolidColorShader", "class_cylinder_solid_color_shader.html", null ]
+      [ "VeinSolidColorShader", "class_vein_solid_color_shader.html", null ]
     ] ],
     [ "SimulationInputController", "class_simulation_input_controller.html", null ],
     [ "serializable::Spring", "structserializable_1_1_spring.html", null ],
-    [ "StreamFrame", "class_stream_frame.html", null ],
-    [ "StreamReceiver", "class_stream_receiver.html", null ],
+    [ "streaming::StreamFrame", "classstreaming_1_1_stream_frame.html", null ],
+    [ "streaming::StreamManager", "classstreaming_1_1_stream_manager.html", null ],
+    [ "streaming::StreamReceiver", "classstreaming_1_1_stream_receiver.html", null ],
     [ "vein::TempMesh", "classvein_1_1_temp_mesh.html", [
       [ "vein::SerializableMesh", "classvein_1_1_serializable_mesh.html", null ],
       [ "vein::VeinMesh", "classvein_1_1_vein_mesh.html", null ]

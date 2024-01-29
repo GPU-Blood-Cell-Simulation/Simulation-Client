@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Simulation Client: src/gui/components/simulation.cpp File Reference</title>
+<title>Simulation Client: src/streaming/stream_manager.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -66,7 +66,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('simulation_8cpp.html',''); initResizable(); });
+$(function(){initNavTree('stream__manager_8hpp.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -93,24 +93,52 @@ $(function(){initNavTree('simulation_8cpp.html',''); initResizable(); });
 
 <div class="header">
   <div class="summary">
-<a href="#namespaces">Namespaces</a>  </div>
-  <div class="headertitle"><div class="title">simulation.cpp File Reference</div></div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
+  <div class="headertitle"><div class="title">stream_manager.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="gui__controller_8hpp_source.html">../gui_controller.hpp</a>&quot;</code><br />
-</div><table class="memberdecls">
+<div class="textblock"><code>#include &lt;string&gt;</code><br />
+<code>#include &lt;memory&gt;</code><br />
+<code>#include &quot;<a class="el" href="stream__receiver_8hpp_source.html">stream_receiver.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="stream__frame_8hpp_source.html">stream_frame.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="stream__input__controller_8hpp_source.html">stream_input_controller.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="client__endpoint_8hpp_source.html">../communication/client_endpoint.hpp</a>&quot;</code><br />
+</div>
+<p><a href="stream__manager_8hpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstreaming_1_1_stream_manager.html">streaming::StreamManager</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aggregates stream receiving to sending into single, simpler interface.  <a href="classstreaming_1_1_stream_manager.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
-<tr class="memitem:namespacegui" id="r_namespacegui"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegui.html">gui</a></td></tr>
-<tr class="memdesc:namespacegui"><td class="mdescLeft">&#160;</td><td class="mdescRight">This namespace contains all classes and functions responsible for rendering the UI and communicating with the user. <br /></td></tr>
+<tr class="memitem:namespacestreaming" id="r_namespacestreaming"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacestreaming.html">streaming</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ad6ab87cb158894470607f12602d9dbc6" id="r_ad6ab87cb158894470607f12602d9dbc6"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacestreaming.html#ad6ab87cb158894470607f12602d9dbc6">streaming::StreamStatus</a> { <br />
+&#160;&#160;<a class="el" href="namespacestreaming.html#ad6ab87cb158894470607f12602d9dbc6ab462eaf57b3fb88864cd794dd177c780">streaming::initStatus</a>
+, <a class="el" href="namespacestreaming.html#ad6ab87cb158894470607f12602d9dbc6a108e5482f90eb5c4e9855f53ced91d27">streaming::waitingForServer</a>
+, <a class="el" href="namespacestreaming.html#ad6ab87cb158894470607f12602d9dbc6a292db71ff1a82008b52bc6f74bd0419e">streaming::inProgress</a>
+, <a class="el" href="namespacestreaming.html#ad6ab87cb158894470607f12602d9dbc6ae76e6e75750ec10d944928a9ae13c630">streaming::successfullyEnded</a>
+, <br />
+&#160;&#160;<a class="el" href="namespacestreaming.html#ad6ab87cb158894470607f12602d9dbc6ad4c88afba7695966ffb163e6cd5a1af5">streaming::connectionLost</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:ad6ab87cb158894470607f12602d9dbc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum, which contains possible stream statuses.  <a href="namespacestreaming.html#ad6ab87cb158894470607f12602d9dbc6">More...</a><br /></td></tr>
+<tr class="separator:ad6ab87cb158894470607f12602d9dbc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_99d0482cf009f9d97a0877749b817f19.html">gui</a></li><li class="navelem"><a class="el" href="dir_d72d22e317d8e307799a339f9acb117c.html">components</a></li><li class="navelem"><a class="el" href="simulation_8cpp.html">simulation.cpp</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_a27c3557aa7a3a213ca34da60b8f205e.html">streaming</a></li><li class="navelem"><a class="el" href="stream__manager_8hpp.html">stream_manager.hpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
   </ul>
 </div>

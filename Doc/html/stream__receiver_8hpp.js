@@ -1,4 +1,4 @@
 var stream__receiver_8hpp =
 [
-    [ "StreamReceiver", "class_stream_receiver.html", "class_stream_receiver" ]
+    [ "streaming::StreamReceiver", "classstreaming_1_1_stream_receiver.html", "classstreaming_1_1_stream_receiver" ]
 ];

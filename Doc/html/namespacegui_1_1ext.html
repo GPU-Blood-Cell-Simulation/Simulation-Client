@@ -103,9 +103,12 @@ $(function(){initNavTree('namespacegui_1_1ext.html',''); initResizable(); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad6a461f94638491f0e6e9c8051d83bd4" id="r_ad6a461f94638491f0e6e9c8051d83bd4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6a461f94638491f0e6e9c8051d83bd4">CenteredButton</a> (const char *text, float textWidth=-1)</td></tr>
-<tr class="memdesc:ad6a461f94638491f0e6e9c8051d83bd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">A wrapper creating an ImGui::Button that is centered horiontally on the screen.  <br /></td></tr>
-<tr class="separator:ad6a461f94638491f0e6e9c8051d83bd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c8e638de3c1b83b30911f375934380f" id="r_a5c8e638de3c1b83b30911f375934380f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c8e638de3c1b83b30911f375934380f">CenteredText</a> (const char *text, float textWidth=-1.0f)</td></tr>
+<tr class="memdesc:a5c8e638de3c1b83b30911f375934380f"><td class="mdescLeft">&#160;</td><td class="mdescRight">A wrapper creating an ImGui::Text that is centered horizontally on the screen.  <br /></td></tr>
+<tr class="separator:a5c8e638de3c1b83b30911f375934380f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c90fc578c64bc4ca0d8370960aacdfe" id="r_a2c90fc578c64bc4ca0d8370960aacdfe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c90fc578c64bc4ca0d8370960aacdfe">CenteredButton</a> (const char *text, float textWidth=-1.0f)</td></tr>
+<tr class="memdesc:a2c90fc578c64bc4ca0d8370960aacdfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">A wrapper creating an ImGui::Button that is centered horizontally on the screen.  <br /></td></tr>
+<tr class="separator:a2c90fc578c64bc4ca0d8370960aacdfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abea88a31fdfb6708d60c6873fae927aa" id="r_abea88a31fdfb6708d60c6873fae927aa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abea88a31fdfb6708d60c6873fae927aa">InputPositiveFloat</a> (const char *label, float *v, float minValue=0)</td></tr>
 <tr class="memdesc:abea88a31fdfb6708d60c6873fae927aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">A wrapper for ImGui::InputFloat that accepts only values above a threshold.  <br /></td></tr>
 <tr class="separator:abea88a31fdfb6708d60c6873fae927aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -116,8 +119,8 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains ImGui extensions. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="ad6a461f94638491f0e6e9c8051d83bd4" name="ad6a461f94638491f0e6e9c8051d83bd4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad6a461f94638491f0e6e9c8051d83bd4">&#9670;&#160;</a></span>CenteredButton()</h2>
+<a id="a2c90fc578c64bc4ca0d8370960aacdfe" name="a2c90fc578c64bc4ca0d8370960aacdfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c90fc578c64bc4ca0d8370960aacdfe">&#9670;&#160;</a></span>CenteredButton()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -130,12 +133,12 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>textWidth</em><span class="paramdefsep"> = </span><span class="paramdefval">-1</span></span>&#160;)</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>textWidth</em><span class="paramdefsep"> = </span><span class="paramdefval">-1.0f</span></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>A wrapper creating an ImGui::Button that is centered horiontally on the screen. </p>
+<p>A wrapper creating an ImGui::Button that is centered horizontally on the screen. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">text</td><td>Text to display</td></tr>
@@ -144,6 +147,36 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The ImGui::Button result</dd></dl>
+
+</div>
+</div>
+<a id="a5c8e638de3c1b83b30911f375934380f" name="a5c8e638de3c1b83b30911f375934380f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c8e638de3c1b83b30911f375934380f">&#9670;&#160;</a></span>CenteredText()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gui::ext::CenteredText </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>text</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>textWidth</em><span class="paramdefsep"> = </span><span class="paramdefval">-1.0f</span></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A wrapper creating an ImGui::Text that is centered horizontally on the screen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">text</td><td>Text to display</td></tr>
+    <tr><td class="paramname">textWidth</td><td>The width of the button's text. If negative, it will be calculated automatically</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

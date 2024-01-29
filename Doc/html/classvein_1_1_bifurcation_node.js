@@ -5,7 +5,7 @@ var classvein_1_1_bifurcation_node =
     [ "BifurcationNode", "classvein_1_1_bifurcation_node.html#ab3398bf0883627465d71344041fd13a6", null ],
     [ "BifurcationNode", "classvein_1_1_bifurcation_node.html#a6524536cc1e8961f82c51af22629a338", null ],
     [ "BifurcationNode", "classvein_1_1_bifurcation_node.html#a78f719ab9873ed957840503b95d2dbb8", null ],
-    [ "addToMesh", "classvein_1_1_bifurcation_node.html#a91f7c4a50d70f17f14d9a477c8e15539", null ],
+    [ "addToMesh", "classvein_1_1_bifurcation_node.html#af12e264f433b299c16766a6554b51977", null ],
     [ "generateJson", "classvein_1_1_bifurcation_node.html#a1769470700415b971d5b4cbe21ec5ead", null ],
     [ "getChildLevel", "classvein_1_1_bifurcation_node.html#aa75cc12a4c1d4561ad9211ef1fcf9fdf", null ],
     [ "getFullName", "classvein_1_1_bifurcation_node.html#ab85a6256323ef86b50f984c9cf78d04f", null ],
