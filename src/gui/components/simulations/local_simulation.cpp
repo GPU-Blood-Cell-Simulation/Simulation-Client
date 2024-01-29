@@ -1,5 +1,7 @@
 #include "../../gui_controller.hpp"
 
+#include "../../extensions.hpp"
+
 #include <iostream>
 
 #include <thread>
@@ -212,6 +214,33 @@ namespace gui
                 setMode(Mode::streamWatching);
                 glController.setMode(graphics::Mode::Simulation);
                 break;
+        }
+
+        ImGui::Dummy(ImVec2(0.0f, 20.0f));
+        const ImU32 col = ImGui::GetColorU32(ImGuiCol_ButtonHovered);
+        ext::Spinner("##spinner", 100.0f, 20, col);
+        ImGui::Dummy(ImVec2(0.0f, 20.0f));
+
+        switch (LocalSimContext.phase)
+        {
+        case LocalSimPhase::duringRepoClone:
+            ext::CenteredText("Cloning repository...");
+            break;
+
+        case LocalSimPhase::duringConfigCopy:
+            ext::CenteredText("Copying config...");
+            break;
+
+        case LocalSimPhase::duringCMakeConfigure:
+            ext::CenteredText("Configuring CMake...");
+            break;
+
+        case LocalSimPhase::duringCompilation:
+            ext::CenteredText("Server compilation...");
+            break;
+        
+        default:
+            break;
         }
     }
 }

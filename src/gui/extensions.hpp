@@ -1,5 +1,8 @@
 #pragma once
 
+#include "imgui/imgui/imgui.h"
+
+
 namespace gui
 {
 	/// <summary>
@@ -39,5 +42,14 @@ namespace gui
 		/// <param name="minValue">The minium value to clamp to</param>
 		/// <returns>The ImGui::InputInt result</returns>
 		bool InputPositiveInt(const char* label, int* v, int minValue = 1);
+
+		/// <summary>
+		/// Spinning progress indicator. Inspired by https://github.com/ocornut/imgui/issues/1901
+		/// </summary>
+		/// <param name="id">ImGUI widget ID</param>
+		/// <param name="radius">Radius of a spinner</param>
+		/// <param name="thickness">Thickness of a spinning line</param>
+		/// <param name="color">Color of a spinning line</param>
+		bool Spinner(const char* id, float radius, int thickness, const ImU32& color);
 	}
 }
